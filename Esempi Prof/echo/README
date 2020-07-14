@@ -1,0 +1,12 @@
+Applicazione echo basata su socket TCP con server ricorsivo.
+Il client invia al server righe di testo lette dallo standard input. 
+Il server le rimanda al client e quest'ultimo le invia allo standard output.
+
+Per lanciare il client:
+	echo_client <indirizzo IP server>
+
+Per lanciare il server senza gestione del segnale SIGCHLD:
+	echo_server
+
+Per lanciare il server con gestione del segnale SIGCHLD:
+	echo_server_sig
