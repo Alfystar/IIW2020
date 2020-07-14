@@ -11,3 +11,10 @@ Tenuto dal professore: Francesco Lo Presti
 - 
 - 
 
+### Librerie in uso:
+- 
+- 
+
+### Progetti di Inspirazione
+- https://gitlab.com/eidheim/Simple-Web-Server
+- 
