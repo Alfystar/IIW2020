@@ -8,5 +8,9 @@ add_executable(mainTest main.cpp)
 ## Ricerca e linking codice necessario
 add_subdirectory(htmlCompose)
 target_link_libraries(mainTest htmlCompose)
+#Include della libreria fmt per Formattare le stringhe
+find_library(fmt REQUIRED)
+target_link_libraries(mainTest fmt)
+message("-FMT library linked on mainTest")
 
-message("##-Bulid Eseguita\n")
+message("\t##Build Eseguita\n")

@@ -12,6 +12,7 @@
 #include <utility.hpp>
 #include <sstream>
 #include <fstream>
+#include <fmt/format.h>
 
 #define SERV_PORT   8080
 #define BACKLOG       10
@@ -49,6 +50,7 @@ int main (int argc, char *argv[]){
 		exit (1);
 	}
 
+	//Rende riutilizzabile la porta
 	int enable = 1;
 	if (setsockopt (listensd, SOL_SOCKET, SO_REUSEADDR, &enable, sizeof (int)) < 0)
 		perror ("setsockopt(SO_REUSEADDR) failed");
@@ -138,32 +140,31 @@ int main (int argc, char *argv[]){
 //			printf("Last modified time: %s", ctime(&attr.st_mtime));
 //		}
 
-
-	std::string s = "HTTP/1.1 200 OK\r\n"
-	                "Date: Mon, 27 Jul 2009 12:28:53 GMT\r\n"
-	                "Server: Apache/2.2.14 (Win32)\r\n"
-	                "Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT\r\n"
-	                "Content-Length: 88\r\n"
-	                "Content-Type: text/html\r\n"
-	                //	                "Connection: Closed\r\n"
-	                "Keep-Alive: timeout=5, max=99\r\n"
-	                "Connection: Keep-Alive\r\n"
-	                "\r\n"
-	                "<html>\r\n"
+	//Verrà letto da un file, e probabilmente modificato \n con \r\n
+	std::string b = "<html>\r\n"
 	                "<body>\r\n"
 	                "<h1>Hello, World!</h1>\r\n"
 	                "</body>\r\n"
 	                "</html>\r\n\r\n";
 
-	/* scrive sul socket di connessione il contenuto di buff */
-//	if (write (connsd, s.c_str (), strlen (s.c_str ())) != strlen (s.c_str ())){
-//		perror ("errore in write");
-//		exit (1);
-//	}
-//	close (connsd);
+	// Ci saranno i campi che dovranno essere {} e parametricamente montati
+	std::string h = "HTTP/1.1 200 OK\r\n"
+	                "Date: Mon, 27 Jul 2009 12:28:53 GMT\r\n"
+	                "Server: Apache/2.2.14 (Win32)\r\n"
+	                "Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT\r\n"
+				    "Content-Length: {}\r\n"
+	                "Content-Type: text/html\r\n"
+	                //	                "Connection: Closed\r\n"
+	                "Keep-Alive: timeout=5, max=99\r\n"
+	                "Connection: Keep-Alive\r\n"
+	                "\r\n"
+				    "{}";   //Body
+	// Unirà l'header con il bodi e ritornerà la stringa di invio HTML
+	string mes = fmt::format(h, b.length(),b);
+
 	cout<<"try send 1° response\n";
 
-	if (sendStr (connsd, s) == -1){
+	if (sendStr (connsd, mes) == -1){
 		cout<<"sendStr 1° come error\n";
 		close (connsd);
 	}
@@ -209,7 +210,7 @@ int main (int argc, char *argv[]){
 	}
 
 //    "Connection: Keep-Alive\n"
-	s = "HTTP/1.1 200 OK\r\n"
+	string s = "HTTP/1.1 200 OK\r\n"
 	    "Date: Wed, 15 Jul 2020 10:09:52 GMT\r\n"
 	    "Server: Apache/2.2.22 (Debian)\r\n"
 	    "Last-Modified: Thu, 16 Mar 2006 09:33:16 GMT\r\n"
@@ -220,10 +221,9 @@ int main (int argc, char *argv[]){
 	    "Content-Type: image/png\r\n"
 	    "\r\n";
 
-	/* scrive sul socket di connessione il contenuto di buff */
-	if (write (connsd, s.c_str (), strlen (s.c_str ())) != strlen (s.c_str ())){
-		perror ("errore in write");
-		exit (1);
+	if (sendStr (connsd, s) == -1){
+		cout<<"sendStr 1° come error\n";
+		close (connsd);
 	}
 
 	std::string filename = "/home/alfystar/Documenti/IIW2020/2_src/rfc.png";

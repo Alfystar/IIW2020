@@ -5,5 +5,5 @@ if (NOT TARGET htmlCompose)
             )
 target_include_directories(htmlCompose PUBLIC ".")
 
-message(htmlCompose adding)
+message("-htmlCompose adding")
 endif ()
