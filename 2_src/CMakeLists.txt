@@ -6,8 +6,12 @@ message("Sono Unix : ${UNIX}")
 add_executable(mainTest main.cpp)
 
 ## Ricerca e linking codice necessario
-add_subdirectory(htmlCompose)
-target_link_libraries(mainTest htmlCompose)
+add_subdirectory(httpSystem)
+target_link_libraries(mainTest httpSystem)
+
+add_subdirectory(ncs)
+target_link_libraries(mainTest ncs)
+
 #Include della libreria fmt per Formattare le stringhe
 find_library(fmt REQUIRED)
 target_link_libraries(mainTest fmt)

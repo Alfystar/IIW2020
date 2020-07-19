@@ -6,13 +6,16 @@
 #include <arpa/inet.h>
 
 #include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 #include <utility.hpp>
 #include <sstream>
 #include <fstream>
 #include <fmt/format.h>
+
+
+#include <NCS.h>
 
 #define SERV_PORT   8080
 #define BACKLOG       10
@@ -39,43 +42,51 @@ int sendStr (int sckt, const std::string &s){
 
 int main (int argc, char *argv[]){
 
-	cout << "Hello World " << SERV_PORT << "\n";
-	int listensd, connsd;
-	struct sockaddr_in servaddr;
+//	int listensd, connsd;
+//	struct sockaddr_in servaddr;
+
+//	// crea il socket di ascolto del processo verso la rete
+//	if ((listensd = socket (AF_INET, SOCK_STREAM, 0)) < 0){
+//		perror ("errore in socket");
+//		exit (1);
+//	}
+//
+//	//Rende riutilizzabile la porta
+//	int enable = 1;
+//	if (setsockopt (listensd, SOL_SOCKET, SO_REUSEADDR, &enable, sizeof (int)) < 0)
+//		perror ("setsockopt(SO_REUSEADDR) failed");
+//
+//
+//	// Configuro i parametri con la quale deve funzionare la socket, attraverso la bind
+//	memset ((void *)&servaddr, 0, sizeof (servaddr));
+//	servaddr.sin_family = AF_INET;
+//	servaddr.sin_addr.s_addr = htonl (INADDR_ANY); /* il server accetta
+//        connessioni su una qualunque delle sue intefacce di rete */
+//	servaddr.sin_port = htons (SERV_PORT); /* numero di porta del server */
+//
+//	// assegna l'indirizzo e la porta da far guardare alla socket
+//	if ((bind (listensd, (struct sockaddr *)&servaddr, sizeof (servaddr))) < 0){
+//		perror ("errore in bind");
+//		exit (1);
+//	}
+//
+//	// Comunico al SO la dimensione della coda di attesa che deve gestire
+//	if (listen (listensd, BACKLOG) < 0){
+//		perror ("errore in listen");
+//		exit (1);
+//	}
+//
+//	// Attende sia presente almeno una connessione (che ha già superato l'handShake a 3 vie)
+//	// Si ottiene un Soket connesso
+//	if ((connsd = accept (listensd, (struct sockaddr *)NULL, NULL)) < 0){
+//		perror ("errore in accept");
+//		exit (1);
+//	}
+
+	NCS::Accept *a = NCS::ncsGetAccept();
+	int connsd = a->getLastFd();
+
 	char buff[MAXLINE];
-
-	// crea il socket
-	if ((listensd = socket (AF_INET, SOCK_STREAM, 0)) < 0){
-		perror ("errore in socket");
-		exit (1);
-	}
-
-	//Rende riutilizzabile la porta
-	int enable = 1;
-	if (setsockopt (listensd, SOL_SOCKET, SO_REUSEADDR, &enable, sizeof (int)) < 0)
-		perror ("setsockopt(SO_REUSEADDR) failed");
-
-	memset ((void *)&servaddr, 0, sizeof (servaddr));
-	servaddr.sin_family = AF_INET;
-	servaddr.sin_addr.s_addr = htonl (INADDR_ANY); /* il server accetta
-        connessioni su una qualunque delle sue intefacce di rete */
-	servaddr.sin_port = htons (SERV_PORT); /* numero di porta del server */
-
-	// assegna l'indirizzo al socket
-	if ((bind (listensd, (struct sockaddr *)&servaddr, sizeof (servaddr))) < 0){
-		perror ("errore in bind");
-		exit (1);
-	}
-
-	if (listen (listensd, BACKLOG) < 0){
-		perror ("errore in listen");
-		exit (1);
-	}
-
-	if ((connsd = accept (listensd, (struct sockaddr *)NULL, NULL)) < 0){
-		perror ("errore in accept");
-		exit (1);
-	}
 
 	read (connsd, buff, MAXLINE);
 
@@ -294,7 +305,7 @@ int main (int argc, char *argv[]){
 //		}
 
 
-	close (listensd);
+//	close (listensd);
 
 	if (close (connsd) == -1){  /* chiude la connessione */
 		perror ("errore in close");
