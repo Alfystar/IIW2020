@@ -11,6 +11,7 @@
 #include "Connection.h"
 #include "Queue.h"
 
+
 namespace NCS{
 	extern Queue *queueObj;
 	extern Accept *acceptObj;

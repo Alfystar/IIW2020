@@ -6,14 +6,14 @@
 
 using namespace NCS;
 
-Queue *NCS::queueObj;
-Accept *NCS::acceptObj;
+Queue *NCS::queueObj = nullptr;
+Accept *NCS::acceptObj = nullptr;
 std::mutex NCS::queueLock;
 std::mutex NCS::acceptock;
 
 
-Queue *NCS::ncsGetQueue (){
-	const std::lock_guard<std::mutex> lock(queueLock);
+Queue *NCS::ncsGetQueue(){
+	const std::lock_guard <std::mutex> lock(queueLock);
 	if(queueObj) //Oggetto già definito
 		return queueObj;
 

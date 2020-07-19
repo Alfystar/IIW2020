@@ -3,3 +3,17 @@
 //
 
 #include "Connection.h"
+
+using namespace NCS;
+
+Connection::Connection(){
+
+}
+
+Connection::~Connection(){
+
+}
+
+void Connection::compilePollFD(struct pollfd *poolFd){
+
+}

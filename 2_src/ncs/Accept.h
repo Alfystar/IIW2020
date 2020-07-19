@@ -5,13 +5,19 @@
 #ifndef HTTP_IMAGESERVER_ACCEPT_H
 #define HTTP_IMAGESERVER_ACCEPT_H
 
+
 #include <cstdio>
 #include <cstring>
 #include <netinet/in.h>
 #include <mutex>
 
+#include <sys/time.h>
+#include <sys/resource.h>
+
+
 #include "Queue.h"
 #include "Connection.h"
+#include "ncsDefine.h"
 
 #define BACKLOG 10
 #define SERV_PORT   8080
@@ -33,11 +39,13 @@ namespace NCS{
 		char buff[MAXLINE];
 	public:
 		Accept(Queue *q);
+
 		int getLastFd();
 
 	private:
 		static void thListener(Accept *a);
 
+		void sockInit();
 	};
 }
 
