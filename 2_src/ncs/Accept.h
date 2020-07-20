@@ -28,19 +28,13 @@ namespace NCS{
 	class Accept{
 	private:
 		Queue *q;
-		std::thread *t1;
+		std::thread *tListener;
 
-		std::mutex newData;
-
-		int lastFd;
-
-		int listensd, connsd;
+		int listensd;
 		struct sockaddr_in servaddr;
-		char buff[MAXLINE];
+
 	public:
 		Accept(Queue *q);
-
-		int getLastFd();
 
 	private:
 		static void thListener(Accept *a);

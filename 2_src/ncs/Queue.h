@@ -9,11 +9,16 @@
 #define _GNU_SOURCE         /* See feature_test_macros(7) */
 #endif
 
-//poll include
+
+#include <iostream>
+#include <cstring>
+#include <bitset>
+
+//poll directive
 #include <signal.h>
 #include <poll.h>
 
-//pipe include
+//pipe directive
 #include <fcntl.h>              /* Obtain O_* constant definitions */
 #include <unistd.h>
 
@@ -21,16 +26,18 @@
 #define writeEnd 1
 
 
-#include <iostream>       // std::cout
+//thread directive
 #include <thread>         // std::thread
 #include <atomic>
 
 #include "ncsDefine.h"
 #include "Connection.h"
+#include "timeSpecOp.h"
 
 namespace NCS{
 	class Queue{
 	private:
+		std::thread *tDisp;
 		int waitPipe[2], readyPipe[2];
 
 		// pollList contiene dati per la poll
@@ -53,7 +60,11 @@ namespace NCS{
 
 		void pushReadyCon(int index);
 
-		void unValidCon(int index)
+		void unValidCon(int index);
+
+		Connection *reduceList(int index);
+
+		void pushPipe(int pipeWriteEnd, Connection *con);
 	};
 }
 

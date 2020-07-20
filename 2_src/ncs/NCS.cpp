@@ -23,8 +23,8 @@ Queue *NCS::ncsGetQueue(){
 }
 
 
-Accept *NCS::ncsGetAccept (){
-	const std::lock_guard<std::mutex> lock(acceptock);
+Accept *NCS::ncsGetAccept(){
+	const std::lock_guard <std::mutex> lock(acceptock);
 	if(acceptObj) //Oggetto già definito
 		return acceptObj;
 

@@ -6,19 +6,36 @@
 #define HTTP_IMAGESERVER_CONNECTION_H
 
 
+#include <cstdio>
+#include <cstring>
+#include <atomic>
+
 #include <poll.h>
+#include <sys/socket.h>
 
 namespace NCS{
 	class Connection{
 	public:
-		int fd;
-		static long count;
 
-		Connection();
+		enum connectType{internallConnect, tcpConnect, unknow};
+
+		int fd;
+		struct sockaddr sockInfo;
+		socklen_t socklen;
+	private:
+		static std::atomic <unsigned long> count;
+	public:
+		Connection(int fd);
+
+		Connection(int fd, struct sockaddr *sockInfo, socklen_t socklen);
 
 		~Connection();
 
-		void compilePollFD(struct pollfd *poolFd);
+		unsigned long activeConnection();
+
+		void compilePollFD(struct pollfd *pollFd);
+
+		connectType getType();
 
 	};
 }

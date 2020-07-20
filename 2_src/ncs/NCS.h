@@ -5,6 +5,7 @@
 #ifndef HTTP_IMAGESERVER_NCS_H
 #define HTTP_IMAGESERVER_NCS_H
 
+
 #include <mutex>
 
 #include "Accept.h"
@@ -23,7 +24,7 @@ namespace NCS{
 
 	Accept *ncsGetAccept();   //"Singleton di Sistema"
 
-};
+}
 
 
 #endif //HTTP_IMAGESERVER_NCS_H

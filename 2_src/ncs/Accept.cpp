@@ -7,24 +7,28 @@
 using namespace NCS;
 
 Accept::Accept(NCS::Queue *q){
-	newData.unlock();
-	newData.lock();
+//	newData.unlock();
+//	newData.lock();
 	this->q = q;
 
 	sockInit();
 
-	t1 = new std::thread(thListener, this);
-	std::cout << "Hello Accept " << SERV_PORT << "\n";
+	tListener = new std::thread(thListener, this);
 
 }
 
 void Accept::thListener(NCS::Accept *a){
 
+	std::cout << "Accept::thListener start work " << SERV_PORT << "\n";
+	Connection *c = nullptr;
+	int connsd;
+	struct sockaddr info;
+	socklen_t lenSockAddr;
 	for(;;){
 
 		// Attende sia presente almeno una connessione (che ha già superato l'handShake a 3 vie)
 		// Si ottiene un Soket connesso
-		if((a->connsd = accept(a->listensd, (struct sockaddr *)NULL, NULL)) < 0){
+		if((connsd = accept(a->listensd, &info, &lenSockAddr)) < 0){
 			switch(errno){
 				case EMFILE:
 					//todo: add debug print
@@ -36,16 +40,12 @@ void Accept::thListener(NCS::Accept *a){
 			}
 		}
 
-		a->lastFd = a->connsd;
-		a->newData.unlock();
+		c = new Connection(connsd, &info, lenSockAddr);
+		a->q->pushWaitCon(c);
 	}
 
 }
 
-int Accept::getLastFd(){
-	newData.lock();
-	return lastFd;
-}
 
 void Accept::sockInit(){
 
