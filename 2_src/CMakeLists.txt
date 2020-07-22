@@ -6,21 +6,26 @@ add_compile_options(-Wall -Wextra -pedantic -Werror)
 
 
 ## Define Oggetti di lavoro
-add_executable(mainTest main.cpp)
+add_executable(mainTest main.cpp logSystem/Log.cpp logSystem/Log.h)
+#add_executable(${PROJECT_NAME} main.cpp)
 
 ## Ricerca e linking codice necessario
-add_subdirectory(httpSystem)
-target_link_libraries(mainTest httpSystem)
+add_subdirectory(simpleWeb)
+target_link_libraries(mainTest simpleWeb)
 
 add_subdirectory(ncs)
 target_link_libraries(mainTest ncs)
 
-add_subdirectory(worker)
-target_link_libraries(mainTest worker)
+add_subdirectory(logSystem)
+target_link_libraries(mainTest logSystem)
+
+add_subdirectory(ces)
+target_link_libraries(mainTest ces)
 
 #Include della libreria fmt per Formattare le stringhe
+message("\nStart linking to MainTest")
 find_library(fmt REQUIRED)
 target_link_libraries(mainTest fmt)
 message("-FMT library linked on mainTest")
 
-message("\t##Build Eseguita\n")
+message("##Build Eseguita\n")

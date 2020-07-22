@@ -31,7 +31,7 @@
 #include <atomic>
 
 #include "ncsDefine.h"
-#include "Connection.h"
+#include <Connection.h>
 #include "timeSpecOp.h"
 
 namespace NCS{

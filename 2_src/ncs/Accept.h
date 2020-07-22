@@ -16,12 +16,12 @@
 
 
 #include "Queue.h"
-#include "Connection.h"
+#include <Connection.h>
 #include "ncsDefine.h"
+#include <Log.h>
 
 #define BACKLOG 10
 #define SERV_PORT   8080
-#define MAXLINE 1024
 
 
 namespace NCS{

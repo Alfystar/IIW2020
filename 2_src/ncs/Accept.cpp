@@ -23,19 +23,20 @@ void Accept::thListener(NCS::Accept *a){
 	Connection *c = nullptr;
 	int connsd;
 	struct sockaddr info;
-	socklen_t lenSockAddr;
+	socklen_t lenSockAddr = sizeof(info);
 	for(;;){
 
 		// Attende sia presente almeno una connessione (che ha già superato l'handShake a 3 vie)
 		// Si ottiene un Soket connesso
+		memset(&info, 0, sizeof(struct sockaddr));
 		if((connsd = accept(a->listensd, &info, &lenSockAddr)) < 0){
 			switch(errno){
 				case EMFILE:
-					//todo: add debug print
+					Log::db << "Accept::thListener " << strerror(EMFILE) << "\n";
 					sleep(1);   //Sicuramente ci sono tante connessioni da gestire ancora
 					break;
 				default:
-					perror("Accept::thListener errore in accept");
+					Log::db << "Accept::thListener errore in accept" << strerror(EMFILE) << "\n";
 					exit(1);
 			}
 		}

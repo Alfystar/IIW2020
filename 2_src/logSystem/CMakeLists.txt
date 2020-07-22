@@ -2,20 +2,19 @@
 get_filename_component(libName ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 if (NOT TARGET ${libName})
     message("\n")
-    add_library(${libName} ncsDefine.h timeSpecOp.h
-            NCS.h NCS.cpp
-            Accept.h Accept.cpp
-            Queue.h Queue.cpp
-            )
+    add_library(${libName}
+            Log.cpp Log.h)
     target_include_directories(${libName} PUBLIC ".")
+
+
+    #Librerie di SO
+    find_package(fmt REQUIRED)
+    target_link_libraries(${libName} PUBLIC fmt)
+    message("\t-FMT library linked on ${libName}")
+
     find_package(Threads REQUIRED)
     target_link_libraries(${libName} PUBLIC ${CMAKE_THREAD_LIBS_INIT})
 
-    include_directories(${PROJECT_SOURCE_DIR}/simpleWeb)
-    target_link_libraries(${libName} PUBLIC simpleWeb)
-
-    include_directories(${PROJECT_SOURCE_DIR}/logSystem)
-    target_link_libraries(${libName} PUBLIC logSystem)
 
     message("##${libName} subsystem included")
 
