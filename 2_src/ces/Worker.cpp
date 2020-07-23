@@ -49,6 +49,10 @@ void Worker::thWorker(Worker *j){
 			cout << imgRequest << "\n";
 		}
 
+		it = hHeader->cim.find("User-Agent");
+		cout << "Iterator points to " << it->first << " = " << it->second << endl;
+
+
 		// Creazione del campo DATA
 		SimpleWeb::Date *dat = new SimpleWeb::Date();
 		std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
