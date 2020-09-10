@@ -8,6 +8,12 @@ if (NOT TARGET ${libName})
 
 
     #Librerie di SO
+
+    # per installare fmt
+    #sudo add-apt-repository universe
+    #sudo apt update
+    #sudo apt install libfmt-dev
+
     find_package(fmt REQUIRED)
     target_link_libraries(${libName} PUBLIC fmt)
     message("\t-FMT library linked on ${libName}")

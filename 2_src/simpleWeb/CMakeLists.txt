@@ -1,3 +1,7 @@
+
+## IMPORTANTE: installare libreria boost++ tramite apt:
+# sudo apt-get install libboost-all-dev
+
 #Assegna a libName il nome della directory corrente
 get_filename_component(libName ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 if (NOT TARGET ${libName})
