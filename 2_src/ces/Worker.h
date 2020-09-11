@@ -26,7 +26,7 @@ namespace CES{
 		thread *tJob;
 		string myName;
 	public:
-		Worker(string &name);
+		explicit Worker(string &name);
 
 		static void thWorker(Worker *j);
 

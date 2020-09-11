@@ -3,3 +3,13 @@
 //
 
 #include "cacheSys.h"
+
+using namespace CES;
+
+
+
+// Resource creation: open a file (or create if necessary),
+
+
+
+

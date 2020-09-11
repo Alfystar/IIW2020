@@ -31,9 +31,19 @@
 // Per impostare la priorità dei lockExlusive sui lockShared, per il thread shrader
 //pthread_rwlockattr_setkind_np(std::shared_lock<>::native_handle,PTHREAD_RWLOCK_PREFER_WRITER_NP)
 
-class cacheSys{
+#include <cstdio>
+#include <string>
+#include <math.h>
 
-};
+namespace CES {
+
+    using namespace std;
+
+    class cacheSys {
+
+    };
 
 
+
+}
 #endif //HTTP_IMAGESERVER_CACHESYS_H
