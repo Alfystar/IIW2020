@@ -13,7 +13,7 @@ Worker::Worker(string &name){
 
 }
 
-void Worker::thWorker(Worker *j){
+[[noreturn]] void Worker::thWorker(Worker *j){
 	std::cout << "Worker::thWorker " << j->myName << " Start work\n";
 	HttpMgt httpMgt;
 	NCS::Connection *c;

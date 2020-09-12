@@ -28,7 +28,7 @@ namespace CES{
 	public:
 		explicit Worker(string &name);
 
-		static void thWorker(Worker *j);
+        [[noreturn]] static void thWorker(Worker *j);
 
 	private:
 
