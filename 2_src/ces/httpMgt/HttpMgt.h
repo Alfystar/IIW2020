@@ -15,9 +15,36 @@
 
 //Al worker deve arrivare il feedback se la connessione va mantenuta e quindi mandata indietro alla queue o scartata
 
-class httpMgt{
+#include <cstdio>
+#include <string>
 
-};
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
 
+#include <boost/algorithm/string.hpp>
+
+#include <NCS.h>
+#include <Connection.h>
+
+#include <Log.h>
+#include "htmlMessage.h"
+
+namespace CES{
+	using namespace std;
+	enum Action{RequestComplete, ConClosed};
+
+	class HttpMgt{
+	public:
+		HttpMgt();
+
+		Action connectionRequest(NCS::Connection *c);
+
+	private:
+		Action stringSend(NCS::Connection *c, string &msg);
+
+		Action rawSend(NCS::Connection *c, htmlMessage &msg);
+	};
+}
 
 #endif //HTTP_IMAGESERVER_HTTPMGT_H

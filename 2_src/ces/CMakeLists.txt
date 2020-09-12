@@ -26,7 +26,7 @@ if (NOT TARGET ${libName})
     find_package(Threads REQUIRED)
     target_link_libraries(${libName} PUBLIC ${CMAKE_THREAD_LIBS_INIT})
 
-    #compito di httpMgt, presente solo per la demo
+    #compito di HttpMgt, presente solo per la demo
     find_package(fmt REQUIRED)
     target_link_libraries(${libName} PUBLIC fmt)
     message("\t-FMT library linked on ${libName}")

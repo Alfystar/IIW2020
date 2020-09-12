@@ -6,7 +6,7 @@
 #define HTTP_IMAGESERVER_CACHESYS_H
 
 // Gestione della directory cache e img con interfaccia tale che, data immagine sorgente, e caratteristiche di uscita
-// o la elabora e la salva o la richiama, e passa ad httpMgt il path (relativo o full da vedere) della immagine che deve essere inviata
+// o la elabora e la salva o la richiama, e passa ad HttpMgt il path (relativo o full da vedere) della immagine che deve essere inviata
 
 // aggiungere un thread shrader per la gestione della pulizia di memoria, all'interno del file-system
 

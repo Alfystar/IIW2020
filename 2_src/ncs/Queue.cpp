@@ -34,7 +34,7 @@ void Queue::thDispatcher(Queue *q){
 	while(true){
 		ready = ppoll(q->pollList, q->nextPoll, &t, &sigmask);
 		if(ready == 0){ //Time out
-			std::cout << "Queue::thDispatcher ppoll time-out 1 s\n";
+			Log::out << "Queue::thDispatcher ppoll time-out 1 s\n";
 		}
 		else if(ready == -1){
 			perror("Queue::thDispatcher ppoll error:");
@@ -58,7 +58,7 @@ void Queue::thDispatcher(Queue *q){
 				}
 				else{
 					std::bitset <16> x(bitMask);
-					std::cout << "Queue::thDispatcher poll bitMask = " << x << '\n';
+					Log::out << "Queue::thDispatcher poll bitMask = " << x << '\n';
 				}
 			}
 		}
