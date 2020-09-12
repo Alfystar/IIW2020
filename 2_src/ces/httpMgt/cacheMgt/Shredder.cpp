@@ -2,7 +2,7 @@
 // Created by filippob on 12/09/20.
 //
 
-#include <vector>
+
 #include "Shredder.h"
 
 using namespace CES;
@@ -11,8 +11,9 @@ using namespace CES;
 
 ImgData::ImgData(string p) { //otteniamo un oggetto con i dati per il sort
     path = p;
+    buf = (struct stat *) (malloc(sizeof(struct stat)));
 
-    if (stat(p.c_str(), buf)){
+    if (stat(p.c_str(), buf)) {
         perror("File Stats error: ");
         path = nullptr;
         buf = nullptr;
@@ -20,14 +21,29 @@ ImgData::ImgData(string p) { //otteniamo un oggetto con i dati per il sort
 
 }
 
+ImgData::~ImgData() {
+    path = nullptr;
+    free(buf);
+}
+
+void ImgData::removeFile() {
+    if (remove(path.c_str())) {
+        string tmp_str = "Failed to remove " + path + " , because: ";
+        perror(tmp_str.c_str());
+    }
+    this->~ImgData();
+}
+
+
+
 /// Shredder functions
 
 
-Shredder * Shredder::instance = nullptr;
+Shredder *Shredder::instance = nullptr;
 
 Shredder &Shredder::getInstance() {
-    cout << "Got Instance";
-    if(!instance)
+    cout << "Got Instance\n";
+    if (!instance)
         instance = new Shredder();
     return *instance;
 }
@@ -41,30 +57,59 @@ Shredder::Shredder() {
     cout << "Shredder started\n";
     string cache_path = "web/cache";
 
-    for(;;){
+    for (;;) {
 
         // lock shredder_mutex
 
-        cout << "Verifying size of cache";
+        cout << "Verifying size of cache\n";
+        s->fillImgsVect(cache_path); // obtain a vector with all the images
 
-        s->fillImgsVect(cache_path);
+        if (s->sizeOfCache() > FILE_SIZE_LIMIT) {
+            s->reduceCacheUsage();
+        }
 
+        // unlock shredder_mutex
 
+        s->emptyCache(); //todo: vedere come preservare questi dati, visto che non sono cancellati
+        //forse non si può comunque fare, visto che dovremmo vedere l'ultimo accesso
 
-
-
-        this_thread::sleep_for(chrono::seconds(1));
+        sleep(5);
     }
 }
 
 
-void Shredder::fillImgsVect(string &p){
-    DIR* cacheDir = opendir(p.c_str());
-    struct dirent *dir;
-    if (cacheDir) {
-        while ((dir = readdir(cacheDir)) != nullptr) {
-           // ImgData i = new ImgData(std::string(dir->d_name));
-           // imgsVect.push_back(i);
+void Shredder::fillImgsVect(string &path) { //obtain a vector with all the files from the filesystem
+
+    for (auto &p: fs::recursive_directory_iterator(path)) {
+        if (fs::is_regular_file(p.path()) && !(p.path().string().find("/."))) { //todo: risolvere meglio il .gitignore
+            auto *i = new ImgData(std::string(p.path().string()));
+            imgsVect.push_back(*i);
         }
     }
 }
+
+uint_fast64_t Shredder::sizeOfCache() {
+    uint_fast64_t size = 0;
+    for (auto &img : imgsVect) {
+        size += img.buf->st_size;
+    }
+    cout << "size of cache: " + to_string(size) + "\n";
+    return size;
+}
+
+void Shredder::reduceCacheUsage() {
+    sort(this->imgsVect.begin(), this->imgsVect.end()); //sort by last access time
+    // todo: verificare se l'ordine è conveniente per fare la pop, in caso cambiare il verso in operator di IMGDATA
+    for (ulong i = 0; i < (imgsVect.size() / 2); i++) {
+        imgsVect.back().removeFile();
+        imgsVect.pop_back();
+    }
+    // la restante parte viene deallocata dopo il rilascio del mutex, e prima dello sleep
+}
+
+void Shredder::emptyCache() {
+    while (!imgsVect.empty()) {
+        imgsVect.pop_back();
+    }
+}
+
