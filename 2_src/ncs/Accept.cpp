@@ -7,14 +7,9 @@
 using namespace NCS;
 
 Accept::Accept(NCS::Queue *q){
-//	newData.unlock();
-//	newData.lock();
 	this->q = q;
-
 	sockInit();
-
 	tListener = new std::thread(thListener, this);
-
 }
 
 void Accept::thListener(NCS::Accept *a){

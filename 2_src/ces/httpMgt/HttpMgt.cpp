@@ -58,21 +58,9 @@ Action HttpMgt::connectionRequest(NCS::Connection *c){
 		if(actionRet != RequestComplete)
 			return actionRet;
 
-		switch(mes.typePayload){
-			case text:
-				actionRet = stringSend(c, mes.body);
-				if(actionRet != RequestComplete)
-					return actionRet;
-				break;
-			case imageData:
-			case rawData:
-				actionRet = rawSend(c, mes);
-				if(actionRet != RequestComplete)
-					return actionRet;
-				break;
-			case noBody:
-				break;
-		}
+		actionRet = send(c, mes);
+		if(actionRet != RequestComplete)
+			return actionRet;
 	}
 	else if(boost::iequals(hHeader->method, "HEAD")){
 		actionRet = stringSend(c, mes.header);
@@ -85,6 +73,22 @@ Action HttpMgt::connectionRequest(NCS::Connection *c){
 	}
 
 	return RequestComplete;
+}
+
+Action HttpMgt::send(NCS::Connection *c, htmlMessage &msg){
+	Action actionRet;
+	switch(msg.typePayload){
+		case text:
+			actionRet = stringSend(c, msg.body);
+			break;
+		case imageData:
+		case rawData:
+			actionRet = rawSend(c, msg);
+			break;
+		case noBody:
+			break;
+	}
+	return actionRet;
 }
 
 Action HttpMgt::stringSend(NCS::Connection *c, string &msg){
@@ -134,8 +138,9 @@ Action HttpMgt::rawSend(NCS::Connection *c, htmlMessage &msg){
 			lenght -= bytes;
 		}
 		while(lenght > 0);
-		Log::out << "end While\n";
 	}
 	return RequestComplete;
 
 }
+
+

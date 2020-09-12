@@ -17,6 +17,7 @@ using namespace std;
 int main(__attribute__((unused))int argc, __attribute__((unused))char *argv[]){
 	Log::initLogger();
 	CES::initCES(nWorker);
-	sleep(60);
-	return 0;
+	while(true);
+//	sleep(60);
+//	return 0;
 }

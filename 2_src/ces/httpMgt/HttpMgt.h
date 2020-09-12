@@ -41,6 +41,10 @@ namespace CES{
 		Action connectionRequest(NCS::Connection *c);
 
 	private:
+
+		Action send(NCS::Connection *c, htmlMessage &msg);
+
+
 		Action stringSend(NCS::Connection *c, string &msg);
 
 		Action rawSend(NCS::Connection *c, htmlMessage &msg);

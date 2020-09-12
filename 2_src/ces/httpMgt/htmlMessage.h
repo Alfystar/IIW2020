@@ -18,6 +18,8 @@
 #include <unistd.h>
 #include <Log.h>
 
+#include "headerForm.h"
+
 
 namespace CES{
 	using namespace std;
@@ -35,9 +37,8 @@ namespace CES{
 		payloadType typePayload = noBody;
 
 	private:
-		static string compilingHeader;
+		string redirect;
 	public:
-
 
 		htmlMessage() = delete;
 
@@ -48,17 +49,17 @@ namespace CES{
 	private:
 		void htmlPageLoad();
 
-		void
-		imageOpen();               //Cerca di caricare l'immagine, in caso contrario imposta lo status e il messaggio di riposta diventa senza body, solo l'errore
+		// In caso di errore viene cambiato status, così da montare conseguentemente l'header
+		void imageOpen();               //Carica immagine
 		void headerMount();             //header normali pagine HTML
 
 		void discoverFileTypeRequest();
 
 		string dataNow();
 
-		string getFileCreationTime(const char *path);
+		string lastChangeFile(const char *path);
 
-		string getFileCreationTime(string &path);
+		string lastChangeFile(string &path);
 
 		bool fileExists(string path);
 	};
