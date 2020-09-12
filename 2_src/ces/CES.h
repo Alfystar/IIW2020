@@ -15,7 +15,7 @@
 
 namespace CES{
 
-    extern Shredder shredder;
+	extern Shredder shredder;
 
 	extern int nWorkers;
 	extern Worker **workers;  // teniamo traccia dei thread job

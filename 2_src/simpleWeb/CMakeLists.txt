@@ -8,7 +8,7 @@ if (NOT TARGET ${libName})
     message("\n")
     add_library(${libName}
             Connection.h Connection.cpp
-            status_code.hpp status_code.cpp
+            status_code.hpp
             utility.hpp
             )
     target_include_directories(${libName} PUBLIC ".")

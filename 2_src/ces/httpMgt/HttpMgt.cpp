@@ -42,7 +42,7 @@ Action HttpMgt::connectionRequest(NCS::Connection *c){
 	NCS::Connection::httpHeader *hHeader = c->readHttpHeader();
 	if(!hHeader){
 		#ifdef DEBUG_LOG
-		Log::out << "HttpMgt::connectionRequest hHeader = null \n";
+		Log::db << "HttpMgt::connectionRequest hHeader = null \n";
 		#endif
 		delete c;
 		return ConClosed;
@@ -98,7 +98,6 @@ Action HttpMgt::stringSend(NCS::Connection *c, string &msg){
 		switch(errno){
 			case EPIPE:
 				#ifdef DEBUG_LOG
-				perror("Epipe sendStr");
 				Log::db << "HttpMgt::stringSend sendStr come brokenPipe error\n";
 				#endif
 				delete c;
