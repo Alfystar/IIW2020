@@ -30,6 +30,7 @@ Connection::Connection(int fd, struct sockaddr *sockInfo, socklen_t socklen){
 Connection::~Connection(){
 	count--;
 	close(fd);
+	Log::out << "Connection fd: " << fd << "was closed" << endl;
 }
 
 void Connection::compilePollFD(struct pollfd *pollFd){
@@ -48,7 +49,7 @@ Connection::ConnectType Connection::getType(){
 int Connection::sendData(const void *data, int datalen){
 	const char *ptr = static_cast<const char *>(data);
 	while(datalen > 0){
-		int bytes = send(this->fd, ptr, datalen, 0);
+		int bytes = send(this->fd, ptr, datalen, MSG_NOSIGNAL);
 		if(bytes <= 0) return -1;
 		ptr += bytes;
 		datalen -= bytes;
@@ -73,7 +74,8 @@ NCS::Connection::httpHeader *Connection::readHttpHeader(){
 		bRead = read(fd, &buff[index], MAXLINE - index);
 		if(bRead < 0){
 			perror("Connection::readHttpHeader read reach error:");
-			exit(-1);
+			return nullptr;
+			//exit(-1);
 		}
 		index += bRead;
 

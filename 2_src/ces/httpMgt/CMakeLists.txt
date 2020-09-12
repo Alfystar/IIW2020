@@ -3,7 +3,8 @@ get_filename_component(libName ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 if (NOT TARGET ${libName})
     message("\n")
     add_library(${libName}
-            httpMgt.cpp httpMgt.h)
+            HttpMgt.cpp HttpMgt.h
+            htmlMessage.cpp htmlMessage.h)
     target_include_directories(${libName} PUBLIC ".")
 
     #Direcotry Utility
@@ -18,6 +19,16 @@ if (NOT TARGET ${libName})
     find_package(fmt REQUIRED)
     target_link_libraries(${libName} PUBLIC fmt)
     message("\t-FMT library linked on ${libName}")
+
+
+    set(Boost_USE_STATIC_LIBS ON)
+    set(Boost_USE_MULTITHREADED ON)
+    set(Boost_USE_STATIC_RUNTIME OFF)
+    # Boost cmake è fatto in maniera tale che è necessario richiedere un componente
+    find_package(Boost COMPONENTS filesystem REQUIRED)
+    include_directories(${Boost_INCLUDE_DIRS})
+    target_link_libraries(${libName} PUBLIC ${Boost_FILESYSTEM_LIBRARY})
+    message("\t-Boost library linked on ${libName}")
 
     message("##${libName} subsystem included")
 

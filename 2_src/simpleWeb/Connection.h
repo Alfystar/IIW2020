@@ -18,6 +18,7 @@
 
 #include <utility.hpp>
 
+#include <Log.h>
 
 #define MAXLINE 4096
 

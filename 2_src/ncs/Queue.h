@@ -30,6 +30,8 @@
 #include <thread>         // std::thread
 #include <atomic>
 
+#include <Log.h>
+
 #include "ncsDefine.h"
 #include <Connection.h>
 #include "timeSpecOp.h"
