@@ -7,7 +7,7 @@ if (NOT TARGET ${libName})
             Worker.cpp Worker.h)
     target_include_directories(${libName} PUBLIC ".")
 
-    #Direcotry Utility
+    #Directory Utility
     include_directories(${PROJECT_SOURCE_DIR}/simpleWeb)
     target_link_libraries(${libName} PUBLIC simpleWeb)
 

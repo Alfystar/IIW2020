@@ -24,7 +24,7 @@ Resource::Resource(string &p, float &qValue) {
         cout << path << " already exists"; // a questo punto il file è stato creato
     }
 
-
+    // unlock open_mutex
 
 }
 

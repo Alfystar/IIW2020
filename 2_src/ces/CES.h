@@ -11,7 +11,11 @@
 
 #include "Worker.h"
 
+#include "httpMgt/cacheMgt/Shredder.h"
+
 namespace CES{
+
+    extern Shredder shredder;
 
 	extern int nWorkers;
 	extern Worker **workers;  // teniamo traccia dei thread job

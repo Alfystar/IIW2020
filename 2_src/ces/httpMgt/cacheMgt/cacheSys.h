@@ -33,7 +33,7 @@
 
 #include <cstdio>
 #include <string>
-#include <math.h>
+#include <cmath>
 
 namespace CES {
 

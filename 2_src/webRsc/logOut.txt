@@ -2894,3 +2894,81 @@ Queue::thDispatcher ppoll time-out 1 s
 Queue::thDispatcher ppoll time-out 1 s
 Queue::thDispatcher ppoll time-out 1 s
 Queue::thDispatcher ppoll time-out 1 s
+Output Log restart at: Sat Sep 12 12:00:55 2020
+
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher poll bitMask = 0000000000000000
+end While
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+hHeader = null 
+Connection fd: 11was closed
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher poll bitMask = 0000000000000000
+end While
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+hHeader = null 
+Connection fd: 12was closed
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
