@@ -3,10 +3,12 @@ project(HTTP-ImageServer)
 message("Sono Unix : ${UNIX}")
 
 add_compile_options(-Wall -Wextra -pedantic -Werror)
+#add_compile_definitions(DEBUG_LOG)  # Add debugLog macro to all Source
 
 
 ## Define Oggetti di lavoro
 add_executable(mainTest main.cpp logSystem/Log.cpp logSystem/Log.h)
+
 #add_executable(${PROJECT_NAME} main.cpp)
 
 ## Ricerca e linking codice necessario

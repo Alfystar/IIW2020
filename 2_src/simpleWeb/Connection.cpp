@@ -75,7 +75,6 @@ NCS::Connection::httpHeader *Connection::readHttpHeader(){
 		if(bRead < 0){
 			perror("Connection::readHttpHeader read reach error:");
 			return nullptr;
-			//exit(-1);
 		}
 		index += bRead;
 
