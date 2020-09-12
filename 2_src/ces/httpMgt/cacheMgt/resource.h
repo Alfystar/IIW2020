@@ -12,10 +12,11 @@
 #include <math.h>
 
 
-// for open() and flock()
+// for open() and close()
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <unistd.h>
 
 namespace CES {
 
@@ -26,7 +27,7 @@ namespace CES {
         int fd = 0;
 
     public:
-        explicit Resource(float &qValue);
+        explicit Resource(string &path, float &qValue);
         ~Resource();
 
 
