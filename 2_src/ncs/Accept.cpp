@@ -27,11 +27,13 @@ void Accept::thListener(NCS::Accept *a){
 		if((connsd = accept(a->listensd, &info, &lenSockAddr)) < 0){
 			switch(errno){
 				case EMFILE:
+					#ifdef DEBUG_LOG
 					Log::db << "Accept::thListener " << strerror(EMFILE) << "\n";
+					#endif
 					sleep(1);   //Sicuramente ci sono tante connessioni da gestire ancora
 					break;
 				default:
-					Log::db << "Accept::thListener errore in accept" << strerror(EMFILE) << "\n";
+					Log::err << "Accept::thListener errore in accept" << strerror(EMFILE) << "\n";
 					exit(1);
 			}
 		}

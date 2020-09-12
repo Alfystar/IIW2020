@@ -59,7 +59,7 @@ void htmlMessage::htmlPageLoad(){
 	// Verifico esistenza File
 	if(!fileExists(pathBody)) // <- you need to implement this
 	{
-		Log::out << "htmlMessage::htmlPageLoad file don't Exist" << std::endl;
+		Log::err << "htmlMessage::htmlPageLoad file don't Exist" << std::endl;
 		status = SimpleWeb::StatusCode::client_error_bad_request;
 		typePayload = noBody;
 		return;
@@ -68,7 +68,7 @@ void htmlMessage::htmlPageLoad(){
 	//Provo ad aprire il file
 	ifstream textFile(pathBody, std::ios::in);
 	if(!textFile.is_open()){
-		Log::out << "htmlMessage::htmlPageLoad failed to open file" << std::endl;
+		Log::err << "htmlMessage::htmlPageLoad failed to open file" << std::endl;
 		status = SimpleWeb::StatusCode::server_error_internal_server_error;
 		typePayload = noBody;
 		return;
@@ -92,7 +92,7 @@ void htmlMessage::htmlPageLoad(){
 	int bytes;
 	do{
 		if(!textFile.getline(lineBuff, std::min(len, sizeof(lineBuff)))){
-			Log::out << "htmlMessage::htmlPageLoad Reading text from filesystem get error " << strerror(errno) << "\n";
+			Log::err << "htmlMessage::htmlPageLoad Reading text from filesystem get error " << strerror(errno) << "\n";
 			status = SimpleWeb::StatusCode::server_error_internal_server_error;
 			typePayload = noBody;
 			return;
@@ -101,7 +101,7 @@ void htmlMessage::htmlPageLoad(){
 		bytes = textFile.gcount();
 
 		if(textFile.rdstate() == ifstream::eofbit){ //Raggiunto End-Of-File Prematuramente
-			Log::out << "htmlMessage::htmlPageLoad Raggiunto End-Of-File Prematuramente" << endl;
+			Log::err << "htmlMessage::htmlPageLoad Raggiunto End-Of-File Prematuramente" << endl;
 			status = SimpleWeb::StatusCode::server_error_internal_server_error;
 			typePayload = noBody;
 			return;
@@ -109,7 +109,7 @@ void htmlMessage::htmlPageLoad(){
 
 		if(textFile.rdstate() == ifstream::failbit){
 			if(bytes == 0){ //non ho estratto nulla e c'è un problema sullo stream
-				Log::out << "htmlMessage::htmlPageLoad Non ha estratto nulla" << endl;
+				Log::err << "htmlMessage::htmlPageLoad Non ha estratto nulla" << endl;
 				status = SimpleWeb::StatusCode::server_error_internal_server_error;
 				typePayload = noBody;
 				return;
@@ -134,8 +134,7 @@ void htmlMessage::imageOpen(){
 	// Verifico esistenza File
 	if(!fileExists(pathBody)) // <- you need to implement this
 	{
-		Log::out << "htmlMessage::imageOpen file don't Exist" << std::endl;
-
+		Log::err << "htmlMessage::imageOpen file don't Exist" << std::endl;
 		status = SimpleWeb::StatusCode::client_error_not_found;
 		typePayload = noBody;
 		return;
@@ -144,7 +143,7 @@ void htmlMessage::imageOpen(){
 	//Provo ad aprire il file
 	inStream = new std::ifstream(pathBody, std::ios::binary);
 	if(!inStream->is_open()){
-		Log::out << "htmlMessage::imageOpen failed to open file" << std::endl;
+		Log::err << "htmlMessage::imageOpen failed to open file" << std::endl;
 		status = SimpleWeb::StatusCode::server_error_internal_server_error;
 		typePayload = noBody;
 
@@ -158,7 +157,7 @@ void htmlMessage::imageOpen(){
 	inStream->seekg(0, std::ios::beg);
 
 	if(inStream->fail()){
-		Log::out << "htmlMessage::imageOpen failed to get size of file" << std::endl;
+		Log::err << "htmlMessage::imageOpen failed to get size of file" << std::endl;
 		status = SimpleWeb::StatusCode::server_error_internal_server_error;
 		typePayload = noBody;
 
@@ -241,7 +240,6 @@ string htmlMessage::lastChangeFile(const char *path){
 	dataStr[strlen(dataStr) - 2] = '\0';    //Rimuovo 'accapo automatico
 	string lastDate = dataStr;
 	return lastDate;
-//	printf("Last modified time: %s", ctime(&attr.st_mtime));
 }
 
 string htmlMessage::lastChangeFile(string &path){
