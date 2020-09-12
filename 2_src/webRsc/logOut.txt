@@ -1,18 +1,363 @@
-Output Log restart at :Wed Jul 22 19:50:34 2020
+Output Log restart at: Fri Sep 11 17:47:58 2020
 
-Output Log restart at: Wed Jul 22 19:51:18 2020
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+htmlMessage::htmlPageLoad file don't Exist
+Queue::thDispatcher poll bitMask = 0000000000000000
+htmlMessage::htmlPageLoad file don't Exist
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+htmlMessage::htmlPageLoad file don't Exist
+Queue::thDispatcher poll bitMask = 0000000000000000
+htmlMessage::htmlPageLoad file don't Exist
+Connection fd: 11was closed
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Output Log restart at: Fri Sep 11 17:49:44 2020
 
-Output Log restart at: Wed Jul 22 19:51:41 2020
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+htmlMessage::htmlPageLoad file don't Exist
+Output Log restart at: Fri Sep 11 17:52:13 2020
 
-Output Log restart at: Wed Jul 22 19:52:20 2020
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+htmlMessage::htmlPageLoad file don't Exist
+Output Log restart at: Fri Sep 11 17:53:01 2020
 
-Output Log restart at: Thu Jul 23 12:04:23 2020
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+htmlMessage::htmlPageLoad file don't Exist
+Output Log restart at: Fri Sep 11 17:53:21 2020
 
-Output Log restart at: Thu Jul 23 12:05:39 2020
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+htmlMessage::htmlPageLoad file don't Exist
+Output Log restart at: Fri Sep 11 17:54:11 2020
 
-Output Log restart at: Thu Jul 23 12:07:20 2020
+Output Log restart at: Fri Sep 11 17:57:04 2020
 
-Output Log restart at: Thu Sep 10 18:29:29 2020
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+Output Log restart at: Fri Sep 11 17:58:28 2020
+
+Output Log restart at: Fri Sep 11 17:59:02 2020
+
+Queue::thDispatcher poll bitMask = 0000000000000000
+Output Log restart at: Fri Sep 11 18:00:04 2020
+
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+htmlMessage::htmlPageLoad file don't Exist
+Output Log restart at: Fri Sep 11 18:01:22 2020
+
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+htmlMessage::htmlPageLoad file don't Exist
+Queue::thDispatcher poll bitMask = 0000000000000000
+htmlMessage::htmlPageLoad file don't Exist
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+hHeader = null
+Connection fd: 11was closed
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Output Log restart at: Fri Sep 11 18:01:49 2020
+
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+Output Log restart at: Fri Sep 11 18:13:16 2020
+
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+Output Log restart at: Fri Sep 11 18:14:53 2020
+
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher poll bitMask = 0000000000000000
+htmlMessage::htmlPageLoad file don't Exist
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher poll bitMask = 0000000000000000
+htmlMessage::htmlPageLoad file don't Exist
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher poll bitMask = 0000000000000000
+htmlMessage::htmlPageLoad file don't Exist
+Connection fd: 12was closed
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Output Log restart at: Fri Sep 11 18:15:34 2020
+
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher poll bitMask = 0000000000000000
+htmlMessage::htmlPageLoad file don't Exist
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher poll bitMask = 0000000000000000
+hHeader = null
+Connection fd: 12was closed
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+hHeader = null
+Connection fd: 11was closed
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Output Log restart at: Fri Sep 11 18:16:53 2020
+
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher poll bitMask = 0000000000000000
+hHeader = null
+Queue::thDispatcher poll bitMask = 0000000000000000
+Connection fd: 12was closed
+Connection fd: 11was closed
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher poll bitMask = 0000000000000000
+hHeader = null
+Connection fd: 11was closed
+Connection fd: 13was closed
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Output Log restart at: Fri Sep 11 18:17:43 2020
+
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher poll bitMask = 0000000000000000
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Output Log restart at: Fri Sep 11 18:18:44 2020
+
+Output Log restart at: Fri Sep 11 18:19:32 2020
+
+Output Log restart at: Fri Sep 11 18:20:10 2020
+
+Output Log restart at: Fri Sep 11 18:21:49 2020
+
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+Output Log restart at: Fri Sep 11 18:23:27 2020
+
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+Output Log restart at: Fri Sep 11 18:26:22 2020
+
+Queue::thDispatcher ppoll time-out 1 s
+Queue::thDispatcher poll bitMask = 0000000000000000
+Output Log restart at: Fri Sep 11 18:28:39 2020
 
 Queue::thDispatcher ppoll time-out 1 s
 Queue::thDispatcher ppoll time-out 1 s
