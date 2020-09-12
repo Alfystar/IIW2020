@@ -144,7 +144,9 @@ void htmlMessage::imageOpen(){
 	//Provo ad aprire il file
 	inStream = new std::ifstream(pathBody, std::ios::binary);
 	if(!inStream->is_open()){
+		#ifdef DEBUG_LOG
 		Log::out << "htmlMessage::imageOpen failed to open file" << std::endl;
+		#endif
 		status = SimpleWeb::StatusCode::server_error_internal_server_error;
 		typePayload = noBody;
 
@@ -158,7 +160,9 @@ void htmlMessage::imageOpen(){
 	inStream->seekg(0, std::ios::beg);
 
 	if(inStream->fail()){
+		#ifdef DEBUG_LOG
 		Log::out << "htmlMessage::imageOpen failed to get size of file" << std::endl;
+		#endif
 		status = SimpleWeb::StatusCode::server_error_internal_server_error;
 		typePayload = noBody;
 
@@ -241,7 +245,6 @@ string htmlMessage::lastChangeFile(const char *path){
 	dataStr[strlen(dataStr) - 2] = '\0';    //Rimuovo 'accapo automatico
 	string lastDate = dataStr;
 	return lastDate;
-//	printf("Last modified time: %s", ctime(&attr.st_mtime));
 }
 
 string htmlMessage::lastChangeFile(string &path){

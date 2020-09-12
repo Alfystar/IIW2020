@@ -41,7 +41,9 @@ HttpMgt::HttpMgt(){
 Action HttpMgt::connectionRequest(NCS::Connection *c){
 	NCS::Connection::httpHeader *hHeader = c->readHttpHeader();
 	if(!hHeader){
-		Log::out << "hHeader = null \n";
+		#ifdef DEBUG_LOG
+		Log::out << "HttpMgt::connectionRequest hHeader = null \n";
+		#endif
 		delete c;
 		return ConClosed;
 	}
@@ -95,12 +97,16 @@ Action HttpMgt::stringSend(NCS::Connection *c, string &msg){
 	if(c->sendStr(msg) == -1){
 		switch(errno){
 			case EPIPE:
+				#ifdef DEBUG_LOG
 				perror("Epipe sendStr");
-				Log::db << "sendStr come brokenPipe error\n";
+				Log::db << "HttpMgt::stringSend sendStr come brokenPipe error\n";
+				#endif
 				delete c;
 				return ConClosed;
 			default:
-				Log::db << "sendStr come error " << strerror(errno) << "\n";
+				#ifdef DEBUG_LOG
+				Log::db << "HttpMgt::stringSend sendStr come error " << strerror(errno) << "\n";
+				#endif
 				delete c;
 				return ConClosed;
 		}
@@ -115,7 +121,9 @@ Action HttpMgt::rawSend(NCS::Connection *c, htmlMessage &msg){
 		do{
 			if(!msg.inStream->read(data, std::min(lenght, sizeof(data)))){
 				delete c;
-				Log::db << "Reading image from filesystem get error " << strerror(errno) << "\n";
+				#ifdef DEBUG_LOG
+				Log::db << "HttpMgt::rawSend Reading image from filesystem get error " << strerror(errno) << "\n";
+				#endif
 				return ConClosed;
 			}
 
@@ -125,11 +133,15 @@ Action HttpMgt::rawSend(NCS::Connection *c, htmlMessage &msg){
 				switch(errno){
 					case EPIPE:
 						perror("Epipe sendData");
-						Log::db << "Send image to socket get brokenPipe error\n";
+						#ifdef DEBUG_LOG
+						Log::db << "HttpMgt::rawSend Send image to socket get brokenPipe error\n";
+						#endif
 						delete c;
 						return ConClosed;
 					default:
-						Log::db << "Send image to socket get error " << strerror(errno) << "\n";
+						#ifdef DEBUG_LOG
+						Log::db << "HttpMgt::rawSend Send image to socket get error " << strerror(errno) << "\n";
+						#endif
 						delete c;
 						return ConClosed;
 				}

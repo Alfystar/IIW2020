@@ -17,3 +17,9 @@ Output Log restart at: Sat Sep 12 18:54:32 2020
 
 Output Log restart at: Sat Sep 12 12:00:55 2020
 
+Output Log restart at: Sat Sep 12 19:20:20 2020
+
+sendStr come brokenPipe error
+sendStr come brokenPipe error
+sendStr come brokenPipe error
+sendStr come brokenPipe error

@@ -81,3 +81,69 @@ hHeader = null
 Connection fd: 12was closed
 hHeader = null 
 Connection fd: 11was closed
+Output Log restart at: Sat Sep 12 19:20:20 2020
+
+hHeader = null 
+Connection fd: 12was closed
+hHeader = null 
+Connection fd: 14was closed
+hHeader = null 
+Connection fd: 28was closed
+hHeader = null 
+Connection fd: 63was closed
+hHeader = null 
+Connection fd: 193was closed
+hHeader = null 
+Connection fd: 262was closed
+hHeader = null 
+Connection fd: 273was closed
+Connection fd: 992was closed
+htmlMessage::imageOpen file don't Exist
+htmlMessage::htmlPageLoad file don't Exist
+htmlMessage::htmlPageLoad file don't Exist
+htmlMessage::htmlPageLoad file don't Exist
+htmlMessage::imageOpen file don't Exist
+htmlMessage::htmlPageLoad file don't Exist
+hHeader = null 
+Connection fd: 1492was closed
+htmlMessage::imageOpen file don't Exist
+htmlMessage::imageOpen file don't Exist
+hHeader = null 
+Connection fd: 1977was closed
+htmlMessage::imageOpen file don't Exist
+Connection fd: 1568was closed
+hHeader = null 
+Connection fd: 1992was closed
+hHeader = null 
+hHeader = null 
+Connection fd: 2040was closed
+hHeader = null 
+hHeader = null 
+Connection fd: 2040was closed
+Connection fd: 2024was closed
+Connection fd: 2045was closed
+hHeader = null 
+Connection fd: 2082was closed
+hHeader = null 
+Connection fd: 2116was closed
+hHeader = null 
+Connection fd: 2129was closed
+hHeader = null 
+Connection fd: 2145was closed
+hHeader = null 
+Connection fd: 2309was closed
+Connection fd: 2455was closed
+hHeader = null 
+hHeader = null 
+Connection fd: 2485was closedConnection fd: 
+hHeader = null 
+hHeader = null 
+Connection fd: 2485was closedConnection fd: 
+2746was closed
+hHeader = null 
+hHeader = null 
+Connection fd: 2484was closed
+hHeader = null 
+hHeader = null 
+Connection fd: 2484was closed
+Connection fd: 2471was closed
