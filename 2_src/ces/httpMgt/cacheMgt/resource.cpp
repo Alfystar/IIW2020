@@ -7,13 +7,15 @@
 using namespace CES;
 
 
-Resource::Resource( float &qValue) {
+Resource::Resource(string &p, float &qValue) {
+
+    // lock shredder_mutex
 
     string scale = to_string((int)round(qValue*100));
-    string tmp  = "filesCache/image_" + scale + "_.jpg";
+    string tmp  = p.substr(0, p.length()-4) + "_" + scale + "_.jpg";
     path = tmp.c_str();
 
-    // open_mutex
+    // lock open_mutex
 
     if ((fd = open(path, O_CREAT|O_EXCL, S_IRUSR|S_IWUSR) )== -1) { // provo a creare il file
         if (errno != EEXIST) {
@@ -29,6 +31,8 @@ Resource::Resource( float &qValue) {
 Resource::~Resource() {
 //destroy the resource, then close the fd and delete the file
 
+    close(fd);
+    // unlock shredder_mutex
 
 
 }
