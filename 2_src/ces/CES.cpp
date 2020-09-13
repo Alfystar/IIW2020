@@ -8,7 +8,7 @@ using namespace CES;
 
 int CES::nWorkers = 0;
 
-Shredder &shr = Shredder::getInstance();
+//Shredder &shr = Shredder::getInstance();
 
 Worker **CES::workers = nullptr; //worker per la gestione delle richieste
 

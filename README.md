@@ -7,6 +7,17 @@ Tenuto dal professore: Francesco Lo Presti
 - Alfano Emanuele
 - Badalamenti Filippo
 
+#### Repository Linux da Installare
+
+- Per aggiungere la libreria format.h e montare le stringhe
+    sudo add-apt-repository universe
+    sudo apt update
+    sudo apt install libfmt-dev
+
+- Per la libreria boost (utility avanzate di C++)
+    sudo apt-get install libboost-all-dev
+
+
 #### Features
 - Redirect to home
 - Error 404 Page
@@ -15,8 +26,9 @@ Tenuto dal professore: Francesco Lo Presti
 
 ### Tool di supporto:
 - FireFox browser
-- Cromimium
+- Chromium
 - gdb (debug codice C++)
+- [Visual Paradigm](https://www.visual-paradigm.com/download/community.jsp) community version
 
 ### Librerie in uso:
 - Boost (per operazioni avanzate su stringhe e path)

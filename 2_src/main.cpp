@@ -5,7 +5,8 @@
 
 #include <unistd.h>
 #include <sys/sysinfo.h>
-
+#include <sys/types.h>
+#include <sys/wait.h>
 
 #include <CES.h>
 #include <Log.h>
@@ -17,7 +18,8 @@ using namespace std;
 int main(__attribute__((unused))int argc, __attribute__((unused))char *argv[]){
 	Log::initLogger();
 	CES::initCES(nWorker);
-	while(true);
-//	sleep(60);
-//	return 0;
+	while(true){
+		wait(nullptr);
+	};
+	return 0;
 }
