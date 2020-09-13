@@ -1,4 +1,5 @@
 #Assegna a libName il nome della directory corrente
+
 get_filename_component(libName ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 if (NOT TARGET ${libName})
     message("\n")
@@ -6,6 +7,9 @@ if (NOT TARGET ${libName})
             CES.cpp CES.h
             Worker.cpp Worker.h)
     target_include_directories(${libName} PUBLIC ".")
+
+    # FileSystem library
+    target_link_libraries(${libName} PUBLIC stdc++fs) # to use filesystem lib and force to c++17
 
     #Directory Utility
     include_directories(${PROJECT_SOURCE_DIR}/simpleWeb)

@@ -13,6 +13,10 @@ int CES::nWorkers = 0;
 Worker **CES::workers = nullptr; //worker per la gestione delle richieste
 
 void CES::initCES(int n){
+    cout << "Initialize shredder\n";
+
+
+
 	cout << "CES::initCES CES subSystem preAlloc " << n << " workers\n";
 	//todo impostare PWD alla directory passata da argv
 	CES::nWorkers = n;

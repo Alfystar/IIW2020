@@ -1,4 +1,8 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.10)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 project(HTTP-ImageServer)
 message("Sono Unix : ${UNIX}")
 
@@ -8,6 +12,7 @@ add_compile_options(-Wall -Wextra -pedantic -Werror)
 
 ## Define Oggetti di lavoro
 add_executable(mainTest main.cpp logSystem/Log.cpp logSystem/Log.h)
+
 
 #add_executable(${PROJECT_NAME} main.cpp)
 
