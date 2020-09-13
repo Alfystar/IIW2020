@@ -1,6 +1,8 @@
 # IIW2020
 Progetto di IIW Web Server
+
 Sviluppato in C++ per il corso di Ingegneria di Internet
+
 Tenuto dal professore: Francesco Lo Presti
 
 ### Sviluppato da:
@@ -10,11 +12,13 @@ Tenuto dal professore: Francesco Lo Presti
 #### Repository Linux da Installare
 
 - Per aggiungere la libreria format.h e montare le stringhe
+    
     sudo add-apt-repository universe
     sudo apt update
     sudo apt install libfmt-dev
 
 - Per la libreria boost (utility avanzate di C++)
+    
     sudo apt-get install libboost-all-dev
 
 
@@ -23,6 +27,7 @@ Tenuto dal professore: Francesco Lo Presti
 - Error 404 Page
 - Moving throw the fileSystem (no security)
 - Log System
+- No busy Wait to all CODE
 
 ### Tool di supporto:
 - FireFox browser

@@ -33,6 +33,7 @@
 #include "HttpMgt.h"
 
 using namespace CES;
+using namespace SimpleWeb;
 
 HttpMgt::HttpMgt(){
 
@@ -50,28 +51,46 @@ Action HttpMgt::connectionRequest(NCS::Connection *c){
 	Action actionRet;
 
 
+
+	//La libreria boost è case insensitive
+	SimpleWeb::StatusCode code;
+	if(boost::iequals(hHeader->method, "GET"))
+		code = StatusCode::success_ok;
+	else if(boost::iequals(hHeader->method, "HEAD"))
+		code = StatusCode::success_no_content;
+	else
+		code = StatusCode::client_error_not_acceptable;
+
+	// Cambio la pagina se il metodo è non gestito
+	if(code == StatusCode::client_error_not_acceptable){ //connessione valida ma richiesta non gestita
+		hHeader->path = "/406.html";
+	}
+
 	htmlMessage mes(hHeader->path);
 
 
-	//La libreria boost è case insensitive
-	if(boost::iequals(hHeader->method, "GET")){
-
-		actionRet = stringSend(c, mes.header);
-		if(actionRet != RequestComplete)
-			return actionRet;
-
-		actionRet = send(c, mes);
-		if(actionRet != RequestComplete)
-			return actionRet;
-	}
-	else if(boost::iequals(hHeader->method, "HEAD")){
-		actionRet = stringSend(c, mes.header);
-		if(actionRet != RequestComplete)
-			return actionRet;
-	}
-	else{
-		//connessione valida ma richiesta non gestita
-		// todo: header dove si dice operazione invalida
+	switch(code){
+		case StatusCode::success_ok: //get
+			actionRet = send(c, mes);
+			if(actionRet != RequestComplete)
+				return actionRet;
+			break;
+		case StatusCode::success_no_content: // head
+			actionRet = stringSend(c, mes.header);
+			if(actionRet != RequestComplete)
+				return actionRet;
+			break;
+		case StatusCode::client_error_not_acceptable:
+			mes.status = code;
+			mes.body = fmt::format(mes.body, hHeader->method);
+			actionRet = send(c, mes);
+			if(actionRet != RequestComplete)
+				return actionRet;
+			break;
+			break;
+		default:
+			// Connessione invalida
+			break;
 	}
 
 	return RequestComplete;
@@ -79,6 +98,11 @@ Action HttpMgt::connectionRequest(NCS::Connection *c){
 
 Action HttpMgt::send(NCS::Connection *c, htmlMessage &msg){
 	Action actionRet;
+
+	actionRet = stringSend(c, msg.header);
+	if(actionRet != RequestComplete)
+		return actionRet;
+
 	switch(msg.typePayload){
 		case text:
 			actionRet = stringSend(c, msg.body);

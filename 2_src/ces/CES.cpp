@@ -8,6 +8,8 @@ using namespace CES;
 
 int CES::nWorkers = 0;
 
+//Todo: CAMBIARE DA REFERENCE a POINTER e inizializzare dentro initCES
+// Ciò per evitare che il cambio di directory eseguito nel main sia successivo all'attivazione dello shreader thread
 Shredder &shr = Shredder::getInstance();
 
 Worker **CES::workers = nullptr; //worker per la gestione delle richieste
@@ -18,7 +20,6 @@ void CES::initCES(int n){
 
 
 	cout << "CES::initCES CES subSystem preAlloc " << n << " workers\n";
-	//todo impostare PWD alla directory passata da argv
 	CES::nWorkers = n;
 	workers = (Worker **)calloc(n, sizeof(Worker **));
 	string name;
