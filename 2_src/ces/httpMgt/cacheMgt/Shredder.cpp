@@ -53,8 +53,14 @@ Shredder::Shredder() {
 }
 
 [[noreturn]] void Shredder::threadShr(Shredder *s) {
+
+    //pthread_rwlockattr_setkind_np(std::shared_lock<>::native_handle,PTHREAD_RWLOCK_PREFER_WRITER_NP)
+
+
     cout << "Shredder started\n";
     string cache_path = "web/cache";
+
+    if (!fs::exists(cache_path)) fs::create_directory(cache_path);
 
     for (;;) {
 
@@ -80,7 +86,7 @@ Shredder::Shredder() {
 void Shredder::fillImgsVect(string &path) { //obtain a vector with all the files from the filesystem
 
     for (auto &p: fs::recursive_directory_iterator(path)) {
-        if (fs::is_regular_file(p.path()) && !(p.path().string().find("/."))) { //todo: risolvere meglio il .gitignore
+        if (fs::is_regular_file(p.path()) && !(p.path().string().find("/."))) {
             auto *i = new ImgData(std::string(p.path().string()));
             imgsVect.push_back(*i);
         }
