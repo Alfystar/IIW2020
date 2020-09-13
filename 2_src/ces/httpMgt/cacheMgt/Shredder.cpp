@@ -38,7 +38,6 @@ void ImgData::removeFile() {
 
 /// Shredder functions
 
-
 Shredder *Shredder::instance = nullptr;
 
 Shredder &Shredder::getInstance() {
@@ -73,7 +72,7 @@ Shredder::Shredder() {
         s->emptyCache(); //todo: vedere come preservare questi dati, visto che non sono cancellati
         //forse non si può comunque fare, visto che dovremmo vedere l'ultimo accesso
 
-        sleep(5);
+        sleep(SLEEP_TIME);
     }
 }
 
