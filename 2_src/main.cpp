@@ -18,8 +18,12 @@ using namespace std;
 int main(__attribute__((unused))int argc, __attribute__((unused))char *argv[]){
 	Log::initLogger();
 	CES::initCES(nWorker);
+//	int ret, sigCode;
+//	sigset_t set;
 	while(true){
-		wait(nullptr);
+		pause();
+//		ret = sigwait(&set, &sigCode);
+		//Gestione dei segnali
 	};
 	return 0;
 }
