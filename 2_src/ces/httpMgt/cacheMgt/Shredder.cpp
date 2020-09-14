@@ -9,7 +9,7 @@ using namespace CES;
 
 /// ImgData, used for sorting and working on filesystem
 
-ImgData::ImgData(string p) { //otteniamo un oggetto con i dati per il sort
+ImgData::ImgData(const string &p) { //otteniamo un oggetto con i dati per il sort
     path = p;
     buf = (struct stat *) (malloc(sizeof(struct stat)));
 
@@ -40,11 +40,11 @@ void ImgData::removeFile() {
 
 Shredder *Shredder::instance = nullptr;
 
-Shredder &Shredder::getInstance() {
+Shredder *Shredder::getInstance() {
     cout << "Got Instance\n";
     if (!instance)
         instance = new Shredder();
-    return *instance;
+    return instance;
 }
 
 Shredder::Shredder() {
@@ -61,6 +61,8 @@ Shredder::Shredder() {
     cout << "Shredder started\n";
     string cache_path = "web/cache";
 
+    cout << string(get_current_dir_name()) + "\n";
+    //todo: errore in esecuzione, directory differente, capire come spostarla
     if (!fs::exists(cache_path)) fs::create_directory(cache_path);
 
     for (;;) {
@@ -75,7 +77,6 @@ Shredder::Shredder() {
         }
 
         pthread_rwlock_unlock(rwlock); //UNLOCK
-
 
         s->emptyCache(); //todo: vedere come preservare questi dati, visto che non sono cancellati
         //forse non si può comunque fare, visto che dovremmo vedere l'ultimo accesso
@@ -119,4 +120,6 @@ void Shredder::emptyCache() {
         imgsVect.pop_back();
     }
 }
+
+
 

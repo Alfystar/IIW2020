@@ -7,7 +7,7 @@
 
 #include <mutex>          // std::mutex
 
-#include <pthread.h>
+#include <thread>
 #include <malloc.h>
 
 extern pthread_rwlock_t *rwlock; //lock for shredder and workers
@@ -16,10 +16,5 @@ extern pthread_rwlockattr_t *attr;
 extern std::mutex openMutex;
 
 int initShredderLock();
-
-int initResourceLock();
-
-int initOpenMutex();
-
 
 #endif //HTTP_IMAGESERVER_SYNCUTILITIES_H

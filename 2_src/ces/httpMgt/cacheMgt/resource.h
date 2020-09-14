@@ -5,23 +5,17 @@
 #ifndef HTTP_IMAGESERVER_RESOURCE_H
 #define HTTP_IMAGESERVER_RESOURCE_H
 
-#include <cstdio>
 #include <iostream>
-
 #include <string>
-#include <math.h>
+#include <cmath>
 
-
-// for open() and close()
+#include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/file.h>
 #include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
 
 #include "syncUtilities.h"
-
 
 namespace CES {
 
