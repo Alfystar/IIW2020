@@ -6,40 +6,51 @@
 
 using namespace CES;
 
-
 Resource::Resource(string &p, float &qValue) {
 
-    // lock shredder_mutex
+    pthread_rwlock_rdlock(rwlock); // LOCK SHREDDER
 
-    string scale = to_string((int)round(qValue*100));
-    string tmp  = p.substr(0, p.length()-4) + "_" + scale + "_.jpg";
-    path = tmp.c_str();
+    string scale = to_string((int) round(qValue * 100));
+    string tmp = p.substr(0, p.length() - 4) + "_" + scale + "_.jpg";
+    path = tmp;
 
-    // lock open_mutex
+    openMutex.lock();
 
-    if ((fd = open(path, O_CREAT|O_EXCL, S_IRUSR|S_IWUSR) )== -1) { // provo a creare il file
-        if (errno != EEXIST) {
-            perror("[Resource]Error occurred at 1st open: ");
-        }
-        cout << path << " already exists"; // a questo punto il file è stato creato
+    if ((fd = open(path.c_str(), O_CREAT | O_EXCL, S_IRUSR | S_IWUSR)) == -1) { // provo a creare il file
+        if (errno != EEXIST) perror("[Resource]Error occurred at 1st open: ");
+
+        cout << path << " already exists";
+        fd = open(path.c_str(), 0, S_IRUSR); // accedo al file in sola lettura
+        openMutex.unlock();
+
     }
 
-    // unlock open_mutex
-
+    flock(fd, LOCK_EX);
+    openMutex.unlock();
+    this->elaborateFile(p, scale);
+    flock(fd, LOCK_UN);
 }
 
 Resource::~Resource() {
 //destroy the resource, then close the fd and delete the file
 
     close(fd);
-    // unlock shredder_mutex
 
+    pthread_rwlock_unlock(rwlock); //UNLOCK SHREDDER
 
 }
 
 
-string Resource::getPath() {
+string &Resource::getPath() {
+    flock(fd, LOCK_SH); //in questo modo rimango in attesa che venga elaborato prima il file
+    flock(fd, LOCK_UN);
+    return path;
+}
 
-    if (!path) return string(path); //todo: chiedere a manu il ritorno di stringhe
-    else return path;
+void Resource::elaborateFile(string &file, string &scale) {
+
+    string command = "/misc/magick convert " + file + " -resize " + scale + "% " + this->path;
+
+    system(command.c_str()); // esecuzione magick
+
 }

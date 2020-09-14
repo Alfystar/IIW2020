@@ -49,13 +49,14 @@ Shredder &Shredder::getInstance() {
 
 Shredder::Shredder() {
 
+    if (initShredderLock()) {
+        cout << "Fallita inizializzazione della sincronia"; //todo: prevedere uscita dal codice
+    }
+
     tShr = new thread(threadShr, this);
 }
 
 [[noreturn]] void Shredder::threadShr(Shredder *s) {
-
-    //pthread_rwlockattr_setkind_np(std::shared_lock<>::native_handle,PTHREAD_RWLOCK_PREFER_WRITER_NP)
-
 
     cout << "Shredder started\n";
     string cache_path = "web/cache";
@@ -64,7 +65,7 @@ Shredder::Shredder() {
 
     for (;;) {
 
-        // lock shredder_mutex
+        pthread_rwlock_wrlock(rwlock); //LOCK
 
         cout << "Verifying size of cache\n";
         s->fillImgsVect(cache_path); // obtain a vector with all the images
@@ -73,7 +74,8 @@ Shredder::Shredder() {
             s->reduceCacheUsage();
         }
 
-        // unlock shredder_mutex
+        pthread_rwlock_unlock(rwlock); //UNLOCK
+
 
         s->emptyCache(); //todo: vedere come preservare questi dati, visto che non sono cancellati
         //forse non si può comunque fare, visto che dovremmo vedere l'ultimo accesso

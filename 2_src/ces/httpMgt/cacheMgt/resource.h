@@ -15,23 +15,33 @@
 // for open() and close()
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <sys/file.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <stdlib.h>
+
+#include "syncUtilities.h"
+
 
 namespace CES {
 
     using namespace std;
 
     class Resource {
-        const char * path = nullptr;
-        int fd = 0;
+        string path;
+        int fd;
 
     public:
         explicit Resource(string &path, float &qValue);
+
         ~Resource();
 
 
-        basic_string<char> getPath();
+        string &getPath();
+
+    private:
+
+        void elaborateFile(string &file, string &scale);
 
     };
 

@@ -23,6 +23,11 @@
 #include <unistd.h>
 #include <dirent.h>
 
+
+#include <pthread.h>
+
+#include "syncUtilities.h"
+
 #define FILE_SIZE_LIMIT 10*1024*1024 // 10 MB of images allowed before halving
 #define SLEEP_TIME 10 // sleep time between shredder activations
 
