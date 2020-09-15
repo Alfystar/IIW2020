@@ -3,7 +3,7 @@ get_filename_component(libName ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 if (NOT TARGET ${libName})
     message("\n")
     add_library(${libName}
-            cacheSys.cpp cacheSys.h resource.cpp resource.h Shredder.cpp Shredder.h)
+            resource.cpp resource.h Shredder.cpp Shredder.h syncUtilities.cpp syncUtilities.h)
     target_include_directories(${libName} PUBLIC ".")
 
     #Librerie di SO

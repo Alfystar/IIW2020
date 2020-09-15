@@ -5,33 +5,37 @@
 #ifndef HTTP_IMAGESERVER_RESOURCE_H
 #define HTTP_IMAGESERVER_RESOURCE_H
 
-#include <cstdio>
 #include <iostream>
-
 #include <string>
-#include <math.h>
+#include <cmath>
 
-
-// for open() and close()
+#include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <sys/file.h>
 #include <fcntl.h>
-#include <unistd.h>
+
+#include "syncUtilities.h"
 
 namespace CES {
 
     using namespace std;
 
     class Resource {
-        const char * path = nullptr;
-        int fd = 0;
+        string path;
+        int fd;
 
     public:
-        explicit Resource(string &path, float &qValue);
+        explicit Resource(string &path, float qValue);
+
         ~Resource();
 
 
-        basic_string<char> getPath();
+        string &getPath();
+
+    private:
+
+        void elaborateFile(string &file, string &scale);
 
     };
 

@@ -8,19 +8,19 @@
 
 #include <fmt/format.h>
 
-
 #include "Worker.h"
-
 #include "httpMgt/cacheMgt/Shredder.h"
 
-namespace CES{
 
-	extern Shredder shredder;
+namespace CES {
 
-	extern int nWorkers;
-	extern Worker **workers;  // teniamo traccia dei thread job
+    extern Shredder *shredder;
 
-	void initCES(int n);
+    extern int nWorkers;
+    extern Worker **workers;  // teniamo traccia dei thread job
+
+    void initCES(int n);
+
 }
 
 
