@@ -6,19 +6,23 @@
 
 using namespace CES;
 
-htmlMessage::htmlMessage(std::string &path){
+htmlMessage::htmlMessage(NCS::Connection::httpHeader &hHeader){
 
 	pathBody = ".";
-	pathBody.append(path);
+	pathBody.append(hHeader.path);
 
 	this->discoverFileTypeRequest();
 
-
+	float q = 1;
 	switch(typePayload){
 		case text:
 			htmlPageLoad();
 			break;
 		case imageData:
+			q = qualityFactor(hHeader);
+			cout << q << endl;
+			this->imageOpen();    // in caso di errore cambia il tipo di typePayload in text e ci scrive l'errore
+			break;
 		case rawData:
 			this->imageOpen();    // in caso di errore cambia il tipo di typePayload in text e ci scrive l'errore
 			break;
@@ -41,7 +45,7 @@ htmlMessage::htmlMessage(std::string &path){
 	if(status == SimpleWeb::StatusCode::client_error_not_found){
 		pathBody = "./404.html";
 		htmlPageLoad();
-		body = fmt::format(body, path);
+		body = fmt::format(body, hHeader.path);
 		status = SimpleWeb::StatusCode::client_error_not_found;
 	}
 
@@ -250,4 +254,38 @@ string htmlMessage::lastChangeFile(string &path){
 inline bool htmlMessage::fileExists(string path){
 	struct stat buffer;
 	return (stat(path.c_str(), &buffer) == 0);
+}
+
+float htmlMessage::qualityFactor(NCS::Connection::httpHeader &hHeader){
+
+	// Piccolo script che si scorre tutti i paramentri del campo Accept dell'header request
+	//Cerchiamo nel dizionario e troviamo l'indice
+	auto it = hHeader.cim.find("Accept");
+	cout << "Iterator points to " << it->first << " = " << it->second << endl;
+//
+	int start = it->second.find("image/");
+	int qIndex = it->second.find("q=", start);
+	int end = it->second.find(",", end);
+	std::string imgRequest = it->second.substr(start, end - start);
+	cout << "\nImg request :\n" << imgRequest << "\n";
+
+//
+//	//Otteniamo Separate tutte le accetazioni ammissibili
+//
+//	int start = 0;
+//	int end = 0;
+//	Log::out << "Img request :\n";
+//	end = it->second.find(",", start + 1);
+//	std::string imgRequest = it->second.substr(start, end - start);
+//	Log::out << imgRequest << "\n";
+//	while(start < end){
+//		start = end;
+//		end = it->second.find(",", start + 1);
+//		imgRequest = it->second.substr(start + 1, end - start - 1);
+//		Log::db << imgRequest << "\n";
+//	}
+//
+//	it = hHeader->cim.find("User-Agent");
+//	Log::db << "Iterator points to " << it->first << " = " << it->second << endl;
+	return 0;
 }
