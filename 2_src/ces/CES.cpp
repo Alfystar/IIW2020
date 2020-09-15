@@ -15,7 +15,6 @@ Worker **CES::workers = nullptr; //worker per la gestione delle richieste
 void CES::initCES(int n) {
     cout << "Initialize shredder\n";
 
-    shr = (Shredder *) malloc(sizeof(Shredder *));
     shr = Shredder::getInstance();
 
     cout << "CES::initCES CES subSystem preAlloc " << n << " workers\n";

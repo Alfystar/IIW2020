@@ -26,7 +26,7 @@ namespace CES {
         int fd;
 
     public:
-        explicit Resource(string &path, float &qValue);
+        explicit Resource(string &path, float qValue);
 
         ~Resource();
 

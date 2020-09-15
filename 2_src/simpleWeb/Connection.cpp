@@ -84,9 +84,9 @@ NCS::Connection::httpHeader *Connection::readHttpHeader(){
 			break;
 		}
 		else if(bRead == 0){ //Raggiunto end-of-file o fine del buffer
-			//todo: pensare di aggiungere eccezione "413 Entity Too Large" se si superano i 4K di header
-			return nullptr;
-		}
+            //todo.txt: pensare di aggiungere eccezione "413 Entity Too Large" se si superano i 4K di header
+            return nullptr;
+        }
 	}
 	//Definiamo una stringa dal buffer letto
 	string str(buff, endHeader - buff);

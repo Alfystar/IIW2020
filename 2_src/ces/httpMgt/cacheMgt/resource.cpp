@@ -6,7 +6,7 @@
 
 using namespace CES;
 
-Resource::Resource(string &p, float &qValue) {
+Resource::Resource(string &p, float qValue) {
 
     pthread_rwlock_rdlock(rwlock); // LOCK SHREDDER
 
@@ -22,18 +22,19 @@ Resource::Resource(string &p, float &qValue) {
         cout << path << " already exists";
         fd = open(path.c_str(), 0, S_IRUSR); // accedo al file in sola lettura
         openMutex.unlock();
+        flock(fd, LOCK_SH); //in questo modo rimango in attesa che venga elaborato prima il file
 
     }
 
     flock(fd, LOCK_EX);
     openMutex.unlock();
     this->elaborateFile(p, scale);
-    flock(fd, LOCK_UN);
+    flock(fd, LOCK_SH);
 }
 
 Resource::~Resource() {
 //destroy the resource, then close the fd and delete the file
-
+    flock(fd, LOCK_UN);
     close(fd);
 
     pthread_rwlock_unlock(rwlock); //UNLOCK SHREDDER
@@ -42,8 +43,6 @@ Resource::~Resource() {
 
 
 string &Resource::getPath() {
-    flock(fd, LOCK_SH); //in questo modo rimango in attesa che venga elaborato prima il file
-    flock(fd, LOCK_UN);
     return path;
 }
 
