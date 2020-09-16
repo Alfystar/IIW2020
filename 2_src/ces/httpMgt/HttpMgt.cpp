@@ -2,34 +2,6 @@
 // Created by alfystar on 22/07/20.
 //
 
-// Piccolo script che si scorre tutti i paramentri del campo Accept dell'header request
-//	//Cerchiamo nel dizionario e troviamo l'indice
-//	auto it = hHeader->cim.find("Accept");
-//	Log::out << "Iterator points to " << it->first << " = " << it->second << endl;
-//
-////		int start = it->second.find("image/");
-////		int end = it->second.find(",",start);
-////		std::string imgRequest = it->second.substr(start, end-start);
-////		Log::out << "\nImg request :\n" << imgRequest << "\n";
-//
-//	//Otteniamo Separate tutte le accetazioni ammissibili
-//
-//	int start = 0;
-//	int end = 0;
-//	Log::out << "Img request :\n";
-//	end = it->second.find(",", start + 1);
-//	std::string imgRequest = it->second.substr(start, end - start);
-//	Log::out << imgRequest << "\n";
-//	while(start < end){
-//		start = end;
-//		end = it->second.find(",", start + 1);
-//		imgRequest = it->second.substr(start + 1, end - start - 1);
-//		Log::db << imgRequest << "\n";
-//	}
-//
-//	it = hHeader->cim.find("User-Agent");
-//	Log::db << "Iterator points to " << it->first << " = " << it->second << endl;
-
 #include "HttpMgt.h"
 
 using namespace CES;
@@ -66,7 +38,7 @@ Action HttpMgt::connectionRequest(NCS::Connection *c){
 		hHeader->path = "/406.html";
 	}
 
-	htmlMessage mes(hHeader->path);
+	htmlMessage mes(*hHeader);
 
 
 	switch(code){

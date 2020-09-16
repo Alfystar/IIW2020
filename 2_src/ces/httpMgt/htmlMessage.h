@@ -17,6 +17,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <Log.h>
+#include <Connection.h>
 
 #include "headerForm.h"
 
@@ -42,7 +43,7 @@ namespace CES{
 
 		htmlMessage() = delete;
 
-		htmlMessage(string &path);  //Crea la classe e l'header
+		htmlMessage(NCS::Connection::httpHeader &hHeader);  //Crea la classe e l'header
 
 		~htmlMessage();
 
@@ -62,6 +63,8 @@ namespace CES{
 		string lastChangeFile(string &path);
 
 		bool fileExists(string path);
+
+		float qualityFactor(NCS::Connection::httpHeader &hHeader);
 	};
 
 }
