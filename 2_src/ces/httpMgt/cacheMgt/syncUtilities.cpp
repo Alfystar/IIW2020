@@ -7,6 +7,15 @@
 pthread_rwlock_t *rwlock = (pthread_rwlock_t *) (malloc(sizeof(pthread_rwlock_t)));
 pthread_rwlockattr_t *attr = (pthread_rwlockattr_t *) (malloc(sizeof(pthread_rwlockattr_t)));
 std::mutex openMutex;
+int sizePipe[2];
+
+int initSizePipe() {
+    if (pipe2(sizePipe, O_DIRECT)) {
+        perror("[initSizePipe]: ");
+        return -1;
+    }
+    return 0;
+}
 
 int initShredderLock() {
     *rwlock = PTHREAD_RWLOCK_INITIALIZER;

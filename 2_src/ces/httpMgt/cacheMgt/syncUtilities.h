@@ -10,10 +10,24 @@
 #include <thread>
 #include <malloc.h>
 
+#ifndef _GNU_SOURCE
+#define _GNU_SOURCE
+#endif
+
+#include <fcntl.h>
+#include <unistd.h>
+
+#define readEndPipe 0
+#define writeEndPipe 1
+
 extern pthread_rwlock_t *rwlock; //lock for shredder and workers
 extern pthread_rwlockattr_t *attr;
 
 extern std::mutex openMutex;
+
+extern int sizePipe[2];
+
+int initSizePipe();
 
 int initShredderLock();
 

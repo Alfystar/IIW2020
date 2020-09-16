@@ -1,10 +1,6 @@
 TODO LIST:
 FIL
-1) notify con pipe per il sizeofcache() mentre cresce (per non leggere sempre fstat)
-2) usare il nome del file passato per creare le directory di cache (hint: substring dall'ultimo "/")
-3) init del cache system (il main già sposta il pwd in ../webRsc, verificare se esista la cartella e in caso crearla)
-4) gestire tipo richiesto di image/* (png, jpeg,..), e convertire di conseguenza (/* per non convertire il formato)
-5) scrivere costruttore Resource(path, qvalue, formato), e richiamare dall'altro questo qui. vedere overload costruttore
+1) notify con pipe per il sizeofcache() mentre cresce (per non leggere sempre fstat) //poll?
 
 EMA
 1) Risolvere il riconoscimento solo in base all'estensione per il 404
@@ -13,6 +9,8 @@ EMA
 4) nell'Accept se il tipo non è image, allora mandare errore (non posso richiedere text/plain ad es. per un immagine);
     in caso contrario, capire il tipo verso cui convertire e la qualità.
 5) rendere configurabile la porta d'ascolto (il path è già fatto).
+
+6) definire una fork iniziale per ritirare su il server se viene buttato giù [da ridiscutere]
 
 
 

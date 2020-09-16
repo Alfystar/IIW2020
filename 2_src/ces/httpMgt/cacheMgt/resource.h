@@ -26,7 +26,9 @@ namespace CES {
         int fd;
 
     public:
-        explicit Resource(string &path, float qValue);
+        Resource(string &path, string &format, float qValue);
+
+        Resource(string &path, float qValue);
 
         ~Resource();
 
@@ -36,7 +38,6 @@ namespace CES {
     private:
 
         void elaborateFile(string &file, string &scale);
-
     };
 
 }
