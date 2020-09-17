@@ -54,6 +54,9 @@ namespace CES {
         thread *tShr;
 
         vector<ImgData> imgsVect;
+        int cacheSize;
+
+        string cache_path = "web/cache";
 
 
     public:
@@ -67,6 +70,8 @@ namespace CES {
         [[noreturn]] static void threadShr(Shredder *s);
 
         void fillImgsVect(string &path);
+
+        void initCache();
 
         void reduceCacheUsage();
 

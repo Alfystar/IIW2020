@@ -50,8 +50,14 @@ Shredder *Shredder::getInstance() { //not thread-safe
 Shredder::Shredder() {
 
     if (initShredderLock()) {
-        cout << "[Shredder()] Fallita inizializzazione della sincronia"; //todo.txt: prevedere uscita dal codice
+        cout << "[Shredder()] Fallita inizializzazione della sincronia";
+        exit(-1);
     }
+
+    initCache();
+    initSizePipe();
+
+    //todo: verificare una volta nel costruttore la dimensione della cache, visto che potrebbero già esserci dei file
 
     tShr = new thread(threadShr, this);
 }
@@ -59,18 +65,16 @@ Shredder::Shredder() {
 [[noreturn]] void Shredder::threadShr(Shredder *s) {
 
     cout << "[Shredder::threadShr()] Shredder started\n";
-    string cache_path = "web/cache";
-
-    cout << string(get_current_dir_name()) + "\n";
-    //todo.txt: errore in esecuzione, directory differente, capire come spostarla
-    if (!fs::exists(cache_path)) fs::create_directory(cache_path);
 
     for (;;) {
+
 
         pthread_rwlock_wrlock(rwlock); //LOCK
 
         cout << "Verifying size of cache\n";
-        s->fillImgsVect(cache_path); // obtain a vector with all the images
+
+
+        s->fillImgsVect(s->cache_path); // obtain a vector with all the images
 
         if (s->sizeOfCache() >
             FILE_SIZE_LIMIT) { //todo.txt: implementare pipe da controllare con la dimensione dei nuovi file creati
@@ -79,7 +83,7 @@ Shredder::Shredder() {
 
         pthread_rwlock_unlock(rwlock); //UNLOCK
 
-        s->emptyCache(); //todo.txt: vedere come preservare questi dati, visto che non sono cancellati
+        s->emptyCache();
         //forse non si può comunque fare, visto che dovremmo vedere l'ultimo accesso
 
         sleep(SLEEP_TIME);
@@ -90,7 +94,7 @@ Shredder::Shredder() {
 void Shredder::fillImgsVect(string &path) { //obtain a vector with all the files from the filesystem
 
     for (auto &p: fs::recursive_directory_iterator(path)) {
-        if (fs::is_regular_file(p.path()) && !(p.path().string().find("/."))) {
+        if (!fs::is_directory(p.path()) && (p.path().string().find("/.") == string::npos)) {
             auto *i = new ImgData(std::string(p.path().string()));
             imgsVect.push_back(*i);
         }
@@ -122,5 +126,25 @@ void Shredder::emptyCache() {
     }
 }
 
+void Shredder::initCache() {
 
+    string absPath = string(get_current_dir_name());
+    if (absPath.substr(absPath.length() - 6, absPath.length()) != "webRsc") {
+        perror("[initCache] Critical error: pwd is NOT webRsc");
+    }
+    if (!fs::exists(cache_path)) {
+        fs::create_directories(cache_path);
+    }
+    string prefix = "web/img";
 
+    for (auto &p: fs::directory_iterator(prefix)) {
+
+        if (!fs::is_directory(p.path()) && (p.path().string().find("/.") == string::npos)) {
+
+            string newFold = p.path().string().substr(prefix.length(), p.path().string().length());
+            newFold = newFold.substr(1, newFold.find('.') - 1);
+
+            fs::create_directory(cache_path + '/' + newFold);
+        }
+    }
+}
