@@ -14,7 +14,7 @@ Tenuto dal professore: Francesco Lo Presti
 - Per aggiungere la libreria format.h e montare le stringhe
     
 ```
-	sudo add-apt-repository universe
+    sudo add-apt-repository universe
     sudo apt update
     sudo apt install libfmt-dev
 ```
