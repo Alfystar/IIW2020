@@ -96,14 +96,19 @@ int main(int argc, char *argv[]){
 		cout << "To have help use option -h or --help\n";
 	}
 	sleep(1);
+
+	//todo: dad and son logic
+	//se figlio esce con -1 si riavvia
+	//se figlio esce con 0 si termina
+
 	Log::initLogger();
 	CES::initCES(nWorker);
 //	int ret, sigCode;
 //	sigset_t set;
-    while (true) {
-        pause();
+	while(true){
+		pause();
 //		ret = sigwait(&set, &sigCode);
-        //Gestione dei segnali
-    };
+		//Gestione dei segnali
+	};
     return 0;
 }

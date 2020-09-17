@@ -269,6 +269,7 @@ void htmlMessage::acceptExtractor(NCS::Connection::httpHeader &hHeader, imgReque
 	//https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept
 	//Accept: ... , <MIME_type>/<MIME_subtype>;q=<(q-factor weighting)>, ...
 
+	// TODO gestire se manca image/ ma è presente */*
 	auto it = hHeader.cim.find("Accept");
 //	cout << "Iterator points to " << it->first << " = " << it->second << endl;
 

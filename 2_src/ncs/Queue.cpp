@@ -47,8 +47,8 @@ void Queue::thDispatcher(Queue *q){
 				int bitMask = q->pollList[i].revents;
 				if(bitMask & POLLIN){ //Dato disponibile
 					ready--;
-					if(i == 0){ //Stiamo vedendo la ToWaitingPipe e c'è da leggere
-						q->popWaitingCon();
+					if(i == 0){ //Siamo stati svegliati dalla la ToWaitingPipe e c'è da leggere dati
+						q->popWaitingCon(); //leggo i dati nella pipe
 					}
 					else{
 						q->pushReadyCon(i);
@@ -82,7 +82,9 @@ void Queue::popWaitingCon(){
 		if(read(waitPipe[readEnd], &c, sizeof(Connection *)) == -1){
 			switch(errno){
 				case EAGAIN:
-					end = true;
+					// la lettura vorrebbe bloccare, ma noi l'abbiamo segnata non bloccante
+					// Quindi la pipe è stata svuotata
+					end = true; //termino il while perchè ho lettot tutto
 					break;
 				default:
 					perror("Queue::popWaitingCon pipe write error:");
