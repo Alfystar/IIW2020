@@ -4,6 +4,7 @@
 
 #ifndef HTTP_IMAGESERVER_GLOBAL_DEF_H
 #define HTTP_IMAGESERVER_GLOBAL_DEF_H
+#include <sysexits.h>
 
 // Accept settings
 #define BACKLOG 10

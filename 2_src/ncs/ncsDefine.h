@@ -5,6 +5,9 @@
 #ifndef HTTP_IMAGESERVER_NCSDEFINE_H
 #define HTTP_IMAGESERVER_NCSDEFINE_H
 
+
+#include <sysexits.h>
+
 #define MAX_CON 4096
 
 

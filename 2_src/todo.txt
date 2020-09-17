@@ -4,7 +4,6 @@ FIL
 2) shreader e creator con pattern notify
 
 EMA
-6) definire una fork iniziale per ritirare su il server se viene buttato giù [da ridiscutere]
 
 
 

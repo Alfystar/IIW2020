@@ -34,7 +34,7 @@ void Accept::thListener(NCS::Accept *a){
 					break;
 				default:
 					Log::err << "Accept::thListener errore in accept" << strerror(EMFILE) << "\n";
-					exit(1);
+					exit(EX_PROTOCOL);
 			}
 		}
 
@@ -60,7 +60,7 @@ void Accept::sockInit(){
 	// crea il socket di ascolto del processo verso la rete
 	if((listensd = socket(AF_INET, SOCK_STREAM, 0)) < 0){
 		perror("Accept::sockInit errore in socket");
-		exit(1);
+		exit(EX_PROTOCOL);
 	}
 
 	//Rende riutilizzabile la porta
@@ -78,13 +78,13 @@ void Accept::sockInit(){
 	// assegna l'indirizzo e la porta da far guardare alla socket
 	if((bind(listensd, (struct sockaddr *)&servaddr, sizeof(servaddr))) < 0){
 		perror("Accept::sockInit errore in bind");
-		exit(1);
+		exit(EX_PROTOCOL);
 	}
 
 
 	// Comunico al SO la dimensione della coda di attesa che deve gestire
 	if(listen(listensd, BACKLOG) < 0){
 		perror("Accept::sockInit errore in listen");
-		exit(1);
+		exit(EX_PROTOCOL);
 	}
 }
