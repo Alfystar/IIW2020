@@ -3,6 +3,7 @@
 //
 
 #include "resource.h"
+#include "Shredder.h"
 
 using namespace CES;
 
@@ -72,7 +73,6 @@ void Resource::elaborateFile(string &file, string &scale) {
     stat(file.c_str(), &buf);
     int fileSize = buf.st_size;
 
-    write(sizePipe[writeEndPipe], &fileSize, sizeof(int));
-
+    Shredder::getInstance()->updateSizeCache(fileSize);
 }
 

@@ -54,8 +54,8 @@ Shredder::Shredder() {
         exit(-1);
     }
 
-    initCache();
     initSizePipe();
+    initCache();
 
     //todo: verificare una volta nel costruttore la dimensione della cache, visto che potrebbero già esserci dei file
 
@@ -68,42 +68,35 @@ Shredder::Shredder() {
 
     for (;;) {
 
+        s->waitUntilFullCache();
 
         pthread_rwlock_wrlock(rwlock); //LOCK
 
         cout << "Verifying size of cache\n";
 
-
-        s->fillImgsVect(s->cache_path); // obtain a vector with all the images
-
-        if (s->sizeOfCache() >
-            FILE_SIZE_LIMIT) { //todo.txt: implementare pipe da controllare con la dimensione dei nuovi file creati
-            s->reduceCacheUsage();
-        }
+        s->fillImgVect(s->cache_path); // obtain a vector with all the images
+        s->reduceCacheUsage();
 
         pthread_rwlock_unlock(rwlock); //UNLOCK
 
-        s->emptyCache();
-        //forse non si può comunque fare, visto che dovremmo vedere l'ultimo accesso
-
-        sleep(SLEEP_TIME);
+        s->emptyImgVect();
     }
 }
 
 
-void Shredder::fillImgsVect(string &path) { //obtain a vector with all the files from the filesystem
+void Shredder::fillImgVect(string &path) { //obtain a vector with all the files from the filesystem
 
     for (auto &p: fs::recursive_directory_iterator(path)) {
         if (!fs::is_directory(p.path()) && (p.path().string().find("/.") == string::npos)) {
             auto *i = new ImgData(std::string(p.path().string()));
-            imgsVect.push_back(*i);
+            imgVect.push_back(*i);
         }
     }
 }
 
 uint_fast64_t Shredder::sizeOfCache() {
     uint_fast64_t size = 0;
-    for (auto &img : imgsVect) {
+    for (auto &img : imgVect) {
         size += img.buf->st_size;
     }
     cout << "[Shredder::sizeOfCache()] size of cache: " + to_string(size) + "\n";
@@ -111,22 +104,30 @@ uint_fast64_t Shredder::sizeOfCache() {
 }
 
 void Shredder::reduceCacheUsage() {
-    sort(this->imgsVect.begin(), this->imgsVect.end()); //sort by last access time
+    sort(this->imgVect.begin(), this->imgVect.end()); //sort by last access time
     // todo.txt: verificare se l'ordine è conveniente per fare la pop, in caso cambiare il verso in operator di IMGDATA
-    for (ulong i = 0; i < (imgsVect.size() / 2); i++) {
-        imgsVect.back().removeFile();
-        imgsVect.pop_back();
+    for (ulong i = 0; i < (imgVect.size() / 2); i++) {
+        imgVect.back().removeFile();
+        imgVect.pop_back();
     }
     // la restante parte viene deallocata dopo il rilascio del mutex, e prima dello sleep
 }
 
-void Shredder::emptyCache() {
-    while (!imgsVect.empty()) {
-        imgsVect.pop_back();
+void Shredder::emptyImgVect() {
+    while (!imgVect.empty()) {
+        imgVect.pop_back();
     }
 }
 
-void Shredder::initCache() {
+int Shredder::initSizePipe() {
+    if (pipe2(sizePipe, O_DIRECT | O_NONBLOCK)) {
+        perror("[initSizePipe]: ");
+        return -1;
+    }
+    return 0;
+}
+
+void Shredder::initCache() { // init cache and cache_size (if some file are already there)
 
     string absPath = string(get_current_dir_name());
     if (absPath.substr(absPath.length() - 6, absPath.length()) != "webRsc") {
@@ -146,5 +147,60 @@ void Shredder::initCache() {
 
             fs::create_directory(cache_path + '/' + newFold);
         }
+    }
+    // a prescindere, inizializzo la dimensione della cache (sopra si crea la cartella, ma se già c'e non si fa nulla)
+
+    this->fillImgVect(cache_path);
+    cacheSize = this->sizeOfCache();
+    this->emptyImgVect();
+}
+
+void Shredder::updateSizeCache(int fSize) {
+    write(sizePipe[writeEndPipe], &fSize, sizeof(int));
+}
+
+void Shredder::waitUntilFullCache() {
+
+    timespec t{5, 0};
+    sigset_t sigmask;
+    sigfillset(&sigmask);
+    int ready;
+    int size;
+
+    while (true) {
+        ready = ppoll(&pollfd, 1, &t, &sigmask);
+        switch (ready) {
+            case -1:
+                perror("[Shredder::waitUntilFullCache]: ");
+                exit(EX_OSERR);
+
+            case 0:
+#ifdef DEBUG_LOG
+                Log::db << "Shredder::waitUntilFullCache() ppoll time-out 1 s\n";
+#endif
+                break;
+
+            default: //siccome guardiamo solo un file descriptor, sarà sicuramente quello
+
+                bool end = false;
+                do {
+                    if (read(sizePipe[readEndPipe], &size, sizeof(int)) == -1) {
+                        switch (errno) {
+                            case EAGAIN:
+                                // la lettura vorrebbe bloccare, ma noi l'abbiamo segnata non bloccante
+                                // Quindi la pipe è stata svuotata
+                                end = true; //termino il while perchè ho lettot tutto
+                                break;
+                            default:
+                                perror("Queue::popWaitingCon pipe write error:");
+                                sleep(1);
+                                exit(-1);
+                        }
+                    }
+                    cacheSize += size;
+                } while (!end);
+                break;
+        }
+        if (cacheSize > FILE_SIZE_LIMIT) break;
     }
 }

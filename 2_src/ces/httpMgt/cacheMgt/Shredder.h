@@ -12,12 +12,21 @@
 #include <algorithm>
 #include <filesystem>
 
+#include <sysexits.h>
+
+#ifndef  _GNU_SOURCE
+#define _GNU_SOURCE
+#endif
+
+#include <csignal>
+#include <poll.h>
+
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 
 #include "syncUtilities.h"
-
+// todo: move to global def
 #define FILE_SIZE_LIMIT 10*1024*1024 // 10 MB of images allowed before halving
 #define SLEEP_TIME 10 // sleep time between shredder activations
 
@@ -53,7 +62,10 @@ namespace CES {
         static Shredder *instance;
         thread *tShr;
 
-        vector<ImgData> imgsVect;
+        int sizePipe[2];
+        struct pollfd pollfd = {sizePipe[readEndPipe], POLLIN, 0};
+
+        vector<ImgData> imgVect;
         int cacheSize;
 
         string cache_path = "web/cache";
@@ -64,23 +76,26 @@ namespace CES {
 
         uint_fast64_t sizeOfCache();
 
+        void updateSizeCache(int fSize);
+
     private:
+
         explicit Shredder();
 
         [[noreturn]] static void threadShr(Shredder *s);
 
-        void fillImgsVect(string &path);
+        void waitUntilFullCache();
+
+        void fillImgVect(string &path);
+
+        int initSizePipe();
 
         void initCache();
 
         void reduceCacheUsage();
 
-        void emptyCache();
-
-
+        void emptyImgVect();
     };
-
-
 }
 
 

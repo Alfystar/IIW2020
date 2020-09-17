@@ -25,10 +25,6 @@ extern pthread_rwlockattr_t *attr;
 
 extern std::mutex openMutex;
 
-extern int sizePipe[2];
-
-int initSizePipe();
-
 int initShredderLock();
 
 #endif //HTTP_IMAGESERVER_SYNCUTILITIES_H
