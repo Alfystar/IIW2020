@@ -19,9 +19,10 @@
 #include <Connection.h>
 #include "ncsDefine.h"
 #include <Log.h>
+#include "../GLOBAL_DEF.h"
 
-#define BACKLOG 10
-#define SERV_PORT   8080
+//#define BACKLOG 10
+//#define SERV_PORT   8080
 
 
 namespace NCS{

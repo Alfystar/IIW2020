@@ -25,10 +25,15 @@
 namespace CES{
 	using namespace std;
 	enum payloadType : char{text, imageData, rawData, noBody};
+	struct imgRequest_{
+		float qFactor;
+		string fileType;
+	};
+	typedef struct imgRequest_ imgRequest;
 
 	class htmlMessage{
 	public:
-		SimpleWeb::StatusCode status = SimpleWeb::StatusCode::success_ok;
+		SimpleWeb::StatusCode status = SimpleWeb::StatusCode::success_ok; // se non succede nulla si mantiene
 		string header;
 		string pathBody;
 		std::size_t lenBody = 0;
@@ -64,7 +69,7 @@ namespace CES{
 
 		bool fileExists(string path);
 
-		float qualityFactor(NCS::Connection::httpHeader &hHeader);
+		void acceptExtractor(NCS::Connection::httpHeader &hHeader, imgRequest &img);
 	};
 
 }

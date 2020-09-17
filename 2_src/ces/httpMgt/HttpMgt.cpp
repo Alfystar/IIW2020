@@ -35,7 +35,7 @@ Action HttpMgt::connectionRequest(NCS::Connection *c){
 
 	// Cambio la pagina se il metodo è non gestito
 	if(code == StatusCode::client_error_not_acceptable){ //connessione valida ma richiesta non gestita
-		hHeader->path = "/406.html";
+		hHeader->path = "/web/sys/406.html";
 	}
 
 	htmlMessage mes(*hHeader);

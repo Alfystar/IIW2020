@@ -14,7 +14,7 @@ Accept::Accept(NCS::Queue *q){
 
 void Accept::thListener(NCS::Accept *a){
 
-	std::cout << "Accept::thListener start work " << SERV_PORT << "\n";
+	std::cout << "Accept::thListener start work on PORT: " << SERV_PORT << "\n";
 	Connection *c = nullptr;
 	int connsd;
 	struct sockaddr info;

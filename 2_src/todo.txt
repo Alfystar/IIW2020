@@ -7,12 +7,13 @@ FIL
 5) scrivere costruttore Resource(path, qvalue, formato), e richiamare dall'altro questo qui. vedere overload costruttore
 
 EMA
-1) Risolvere il riconoscimento solo in base all'estensione per il 404
-2) Finire di estrapolare il quality factor dall'accept e capire come far visualizzare apposta la didascalia (alt_img)
-3) Capire se si ha a che fare con un browser testuale o con GUI
-4) nell'Accept se il tipo non è image, allora mandare errore (non posso richiedere text/plain ad es. per un immagine);
+OK 1) Risolvere il riconoscimento solo in base all'estensione per il 404
+OK 2) Finire di estrapolare il quality factor dall'accept
+~~ 2.5)capire come far visualizzare apposta la didascalia (alt_img)
+[non serve pare] 3) Capire se si ha a che fare con un browser testuale o con GUI
+OK 4) nell'Accept se il tipo non è image, allora mandare errore (non posso richiedere text/plain ad es. per un immagine);
     in caso contrario, capire il tipo verso cui convertire e la qualità.
-5) rendere configurabile la porta d'ascolto (il path è già fatto).
+OK 5) rendere configurabile la porta d'ascolto (il path è già fatto).
 
 
 

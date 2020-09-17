@@ -11,7 +11,7 @@ add_compile_options(-Wall -Wextra -pedantic -Werror)
 
 set(EXE_NAME badAlphaWeb)
 ## Define Oggetti di lavoro
-add_executable(${EXE_NAME} main.cpp logSystem/Log.cpp logSystem/Log.h)
+add_executable(${EXE_NAME} main.cpp GLOBAL_DEF.h) #logSystem/Log.cpp logSystem/Log.h
 
 
 #add_executable(${PROJECT_NAME} main.cpp)
