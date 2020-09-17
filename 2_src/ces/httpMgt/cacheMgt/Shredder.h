@@ -18,6 +18,7 @@
 #define _GNU_SOURCE
 #endif
 
+
 #include <csignal>
 #include <poll.h>
 
@@ -26,76 +27,87 @@
 #include <sys/stat.h>
 
 #include "syncUtilities.h"
-// todo: move to global def
+#include "timeSpecOp.h"
+#include "../../../GLOBAL_DEF.h"
+
+#ifndef CACHE_PATH
+#define CACHE_PATH "./web/cache"
+#endif
+
+#ifndef FILE_SIZE_LIMIT
 #define FILE_SIZE_LIMIT 10*1024*1024 // 10 MB of images allowed before halving
-#define SLEEP_TIME 10 // sleep time between shredder activations
-
-namespace CES {
-
-    using namespace std;
-    namespace fs = std::filesystem;
+#endif
 
 
-    class ImgData {
-    public:
-        string path;
-        struct stat *buf = nullptr;
+namespace CES{
 
-        bool operator<(const ImgData &other) const { // con questo operatore posso effettuare il sort
-
-            if (buf->st_atim.tv_sec == other.buf->st_atim.tv_sec)
-                return buf->st_atim.tv_nsec < other.buf->st_atim.tv_nsec;
-            else
-                return buf->st_atim.tv_sec < other.buf->st_atim.tv_sec;
-        }
-
-        explicit ImgData(const string &p); //constructor
-        void removeFile();
+	using namespace std;
+	namespace fs = std::filesystem;
 
 
-        ~ImgData();
-    };
+	class ImgData{
+	public:
+		string path;
+		struct stat *statFile = nullptr;
+
+		bool operator<(const ImgData &other) const{ // con questo operatore posso effettuare il sort
+			// usiamo ">" così da ordinare dal più remoto al più recente
+			return timercmpSpec(&statFile->st_atim, &other.statFile->st_atim, >);
+
+		}
+
+		explicit ImgData(const string &p); //constructor
+		int removeFile();
 
 
-    class Shredder { // singleton class for managing files
-
-        static Shredder *instance;
-        thread *tShr;
-
-        int sizePipe[2];
-        struct pollfd pollfd = {sizePipe[readEndPipe], POLLIN, 0};
-
-        vector<ImgData> imgVect;
-        int cacheSize;
-
-        string cache_path = "web/cache";
+		~ImgData();
+	};
 
 
-    public:
-        static Shredder *getInstance();
+	class Shredder{ // singleton class for managing files
 
-        uint_fast64_t sizeOfCache();
+		static Shredder *instance;
+		thread *tShr;
 
-        void updateSizeCache(int fSize);
+		int sizePipe[2] = {0, 0};
+		struct pollfd pollfd = {0, 0, 0};
 
-    private:
+		vector <ImgData> imgVect;
+		int cacheSize;
 
-        explicit Shredder();
+		string cache_path = CACHE_PATH;
 
-        [[noreturn]] static void threadShr(Shredder *s);
 
-        void waitUntilFullCache();
+	public:
+		static Shredder *getInstance();
 
-        void fillImgVect(string &path);
+		uint_fast64_t sizeOfCache();
 
-        int initSizePipe();
+		void updateSizeCache(int fSize);
 
-        void initCache();
+	private:
 
-        void reduceCacheUsage();
+		explicit Shredder();
 
-        void emptyImgVect();
-    };
+		[[noreturn]] static void threadShr(Shredder *s);
+
+		void freeSpace();
+
+		void waitUntilFullCache();
+
+		void elaboratePipe();
+
+		//todo: spiegare il comando accanto
+		void fillImgVect(string &path);
+
+		inline int initSizePipe();
+
+		void initCache();
+
+		void reduceCacheUsage();
+
+		void emptyImgVect();
+	};
 }
 
 

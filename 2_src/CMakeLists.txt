@@ -7,14 +7,13 @@ project(HTTP-ImageServer)
 message("Sono Unix : ${UNIX}")
 
 add_compile_options(-Wall -Wextra -pedantic -Werror)
-#add_compile_definitions(DEBUG_LOG)  # Add debugLog macro to all Source
+#add_compile_definitions(DEBUG_LOG)  # Add debugLog, define for all Source Code
+#add_compile_definitions(DAD_RECREATE)  # Enable dad-recreate if son fail, define for all Source Code
 
 set(EXE_NAME badAlphaWeb)
 ## Define Oggetti di lavoro
 add_executable(${EXE_NAME} main.cpp GLOBAL_DEF.h) #logSystem/Log.cpp logSystem/Log.h
 
-
-#add_executable(${PROJECT_NAME} main.cpp)
 
 ## Ricerca e linking codice necessario
 add_subdirectory(simpleWeb)

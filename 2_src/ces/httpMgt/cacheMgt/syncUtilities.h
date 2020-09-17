@@ -14,6 +14,7 @@
 #define _GNU_SOURCE
 #endif
 
+
 #include <fcntl.h>
 #include <unistd.h>
 
@@ -23,7 +24,7 @@
 extern pthread_rwlock_t *rwlock; //lock for shredder and workers
 extern pthread_rwlockattr_t *attr;
 
-extern std::mutex openMutex;
+extern std::mutex openMutex;    // Mutex per rendere atomica l'apertura dei file
 
 int initShredderLock();
 

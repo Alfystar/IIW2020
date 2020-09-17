@@ -9,29 +9,29 @@ using namespace CES;
 
 /// ImgData, used for sorting and working on filesystem
 
-ImgData::ImgData(const string &p) { //otteniamo un oggetto con i dati per il sort
-    path = p;
-    buf = (struct stat *) (malloc(sizeof(struct stat)));
+ImgData::ImgData(const string &p){ //otteniamo un oggetto con i dati per il sort
+	path = p;
+	statFile = (struct stat *)(malloc(sizeof(struct stat)));
 
-    if (stat(p.c_str(), buf)) {
-        perror("File Stats error: ");
-        path = nullptr;
-        buf = nullptr;
-    }
+	if(stat(p.c_str(), statFile)){
+		perror("File Stats error: ");
+		path = nullptr;
+		statFile = nullptr;
+	}
 
 }
 
-ImgData::~ImgData() {
-    path = nullptr;
-    free(buf);
+ImgData::~ImgData(){
+	if(!statFile)
+		free(statFile);
 }
 
-void ImgData::removeFile() {
-    if (remove(path.c_str())) {
-        string tmp_str = "Failed to remove " + path + " , because: ";
-        perror(tmp_str.c_str());
-    }
-    this->~ImgData();
+int ImgData::removeFile(){
+	if(remove(path.c_str())){
+		string tmp_str = "Failed to remove " + path + " , because: ";
+		perror(tmp_str.c_str());
+	}
+	return statFile->st_size;
 }
 
 
@@ -40,167 +40,179 @@ void ImgData::removeFile() {
 
 Shredder *Shredder::instance = nullptr;
 
-Shredder *Shredder::getInstance() { //not thread-safe
-    cout << "[Shredder::getInstance()] Got Instance\n";
-    if (!instance)
-        instance = new Shredder();
-    return instance;
+Shredder *Shredder::getInstance(){ //not thread-safe
+//    cout << "[Shredder::getInstance()] Got Instance\n";
+	if(!instance)
+		instance = new Shredder();
+	return instance;
 }
 
-Shredder::Shredder() {
+Shredder::Shredder(){
 
-    if (initShredderLock()) {
-        cout << "[Shredder()] Fallita inizializzazione della sincronia";
-        exit(-1);
-    }
+	if(initShredderLock()){
+		cout << "[Shredder()] Fallita inizializzazione della sincronia";
+		exit(EX_OSERR);
+	}
 
-    initSizePipe();
-    initCache();
+	initSizePipe();
+	initCache();
 
-    //todo: verificare una volta nel costruttore la dimensione della cache, visto che potrebbero già esserci dei file
-
-    tShr = new thread(threadShr, this);
+	tShr = new thread(threadShr, this);
 }
 
-[[noreturn]] void Shredder::threadShr(Shredder *s) {
+[[noreturn]] void Shredder::threadShr(Shredder *s){
 
-    cout << "[Shredder::threadShr()] Shredder started\n";
-
-    for (;;) {
-
-        s->waitUntilFullCache();
-
-        pthread_rwlock_wrlock(rwlock); //LOCK
-
-        cout << "Verifying size of cache\n";
-
-        s->fillImgVect(s->cache_path); // obtain a vector with all the images
-        s->reduceCacheUsage();
-
-        pthread_rwlock_unlock(rwlock); //UNLOCK
-
-        s->emptyImgVect();
-    }
+	cout << "[Shredder::threadShr] Shredder started\n";
+	if(s->cacheSize > FILE_SIZE_LIMIT){
+		s->freeSpace();
+	}
+	for(;;){
+		s->waitUntilFullCache();    // aspettare la pool
+		//todo: capire perchè cacheSize non si aggiorna
+		s->elaboratePipe();         // svuoto la pipe
+		cout << "Shredder::threadShr Verifying size of cache\n";
+		if(s->cacheSize < FILE_SIZE_LIMIT){
+			continue;
+		}
+		s->freeSpace();
+	}
 }
 
 
-void Shredder::fillImgVect(string &path) { //obtain a vector with all the files from the filesystem
+void Shredder::fillImgVect(string &path){ //obtain a vector with all the files from the filesystem
 
-    for (auto &p: fs::recursive_directory_iterator(path)) {
-        if (!fs::is_directory(p.path()) && (p.path().string().find("/.") == string::npos)) {
-            auto *i = new ImgData(std::string(p.path().string()));
-            imgVect.push_back(*i);
-        }
-    }
+	for(auto &p: fs::recursive_directory_iterator(path)){
+		if(!fs::is_directory(p.path()) && (p.path().string().find("/.") == string::npos)){
+			auto *i = new ImgData(std::string(p.path().string()));
+			imgVect.push_back(*i);
+		}
+	}
 }
 
-uint_fast64_t Shredder::sizeOfCache() {
-    uint_fast64_t size = 0;
-    for (auto &img : imgVect) {
-        size += img.buf->st_size;
-    }
-    cout << "[Shredder::sizeOfCache()] size of cache: " + to_string(size) + "\n";
-    return size;
+uint_fast64_t Shredder::sizeOfCache(){
+	uint_fast64_t size = 0;
+	for(auto &img : imgVect){
+		size += img.statFile->st_size;
+	}
+	cout << "[Shredder::sizeOfCache()] size of cache: " + to_string(size) + "\n";
+	return size;
 }
 
-void Shredder::reduceCacheUsage() {
-    sort(this->imgVect.begin(), this->imgVect.end()); //sort by last access time
-    // todo.txt: verificare se l'ordine è conveniente per fare la pop, in caso cambiare il verso in operator di IMGDATA
-    for (ulong i = 0; i < (imgVect.size() / 2); i++) {
-        imgVect.back().removeFile();
-        imgVect.pop_back();
-    }
-    // la restante parte viene deallocata dopo il rilascio del mutex, e prima dello sleep
+void Shredder::reduceCacheUsage(){
+	sort(this->imgVect.begin(), this->imgVect.end()); //sort by last access time
+
+	// todo: cancellare finito il debug
+	for(auto a : this->imgVect){  // printa la lista sort-ata
+		std::cout << a.path << " time:" << a.statFile->st_atim.tv_sec << "\n";
+	}
+	while(cacheSize > FILE_SIZE_LIMIT/2){
+		cacheSize -= imgVect.back().removeFile();
+		imgVect.pop_back();
+	}
+	// la restante parte viene deallocata dopo il rilascio del mutex, e prima dello sleep
 }
 
-void Shredder::emptyImgVect() {
-    while (!imgVect.empty()) {
-        imgVect.pop_back();
-    }
+void Shredder::emptyImgVect(){
+	while(!imgVect.empty()){
+		imgVect.pop_back();
+	}
 }
 
-int Shredder::initSizePipe() {
-    if (pipe2(sizePipe, O_DIRECT | O_NONBLOCK)) {
-        perror("[initSizePipe]: ");
-        return -1;
-    }
-    return 0;
+int Shredder::initSizePipe(){
+	if(pipe2(sizePipe, O_DIRECT | O_NONBLOCK)){
+		perror("[initSizePipe]: ");
+		return -1;
+	}
+	pollfd = {sizePipe[readEndPipe], POLLIN, 0};
+	return 0;
 }
 
-void Shredder::initCache() { // init cache and cache_size (if some file are already there)
+void Shredder::initCache(){ // init cache and cache_size (if some file are already there)
 
-    string absPath = string(get_current_dir_name());
-    if (absPath.substr(absPath.length() - 6, absPath.length()) != "webRsc") {
-        perror("[initCache] Critical error: pwd is NOT webRsc");
-    }
-    if (!fs::exists(cache_path)) {
-        fs::create_directories(cache_path);
-    }
-    string prefix = "web/img";
+	string absPath = string(get_current_dir_name());
+	if(absPath.substr(absPath.length() - 6, absPath.length()) != "webRsc"){
+		perror("[initCache] Critical error: pwd is NOT webRsc");
+	}
+	if(!fs::exists(cache_path)){
+		fs::create_directories(cache_path);
+	}
+	string prefix = "web/img";
 
-    for (auto &p: fs::directory_iterator(prefix)) {
+	for(auto &p: fs::directory_iterator(prefix)){
 
-        if (!fs::is_directory(p.path()) && (p.path().string().find("/.") == string::npos)) {
+		if(!fs::is_directory(p.path()) && (p.path().string().find("/.") == string::npos)){
 
-            string newFold = p.path().string().substr(prefix.length(), p.path().string().length());
-            newFold = newFold.substr(1, newFold.find('.') - 1);
+			string newFold = p.path().string().substr(prefix.length(), p.path().string().length());
+			newFold = newFold.substr(1, newFold.find('.') - 1);
 
-            fs::create_directory(cache_path + '/' + newFold);
-        }
-    }
-    // a prescindere, inizializzo la dimensione della cache (sopra si crea la cartella, ma se già c'e non si fa nulla)
+			fs::create_directory(cache_path + '/' + newFold);
+		}
+	}
+	// a prescindere, inizializzo la dimensione della cache (sopra si crea la cartella, ma se già c'e non si fa nulla)
 
-    this->fillImgVect(cache_path);
-    cacheSize = this->sizeOfCache();
-    this->emptyImgVect();
+	this->fillImgVect(cache_path);
+	cacheSize = this->sizeOfCache();
+	this->emptyImgVect();
 }
 
-void Shredder::updateSizeCache(int fSize) {
-    write(sizePipe[writeEndPipe], &fSize, sizeof(int));
+void Shredder::updateSizeCache(int fSize){
+	write(sizePipe[writeEndPipe], &fSize, sizeof(int));
 }
 
-void Shredder::waitUntilFullCache() {
+void Shredder::waitUntilFullCache(){
 
-    timespec t{5, 0};
-    sigset_t sigmask;
-    sigfillset(&sigmask);
-    int ready;
-    int size;
+	timespec t {5, 0};
+	sigset_t sigmask;
+	sigfillset(&sigmask);
+	int ready;
 
-    while (true) {
-        ready = ppoll(&pollfd, 1, &t, &sigmask);
-        switch (ready) {
-            case -1:
-                perror("[Shredder::waitUntilFullCache]: ");
-                exit(EX_OSERR);
-
-            case 0:
+	while(true){
+		ready = ppoll(&pollfd, 1, &t, &sigmask);
+		switch(ready){
+			case -1:
+				perror("[Shredder::waitUntilFullCache]: ");
+				exit(EX_OSERR);
+			case 0:
 #ifdef DEBUG_LOG
-                Log::db << "Shredder::waitUntilFullCache() ppoll time-out 1 s\n";
+				Log::db << "Shredder::waitUntilFullCache() ppoll time-out 1 s\n";
 #endif
-                break;
+				continue;
+				break;
+			default: //siccome guardiamo solo un file descriptor, c'è qualcosa da leggere
+				return;
+		}
+	}
+}
 
-            default: //siccome guardiamo solo un file descriptor, sarà sicuramente quello
+void Shredder::elaboratePipe(){
+	int size;
+	bool end = false;
+	do{
+		if(read(sizePipe[readEndPipe], &size, sizeof(int)) == -1){
+			switch(errno){
+				case EAGAIN:
+					// la lettura vorrebbe bloccare, ma noi l'abbiamo segnata non bloccante
+					// Quindi la pipe è stata svuotata
+					end = true; //termino il while perchè ho lettot tutto
+					break;
+				default:
+					perror("Shredder::waitUntilFullCache pipe write error:");
+					sleep(1);
+					exit(-1);
+			}
+		}
+		cacheSize += size;
+	}
+	while(!end);
+}
 
-                bool end = false;
-                do {
-                    if (read(sizePipe[readEndPipe], &size, sizeof(int)) == -1) {
-                        switch (errno) {
-                            case EAGAIN:
-                                // la lettura vorrebbe bloccare, ma noi l'abbiamo segnata non bloccante
-                                // Quindi la pipe è stata svuotata
-                                end = true; //termino il while perchè ho lettot tutto
-                                break;
-                            default:
-                                perror("Queue::popWaitingCon pipe write error:");
-                                sleep(1);
-                                exit(-1);
-                        }
-                    }
-                    cacheSize += size;
-                } while (!end);
-                break;
-        }
-        if (cacheSize > FILE_SIZE_LIMIT) break;
-    }
+void Shredder::freeSpace(){
+	pthread_rwlock_wrlock(rwlock); //LOCK
+
+	fillImgVect(cache_path); // obtain a vector with all the images
+	reduceCacheUsage();
+
+	pthread_rwlock_unlock(rwlock); //UNLOCK
+
+	emptyImgVect();
 }

@@ -21,6 +21,8 @@
 
 #include "headerForm.h"
 
+#include <resource.h>
+
 
 namespace CES{
 	using namespace std;

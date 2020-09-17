@@ -16,17 +16,22 @@
 #include <fcntl.h>
 
 #include "syncUtilities.h"
+#include "Shredder.h"
+#include "../../../GLOBAL_DEF.h"
 
-namespace CES {
+#ifndef CACHE_PATH
+#define CACHE_PATH "./web/cache"
+#endif
+namespace CES{
 
-    using namespace std;
+	using namespace std;
 
-    class Resource {
-        string path;
-        int fd;
+	class Resource{
+		string path;
+		int fd;
 
-    public:
-        Resource(string &path, string &format, float qValue);
+	public:
+		Resource(string &path, string &format, float qValue);
 
         Resource(string &path, float qValue);
 

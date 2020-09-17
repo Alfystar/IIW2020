@@ -21,6 +21,10 @@
 #include <Log.h>
 #include "../GLOBAL_DEF.h"
 
+#ifndef BACKLOG
+#define BACKLOG 10
+#endif
+
 //#define BACKLOG 10
 //#define SERV_PORT   8080
 

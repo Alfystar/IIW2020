@@ -1,7 +1,9 @@
 TODO LIST:
 FIL
-1) notify con pipe per il sizeofcache() mentre cresce (per non leggere sempre fstat) //poll?
-2) shreader e creator con pattern notify
+
+3) Creare le cartelle delle immagini solo al necessario e non suppore siano tutte in "/img",
+    POSTO che il path che arriva è di un immagine, NON sono in cache sicuro però
+4) se possibile abilitare immageMagic il multi trhead in conversione
 
 EMA
 

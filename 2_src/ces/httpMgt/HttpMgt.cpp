@@ -81,7 +81,7 @@ Action HttpMgt::send(NCS::Connection *c, htmlMessage &msg){
 			break;
 		case imageData:
 		case rawData:
-			actionRet = rawSend(c, msg);
+			actionRet = binarySend(c, msg);
 			break;
 		case noBody:
 			break;
@@ -109,7 +109,7 @@ Action HttpMgt::stringSend(NCS::Connection *c, string &msg){
 	return RequestComplete;
 }
 
-Action HttpMgt::rawSend(NCS::Connection *c, htmlMessage &msg){
+Action HttpMgt::binarySend(NCS::Connection *c, htmlMessage &msg){
 	std::size_t lenght = msg.lenBody;
 	if(lenght > 0){
 		char data[4096];
@@ -127,7 +127,7 @@ Action HttpMgt::rawSend(NCS::Connection *c, htmlMessage &msg){
 			if(c->sendData(data, bytes) == -1){
 				switch(errno){
 					case EPIPE:
-						perror("Epipe sendData");
+						perror("HttpMgt::binarySend Epipe sendData");
 						#ifdef DEBUG_LOG
 						Log::db << "HttpMgt::rawSend Send image to socket get brokenPipe error\n";
 						#endif

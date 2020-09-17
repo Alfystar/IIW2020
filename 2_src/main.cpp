@@ -152,6 +152,10 @@ int main(int argc, char *argv[]){
 		cout << "To have help use option -h or --help\n";
 	}
 	sleep(1);
+#ifdef DAD_RECREATE
 	dadCreator();
+#else
+	sonServer();
+#endif
 	return 0;
 }

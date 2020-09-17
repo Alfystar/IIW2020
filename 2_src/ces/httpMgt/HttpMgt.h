@@ -47,7 +47,7 @@ namespace CES{
 
 		Action stringSend(NCS::Connection *c, string &msg);
 
-		Action rawSend(NCS::Connection *c, htmlMessage &msg);
+		Action binarySend(NCS::Connection *c, htmlMessage &msg);
 	};
 }
 

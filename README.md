@@ -45,6 +45,11 @@ Tenuto dal professore: Francesco Lo Presti
 - curl
 - gdb (debug codice C++)
 - [Visual Paradigm](https://www.visual-paradigm.com/download/community.jsp) community version
+- ImageMagic, che necessita delle librerie:
+```
+	sudo apt install webp
+```
+
 
 ### Librerie in uso:
 - Boost (per operazioni avanzate su stringhe e path)

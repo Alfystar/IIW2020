@@ -45,7 +45,8 @@ htmlMessage::htmlMessage(NCS::Connection::httpHeader &hHeader){
 				typePayload = noBody;
 			}
 			else{
-				//TODO: integrare col cache system
+				Resource rsc(pathBody, request.fileType, request.qFactor);
+				pathBody = rsc.getPath();
 				this->imageOpen();    // in caso di errore cambia il tipo di typePayload in text e ci scrive l'errore
 			}
 			break;
