@@ -6,6 +6,7 @@ if (NOT TARGET ${libName})
             NCS.h NCS.cpp
             Accept.h Accept.cpp
             Queue.h Queue.cpp
+            ../GLOBAL_DEF.h
             )
     target_include_directories(${libName} PUBLIC ".")
     find_package(Threads REQUIRED)

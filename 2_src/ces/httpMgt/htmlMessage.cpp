@@ -11,43 +11,55 @@ htmlMessage::htmlMessage(NCS::Connection::httpHeader &hHeader){
 	pathBody = ".";
 	pathBody.append(hHeader.path);
 
-	this->discoverFileTypeRequest();
+	if(pathBody.compare("./") == 0){
+		//redirect to /index.html
+		//HTTP/1.1 301 Moved Permanently
+		//Location: ./index.html
+		status = SimpleWeb::StatusCode::redirection_moved_permanently;
+		redirect = "/index.html";
+		typePayload = noBody;
+	}
+	else if(!fileExists(pathBody)){
+		Log::err << "htmlMessage::htmlMessage file don't Exist" << std::endl;
+		status = SimpleWeb::StatusCode::client_error_not_found;
+		typePayload = text;
+		pathBody = "./web/sys/404.html";
+	}
+	else{
+		this->discoverFileTypeRequest();
+	}
 
-	float q = 1;
+
+	imgRequest request;
 	switch(typePayload){
 		case text:
 			htmlPageLoad();
+			if(status == SimpleWeb::StatusCode::client_error_not_found){
+				body = fmt::format(body, hHeader.path);
+			}
 			break;
 		case imageData:
-			q = qualityFactor(hHeader);
-			cout << q << endl;
-			this->imageOpen();    // in caso di errore cambia il tipo di typePayload in text e ci scrive l'errore
+			acceptExtractor(hHeader, request);
+			if(request.fileType.compare("") == 0){ // Non vuole immagini in risposta, ma la risorsa è un immagine
+				status = SimpleWeb::StatusCode::client_error_unsupported_media_type;
+				typePayload = noBody;
+			}
+			else{
+				//TODO: integrare col cache system
+				this->imageOpen();    // in caso di errore cambia il tipo di typePayload in text e ci scrive l'errore
+			}
 			break;
 		case rawData:
 			this->imageOpen();    // in caso di errore cambia il tipo di typePayload in text e ci scrive l'errore
 			break;
 		case noBody:
+
+			break;
 		default:
-			if(pathBody.compare("./") == 0){
-				//redirect to /index.html
-				//HTTP/1.1 301 Moved Permanently
-				//Location: ./index.html
-				status = SimpleWeb::StatusCode::redirection_moved_permanently;
-				redirect = "/index.html";
-			}
-			else{
-				//richiesta invalida, ritornare un errore
-				status = SimpleWeb::StatusCode::client_error_not_found;
-			}
+			cout << "htmlMessage::htmlMessage raggiunto default!!!" << std::endl;
 			break;
 	}
 
-	if(status == SimpleWeb::StatusCode::client_error_not_found){
-		pathBody = "./404.html";
-		htmlPageLoad();
-		body = fmt::format(body, hHeader.path);
-		status = SimpleWeb::StatusCode::client_error_not_found;
-	}
 
 	headerMount();
 
@@ -61,8 +73,7 @@ htmlMessage::~htmlMessage(){
 
 void htmlMessage::htmlPageLoad(){
 	// Verifico esistenza File
-	if(!fileExists(pathBody)) // <- you need to implement this
-	{
+	if(!fileExists(pathBody)){
 		Log::err << "htmlMessage::htmlPageLoad file don't Exist" << std::endl;
 		status = SimpleWeb::StatusCode::client_error_bad_request;
 		typePayload = noBody;
@@ -131,7 +142,6 @@ void htmlMessage::htmlPageLoad(){
 	while(len > 0);
 	body.append("\r\n\r\n");
 	lenBody = body.length();
-	status = SimpleWeb::StatusCode::success_ok;
 }
 
 void htmlMessage::imageOpen(){
@@ -168,7 +178,6 @@ void htmlMessage::imageOpen(){
 		delete inStream;
 		return;
 	}
-	status = SimpleWeb::StatusCode::success_ok;
 }
 
 void CES::htmlMessage::headerMount(){
@@ -256,36 +265,53 @@ inline bool htmlMessage::fileExists(string path){
 	return (stat(path.c_str(), &buffer) == 0);
 }
 
-float htmlMessage::qualityFactor(NCS::Connection::httpHeader &hHeader){
+void htmlMessage::acceptExtractor(NCS::Connection::httpHeader &hHeader, imgRequest &img){
+	//https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept
+	//Accept: ... , <MIME_type>/<MIME_subtype>;q=<(q-factor weighting)>, ...
 
-	// Piccolo script che si scorre tutti i paramentri del campo Accept dell'header request
-	//Cerchiamo nel dizionario e troviamo l'indice
+	// TODO gestire se manca image/ ma è presente */*
 	auto it = hHeader.cim.find("Accept");
-	cout << "Iterator points to " << it->first << " = " << it->second << endl;
-//
-	int start = it->second.find("image/");
-	int qIndex = it->second.find("q=", start);
-	int end = it->second.find(",", end);
-	std::string imgRequest = it->second.substr(start, end - start);
-	cout << "\nImg request :\n" << imgRequest << "\n";
+//	cout << "Iterator points to " << it->first << " = " << it->second << endl;
 
-//
-//	//Otteniamo Separate tutte le accetazioni ammissibili
-//
-//	int start = 0;
-//	int end = 0;
-//	Log::out << "Img request :\n";
-//	end = it->second.find(",", start + 1);
-//	std::string imgRequest = it->second.substr(start, end - start);
-//	Log::out << imgRequest << "\n";
-//	while(start < end){
-//		start = end;
-//		end = it->second.find(",", start + 1);
-//		imgRequest = it->second.substr(start + 1, end - start - 1);
-//		Log::db << imgRequest << "\n";
-//	}
-//
-//	it = hHeader->cim.find("User-Agent");
-//	Log::db << "Iterator points to " << it->first << " = " << it->second << endl;
-	return 0;
+	size_t start = it->second.find("image/");
+	if(start == string::npos){  // se non trovo "<MIME_type>" => non accetta "image/"
+		img.fileType = "";
+		img.qFactor = 0;
+//		cout << "htmlMessage::acceptExtractor\nImg request have:\n\timg.qFactor = " << img.qFactor
+//		     << "\n\timg.fileType = " << img.fileType;
+		return;
+	}
+
+	// Se "image/" è presente è necessario trocare qFactor & fileType
+
+	size_t end = it->second.find(",", start);
+	if(end == string::npos){ // se non trovo "," => ultima richiesta
+		end = it->second.length();
+	}
+
+	start += 6; // mi sposto appena oltre lo "/" di "image/"
+
+
+	size_t qIndex = it->second.find(";q=", start);
+	if(qIndex == string::npos){ // se non trovo ";q=" => non specificato quality factor
+		img.qFactor = 1;        //Quality factor di default
+		img.fileType = it->second.substr(start, end - start);
+	}
+	else{  // se trovo ;q= => nel mezzo è presente il  <MIME_subtype>
+		img.fileType = it->second.substr(start, qIndex - start);
+		qIndex += 3;  //mi sposto appena oltre l'"=" di ";q="
+		string q = it->second.substr(qIndex, end - qIndex);
+		try{
+			img.qFactor = std::stof(q);
+		}catch(std::exception &e){
+			cerr << e.what();
+			cerr << "htmlMessage::acceptExtractor qFactor string isn't number\n";
+		}
+	}
+
+
+//	cout << "htmlMessage::acceptExtractor\nImg request have:\n\timg.qFactor = " << img.qFactor << "\n\timg.fileType = "
+//	     << img.fileType << endl;
+
+	return;
 }
