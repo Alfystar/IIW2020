@@ -120,10 +120,8 @@ void dadCreator(){
 						cerr << "MAIN::DAD caused by the signal n°" << sNum << " means:" << strsignal(sNum) << endl;
 						break;
 				}
-
 			}
 		}
-
 	}
 }
 
@@ -154,8 +152,6 @@ int main(int argc, char *argv[]){
 		cout << "To have help use option -h or --help\n";
 	}
 	sleep(1);
-
 	dadCreator();
-
 	return 0;
 }
