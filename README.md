@@ -24,7 +24,7 @@ Tenuto dal professore: Francesco Lo Presti
 
 
 ```
-sudo apt-get install libboost-all-dev
+    sudo apt-get install libboost-all-dev
 ```
 
 
@@ -38,6 +38,11 @@ sudo apt-get install libboost-all-dev
 ### Tool di supporto:
 - FireFox browser
 - Chromium
+- links2
+```
+	sudo apt install links2
+```
+- curl
 - gdb (debug codice C++)
 - [Visual Paradigm](https://www.visual-paradigm.com/download/community.jsp) community version
 
