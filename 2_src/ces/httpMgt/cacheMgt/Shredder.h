@@ -97,7 +97,6 @@ namespace CES{
 
 		void elaboratePipe();
 
-		//todo: spiegare il comando accanto
 		void fillImgVect(string &path);
 
 		inline int initSizePipe();

@@ -27,11 +27,15 @@ ImgData::~ImgData(){
 }
 
 int ImgData::removeFile(){
-	if(remove(path.c_str())){
-		string tmp_str = "Failed to remove " + path + " , because: ";
-		perror(tmp_str.c_str());
-	}
-	return statFile->st_size;
+    if (remove(path.c_str())) {
+        string tmp_str = "Failed to remove " + path + " , because: ";
+        perror(tmp_str.c_str());
+    }
+    string dir = path.substr(0, path.rfind('/') - 1); //todo: verificare correttezza
+    if (fs::is_empty(dir)) {
+        fs::remove(dir);
+    }
+    return statFile->st_size;
 }
 
 
@@ -79,14 +83,14 @@ Shredder::Shredder(){
 }
 
 
-void Shredder::fillImgVect(string &path){ //obtain a vector with all the files from the filesystem
+void Shredder::fillImgVect(string &path) { //obtain a vector with all the files from a directory
 
-	for(auto &p: fs::recursive_directory_iterator(path)){
-		if(!fs::is_directory(p.path()) && (p.path().string().find("/.") == string::npos)){
-			auto *i = new ImgData(std::string(p.path().string()));
-			imgVect.push_back(*i);
-		}
-	}
+    for (auto &p: fs::recursive_directory_iterator(path)) {
+        if (!fs::is_directory(p.path()) && (p.path().string().find("/.") == string::npos)) { // for .gitignore
+            auto *i = new ImgData(std::string(p.path().string()));
+            imgVect.push_back(*i);
+        }
+    }
 }
 
 uint_fast64_t Shredder::sizeOfCache(){
@@ -127,32 +131,20 @@ int Shredder::initSizePipe(){
 	return 0;
 }
 
-void Shredder::initCache(){ // init cache and cache_size (if some file are already there)
+void Shredder::initCache() { // init cache and cache_size (if some file are already there)
 
-	string absPath = string(get_current_dir_name());
-	if(absPath.substr(absPath.length() - 6, absPath.length()) != "webRsc"){
-		perror("[initCache] Critical error: pwd is NOT webRsc");
-	}
-	if(!fs::exists(cache_path)){
-		fs::create_directories(cache_path);
-	}
-	string prefix = "web/img";
-
-	for(auto &p: fs::directory_iterator(prefix)){
-
-		if(!fs::is_directory(p.path()) && (p.path().string().find("/.") == string::npos)){
-
-			string newFold = p.path().string().substr(prefix.length(), p.path().string().length());
-			newFold = newFold.substr(1, newFold.find('.') - 1);
-
-			fs::create_directory(cache_path + '/' + newFold);
-		}
-	}
-	// a prescindere, inizializzo la dimensione della cache (sopra si crea la cartella, ma se già c'e non si fa nulla)
-
-	this->fillImgVect(cache_path);
-	cacheSize = this->sizeOfCache();
-	this->emptyImgVect();
+    string absPath = string(get_current_dir_name());
+    if (absPath.substr(absPath.length() - 6, absPath.length()) != "webRsc") {
+        perror("[initCache] Critical error: pwd is NOT webRsc");
+        exit(EX_CONFIG);
+    }
+    if (!fs::exists(cache_path)) {
+        fs::create_directories(cache_path);
+    }
+    //init cacheSize with already existing files
+    this->fillImgVect(cache_path);
+    cacheSize = this->sizeOfCache();
+    this->emptyImgVect();
 }
 
 void Shredder::updateSizeCache(int fSize){
