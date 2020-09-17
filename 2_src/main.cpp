@@ -104,10 +104,22 @@ void dadCreator(){
 			if(WIFEXITED(wstatus)){     // good end
 				exit(EX_OK);
 			}
-			cerr << "MAIN::DAD Son exit with error code: " << int(WEXITSTATUS(wstatus)) << endl;
+			cerr << "MAIN::DAD Son exit with error code: " << wstatus << endl;
 			if(WIFSIGNALED(wstatus)){   // signal un-catch
 				int sNum = WTERMSIG(wstatus);
-				cerr << "MAIN::DAD caused by the signal n°" << sNum << " means:" << strsignal(sNum) << endl;
+				switch(sNum){
+					case SIGKILL:
+						cerr << "MAIN::DAD caused by the SIGKILL";
+						exit(EX_OK);
+						break;
+					case SIGTERM:
+						cerr << "MAIN::DAD caused by the SIGTERM";
+						exit(EX_OK);
+						break;
+					default:
+						cerr << "MAIN::DAD caused by the signal n°" << sNum << " means:" << strsignal(sNum) << endl;
+						break;
+				}
 
 			}
 		}
