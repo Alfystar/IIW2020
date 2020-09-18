@@ -270,17 +270,24 @@ void htmlMessage::acceptExtractor(NCS::Connection::httpHeader &hHeader, imgReque
 	//https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept
 	//Accept: ... , <MIME_type>/<MIME_subtype>;q=<(q-factor weighting)>, ...
 
-	// TODO gestire se manca image/ ma è presente */*
 	auto it = hHeader.cim.find("Accept");
-//	cout << "Iterator points to " << it->first << " = " << it->second << endl;
-
+	#ifdef DEBUG_LOG
+	Log::db << "Iterator points to " << it->first << " = " << it->second << endl;
+	#endif
 	size_t start = it->second.find("image/");
 	if(start == string::npos){  // se non trovo "<MIME_type>" => non accetta "image/"
-		img.fileType = "";
-		img.qFactor = 0;
-//		cout << "htmlMessage::acceptExtractor\nImg request have:\n\timg.qFactor = " << img.qFactor
-//		     << "\n\timg.fileType = " << img.fileType;
-		return;
+		start = it->second.find("*/*");
+		if(start == string::npos){  // se non trovo "<MIME_type>" => non accetta "image/"
+			img.fileType = "";
+			img.qFactor = 0;
+			return;
+		}
+		else{
+			img.fileType = "*";
+			img.qFactor = 1;
+			return;
+		}
+
 	}
 
 	// Se "image/" è presente è necessario trocare qFactor & fileType
