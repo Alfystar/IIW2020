@@ -16,6 +16,7 @@ Resource::Resource(string &p, string &format, float qValue) {
         //fd is not initialised, since is not required synchrony
         return;
     }
+    if (format == "jpeg") format = "jpg"; //todo: maybe necessary for conversion?
 
     pthread_rwlock_rdlock(rwlock); // LOCK SHREDDER
 
@@ -85,9 +86,16 @@ string &Resource::getPath() {
 
 void Resource::elaborateFile(string &file, string &scale) {
 
+    string format = file.substr(file.rfind('.') + 1, file.length());
+
+    if (format == "webp") {
+        string tmpFile = "dwebp " + file + " -o " + this->path; //for decoding webp images to png; IT DOESN'T RESIZE
+        system(tmpFile.c_str());
+        file = this->path;
+    }
+
     string command = "./misc/magick convert " + file + " -resize " + scale + "% " + this->path;
-    // magick permette di fare la conversione e il resize in un unico comando,
-    // visto che la stringa verrà interpretata dal programma
+
     cerr << "Resource::elaborateFile esegue system con:\n";
     cerr << command << endl;
     system(command.c_str()); // esecuzione magick
