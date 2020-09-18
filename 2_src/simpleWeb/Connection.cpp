@@ -42,7 +42,7 @@ unsigned long Connection::activeConnection() {
 }
 
 Connection::ConnectType Connection::getType() {
-    return tcpConnect;
+    return cType;
 }
 
 int Connection::sendData(const void *data, int datalen) {

@@ -71,7 +71,7 @@ namespace CES {
 
         string lastChangeFile(string &path);
 
-        bool fileExists(string path);
+        bool fileExists(string &path);
 
         void acceptExtractor(NCS::Connection::httpHeader &hHeader, imgRequest &img);
     };
