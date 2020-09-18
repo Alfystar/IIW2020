@@ -13,7 +13,7 @@
 #include <HttpMgt.h>
 
 #include <NCS.h>
-#include <utility.hpp>
+#include <Utility.hpp>
 #include <Connection.h>
 
 #include <Log.h>
