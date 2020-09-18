@@ -14,6 +14,9 @@ Accept::Accept(NCS::Queue *q) {
 
 void Accept::thListener(NCS::Accept *a) {
 
+    pthread_setname_np(pthread_self(), "Accepter");
+
+
     std::cout << "Accept::thListener start work on PORT: " << SERV_PORT << "\n";
     Connection *c = nullptr;
     int connsd;

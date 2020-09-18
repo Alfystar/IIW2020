@@ -25,6 +25,8 @@ Queue::Queue() {
 
 void Queue::thDispatcher(Queue *q) {
 
+    pthread_setname_np(pthread_self(), "Queue");
+
     std::cout << "Queue::thDispatcher start work\n";
     timespec t{1, 0};
 

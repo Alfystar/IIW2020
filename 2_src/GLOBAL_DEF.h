@@ -13,8 +13,8 @@
 
 // Shreader setting
 #define KiB 1024
-#define MiB 1024*KiB
-#define FILE_SIZE_LIMIT 10*MiB // 10 MiB of images allowed before halving
+#define MiB (1024*KiB)
+#define FILE_SIZE_LIMIT (10*MiB) // 10 MiB of images allowed before halving
 
 // Cache system
 #define CACHE_PATH "./web/sys/cache"

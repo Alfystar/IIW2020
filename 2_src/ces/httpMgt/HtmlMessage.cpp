@@ -292,7 +292,7 @@ void HtmlMessage::acceptExtractor(NCS::Connection::httpHeader &hHeader, imgReque
 
 
     size_t qIndex = it->second.find(";q=", start);
-    if (qIndex == string::npos) { // se non trovo ";q=" => non specificato quality factor
+    if (qIndex == string::npos || qIndex > end) { // se non trovo ";q=", o è oltre => non specificato quality factor
         img.qFactor = 1;        //Quality factor di default
         img.fileType = it->second.substr(start, end - start);
     } else {  // se trovo ;q= => nel mezzo è presente il  <MIME_subtype>

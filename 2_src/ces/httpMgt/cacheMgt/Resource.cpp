@@ -37,13 +37,12 @@ Resource::Resource(string &p, string &format, float qValue) {
         tmp = nameOriginal + "_" + scale + "_." + format;
     }
     // partiamo da 2 perche il path p = "./web....", quindi i primi due sono sicuramente quei simboli
-    string relSubFold = p.substr(1, (p.rfind('/')) - 1);
+    string relSubFold = p.substr(1, (p.rfind('/')));
 
     string subFolder = string(CACHE_PATH) + relSubFold + nameOriginal;
     path = subFolder + "/" + tmp;
 
     fs::create_directories(subFolder);
-    //todo: supponiamo che almeno i file siano chiamati in modo diverso? è il problema che si pone se ho cartelle diverse!
 
     openMutex.lock();
 
@@ -51,7 +50,8 @@ Resource::Resource(string &p, string &format, float qValue) {
         if (errno != EEXIST) {
             perror("[Resource::Resource]Error occurred at 1st open: ");
             cerr << path << endl;
-            //todo: ritornare un errore o il file originale o vedere [EDIT: in teoria non dovrebbe più entrare qui]
+            cerr << "format: " << format << endl;
+            cerr << "qValue: " << qValue << endl;
             path = p;
             openMutex.unlock();
             return;
@@ -93,7 +93,7 @@ void Resource::elaborateFile(string &file, string &scale) {
     system(command.c_str()); // esecuzione magick
 
     struct stat buf{};
-    stat(file.c_str(), &buf);
+    stat(path.c_str(), &buf);
     int fileSize = buf.st_size;
 
     Shredder::getInstance()->updateSizeCache(fileSize);

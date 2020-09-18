@@ -37,6 +37,8 @@ void Log::initLogger() {
 }
 
 [[noreturn]] void Log::syncStream() {
+    pthread_setname_np(pthread_self(), "Logger");
+
     while (true) {
         Log::out << flush;
         Log::err << flush;

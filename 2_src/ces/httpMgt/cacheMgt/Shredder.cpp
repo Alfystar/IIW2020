@@ -31,7 +31,7 @@ int ImgData::removeFile() {
         string tmp_str = "Failed to remove " + path + " , because: ";
         perror(tmp_str.c_str());
     }
-    string dir = path.substr(0, path.rfind('/') - 1); //todo: verificare correttezza
+    string dir = path.substr(0, path.rfind('/'));
     if (fs::is_empty(dir)) {
         fs::remove(dir);
     }
@@ -65,6 +65,7 @@ Shredder::Shredder() {
 }
 
 [[noreturn]] void Shredder::threadShr(Shredder *s) {
+    pthread_setname_np(pthread_self(), "Shredder");
 
     cout << "[Shredder::threadShr] Shredder started\n";
     if (s->cacheSize > FILE_SIZE_LIMIT) {
@@ -74,7 +75,8 @@ Shredder::Shredder() {
         s->waitUntilFullCache();    // aspettare la pool
         //todo: capire perchè cacheSize non si aggiorna
         s->elaboratePipe();         // svuoto la pipe
-        cout << "Shredder::threadShr Verifying size of cache\n";
+        cout << "Shredder::threadShr Verifying size of cache: " +
+                fmt::format("{:.{}f} MiB", (float) (s->cacheSize) / MiB, 2) + '\n';
         if (s->cacheSize < FILE_SIZE_LIMIT) {
             continue;
         }
@@ -98,7 +100,8 @@ uint_fast64_t Shredder::sizeOfCache() {
     for (auto &img : imgVect) {
         size += img.statFile->st_size;
     }
-    cout << "[Shredder::sizeOfCache()] size of cache: " + to_string(size) + "\n";
+    cout << "[Shredder::sizeOfCache()] size of cache: " +
+            fmt::format("{:.{}f} MiB", (float) (size) / MiB, 2) + '\n';
     return size;
 }
 
@@ -109,8 +112,9 @@ void Shredder::reduceCacheUsage() {
     for (auto a : this->imgVect) {  // printa la lista sort-ata
         std::cout << a.path << " time:" << a.statFile->st_atim.tv_sec << "\n";
     }
-    while (cacheSize > FILE_SIZE_LIMIT / 2) {
-        cacheSize -= imgVect.back().removeFile();
+    while (cacheSize > FILE_SIZE_LIMIT / 2 && imgVect.size() > 1) {
+        int size = imgVect.back().removeFile();
+        cacheSize -= size;
         imgVect.pop_back();
     }
     // la restante parte viene deallocata dopo il rilascio del mutex, e prima dello sleep
@@ -147,8 +151,8 @@ void Shredder::initCache() { // init cache and cache_size (if some file are alre
     this->emptyImgVect();
 }
 
-void Shredder::updateSizeCache(int fSize) {
-    write(sizePipe[writeEndPipe], &fSize, sizeof(int));
+void Shredder::updateSizeCache(uint_fast64_t fSize) {
+    write(sizePipe[writeEndPipe], &fSize, sizeof(uint_fast64_t));
 }
 
 void Shredder::waitUntilFullCache() {
@@ -177,10 +181,10 @@ void Shredder::waitUntilFullCache() {
 }
 
 void Shredder::elaboratePipe() {
-    int size;
+    uint_fast64_t size;
     bool end = false;
     do {
-        if (read(sizePipe[readEndPipe], &size, sizeof(int)) == -1) {
+        if (read(sizePipe[readEndPipe], &size, sizeof(uint_fast64_t)) == -1) {
             switch (errno) {
                 case EAGAIN:
                     // la lettura vorrebbe bloccare, ma noi l'abbiamo segnata non bloccante
@@ -192,8 +196,9 @@ void Shredder::elaboratePipe() {
                     sleep(1);
                     exit(-1);
             }
+        } else {
+            cacheSize += size;
         }
-        cacheSize += size;
     } while (!end);
 }
 

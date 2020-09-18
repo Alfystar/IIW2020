@@ -19,6 +19,7 @@ int initShredderLock() {
         perror("Error in pthread_rwlock_init: ");
         return -1;
     }
+    if (openMutex.try_lock()) openMutex.unlock();
     return 0;
 }
 

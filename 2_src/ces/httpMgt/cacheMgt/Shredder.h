@@ -22,6 +22,8 @@
 #include <csignal>
 #include <poll.h>
 
+#include <fmt/format.h>
+
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -73,7 +75,7 @@ namespace CES {
         struct pollfd pollfd = {0, 0, 0};
 
         vector<ImgData> imgVect;
-        int cacheSize;
+        uint_fast64_t cacheSize;
 
         string cache_path = CACHE_PATH;
 
@@ -83,7 +85,7 @@ namespace CES {
 
         uint_fast64_t sizeOfCache();
 
-        void updateSizeCache(int fSize);
+        void updateSizeCache(uint_fast64_t fSize);
 
     private:
 

@@ -471,7 +471,6 @@ namespace SimpleWeb {
 namespace SimpleWeb {
     inline void spin_loop_pause() noexcept { _mm_pause(); }
 } // namespace SimpleWeb
-// TODO: need verification that the following checks are correct:
 #elif defined(_MSC_VER) && _MSC_VER >= 1800 && (defined(_M_X64) || defined(_M_IX86))
 #include <intrin.h>
 namespace SimpleWeb {
