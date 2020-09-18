@@ -28,7 +28,7 @@
 #include <Connection.h>
 
 #include <Log.h>
-#include "htmlMessage.h"
+#include "HtmlMessage.h"
 
 namespace CES{
 	using namespace std;
@@ -42,12 +42,12 @@ namespace CES{
 
 	private:
 
-		Action send(NCS::Connection *c, htmlMessage &msg);
+		Action send(NCS::Connection *c, HtmlMessage &msg);
 
 
 		Action stringSend(NCS::Connection *c, string &msg);
 
-		Action binarySend(NCS::Connection *c, htmlMessage &msg);
+		Action binarySend(NCS::Connection *c, HtmlMessage &msg);
 	};
 }
 

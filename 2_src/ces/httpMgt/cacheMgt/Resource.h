@@ -15,7 +15,7 @@
 #include <sys/file.h>
 #include <fcntl.h>
 
-#include "syncUtilities.h"
+#include "SyncUtilities.h"
 #include "Shredder.h"
 #include "../../../GLOBAL_DEF.h"
 

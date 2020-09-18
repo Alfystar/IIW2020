@@ -26,7 +26,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-#include "syncUtilities.h"
+#include "SyncUtilities.h"
 #include "timeSpecOp.h"
 #include "../../../GLOBAL_DEF.h"
 

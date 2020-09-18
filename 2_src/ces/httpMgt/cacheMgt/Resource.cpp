@@ -2,7 +2,7 @@
 // Created by filippob on 11/09/20.
 //
 
-#include "resource.h"
+#include "Resource.h"
 
 using namespace CES;
 

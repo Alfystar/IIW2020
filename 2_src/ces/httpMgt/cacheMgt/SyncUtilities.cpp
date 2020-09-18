@@ -2,7 +2,7 @@
 // Created by filippob on 13/09/20.
 //
 
-#include "syncUtilities.h"
+#include "SyncUtilities.h"
 
 pthread_rwlock_t *rwlock = (pthread_rwlock_t *) (malloc(sizeof(pthread_rwlock_t)));
 pthread_rwlockattr_t *attr = (pthread_rwlockattr_t *) (malloc(sizeof(pthread_rwlockattr_t)));

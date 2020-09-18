@@ -38,7 +38,7 @@ Action HttpMgt::connectionRequest(NCS::Connection *c){
 		hHeader->path = "/web/sys/406.html";
 	}
 
-	htmlMessage mes(*hHeader);
+	HtmlMessage mes(*hHeader);
 
 
 	switch(code){
@@ -68,7 +68,7 @@ Action HttpMgt::connectionRequest(NCS::Connection *c){
 	return RequestComplete;
 }
 
-Action HttpMgt::send(NCS::Connection *c, htmlMessage &msg){
+Action HttpMgt::send(NCS::Connection *c, HtmlMessage &msg){
 	Action actionRet;
 
 	actionRet = stringSend(c, msg.header);
@@ -109,7 +109,7 @@ Action HttpMgt::stringSend(NCS::Connection *c, string &msg){
 	return RequestComplete;
 }
 
-Action HttpMgt::binarySend(NCS::Connection *c, htmlMessage &msg){
+Action HttpMgt::binarySend(NCS::Connection *c, HtmlMessage &msg){
 	std::size_t lenght = msg.lenBody;
 	if(lenght > 0){
 		char data[4096];

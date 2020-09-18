@@ -2,11 +2,11 @@
 // Created by alfystar on 11/09/20.
 //
 
-#include "htmlMessage.h"
+#include "HtmlMessage.h"
 
 using namespace CES;
 
-htmlMessage::htmlMessage(NCS::Connection::httpHeader &hHeader){
+HtmlMessage::HtmlMessage(NCS::Connection::httpHeader &hHeader){
 
 	pathBody = ".";
 	pathBody.append(hHeader.path);
@@ -20,7 +20,7 @@ htmlMessage::htmlMessage(NCS::Connection::httpHeader &hHeader){
 		typePayload = noBody;
 	}
 	else if(!fileExists(pathBody)){
-		Log::err << "htmlMessage::htmlMessage file don't Exist" << std::endl;
+		Log::err << "HtmlMessage::HtmlMessage file don't Exist" << std::endl;
 		status = SimpleWeb::StatusCode::client_error_not_found;
 		typePayload = text;
 		pathBody = "./web/sys/404.html";
@@ -57,7 +57,7 @@ htmlMessage::htmlMessage(NCS::Connection::httpHeader &hHeader){
 
 			break;
 		default:
-			cout << "htmlMessage::htmlMessage raggiunto default!!!" << std::endl;
+			cout << "HtmlMessage::HtmlMessage raggiunto default!!!" << std::endl;
 			break;
 	}
 
@@ -66,16 +66,16 @@ htmlMessage::htmlMessage(NCS::Connection::httpHeader &hHeader){
 
 }
 
-htmlMessage::~htmlMessage(){
+HtmlMessage::~HtmlMessage(){
 	if(!inStream)
 		delete inStream;
 }
 
 
-void htmlMessage::htmlPageLoad(){
+void HtmlMessage::htmlPageLoad(){
 	// Verifico esistenza File
 	if(!fileExists(pathBody)){
-		Log::err << "htmlMessage::htmlPageLoad file don't Exist" << std::endl;
+		Log::err << "HtmlMessage::htmlPageLoad file don't Exist" << std::endl;
 		status = SimpleWeb::StatusCode::client_error_bad_request;
 		typePayload = noBody;
 		return;
@@ -84,7 +84,7 @@ void htmlMessage::htmlPageLoad(){
 	//Provo ad aprire il file
 	ifstream textFile(pathBody, std::ios::in);
 	if(!textFile.is_open()){
-		Log::err << "htmlMessage::htmlPageLoad failed to open file" << std::endl;
+		Log::err << "HtmlMessage::htmlPageLoad failed to open file" << std::endl;
 		status = SimpleWeb::StatusCode::server_error_internal_server_error;
 		typePayload = noBody;
 		return;
@@ -95,7 +95,7 @@ void htmlMessage::htmlPageLoad(){
 	textFile.seekg(0, std::ios::beg);
 
 	if(textFile.fail()){
-		Log::out << "htmlMessage::htmlPageLoad failed to set at 0 seek of size" << std::endl;
+		Log::out << "HtmlMessage::htmlPageLoad failed to set at 0 seek of size" << std::endl;
 		status = SimpleWeb::StatusCode::server_error_internal_server_error;
 		typePayload = noBody;
 		return;
@@ -108,7 +108,7 @@ void htmlMessage::htmlPageLoad(){
 	int bytes;
 	do{
 		if(!textFile.getline(lineBuff, std::min(len, sizeof(lineBuff)))){
-			Log::err << "htmlMessage::htmlPageLoad Reading text from filesystem get error " << strerror(errno) << "\n";
+			Log::err << "HtmlMessage::htmlPageLoad Reading text from filesystem get error " << strerror(errno) << "\n";
 			status = SimpleWeb::StatusCode::server_error_internal_server_error;
 			typePayload = noBody;
 			return;
@@ -117,7 +117,7 @@ void htmlMessage::htmlPageLoad(){
 		bytes = textFile.gcount();
 
 		if(textFile.rdstate() == ifstream::eofbit){ //Raggiunto End-Of-File Prematuramente
-			Log::err << "htmlMessage::htmlPageLoad Raggiunto End-Of-File Prematuramente" << endl;
+			Log::err << "HtmlMessage::htmlPageLoad Raggiunto End-Of-File Prematuramente" << endl;
 			status = SimpleWeb::StatusCode::server_error_internal_server_error;
 			typePayload = noBody;
 			return;
@@ -125,7 +125,7 @@ void htmlMessage::htmlPageLoad(){
 
 		if(textFile.rdstate() == ifstream::failbit){
 			if(bytes == 0){ //non ho estratto nulla e c'è un problema sullo stream
-				Log::err << "htmlMessage::htmlPageLoad Non ha estratto nulla" << endl;
+				Log::err << "HtmlMessage::htmlPageLoad Non ha estratto nulla" << endl;
 				status = SimpleWeb::StatusCode::server_error_internal_server_error;
 				typePayload = noBody;
 				return;
@@ -145,11 +145,11 @@ void htmlMessage::htmlPageLoad(){
 	lenBody = body.length();
 }
 
-void htmlMessage::imageOpen(){
+void HtmlMessage::imageOpen(){
 	// Verifico esistenza File
 	if(!fileExists(pathBody)) // <- you need to implement this
 	{
-		Log::err << "htmlMessage::imageOpen file don't Exist" << std::endl;
+		Log::err << "HtmlMessage::imageOpen file don't Exist" << std::endl;
 		status = SimpleWeb::StatusCode::client_error_not_found;
 		typePayload = noBody;
 		return;
@@ -158,7 +158,7 @@ void htmlMessage::imageOpen(){
 	//Provo ad aprire il file
 	inStream = new std::ifstream(pathBody, std::ios::binary);
 	if(!inStream->is_open()){
-		Log::err << "htmlMessage::imageOpen failed to open file" << std::endl;
+		Log::err << "HtmlMessage::imageOpen failed to open file" << std::endl;
 		status = SimpleWeb::StatusCode::server_error_internal_server_error;
 		typePayload = noBody;
 
@@ -172,7 +172,7 @@ void htmlMessage::imageOpen(){
 	inStream->seekg(0, std::ios::beg);
 
 	if(inStream->fail()){
-		Log::err << "htmlMessage::imageOpen failed to get size of file" << std::endl;
+		Log::err << "HtmlMessage::imageOpen failed to get size of file" << std::endl;
 		status = SimpleWeb::StatusCode::server_error_internal_server_error;
 		typePayload = noBody;
 
@@ -181,7 +181,7 @@ void htmlMessage::imageOpen(){
 	}
 }
 
-void CES::htmlMessage::headerMount(){
+void CES::HtmlMessage::headerMount(){
 
 	header = fmt::format(startHead, SimpleWeb::status_code(status), dataNow());
 
@@ -213,7 +213,7 @@ void CES::htmlMessage::headerMount(){
 }
 
 
-inline void htmlMessage::discoverFileTypeRequest(){
+inline void HtmlMessage::discoverFileTypeRequest(){
 	string file_extension = boost::filesystem::extension(pathBody);
 	// boost è case insensitive
 	if(file_extension.compare("") == 0){
@@ -237,7 +237,7 @@ inline void htmlMessage::discoverFileTypeRequest(){
 }
 
 
-string htmlMessage::dataNow(){
+string HtmlMessage::dataNow(){
 	// Creazione del campo DATA
 	SimpleWeb::Date date;
 	chrono::system_clock::time_point now = std::chrono::system_clock::now();
@@ -247,7 +247,7 @@ string htmlMessage::dataNow(){
 
 //Funzione che dato il path di un file, ritorna l'ultima modifica dello stesso
 //Da trasformare per ritornare la stringa e non printarla
-string htmlMessage::lastChangeFile(const char *path){
+string HtmlMessage::lastChangeFile(const char *path){
 	struct stat attr;
 	stat(path, &attr);
 	char *dataStr = ctime(&attr.st_mtime);
@@ -256,17 +256,17 @@ string htmlMessage::lastChangeFile(const char *path){
 	return lastDate;
 }
 
-string htmlMessage::lastChangeFile(string &path){
+string HtmlMessage::lastChangeFile(string &path){
 	return lastChangeFile(path.c_str());
 }
 
 
-inline bool htmlMessage::fileExists(string path){
+inline bool HtmlMessage::fileExists(string path){
 	struct stat buffer;
 	return (stat(path.c_str(), &buffer) == 0);
 }
 
-void htmlMessage::acceptExtractor(NCS::Connection::httpHeader &hHeader, imgRequest &img){
+void HtmlMessage::acceptExtractor(NCS::Connection::httpHeader &hHeader, imgRequest &img){
 	//https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept
 	//Accept: ... , <MIME_type>/<MIME_subtype>;q=<(q-factor weighting)>, ...
 
@@ -313,12 +313,12 @@ void htmlMessage::acceptExtractor(NCS::Connection::httpHeader &hHeader, imgReque
 			img.qFactor = std::stof(q);
 		}catch(std::exception &e){
 			cerr << e.what();
-			cerr << "htmlMessage::acceptExtractor qFactor string isn't number\n";
+			cerr << "HtmlMessage::acceptExtractor qFactor string isn't number\n";
 		}
 	}
 
 
-//	cout << "htmlMessage::acceptExtractor\nImg request have:\n\timg.qFactor = " << img.qFactor << "\n\timg.fileType = "
+//	cout << "HtmlMessage::acceptExtractor\nImg request have:\n\timg.qFactor = " << img.qFactor << "\n\timg.fileType = "
 //	     << img.fileType << endl;
 
 	return;

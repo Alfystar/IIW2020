@@ -4,7 +4,7 @@ if (NOT TARGET ${libName})
     message("\n")
     add_library(${libName}
             HttpMgt.cpp HttpMgt.h
-            htmlMessage.cpp htmlMessage.h headerForm.h)
+            HtmlMessage.cpp HtmlMessage.h headerForm.h)
     target_include_directories(${libName} PUBLIC ".")
 
     #Direcotry Utility

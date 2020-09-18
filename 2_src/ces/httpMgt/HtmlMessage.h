@@ -21,7 +21,7 @@
 
 #include "headerForm.h"
 
-#include <resource.h>
+#include <Resource.h>
 
 
 namespace CES{
@@ -33,7 +33,7 @@ namespace CES{
 	};
 	typedef struct imgRequest_ imgRequest;
 
-	class htmlMessage{
+	class HtmlMessage{
 	public:
 		SimpleWeb::StatusCode status = SimpleWeb::StatusCode::success_ok; // se non succede nulla si mantiene
 		string header;
@@ -48,11 +48,11 @@ namespace CES{
 		string redirect;
 	public:
 
-		htmlMessage() = delete;
+		HtmlMessage() = delete;
 
-		htmlMessage(NCS::Connection::httpHeader &hHeader);  //Crea la classe e l'header
+		HtmlMessage(NCS::Connection::httpHeader &hHeader);  //Crea la classe e l'header
 
-		~htmlMessage();
+		~HtmlMessage();
 
 	private:
 		void htmlPageLoad();

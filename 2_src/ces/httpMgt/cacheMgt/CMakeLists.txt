@@ -3,9 +3,9 @@ get_filename_component(libName ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 if (NOT TARGET ${libName})
     message("\n")
     add_library(${libName}
-            resource.cpp resource.h
+            Resource.cpp Resource.h
             Shredder.cpp Shredder.h
-            syncUtilities.cpp syncUtilities.h
+            SyncUtilities.cpp SyncUtilities.h
             ../../../GLOBAL_DEF.h
             timeSpecOp.h)
     target_include_directories(${libName} PUBLIC ".")
