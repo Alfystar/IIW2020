@@ -15,7 +15,7 @@
 #define PROTOPORT       5193            /* default protocol port number */
 #define BACKLOG           10            /* size of request queue        */
 
-int     visits      =   0;              /* counts client connections    */
+int visits = 0;              /* counts client connections    */
 
 /*------------------------------------------------------------------------
  * Program:   count_server
@@ -29,76 +29,75 @@ int     visits      =   0;              /* counts client connections    */
  * Note:      The port argument is optional.  If no port is specified,
  *            the server uses the default given by PROTOPORT.
  *------------------------------------------------------------------------ */
- 
-int main(int argc, char **argv)
-{
-  struct  protoent *ptrp;  /* pointer to a protocol table entry   */
-  struct  sockaddr_in sad; /* structure to hold server's address  */
-  struct  sockaddr_in cad; /* structure to hold client's address  */
-  int     listensd, connsd; /* socket descriptors             */
-  int     port;        /* protocol port number        */
-  unsigned int    alen;        /* length of address           */
-  char    buf[1000];       /* buffer for string the server sends  */
 
-  memset((void *)&sad, 0, sizeof(sad)); /* clear sad */
-  sad.sin_family = AF_INET;     /* set family to Internet */
-  sad.sin_addr.s_addr = htonl(INADDR_ANY); /* set the local IP address */
+int main(int argc, char **argv) {
+    struct protoent *ptrp;  /* pointer to a protocol table entry   */
+    struct sockaddr_in sad; /* structure to hold server's address  */
+    struct sockaddr_in cad; /* structure to hold client's address  */
+    int listensd, connsd; /* socket descriptors             */
+    int port;        /* protocol port number        */
+    unsigned int alen;        /* length of address           */
+    char buf[1000];       /* buffer for string the server sends  */
 
-  /* Check command-line argument for protocol port and extract    
-     port number if one is specified.  Otherwise, use the default 
-     port value given by constant PROTOPORT. */
+    memset((void *) &sad, 0, sizeof(sad)); /* clear sad */
+    sad.sin_family = AF_INET;     /* set family to Internet */
+    sad.sin_addr.s_addr = htonl(INADDR_ANY); /* set the local IP address */
 
-  if (argc > 1)           /* if argument specified    */
-    port = atoi(argv[1]);   /* convert argument to binary   */
-  else 
-    port = PROTOPORT;     /* use default port number      */
+    /* Check command-line argument for protocol port and extract
+       port number if one is specified.  Otherwise, use the default
+       port value given by constant PROTOPORT. */
 
-  if (port > 0)           /* test for illegal value   */
-    sad.sin_port = htons(port);
-  else {              /* print error message and exit */
-    fprintf(stderr,"bad port number %s\n",argv[1]);
-    exit(1);
-  }
+    if (argc > 1)           /* if argument specified    */
+        port = atoi(argv[1]);   /* convert argument to binary   */
+    else
+        port = PROTOPORT;     /* use default port number      */
 
-  /* Map TCP transport protocol name to protocol number */
-  if ( (ptrp = getprotobyname("tcp")) == NULL) {
-     fprintf(stderr, "cannot map \"tcp\" to protocol number");
-     exit(1);
-  }
-
-  /* Create a socket */
-  if ((listensd = socket(AF_INET, SOCK_STREAM, ptrp->p_proto)) < 0) {
-    perror("socket creation failed");
-    exit(1);
-  }
-
-  /* Bind a local address to the socket */
-  if (bind(listensd, (struct sockaddr *)&sad, sizeof(sad)) < 0) {
-    perror("bind failed");
-    exit(1);
-  }
-
-  /* Specify size of request queue */
-  if (listen(listensd, BACKLOG) < 0) {
-    perror("listen failed");
-    exit(1);
-  }
-
-  /* Main server loop - accept and handle requests */
-  while (1) {
-    alen = sizeof(cad);
-    if ( (connsd=accept(listensd, (struct sockaddr *)&cad, &alen)) < 0) {
-      perror("accept failed");
-      exit(1);
+    if (port > 0)           /* test for illegal value   */
+        sad.sin_port = htons(port);
+    else {              /* print error message and exit */
+        fprintf(stderr, "bad port number %s\n", argv[1]);
+        exit(1);
     }
-    visits++;
-    snprintf(buf, sizeof(buf), "This server has been contacted %d time%s\n",
-          visits,visits==1?".":"s.");
-    if (write(connsd, buf, strlen(buf)) != strlen(buf)) {
-      perror("error in write");
-      exit(1);
+
+    /* Map TCP transport protocol name to protocol number */
+    if ((ptrp = getprotobyname("tcp")) == NULL) {
+        fprintf(stderr, "cannot map \"tcp\" to protocol number");
+        exit(1);
     }
-    
-    close(connsd);
-  }
+
+    /* Create a socket */
+    if ((listensd = socket(AF_INET, SOCK_STREAM, ptrp->p_proto)) < 0) {
+        perror("socket creation failed");
+        exit(1);
+    }
+
+    /* Bind a local address to the socket */
+    if (bind(listensd, (struct sockaddr *) &sad, sizeof(sad)) < 0) {
+        perror("bind failed");
+        exit(1);
+    }
+
+    /* Specify size of request queue */
+    if (listen(listensd, BACKLOG) < 0) {
+        perror("listen failed");
+        exit(1);
+    }
+
+    /* Main server loop - accept and handle requests */
+    while (1) {
+        alen = sizeof(cad);
+        if ((connsd = accept(listensd, (struct sockaddr *) &cad, &alen)) < 0) {
+            perror("accept failed");
+            exit(1);
+        }
+        visits++;
+        snprintf(buf, sizeof(buf), "This server has been contacted %d time%s\n",
+                 visits, visits == 1 ? "." : "s.");
+        if (write(connsd, buf, strlen(buf)) != strlen(buf)) {
+            perror("error in write");
+            exit(1);
+        }
+
+        close(connsd);
+    }
 }

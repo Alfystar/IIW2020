@@ -26,75 +26,74 @@
  *            specified, the client uses the default given by PROTOPORT.
  *-----------------------------------------------------------------------*/
 
-int main(int argc, char **argv)
-{
-  struct  hostent  *ptrh;  /* pointer to a host table entry   */
-  struct  protoent *ptrp;  /* pointer to a protocol table entry   */
-  struct  sockaddr_in sad; /* structure to hold an IP address     */
-  int     sd;          /* socket descriptor           */
-  int     port;        /* protocol port number        */
-  char    *host;       /* pointer to host name        */
-  int     n;           /* number of characters read       */
-  char    buf[1000];       /* buffer for data from the server     */
-  char    localhost[] = "localhost";    /* default host name */
+int main(int argc, char **argv) {
+    struct hostent *ptrh;  /* pointer to a host table entry   */
+    struct protoent *ptrp;  /* pointer to a protocol table entry   */
+    struct sockaddr_in sad; /* structure to hold an IP address     */
+    int sd;          /* socket descriptor           */
+    int port;        /* protocol port number        */
+    char *host;       /* pointer to host name        */
+    int n;           /* number of characters read       */
+    char buf[1000];       /* buffer for data from the server     */
+    char localhost[] = "localhost";    /* default host name */
 
-  memset((void *)&sad, 0, sizeof(sad)); /* clear sockaddr structure */
-  sad.sin_family = AF_INET;     /* set family to Internet     */
+    memset((void *) &sad, 0, sizeof(sad)); /* clear sockaddr structure */
+    sad.sin_family = AF_INET;     /* set family to Internet     */
 
-  /* Check command-line argument for protocol port and extract    
-     port number if one is specified.  Otherwise, use the default 
-     port value given by constant PROTOPORT           */
+    /* Check command-line argument for protocol port and extract
+       port number if one is specified.  Otherwise, use the default
+       port value given by constant PROTOPORT           */
 
-  if (argc > 2)         /* if protocol port specified */
-    port = atoi(argv[2]);       /* convert to binary */
-  else 
-    port = PROTOPORT;       /* use default port number */
-  
-  if (port > 0)         /* test for legal value   */
-    sad.sin_port = htons(port);
-  else {            /* print error message and exit */
-    fprintf(stderr,"bad port number %s\n",argv[2]);
-    exit(1);
-  }
+    if (argc > 2)         /* if protocol port specified */
+        port = atoi(argv[2]);       /* convert to binary */
+    else
+        port = PROTOPORT;       /* use default port number */
 
-  /* Check host argument and assign host name. */
-  if (argc > 1) host = argv[1];   /* if host argument specified   */
-  else host = localhost;
+    if (port > 0)         /* test for legal value   */
+        sad.sin_port = htons(port);
+    else {            /* print error message and exit */
+        fprintf(stderr, "bad port number %s\n", argv[2]);
+        exit(1);
+    }
 
-  /* Convert host name to equivalent IP address and copy to sad. */
-  ptrh = gethostbyname(host);
-  if (ptrh == NULL ) {
-    herror("gethostbyname");
-    exit(1);
-  }
-  memcpy(&sad.sin_addr, ptrh->h_addr, ptrh->h_length);
+    /* Check host argument and assign host name. */
+    if (argc > 1) host = argv[1];   /* if host argument specified   */
+    else host = localhost;
 
-  /* Map TCP transport protocol name to protocol number. */
-  if ( (ptrp = getprotobyname("tcp")) == NULL) {
-    fprintf(stderr, "cannot map \"tcp\" to protocol number\n");
-    exit(1);
-  }
+    /* Convert host name to equivalent IP address and copy to sad. */
+    ptrh = gethostbyname(host);
+    if (ptrh == NULL) {
+        herror("gethostbyname");
+        exit(1);
+    }
+    memcpy(&sad.sin_addr, ptrh->h_addr, ptrh->h_length);
 
-  /* Create a socket. */
-  if ((sd = socket(AF_INET, SOCK_STREAM, ptrp->p_proto)) < 0) {
-    perror("socket creation failed");
-    exit(1);
-  }
+    /* Map TCP transport protocol name to protocol number. */
+    if ((ptrp = getprotobyname("tcp")) == NULL) {
+        fprintf(stderr, "cannot map \"tcp\" to protocol number\n");
+        exit(1);
+    }
 
-  /* Connect the socket to the specified server. */
-  if (connect(sd, (struct sockaddr *)&sad, sizeof(sad)) < 0) {
-    perror("connect failed");
-    exit(1);
-  }
+    /* Create a socket. */
+    if ((sd = socket(AF_INET, SOCK_STREAM, ptrp->p_proto)) < 0) {
+        perror("socket creation failed");
+        exit(1);
+    }
 
-  /* Repeatedly read data from socket and write to user's screen. */
-  n = recv(sd, buf, sizeof(buf), 0);
-  while (n > 0) {
-    write(1,buf,n);
+    /* Connect the socket to the specified server. */
+    if (connect(sd, (struct sockaddr *) &sad, sizeof(sad)) < 0) {
+        perror("connect failed");
+        exit(1);
+    }
+
+    /* Repeatedly read data from socket and write to user's screen. */
     n = recv(sd, buf, sizeof(buf), 0);
-  }
+    while (n > 0) {
+        write(1, buf, n);
+        n = recv(sd, buf, sizeof(buf), 0);
+    }
 
-  close(sd);
+    close(sd);
 
-  exit(0);
+    exit(0);
 }

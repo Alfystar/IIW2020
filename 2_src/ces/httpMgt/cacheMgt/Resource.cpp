@@ -36,8 +36,10 @@ Resource::Resource(string &p, string &format, float qValue) {
         nameOriginal = p.substr(st, end - st);
         tmp = nameOriginal + "_" + scale + "_." + format;
     }
+    // partiamo da 2 perche il path p = "./web....", quindi i primi due sono sicuramente quei simboli
+    string relSubFold = p.substr(1, (p.rfind('/')) - 1);
 
-    string subFolder = string(CACHE_PATH) + "/" + nameOriginal;
+    string subFolder = string(CACHE_PATH) + relSubFold + nameOriginal;
     path = subFolder + "/" + tmp;
 
     fs::create_directories(subFolder);

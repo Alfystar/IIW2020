@@ -13,20 +13,20 @@ Shredder *shr = nullptr;
 Worker **CES::workers = nullptr; //worker per la gestione delle richieste
 
 void CES::initCES(int n) {
-	cout << "CES::initCES Initialize shredder\n";
-	shr = Shredder::getInstance();
-	cout << endl;
-	sleep(1);
+    cout << "CES::initCES Initialize shredder\n";
+    shr = Shredder::getInstance();
+    cout << endl;
+    sleep(1);
 
-	cout << "CES::initCES CES subSystem preAlloc " << n << " workers\n";
-	CES::nWorkers = n;
-	workers = (Worker **)calloc(n, sizeof(Worker **));
-	string name;
+    cout << "CES::initCES CES subSystem preAlloc " << n << " workers\n";
+    CES::nWorkers = n;
+    workers = (Worker **) calloc(n, sizeof(Worker **));
+    string name;
 
-	for(int i = 0; i < n; ++i){
-		name = fmt::format("Worker {}", i);
-		workers[i] = new Worker(name);
-	}
+    for (int i = 0; i < n; ++i) {
+        name = fmt::format("Worker {}", i);
+        workers[i] = new Worker(name);
+    }
 
 
 }

@@ -24,55 +24,57 @@
 #include <Resource.h>
 
 
-namespace CES{
-	using namespace std;
-	enum payloadType : char{text, imageData, rawData, noBody};
-	struct imgRequest_{
-		float qFactor;      // numero di default1 o 0 se image/ non è presente
-		string fileType;    // "*" o "nome Tipo" se c'è, "" se image/ non è presente e neanche */*
-	};
-	typedef struct imgRequest_ imgRequest;
+namespace CES {
+    using namespace std;
+    enum payloadType : char {
+        text, imageData, rawData, noBody
+    };
+    struct imgRequest_ {
+        float qFactor;      // numero di default1 o 0 se image/ non è presente
+        string fileType;    // "*" o "nome Tipo" se c'è, "" se image/ non è presente e neanche */*
+    };
+    typedef struct imgRequest_ imgRequest;
 
-	class HtmlMessage{
-	public:
-		SimpleWeb::StatusCode status = SimpleWeb::StatusCode::success_ok; // se non succede nulla si mantiene
-		string header;
-		string pathBody;
-		std::size_t lenBody = 0;
-		string body;
-		ifstream *inStream = nullptr;
+    class HtmlMessage {
+    public:
+        SimpleWeb::StatusCode status = SimpleWeb::StatusCode::success_ok; // se non succede nulla si mantiene
+        string header;
+        string pathBody;
+        std::size_t lenBody = 0;
+        string body;
+        ifstream *inStream = nullptr;
 
-		payloadType typePayload = noBody;
+        payloadType typePayload = noBody;
 
-	private:
-		string redirect;
-	public:
+    private:
+        string redirect;
+    public:
 
-		HtmlMessage() = delete;
+        HtmlMessage() = delete;
 
-		HtmlMessage(NCS::Connection::httpHeader &hHeader);  //Crea la classe e l'header
+        HtmlMessage(NCS::Connection::httpHeader &hHeader);  //Crea la classe e l'header
 
-		~HtmlMessage();
+        ~HtmlMessage();
 
-	private:
-		void htmlPageLoad();
+    private:
+        void htmlPageLoad();
 
-		// In caso di errore viene cambiato status, così da montare conseguentemente l'header
-		void imageOpen();               //Carica immagine
-		void headerMount();             //header normali pagine HTML
+        // In caso di errore viene cambiato status, così da montare conseguentemente l'header
+        void imageOpen();               //Carica immagine
+        void headerMount();             //header normali pagine HTML
 
-		void discoverFileTypeRequest();
+        void discoverFileTypeRequest();
 
-		string dataNow();
+        string dataNow();
 
-		string lastChangeFile(const char *path);
+        string lastChangeFile(const char *path);
 
-		string lastChangeFile(string &path);
+        string lastChangeFile(string &path);
 
-		bool fileExists(string path);
+        bool fileExists(string path);
 
-		void acceptExtractor(NCS::Connection::httpHeader &hHeader, imgRequest &img);
-	};
+        void acceptExtractor(NCS::Connection::httpHeader &hHeader, imgRequest &img);
+    };
 
 }
 

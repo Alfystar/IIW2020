@@ -12,10 +12,12 @@
 #define BACKLOG 10
 
 // Shreader setting
-#define FILE_SIZE_LIMIT 10*1024*1024 // 10 MB of images allowed before halving
+#define KiB 1024
+#define MiB 1024*KiB
+#define FILE_SIZE_LIMIT 10*MiB // 10 MiB of images allowed before halving
 
 // Cache system
-#define CACHE_PATH "./web/cache"
+#define CACHE_PATH "./web/sys/cache"
 
 
 extern volatile int SERV_PORT; //8080 di default

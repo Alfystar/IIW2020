@@ -30,25 +30,27 @@
 #include <Log.h>
 #include "HtmlMessage.h"
 
-namespace CES{
-	using namespace std;
-	enum Action{RequestComplete, ConClosed};
+namespace CES {
+    using namespace std;
+    enum Action {
+        RequestComplete, ConClosed
+    };
 
-	class HttpMgt{
-	public:
-		HttpMgt();
+    class HttpMgt {
+    public:
+        HttpMgt();
 
-		Action connectionRequest(NCS::Connection *c);
+        Action connectionRequest(NCS::Connection *c);
 
-	private:
+    private:
 
-		Action send(NCS::Connection *c, HtmlMessage &msg);
+        Action send(NCS::Connection *c, HtmlMessage &msg);
 
 
-		Action stringSend(NCS::Connection *c, string &msg);
+        Action stringSend(NCS::Connection *c, string &msg);
 
-		Action binarySend(NCS::Connection *c, HtmlMessage &msg);
-	};
+        Action binarySend(NCS::Connection *c, HtmlMessage &msg);
+    };
 }
 
 #endif //HTTP_IMAGESERVER_HTTPMGT_H

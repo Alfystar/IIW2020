@@ -15,20 +15,20 @@
 #include <thread>
 
 
-namespace Log{
-	using namespace std;
+namespace Log {
+    using namespace std;
 
-	extern ostream out;        /// Linked to standard output file
-	extern ostream err;        /// Linked to standard error file
-	extern ostream db;        /// Linked to standard error file
-	extern fstream *outfile;
-	extern fstream *errfile;
-	extern fstream *dbfile;
-	extern thread *refreshThread;
+    extern ostream out;        /// Linked to standard output file
+    extern ostream err;        /// Linked to standard error file
+    extern ostream db;        /// Linked to standard error file
+    extern fstream *outfile;
+    extern fstream *errfile;
+    extern fstream *dbfile;
+    extern thread *refreshThread;
 
-	void initLogger();
+    void initLogger();
 
-	[[noreturn]] void syncStream();
+    [[noreturn]] void syncStream();
 }
 
 

@@ -39,74 +39,74 @@
 #endif
 
 
-namespace CES{
+namespace CES {
 
-	using namespace std;
-	namespace fs = std::filesystem;
-
-
-	class ImgData{
-	public:
-		string path;
-		struct stat *statFile = nullptr;
-
-		bool operator<(const ImgData &other) const{ // con questo operatore posso effettuare il sort
-			// usiamo ">" così da ordinare dal più remoto al più recente
-			return timercmpSpec(&statFile->st_atim, &other.statFile->st_atim, >);
-
-		}
-
-		explicit ImgData(const string &p); //constructor
-		int removeFile();
+    using namespace std;
+    namespace fs = std::filesystem;
 
 
-		~ImgData();
-	};
+    class ImgData {
+    public:
+        string path;
+        struct stat *statFile = nullptr;
+
+        bool operator<(const ImgData &other) const { // con questo operatore posso effettuare il sort
+            // usiamo ">" così da ordinare dal più remoto al più recente
+            return timercmpSpec(&statFile->st_atim, &other.statFile->st_atim, >);
+
+        }
+
+        explicit ImgData(const string &p); //constructor
+        int removeFile();
 
 
-	class Shredder{ // singleton class for managing files
-
-		static Shredder *instance;
-		thread *tShr;
-
-		int sizePipe[2] = {0, 0};
-		struct pollfd pollfd = {0, 0, 0};
-
-		vector <ImgData> imgVect;
-		int cacheSize;
-
-		string cache_path = CACHE_PATH;
+        ~ImgData();
+    };
 
 
-	public:
-		static Shredder *getInstance();
+    class Shredder { // singleton class for managing files
 
-		uint_fast64_t sizeOfCache();
+        static Shredder *instance;
+        thread *tShr;
 
-		void updateSizeCache(int fSize);
+        int sizePipe[2] = {0, 0};
+        struct pollfd pollfd = {0, 0, 0};
 
-	private:
+        vector<ImgData> imgVect;
+        int cacheSize;
 
-		explicit Shredder();
+        string cache_path = CACHE_PATH;
 
-		[[noreturn]] static void threadShr(Shredder *s);
 
-		void freeSpace();
+    public:
+        static Shredder *getInstance();
 
-		void waitUntilFullCache();
+        uint_fast64_t sizeOfCache();
 
-		void elaboratePipe();
+        void updateSizeCache(int fSize);
 
-		void fillImgVect(string &path);
+    private:
 
-		inline int initSizePipe();
+        explicit Shredder();
 
-		void initCache();
+        [[noreturn]] static void threadShr(Shredder *s);
 
-		void reduceCacheUsage();
+        void freeSpace();
 
-		void emptyImgVect();
-	};
+        void waitUntilFullCache();
+
+        void elaboratePipe();
+
+        void fillImgVect(string &path);
+
+        inline int initSizePipe();
+
+        void initCache();
+
+        void reduceCacheUsage();
+
+        void emptyImgVect();
+    };
 }
 
 

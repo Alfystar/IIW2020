@@ -12,16 +12,16 @@
 #include "Queue.h"
 
 
-namespace NCS{
-	extern Queue *queueObj;
-	extern Accept *acceptObj;
-	extern std::mutex queueLock;
-	extern std::mutex acceptock;
+namespace NCS {
+    extern Queue *queueObj;
+    extern Accept *acceptObj;
+    extern std::mutex queueLock;
+    extern std::mutex acceptock;
 
 
-	Queue *ncsGetQueue();   //"Singleton di Sistema"
+    Queue *ncsGetQueue();   //"Singleton di Sistema"
 
-	Accept *ncsGetAccept();   //"Singleton di Sistema"
+    Accept *ncsGetAccept();   //"Singleton di Sistema"
 
 }
 

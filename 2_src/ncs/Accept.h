@@ -29,23 +29,23 @@
 //#define SERV_PORT   8080
 
 
-namespace NCS{
-	class Accept{
-	private:
-		Queue *q;
-		std::thread *tListener;
+namespace NCS {
+    class Accept {
+    private:
+        Queue *q;
+        std::thread *tListener;
 
-		int listensd;
-		struct sockaddr_in servaddr;
+        int listensd;
+        struct sockaddr_in servaddr;
 
-	public:
-		Accept(Queue *q);
+    public:
+        Accept(Queue *q);
 
-	private:
-		static void thListener(Accept *a);
+    private:
+        static void thListener(Accept *a);
 
-		void sockInit();
-	};
+        void sockInit();
+    };
 }
 
 #endif //HTTP_IMAGESERVER_ACCEPT_H

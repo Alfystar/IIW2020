@@ -18,22 +18,22 @@
 
 #include <Log.h>
 
-namespace CES{
-	using namespace std;
+namespace CES {
+    using namespace std;
 
-	class Worker{
-		NCS::Queue *q;
-		thread *tJob;
-		string myName;
-	public:
-		explicit Worker(string &name);
+    class Worker {
+        NCS::Queue *q;
+        thread *tJob;
+        string myName;
+    public:
+        explicit Worker(string &name);
 
-		[[noreturn]] static void thWorker(Worker *j);
+        [[noreturn]] static void thWorker(Worker *j);
 
-	private:
+    private:
 
 
-	};
+    };
 }
 
 #endif //HTTP_IMAGESERVER_WORKER_H
