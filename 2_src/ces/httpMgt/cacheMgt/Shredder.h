@@ -70,7 +70,7 @@ namespace CES {
         static Shredder *instance;
         thread *tShr;
         int sizePipe[2] = {0, 0};
-        struct pollfd pollfd = {0, 0, 0};
+        struct pollfd pollFd = {0, 0, 0};
         vector <ImgData> imgVect;
         uint_fast64_t cacheSize = 0;
         string cache_path = CACHE_PATH;

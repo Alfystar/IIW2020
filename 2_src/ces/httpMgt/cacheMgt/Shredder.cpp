@@ -147,7 +147,7 @@ int Shredder::initSizePipe (){
         perror("[initSizePipe]: ");
         return -1;
     }
-    pollfd = {sizePipe[readEndPipe], POLLIN, 0};
+    pollFd = {sizePipe[readEndPipe], POLLIN, 0};
     return 0;
 }
 
@@ -172,7 +172,7 @@ void Shredder::waitUntilFullCache (){
     int ready;
 
     while (true){
-        ready = ppoll(&pollfd, 1, &t, &sigmask);
+        ready = ppoll(&pollFd, 1, &t, &sigmask);
         switch (ready){
             case -1:
                 perror("[Shredder::waitUntilFullCache]: ");

@@ -45,8 +45,8 @@ Resource::Resource (string &p, string &format, float qValue){
 
     openMutex.lock();
 
-    if ((fd = open(path.c_str(), O_CREAT | O_EXCL, S_IRUSR | S_IWUSR)) == -1){ // provo a creare il file
-        if (errno != EEXIST){
+    if ((fd = open(path.c_str(), O_CREAT | O_EXCL, S_IRUSR | S_IWUSR)) == -1){ // Provo a creare il file
+        if (errno != EEXIST){   // Se l'errore non è che il file già esiste è anomalo
             perror("[Resource::Resource]Error occurred at 1st open: ");
             cerr << path << endl;
             cerr << "format: " << format << endl;
