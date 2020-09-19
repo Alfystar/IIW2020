@@ -43,8 +43,10 @@ HtmlMessage::HtmlMessage (NCS::Connection::httpHeader &hHeader){
                 typePayload = noBody;
             }
             else{
+	            #ifdef IMAGE_RESIZE
                 Resource rsc(pathBody, request.fileType, request.qFactor);
                 pathBody = rsc.getPath();
+				#endif
                 this->imageOpen();    // in caso di errore cambia il tipo di typePayload in text e ci scrive l'errore
             }
             break;

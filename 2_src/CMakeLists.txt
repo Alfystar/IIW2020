@@ -7,11 +7,11 @@ project(HTTP-ImageServer)
 message("Sono Unix : ${UNIX}")
 
 add_compile_options(-Wall -Wextra -pedantic -Werror)
-add_compile_definitions(DEBUG_LOG)  # Add debugLog, define for all Source Code
-#add_compile_definitions(DAD_RECREATE)  # Enable dad-recreate if son fail, define for all Source Code
+add_compile_definitions(DEBUG_LOG)      # Abilita la scrittura sul file di log
+add_compile_definitions(IMAGE_RESIZE)   # Abilita il ridimensionamento dinamico delle immagini
+#add_compile_definitions(DAD_RECREATE)   # Abilita la resilienza di ricreare il server se crasha
 
 set(EXE_NAME badAlphaWeb)
-## Define Oggetti di lavoro
 add_executable(${EXE_NAME} main.cpp GLOBAL_DEF.h) #logSystem/Log.cpp logSystem/Log.h
 
 
@@ -27,11 +27,5 @@ target_link_libraries(${EXE_NAME} logSystem)
 
 add_subdirectory(ces)
 target_link_libraries(${EXE_NAME} ces)
-
-##Include della libreria fmt per Formattare le stringhe
-#message("\nStart linking to MainTest")
-#find_library(fmt REQUIRED)
-#target_link_libraries(${EXE_NAME} fmt)
-#message("-FMT library linked on mainTest")
 
 message("##Build Eseguita\n")
