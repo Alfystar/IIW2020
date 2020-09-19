@@ -152,11 +152,6 @@ int Shredder::initSizePipe (){
 }
 
 void Shredder::initCache (){ // init cache and cache_size (if some file are already there)
-    string absPath = string(get_current_dir_name());
-    if (absPath.substr(absPath.length() - 6, absPath.length()) != "webRsc"){
-        perror("[initCache] Critical error: pwd is NOT webRsc");
-        exit(EX_CONFIG);
-    }
     if (!fs::exists(cache_path)){
         fs::create_directories(cache_path);
     }
