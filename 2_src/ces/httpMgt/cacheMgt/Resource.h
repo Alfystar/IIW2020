@@ -20,36 +20,25 @@
 #include "Shredder.h"
 #include "../../../GLOBAL_DEF.h"
 
-
 #ifndef CACHE_PATH
 #define CACHE_PATH "./web/cache"
 #endif
 namespace CES {
-
     using namespace std;
-
-    class Resource {
+    class Resource{
         string path;
         int fd;
 
     public:
-        Resource(string &path, string &format, float qValue);
-
-        Resource(string &path, float qValue);
-
-        ~Resource();
-
-
-        string &getPath();
+        Resource (string &path, string &format, float qValue);
+        Resource (string &path, float qValue);
+        ~Resource ();
+        string &getPath ();
 
     private:
-
-        void elaborateFile(string &file, string &scale);
-
-        void executeCommand(string &command);
+        void elaborateFile (string &file, string &scale);
+        void executeCommand (string &command);
     };
-
 }
-
 
 #endif //HTTP_IMAGESERVER_RESOURCE_H

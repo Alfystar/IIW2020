@@ -17,11 +17,9 @@ namespace NCS {
     extern Accept *acceptObj;
     extern std::mutex queueLock;
     extern std::mutex acceptLock;
+    Queue *ncsGetQueue ();   //"Singleton di Sistema"
 
-
-    Queue *ncsGetQueue();   //"Singleton di Sistema"
-
-    Accept *ncsGetAccept();   //"Singleton di Sistema"
+    Accept *ncsGetAccept ();   //"Singleton di Sistema"
 
 }
 

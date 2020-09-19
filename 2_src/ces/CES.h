@@ -13,15 +13,11 @@
 
 
 namespace CES {
-
     extern Shredder *shredder;
-
     extern int nWorkers;
     extern Worker **workers;  // teniamo traccia dei thread job
 
-    void initCES(int n);
-
+    void initCES (int n);
 }
-
 
 #endif //HTTP_IMAGESERVER_CES_H

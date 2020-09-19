@@ -21,18 +21,14 @@
 namespace CES {
     using namespace std;
 
-    class Worker {
+    class Worker{
         NCS::Queue *q;
         thread *tJob;
         string myName;
+
     public:
-        explicit Worker(string &name);
-
-        [[noreturn]] static void thWorker(Worker *j);
-
-    private:
-
-
+        explicit Worker (string &name);
+        [[noreturn]] static void thWorker (Worker *j);
     };
 }
 

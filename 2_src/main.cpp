@@ -2,7 +2,6 @@
 // Created by alfystar on 14/07/20.
 //
 
-
 #include <unistd.h>
 #include <sys/sysinfo.h>
 #include <sys/types.h>
@@ -15,9 +14,10 @@
 #define nWorker get_nprocs()*2  //Per avere il doppio dei core e gestire le situazioni di wait forzate
 
 volatile int SERV_PORT = 8080;
+
 using namespace std;
 
-void help() {
+void help (){
     cout << "Server web badAlphaWeb, versione 0.1\n";
     cout << "Per eseguire correttamente il programma digitare:\n";
     cout << "\t 1) >> badAlphaWeb <PORT_Number>                         := Home server al PWD corrente\n";
@@ -26,7 +26,7 @@ void help() {
     cout << "";
 }
 
-int initStorage(char *storage)  //apre o crea un nuovo storage per il server, la struttura e a cura del sito
+int initStorage (char *storage)  //apre o crea un nuovo storage per il server, la struttura e a cura del sito
 {
     /* modifica il path reference dell'env per "spostare" il programma nella nuova locazione
      * la variabile PWD contiene il path assoluto, della working directory, ed è aggiornata da una sheel
@@ -40,17 +40,18 @@ int initStorage(char *storage)  //apre o crea un nuovo storage per il server, la
     errorRet = chdir(storage);                        //modifico l'attuale directory di lavoro del processo
     if (errorRet != 0)    //un qualche errore nel ragiungimento della cartella
     {
-        switch (errno) {
+        switch (errno){
             case 2: //No such file or directory
                 printf("[MAIN::initStorage] directory not exists, now proceed to creation\n");
                 errorRet = mkdir(storage, 0777);
-                if (errorRet == -1) {
+                if (errorRet == -1){
                     perror("[MAIN::initStorage] mkdir() fails for");
                     return -1;
-                } else {
+                }
+                else{
                     printf("[MAIN::initStorage] New directory create\n");
                     errorRet = chdir(storage);
-                    if (errorRet == -1) {
+                    if (errorRet == -1){
                         perror("[MAIN::initStorage] chdir() fail for");
                         return -1;
                     }
@@ -70,39 +71,40 @@ int initStorage(char *storage)  //apre o crea un nuovo storage per il server, la
     return 0;   //directory cambiata con successo
 }
 
-[[noreturn]]void sonServer() {
+[[noreturn]]void sonServer (){
     Log::initLogger();
     CES::initCES(nWorker);
 
-    while (true) {
+    while (true){
         pause();
     };
 }
 
-void dadCreator() {
-    while (true) {
+void dadCreator (){
+    while (true){
         pid_t pid = fork();
-        if (pid == -1) {
+        if (pid == -1){
             perror("MAIN:: fork error");
             exit(EX_OSERR);
         }
-        if (pid == 0) { //son
+        if (pid == 0){ //son
             cout << "[MAIN::SON] start new instance" << endl;
             sonServer();
-        } else {        //dad
+        }
+        else{        //dad
             int wstatus;
             int ret = wait(&wstatus);
-            if (ret == -1) {
+            if (ret == -1){
                 perror("[MAIN::DAD] wait error");
                 exit(EX_OSERR);
             }
-            if (WIFEXITED(wstatus)) {     // good end
+            if (WIFEXITED(wstatus)){     // good end
                 exit(EX_OK);
             }
             cerr << "[MAIN::DAD] Son exit with error code: " << wstatus << endl;
-            if (WIFSIGNALED(wstatus)) {   // signal un-catch
+            if (WIFSIGNALED(wstatus)){   // signal un-catch
                 int sNum = WTERMSIG(wstatus);
-                switch (sNum) {
+                switch (sNum){
                     case SIGKILL:
                         cerr << "[MAIN::DAD] caused by the SIGKILL";
                         exit(EX_OK);
@@ -120,35 +122,36 @@ void dadCreator() {
     }
 }
 
-
-int main(int argc, char *argv[]) {
-    if (argc >= 1) {
-        if (strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0) {
+int main (int argc, char *argv[]){
+    if (argc >= 1){
+        if (strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0){
             help();
             exit(EX_OK);
-        } else {
+        }
+        else{
             SERV_PORT = atoi(argv[1]);
-            if (SERV_PORT == 0) { // sia che sia 0 la porta passato o un errore di digitazione
+            if (SERV_PORT == 0){ // sia che sia 0 la porta passato o un errore di digitazione
                 cout << "[MAIN::main] SERV_PORT passed is invalid, please use NUMBER and different from 0\n";
                 exit(EX_DATAERR);
             }
         }
     }
-    if (argc >= 2) {
+    if (argc >= 2){
 
-        if (initStorage(argv[2])) {
+        if (initStorage(argv[2])){
             cout << "[MAIN::main] Direcotry change fail\n";
             exit(EX_OSFILE);
         }
-    } else {
+    }
+    else{
         cout << "[MAIN::main] Direcotry change success\n";
         cout << "To have help use option -h or --help\n";
     }
     sleep(1);
-#ifdef DAD_RECREATE
+    #ifdef DAD_RECREATE
     dadCreator();
-#else
+    #else
     sonServer();
-#endif
+    #endif
     return 0;
 }

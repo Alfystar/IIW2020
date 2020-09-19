@@ -17,13 +17,13 @@
 #define BACKLOG       10
 #define MAXLINE     1024
 
-int main(int argc, char **argv) {
+int main (int argc, char **argv){
     int listensd, connsd;
     struct sockaddr_in servaddr;
     char buff[MAXLINE];
     time_t ticks;
 
-    if ((listensd = socket(AF_INET, SOCK_STREAM, 0)) < 0) { /* crea il socket */
+    if ((listensd = socket(AF_INET, SOCK_STREAM, 0)) < 0){ /* crea il socket */
         perror("errore in socket");
         exit(1);
     }
@@ -35,18 +35,18 @@ int main(int argc, char **argv) {
     servaddr.sin_port = htons(SERV_PORT); /* numero di porta del server */
 
     /* assegna l'indirizzo al socket */
-    if ((bind(listensd, (struct sockaddr *) &servaddr, sizeof(servaddr))) < 0) {
+    if ((bind(listensd, (struct sockaddr *) &servaddr, sizeof(servaddr))) < 0){
         perror("errore in bind");
         exit(1);
     }
 
-    if (listen(listensd, BACKLOG) < 0) {
+    if (listen(listensd, BACKLOG) < 0){
         perror("errore in listen");
         exit(1);
     }
 
-    for (;;) {
-        if ((connsd = accept(listensd, (struct sockaddr *) NULL, NULL)) < 0) {
+    for (;;){
+        if ((connsd = accept(listensd, (struct sockaddr *) NULL, NULL)) < 0){
             perror("errore in accept");
             exit(1);
         }
@@ -59,12 +59,12 @@ int main(int argc, char **argv) {
         e l�ora da binario in ASCII. \r\n per carriage return e line feed*/
 
         /* scrive sul socket di connessione il contenuto di buff */
-        if (write(connsd, buff, strlen(buff)) != strlen(buff)) {
+        if (write(connsd, buff, strlen(buff)) != strlen(buff)){
             perror("errore in write");
             exit(1);
         }
 
-        if (close(connsd) == -1) {  /* chiude la connessione */
+        if (close(connsd) == -1){  /* chiude la connessione */
             perror("errore in close");
             exit(1);
         }

@@ -9,23 +9,20 @@
 #include <signal.h>
 #include <sys/wait.h>
 
-typedef void Sigfunc(int);
-
-Sigfunc *signal(int signum, Sigfunc *handler);
-
-void sig_chld_handler(int signum);
-
+typedef void Sigfunc (int);
+Sigfunc *signal (int signum, Sigfunc *handler);
+void sig_chld_handler (int signum);
 /***/
 
-void str_srv_echo(int sockd);
+void str_srv_echo (int sockd);
 
-int main(int argc, char **argv) {
+int main (int argc, char **argv){
     pid_t pid;
     int listensd, connsd;
     struct sockaddr_in servaddr, cliaddr;
     unsigned int len;
 
-    if ((listensd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
+    if ((listensd = socket(AF_INET, SOCK_STREAM, 0)) < 0){
         perror("errore in socket");
         exit(1);
     }
@@ -35,32 +32,32 @@ int main(int argc, char **argv) {
     servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
     servaddr.sin_port = htons(SERV_PORT);
 
-    if ((bind(listensd, (struct sockaddr *) &servaddr, sizeof(servaddr))) < 0) {
+    if ((bind(listensd, (struct sockaddr *) &servaddr, sizeof(servaddr))) < 0){
         perror("errore in bind");
         exit(1);
     }
 
-    if (listen(listensd, BACKLOG) < 0) {
+    if (listen(listensd, BACKLOG) < 0){
         perror("errore in listen");
         exit(1);
     }
 
     /* Alla ricezione del segnale SIGCHLD segue il comportamento
        definito da sig_chld_handler */
-    if (signal(SIGCHLD, sig_chld_handler) == SIG_ERR) {
+    if (signal(SIGCHLD, sig_chld_handler) == SIG_ERR){
         fprintf(stderr, "errore in signal");
         exit(1);
     }
 
-    for (;;) {
+    for (;;){
         len = sizeof(cliaddr);
-        if ((connsd = accept(listensd, (struct sockaddr *) &cliaddr, &len)) < 0) {
+        if ((connsd = accept(listensd, (struct sockaddr *) &cliaddr, &len)) < 0){
             perror("errore in accept");
             exit(1);
         }
 
-        if ((pid = fork()) == 0) {
-            if (close(listensd) == -1) {
+        if ((pid = fork()) == 0){
+            if (close(listensd) == -1){
                 perror("errore in close");
                 exit(1);
             }
@@ -68,14 +65,14 @@ int main(int argc, char **argv) {
             printf("Pid del processo figlio %d\n", (int) getpid());
             str_srv_echo(connsd);    /* svolge il lavoro del server */
 
-            if (close(connsd) == -1) {
+            if (close(connsd) == -1){
                 perror("errore in close");
                 exit(1);
             }
             exit(0);
         } /* end fork */
 
-        if (close(connsd) == -1) {    /* processo padre */
+        if (close(connsd) == -1){    /* processo padre */
             perror("errore in close");
             exit(1);
         }
@@ -83,15 +80,15 @@ int main(int argc, char **argv) {
 }
 
 /******/
-void str_srv_echo(int sockd) {
+void str_srv_echo (int sockd){
     int n;
     char line[MAXLINE];
 
-    for (;;) {
+    for (;;){
         if ((n = readline(sockd, line, MAXLINE)) == 0)
             return; /* il client ha chiuso la connessione e inviato EOF */
 
-        if (writen(sockd, line, n) != n) {
+        if (writen(sockd, line, n) != n){
             fprintf(stderr, "errore in write");
             exit(1);
         }
@@ -99,7 +96,7 @@ void str_srv_echo(int sockd) {
 }
 
 /******/
-Sigfunc *signal(int signum, Sigfunc *func) {
+Sigfunc *signal (int signum, Sigfunc *func){
     struct sigaction act, oact;
     /* la struttura sigaction memorizza informazioni riguardanti la
   manipolazione del segnale */
@@ -115,7 +112,7 @@ Sigfunc *signal(int signum, Sigfunc *func) {
 }
 
 /******/
-void sig_chld_handler(int signum) {
+void sig_chld_handler (int signum){
     int status;
     pid_t pid;
 

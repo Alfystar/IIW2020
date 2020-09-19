@@ -5,9 +5,9 @@
 #include "basic.h"
 #include "prefork_flock.h"
 
-pid_t child_make(int i, int listensd, int addrlen) {
+pid_t child_make (int i, int listensd, int addrlen){
     pid_t pid;
-    void child_main(int, int, int);
+    void child_main (int, int, int);
 
     if ((pid = fork()) > 0)
         return (pid);        /* processo padre */
@@ -15,28 +15,28 @@ pid_t child_make(int i, int listensd, int addrlen) {
     child_main(i, listensd, addrlen);    /* non ritorna mai */
 }
 
-void child_main(int i, int listensd, int addrlen) {
+void child_main (int i, int listensd, int addrlen){
     int connsd;
-    void web_child(int);
+    void web_child (int);
     socklen_t clilen;
     struct sockaddr *cliaddr;
 
-    if ((cliaddr = (struct sockaddr *) malloc(addrlen)) == NULL) {
+    if ((cliaddr = (struct sockaddr *) malloc(addrlen)) == NULL){
         fprintf(stderr, "errore in malloc");
         exit(1);
     }
 
     printf("child %ld starting\n", (long) getpid());
-    for (;;) {
+    for (;;){
         clilen = addrlen;
         my_lock_wait();
-        if ((connsd = accept(listensd, cliaddr, &clilen)) < 0) {
+        if ((connsd = accept(listensd, cliaddr, &clilen)) < 0){
             perror("errore in accept");
             exit(1);
         }
         my_lock_release();
         web_child(connsd);        /* processa la richiesta */
-        if (close(connsd) == -1) {
+        if (close(connsd) == -1){
             perror("errore in close");
             exit(1);
         }

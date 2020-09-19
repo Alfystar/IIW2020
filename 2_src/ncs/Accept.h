@@ -4,17 +4,12 @@
 
 #ifndef HTTP_IMAGESERVER_ACCEPT_H
 #define HTTP_IMAGESERVER_ACCEPT_H
-
-
 #include <cstdio>
 #include <cstring>
 #include <netinet/in.h>
 #include <mutex>
-
 #include <sys/time.h>
 #include <sys/resource.h>
-
-
 #include "Queue.h"
 #include <Connection.h>
 #include "ncsDefine.h"
@@ -25,27 +20,18 @@
 #define BACKLOG 10
 #endif
 
-//#define BACKLOG 10
-//#define SERV_PORT   8080
-
-
 namespace NCS {
-    class Accept {
+    class Accept{
     private:
         Queue *q;
         std::thread *tListener;
-
         int listensd;
         struct sockaddr_in servaddr;
-
     public:
-        Accept(Queue *q);
-
+        Accept (Queue *q);
     private:
-        static void thListener(Accept *a);
-
-        void sockInit();
+        static void thListener (Accept *a);
+        void sockInit ();
     };
 }
-
 #endif //HTTP_IMAGESERVER_ACCEPT_H

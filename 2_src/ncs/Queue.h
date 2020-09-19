@@ -9,7 +9,6 @@
 #define _GNU_SOURCE         /* See feature_test_macros(7) */
 #endif
 
-
 #include <iostream>
 #include <cstring>
 #include <bitset>
@@ -37,11 +36,10 @@
 #include "timeSpecOp.h"
 
 namespace NCS {
-    class Queue {
+    class Queue{
     private:
         std::thread *tDisp;
         int waitPipe[2], readyPipe[2];
-
         // pollList contiene dati per la poll
         // connectionList è il nostro oggetto Connesione per mantenere traccia
         int nextPoll; //Primo indice libero / n° elementi presenti
@@ -49,24 +47,17 @@ namespace NCS {
         Connection **connectionList; // Array di PUNTATORI
 
     public:
-        Queue();
-
-        Connection *popReadyCon();
-
-        void pushWaitCon(Connection *con);
+        Queue ();
+        Connection *popReadyCon ();
+        void pushWaitCon (Connection *con);
 
     private:
-        static void thDispatcher(Queue *q);
-
-        void popWaitingCon();
-
-        void pushReadyCon(int index);
-
-        void unValidCon(int index);
-
-        Connection *reduceList(int index);
-
-        void pushPipe(int pipeWriteEnd, Connection *con);
+        static void thDispatcher (Queue *q);
+        void popWaitingCon ();
+        void pushReadyCon (int index);
+        void unValidCon (int index);
+        Connection *reduceList (int index);
+        void pushPipe (int pipeWriteEnd, Connection *con);
     };
 }
 

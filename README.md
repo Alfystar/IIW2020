@@ -32,7 +32,11 @@ Tenuto dal professore: Francesco Lo Presti
 - Redirect to home
 - Error 404 Page
 - Moving throw the fileSystem (no security)
-- Log System
+- Log System, visualizzabile in real time mediante:
+```
+	tail -f logDb.txt -s 1    
+```
+o accedendo allo storico dentro la cartella Debug/
 - No busy Wait to all CODE
 
 ### Tool di supporto:

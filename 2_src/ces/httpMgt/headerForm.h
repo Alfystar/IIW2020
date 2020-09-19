@@ -14,7 +14,6 @@
 
 namespace CES {
     using namespace std;
-
     const string startHead = "HTTP/1.1 {}\r\n"               // Status code della risposta (in base ad essa si scelgono i campi futuri)
                              "Date: {}\r\n";                 // Data
 

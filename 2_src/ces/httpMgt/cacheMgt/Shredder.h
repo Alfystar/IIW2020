@@ -48,73 +48,52 @@ namespace CES {
     using namespace std;
     namespace fs = std::filesystem;
 
-    class Shredder { // singleton class for managing files
+    class Shredder{ // singleton class for managing files
 
     public:
-        class ImgData {
+        class ImgData{
         public:
             string path;
             struct stat *statFile = nullptr;
 
-            bool operator<(const ImgData &other) const { // con questo operatore posso effettuare il sort
+            bool operator< (const ImgData &other) const{ // con questo operatore posso effettuare il sort
                 // usiamo ">" così da ordinare dal più remoto al più recente
                 return timercmpSpec(&statFile->st_atim, &other.statFile->st_atim, >);
-
             }
 
-            explicit ImgData(const string &p); //constructor
-            int removeFile();
-
-
-            ~ImgData();
+            explicit ImgData (const string &p); //constructor
+            int removeFile ();
+            ~ImgData ();
         };
 
     private:
-
         static Shredder *instance;
         thread *tShr;
-
         int sizePipe[2] = {0, 0};
         struct pollfd pollfd = {0, 0, 0};
-
-        vector<ImgData> imgVect;
+        vector <ImgData> imgVect;
         uint_fast64_t cacheSize = 0;
-
         string cache_path = CACHE_PATH;
-
+        int countFile = 0;
 
     public:
-        static Shredder *getInstance();
-
-        uint_fast64_t sizeOfCache();
-
-        void updateSizeCache(uint_fast64_t fSize);
+        static Shredder *getInstance ();
+        uint_fast64_t sizeOfCache ();
+        void updateSizeCache (uint_fast64_t fSize);
 
     private:
-
-        explicit Shredder();
-
-        [[noreturn]] static void threadShr(Shredder *s);
-
-        void freeSpace();
-
-        void waitUntilFullCache();
-
-        void elaboratePipe();
-
-        void fillImgVect(string &path);
-
-        inline int initSizePipe();
-
-        void initCache();
-
-        void reduceCacheUsage();
-
-        inline void emptyImgVect();
-
-        static string sizeFormatted(uint_fast64_t size);
+        explicit Shredder ();
+        [[noreturn]] static void threadShr (Shredder *s);
+        void freeSpace ();
+        void waitUntilFullCache ();
+        void elaboratePipe ();
+        void fillImgVect (string &path);
+        inline int initSizePipe ();
+        void initCache ();
+        void reduceCacheUsage ();
+        inline void emptyImgVect ();
+        static string sizeFormatted (uint_fast64_t size);
     };
 }
-
 
 #endif //HTTP_IMAGESERVER_SHREDDER_H

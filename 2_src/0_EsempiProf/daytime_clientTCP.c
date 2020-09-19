@@ -15,17 +15,17 @@
 #define SERV_PORT   5193
 #define MAXLINE     1024
 
-int main(int argc, char **argv) {
+int main (int argc, char **argv){
     int sockfd, n;
     char recvline[MAXLINE + 1];
     struct sockaddr_in servaddr;
 
-    if (argc != 2) { /* controlla numero degli argomenti */
+    if (argc != 2){ /* controlla numero degli argomenti */
         fprintf(stderr, "utilizzo: daytime_clientTCP <indirizzo IP server>\n");
         exit(1);
     }
 
-    if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0) { /* crea il socket */
+    if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0){ /* crea il socket */
         perror("errore in socket");
         exit(1);
     }
@@ -36,27 +36,27 @@ int main(int argc, char **argv) {
     /* assegna l'indirizzo del server prendendolo dalla riga di comando.
        L'indirizzo � una stringa e deve essere convertito in intero in
        network byte order. */
-    if (inet_pton(AF_INET, argv[1], &servaddr.sin_addr) <= 0) {
+    if (inet_pton(AF_INET, argv[1], &servaddr.sin_addr) <= 0){
         fprintf(stderr, "errore in inet_pton per %s\n", argv[1]);
         exit(1);
     }
 
     /* stabilisce la connessione con il server */
-    if (connect(sockfd, (struct sockaddr *) &servaddr, sizeof(servaddr)) < 0) {
+    if (connect(sockfd, (struct sockaddr *) &servaddr, sizeof(servaddr)) < 0){
         perror("errore in connect");
         exit(1);
     }
 
     /* legge dal socket fino a quando non trova EOF */
-    while ((n = read(sockfd, recvline, MAXLINE)) > 0) {
+    while ((n = read(sockfd, recvline, MAXLINE)) > 0){
         recvline[n] = 0;        /* aggiunge il carattere di terminazione */
         /* stampa il contenuto di recvline sullo standard output */
-        if (fputs(recvline, stdout) == EOF) {
+        if (fputs(recvline, stdout) == EOF){
             fprintf(stderr, "errore in fputs\n");
             exit(1);
         }
     }
-    if (n < 0) {
+    if (n < 0){
         perror("errore in read");
         exit(1);
     }

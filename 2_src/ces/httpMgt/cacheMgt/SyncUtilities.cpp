@@ -9,18 +9,16 @@ pthread_rwlockattr_t *attr = (pthread_rwlockattr_t *) (malloc(sizeof(pthread_rwl
 std::mutex openMutex;
 
 
-int initShredderLock() {
+int initShredderLock (){
     *rwlock = PTHREAD_RWLOCK_INITIALIZER;
-    if (pthread_rwlockattr_setkind_np(attr, PTHREAD_RWLOCK_PREFER_WRITER_NONRECURSIVE_NP)) {
+    if (pthread_rwlockattr_setkind_np(attr, PTHREAD_RWLOCK_PREFER_WRITER_NONRECURSIVE_NP)){
         perror("Error in pthread_rwlockattr_setkind_np: ");
         return -1;
     }
-    if (pthread_rwlock_init(rwlock, attr)) {
+    if (pthread_rwlock_init(rwlock, attr)){
         perror("Error in pthread_rwlock_init: ");
         return -1;
     }
     if (openMutex.try_lock()) openMutex.unlock();
     return 0;
 }
-
-

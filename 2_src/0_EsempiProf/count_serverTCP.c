@@ -30,7 +30,7 @@ int visits = 0;              /* counts client connections    */
  *            the server uses the default given by PROTOPORT.
  *------------------------------------------------------------------------ */
 
-int main(int argc, char **argv) {
+int main (int argc, char **argv){
     struct protoent *ptrp;  /* pointer to a protocol table entry   */
     struct sockaddr_in sad; /* structure to hold server's address  */
     struct sockaddr_in cad; /* structure to hold client's address  */
@@ -54,46 +54,45 @@ int main(int argc, char **argv) {
 
     if (port > 0)           /* test for illegal value   */
         sad.sin_port = htons(port);
-    else {              /* print error message and exit */
+    else{              /* print error message and exit */
         fprintf(stderr, "bad port number %s\n", argv[1]);
         exit(1);
     }
 
     /* Map TCP transport protocol name to protocol number */
-    if ((ptrp = getprotobyname("tcp")) == NULL) {
+    if ((ptrp = getprotobyname("tcp")) == NULL){
         fprintf(stderr, "cannot map \"tcp\" to protocol number");
         exit(1);
     }
 
     /* Create a socket */
-    if ((listensd = socket(AF_INET, SOCK_STREAM, ptrp->p_proto)) < 0) {
+    if ((listensd = socket(AF_INET, SOCK_STREAM, ptrp->p_proto)) < 0){
         perror("socket creation failed");
         exit(1);
     }
 
     /* Bind a local address to the socket */
-    if (bind(listensd, (struct sockaddr *) &sad, sizeof(sad)) < 0) {
+    if (bind(listensd, (struct sockaddr *) &sad, sizeof(sad)) < 0){
         perror("bind failed");
         exit(1);
     }
 
     /* Specify size of request queue */
-    if (listen(listensd, BACKLOG) < 0) {
+    if (listen(listensd, BACKLOG) < 0){
         perror("listen failed");
         exit(1);
     }
 
     /* Main server loop - accept and handle requests */
-    while (1) {
+    while (1){
         alen = sizeof(cad);
-        if ((connsd = accept(listensd, (struct sockaddr *) &cad, &alen)) < 0) {
+        if ((connsd = accept(listensd, (struct sockaddr *) &cad, &alen)) < 0){
             perror("accept failed");
             exit(1);
         }
         visits++;
-        snprintf(buf, sizeof(buf), "This server has been contacted %d time%s\n",
-                 visits, visits == 1 ? "." : "s.");
-        if (write(connsd, buf, strlen(buf)) != strlen(buf)) {
+        snprintf(buf, sizeof(buf), "This server has been contacted %d time%s\n", visits, visits == 1 ? "." : "s.");
+        if (write(connsd, buf, strlen(buf)) != strlen(buf)){
             perror("error in write");
             exit(1);
         }

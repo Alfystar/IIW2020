@@ -32,24 +32,18 @@
 
 namespace CES {
     using namespace std;
-    enum Action {
+    enum Action{
         RequestComplete, ConClosed
     };
 
-    class HttpMgt {
+    class HttpMgt{
     public:
-        HttpMgt();
-
-        Action connectionRequest(NCS::Connection *c);
-
+        HttpMgt ();
+        Action connectionRequest (NCS::Connection *c);
     private:
-
-        Action send(NCS::Connection *c, HtmlMessage &msg);
-
-
-        Action stringSend(NCS::Connection *c, string &msg);
-
-        Action binarySend(NCS::Connection *c, HtmlMessage &msg);
+        Action send (NCS::Connection *c, HtmlMessage &msg);
+        Action stringSend (NCS::Connection *c, string &msg);
+        Action binarySend (NCS::Connection *c, HtmlMessage &msg);
     };
 }
 
