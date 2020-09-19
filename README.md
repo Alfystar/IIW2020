@@ -1,8 +1,6 @@
 # IIW2020
 Progetto di IIW Web Server
-
 Sviluppato in C++ per il corso di Ingegneria di Internet
-
 Tenuto dal professore: Francesco Lo Presti
 
 ### Sviluppato da:
@@ -10,7 +8,6 @@ Tenuto dal professore: Francesco Lo Presti
 - Badalamenti Filippo
 
 #### Repository Linux da Installare
-
 - Per aggiungere la libreria format.h e montare le stringhe
     
 ```
@@ -18,42 +15,40 @@ Tenuto dal professore: Francesco Lo Presti
     sudo apt update
     sudo apt install libfmt-dev
 ```
-
-    
 - Per la libreria boost (utility avanzate di C++)
-
 
 ```
     sudo apt-get install libboost-all-dev
 ```
 
-
 #### Features
-- Redirect to home
-- Error 404 Page
+- Automatic redirect to HOME if path empty
+- Errors: 404 Page, 406 Page, ...
 - Moving throw the fileSystem (no security)
 - Log System, visualizzabile in real time mediante:
 ```
 	tail -f logDb.txt -n 50 -s 1    
 ```
-    o accedendo allo storico dentro la cartella Debug/
+- Storico dei debug, accedibile dentro la cartella Debug/
 - No busy Wait to all CODE
 
-### Tool di supporto:
+### Supporter Browser
 - FireFox browser
 - Chromium
+- Chorme
 - links2
 ```
 	sudo apt install links2
 ```
 - curl
+
+### Tool di supporto:
 - gdb (debug codice C++)
 - [Visual Paradigm](https://www.visual-paradigm.com/download/community.jsp) community version
 - ImageMagic, che necessita delle librerie:
 ```
 	sudo apt install webp, ffmpeg    
 ```
-
 
 ### Librerie in uso:
 - Boost (per operazioni avanzate su stringhe e path)
@@ -62,4 +57,3 @@ Tenuto dal professore: Francesco Lo Presti
 
 ### Progetti di Inspirazione
 - https://gitlab.com/eidheim/Simple-Web-Server
-- 
