@@ -26,7 +26,7 @@ void help() {
     cout << "";
 }
 
-int StartServerStorage(char *storage)  //apre o crea un nuovo storage per il server, la struttura e a cura del sito
+int initStorage(char *storage)  //apre o crea un nuovo storage per il server, la struttura e a cura del sito
 {
     /* modifica il path reference dell'env per "spostare" il programma nella nuova locazione
      * la variabile PWD contiene il path assoluto, della working directory, ed è aggiornata da una sheel
@@ -42,30 +42,30 @@ int StartServerStorage(char *storage)  //apre o crea un nuovo storage per il ser
     {
         switch (errno) {
             case 2: //No such file or directory
-                printf("MAIN:: directory non exists, now proceed to creation\n");
+                printf("[MAIN::initStorage] directory not exists, now proceed to creation\n");
                 errorRet = mkdir(storage, 0777);
                 if (errorRet == -1) {
-                    perror("MAIN::StartServerStorage mkdir() fails for");
+                    perror("[MAIN::initStorage] mkdir() fails for");
                     return -1;
                 } else {
-                    printf("MAIN::StartServerStorage New directory create\n");
+                    printf("[MAIN::initStorage] New directory create\n");
                     errorRet = chdir(storage);
                     if (errorRet == -1) {
-                        perror("MAIN::StartServerStorage chdir() fail for");
+                        perror("[MAIN::initStorage] chdir() fail for");
                         return -1;
                     }
                 }
                 break;
             default:
-                perror("MAIN::StartServerStorage chdir() fail for");
+                perror("[MAIN::initStorage] chdir() fail for");
                 return -1;
         }
     }
     char curDirPath[100];
     errorRet = setenv("PWD", getcwd(curDirPath, 100), true);    //aggiorno l'env per il nuovo pwd
-    if (errorRet != 0) perror("MAIN::StartServerStorage setEnv('PWD') fail for");
-    printf("MAIN::Current Directory set:\n-->\tgetcwd()=%s\n-->\tPWD=%s\n\n", curDirPath, getenv("PWD"));
-    printf("[1]---> success\n\n");
+    if (errorRet != 0) perror("[MAIN::initStorage] setEnv('PWD') fail for");
+    printf("[MAIN::initStorage] Current Directory set:\n-->\tgetcwd()=%s\n-->\tPWD=%s\n", curDirPath, getenv("PWD"));
+    printf("[1]---> Success\n\n");
 
     return 0;   //directory cambiata con successo
 }
@@ -73,12 +73,9 @@ int StartServerStorage(char *storage)  //apre o crea un nuovo storage per il ser
 [[noreturn]]void sonServer() {
     Log::initLogger();
     CES::initCES(nWorker);
-//	int ret, sigCode;
-//	sigset_t set;
+
     while (true) {
         pause();
-//		ret = sigwait(&set, &sigCode);
-        //Gestione dei segnali
     };
 }
 
@@ -90,32 +87,32 @@ void dadCreator() {
             exit(EX_OSERR);
         }
         if (pid == 0) { //son
-            cout << "MAIN::SON start new instance" << endl;
+            cout << "[MAIN::SON] start new instance" << endl;
             sonServer();
         } else {        //dad
             int wstatus;
             int ret = wait(&wstatus);
             if (ret == -1) {
-                perror("MAIN:: DAD wait error");
+                perror("[MAIN::DAD] wait error");
                 exit(EX_OSERR);
             }
             if (WIFEXITED(wstatus)) {     // good end
                 exit(EX_OK);
             }
-            cerr << "MAIN::DAD Son exit with error code: " << wstatus << endl;
+            cerr << "[MAIN::DAD] Son exit with error code: " << wstatus << endl;
             if (WIFSIGNALED(wstatus)) {   // signal un-catch
                 int sNum = WTERMSIG(wstatus);
                 switch (sNum) {
                     case SIGKILL:
-                        cerr << "MAIN::DAD caused by the SIGKILL";
+                        cerr << "[MAIN::DAD] caused by the SIGKILL";
                         exit(EX_OK);
                         break;
                     case SIGTERM:
-                        cerr << "MAIN::DAD caused by the SIGTERM";
+                        cerr << "[MAIN::DAD] caused by the SIGTERM";
                         exit(EX_OK);
                         break;
                     default:
-                        cerr << "MAIN::DAD caused by the signal n°" << sNum << " means:" << strsignal(sNum) << endl;
+                        cerr << "[MAIN::DAD] caused by the signal n°" << sNum << " means:" << strsignal(sNum) << endl;
                         break;
                 }
             }
@@ -132,19 +129,19 @@ int main(int argc, char *argv[]) {
         } else {
             SERV_PORT = atoi(argv[1]);
             if (SERV_PORT == 0) { // sia che sia 0 la porta passato o un errore di digitazione
-                cout << "MAIN:: SERV_PORT passed is invalid, please use NUMBER and different from 0\n";
+                cout << "[MAIN::main] SERV_PORT passed is invalid, please use NUMBER and different from 0\n";
                 exit(EX_DATAERR);
             }
         }
     }
     if (argc >= 2) {
 
-        if (StartServerStorage(argv[2])) {
-            cout << "MAIN:: Direcotry change fail\n";
+        if (initStorage(argv[2])) {
+            cout << "[MAIN::main] Direcotry change fail\n";
             exit(EX_OSFILE);
         }
     } else {
-        cout << "MAIN:: Direcotry change success\n";
+        cout << "[MAIN::main] Direcotry change success\n";
         cout << "To have help use option -h or --help\n";
     }
     sleep(1);

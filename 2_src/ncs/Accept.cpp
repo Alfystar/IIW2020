@@ -16,8 +16,7 @@ void Accept::thListener(NCS::Accept *a) {
 
     pthread_setname_np(pthread_self(), "Accepter");
 
-
-    std::cout << "Accept::thListener start work on PORT: " << SERV_PORT << "\n";
+    std::cout << "[Accept::thListener] Start work on PORT: " << SERV_PORT << "\n";
     Connection *c = nullptr;
     int connsd;
     struct sockaddr info;
@@ -36,40 +35,37 @@ void Accept::thListener(NCS::Accept *a) {
                     sleep(1);   //Sicuramente ci sono tante connessioni da gestire ancora
                     break;
                 default:
-                    Log::err << "Accept::thListener errore in accept" << strerror(EMFILE) << "\n";
+                    Log::err << "[Accept::thListener] Error in accept" << strerror(EMFILE) << "\n";
                     exit(EX_PROTOCOL);
             }
         }
-
         c = new Connection(connsd, &info, lenSockAddr);
         a->q->pushWaitCon(c);
     }
-
 }
-
 
 void Accept::sockInit() {
 
     struct rlimit limit;
     if (getrlimit(RLIMIT_NOFILE, &limit))
-        perror("Accept::sockInit errore in getrlimit:");
+        perror("[Accept::sockInit] Error in getrlimit:");
 
     limit.rlim_cur = std::min((rlim_t) MAX_CON, limit.rlim_max);
     if (setrlimit(RLIMIT_NOFILE, &limit))
-        perror("Accept::sockInit errore in setrlimit:");
+        perror("[Accept::sockInit] Error in setrlimit:");
 
 
 
     // crea il socket di ascolto del processo verso la rete
     if ((listensd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
-        perror("Accept::sockInit errore in socket");
+        perror("[Accept::sockInit] Error in socket");
         exit(EX_PROTOCOL);
     }
 
     //Rende riutilizzabile la porta
     int enable = 1;
     if (setsockopt(listensd, SOL_SOCKET, SO_REUSEADDR, &enable, sizeof(int)) < 0)
-        perror("Accept::sockInit setsockopt(SO_REUSEADDR) failed");
+        perror("[Accept::sockInit] setsockopt(SO_REUSEADDR) failed");
 
     // Configuro i parametri con la quale deve funzionare la socket, attraverso la bind
     memset((void *) &servaddr, 0, sizeof(servaddr));
@@ -80,14 +76,13 @@ void Accept::sockInit() {
 
     // assegna l'indirizzo e la porta da far guardare alla socket
     if ((bind(listensd, (struct sockaddr *) &servaddr, sizeof(servaddr))) < 0) {
-        perror("Accept::sockInit errore in bind");
+        perror("[Accept::sockInit] Error in bind");
         exit(EX_PROTOCOL);
     }
 
-
     // Comunico al SO la dimensione della coda di attesa che deve gestire
     if (listen(listensd, BACKLOG) < 0) {
-        perror("Accept::sockInit errore in listen");
+        perror("[Accept::sockInit] Error in listen");
         exit(EX_PROTOCOL);
     }
 }

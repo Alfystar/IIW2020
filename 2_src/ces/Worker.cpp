@@ -15,7 +15,9 @@ Worker::Worker(string &name) {
 
 [[noreturn]] void Worker::thWorker(Worker *j) {
     pthread_setname_np(pthread_self(), j->myName.c_str());
-    std::cout << "Worker::thWorker " << j->myName << " Start work\n";
+#ifdef DEBUG_LOG
+    Log::db << "Worker::thWorker " << j->myName << " Start work\n";
+#endif
     HttpMgt httpMgt;
     NCS::Connection *c;
     for (;;) {

@@ -8,9 +8,9 @@ using namespace NCS;
 
 Queue::Queue() {
     if (pipe2(waitPipe, O_DIRECT | O_NONBLOCK))
-        perror("Queue::Queue error create waitPipe:");
+        perror("[Queue::Queue] Error create waitPipe:");
     if (pipe2(readyPipe, O_DIRECT))
-        perror("Queue::Queue error create readyPipe:");
+        perror("[Queue::Queue] Error create readyPipe:");
 
     pollList = (struct pollfd *) calloc(MAX_CON, sizeof(struct pollfd));
     connectionList = (Connection **) calloc(MAX_CON, sizeof(Connection **));
@@ -27,7 +27,7 @@ void Queue::thDispatcher(Queue *q) {
 
     pthread_setname_np(pthread_self(), "Queue");
 
-    std::cout << "Queue::thDispatcher start work\n";
+    std::cout << "[Queue::thDispatcher] Start work\n";
     timespec t{1, 0};
 
     int ready;
@@ -40,7 +40,7 @@ void Queue::thDispatcher(Queue *q) {
             Log::db << "Queue::thDispatcher ppoll time-out 1 s\n";
 #endif
         } else if (ready == -1) {
-            perror("Queue::thDispatcher ppoll error:");
+            perror("[Queue::thDispatcher] ppoll error:");
             exit(-1);
         } else { //Qualcosa da fare:
             for (int i = 0; ready > 0; i++) {
@@ -84,7 +84,7 @@ void Queue::popWaitingCon() {
                     end = true; //termino il while perchè ho lettot tutto
                     break;
                 default:
-                    perror("Queue::popWaitingCon pipe write error:");
+                    perror("[Queue::popWaitingCon] Pipe write error:");
                     sleep(1);
                     exit(-1);
             }
@@ -107,7 +107,7 @@ Connection *Queue::popReadyCon() {
     if (read(readyPipe[readEnd], &ret, sizeof(Connection *)) == -1) {
         switch (errno) {
             default:
-                perror("Queue::popWaitingCon pipe write error:");
+                perror("[Queue::popWaitingCon] Pipe write error:");
                 sleep(1);
                 exit(-1);
         }
@@ -135,7 +135,7 @@ inline void Queue::pushPipe(int pipeWriteEnd, Connection *con) {
 // Dovendo scrivere 1 puntatore, ovvero 8 byte, l'operazione risulta atomica
     // e a meno di errori di altra natura è impossibile essere bloccati per un SEGNALE
     if (write(pipeWriteEnd, (void *) &con, sizeof(Connection *)) == -1) {
-        perror("Queue::pushReadyCon pipe write error:");
+        perror("[Queue::pushReadyCon] Pipe write error:");
         sleep(1);
         exit(-1);
     }

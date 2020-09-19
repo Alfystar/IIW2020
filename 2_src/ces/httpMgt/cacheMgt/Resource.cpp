@@ -16,7 +16,7 @@ Resource::Resource(string &p, string &format, float qValue) {
         //fd is not initialised, since is not required synchrony
         return;
     }
-    if (format == "jpeg") format = "jpg"; //todo: maybe necessary for conversion?
+    if (format == "jpeg") format = "jpg";
 
     pthread_rwlock_rdlock(rwlock); // LOCK SHREDDER
 
@@ -90,15 +90,12 @@ void Resource::elaborateFile(string &file, string &scale) {
 
     if (format == "webp") {
         string tmpFile = "dwebp " + file + " -o " + this->path; //for decoding webp images to png; IT DOESN'T RESIZE
-        system(tmpFile.c_str());
+        executeCommand(tmpFile);
         file = this->path;
     }
 
     string command = "./misc/magick convert " + file + " -resize " + scale + "% " + this->path;
-
-    cerr << "Resource::elaborateFile esegue system con:\n";
-    cerr << command << endl;
-    system(command.c_str()); // esecuzione magick
+    executeCommand(command);
 
     struct stat buf{};
     stat(path.c_str(), &buf);
@@ -107,3 +104,27 @@ void Resource::elaborateFile(string &file, string &scale) {
     Shredder::getInstance()->updateSizeCache(fileSize);
 }
 
+void Resource::executeCommand(string &command) {
+
+#ifdef DEBUG_LOG
+    Log::db << "Resource::elaborateFile esegue system con:\n";
+    Log::db << command << endl;
+#endif
+
+    command += " 2>&1";
+
+    FILE *outCommand = popen(command.c_str(), "r"); // esecuzione magick
+    if (!outCommand) {
+        // warning: if memory allocator fails, errno is not set
+        perror("[Resource::elaborateFile] popen() failed due to ");
+    }
+#ifdef DEBUG_LOG
+    char outBuff[1024];
+    int sizeFRead = fread_unlocked(outBuff, 1, sizeof(outBuff) - 1, outCommand);
+    outBuff[sizeFRead] = '\0';
+    Log::db << outBuff << '\n';
+#endif
+    if (pclose(outCommand) == -1) {
+        perror("[Resource::elaborateFile] pclose() failed due to ");
+    }
+}

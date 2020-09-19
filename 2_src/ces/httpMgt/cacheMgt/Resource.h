@@ -14,10 +14,12 @@
 #include <sys/stat.h>
 #include <sys/file.h>
 #include <fcntl.h>
+#include <Log.h>
 
 #include "SyncUtilities.h"
 #include "Shredder.h"
 #include "../../../GLOBAL_DEF.h"
+
 
 #ifndef CACHE_PATH
 #define CACHE_PATH "./web/cache"
@@ -43,6 +45,8 @@ namespace CES {
     private:
 
         void elaborateFile(string &file, string &scale);
+
+        void executeCommand(string &command);
     };
 
 }

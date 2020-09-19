@@ -9,7 +9,7 @@ using namespace CES;
 
 /// ImgData, used for sorting and working on filesystem
 
-ImgData::ImgData(const string &p) { //otteniamo un oggetto con i dati per il sort
+Shredder::ImgData::ImgData(const string &p) { //otteniamo un oggetto con i dati per il sort
     path = p;
     statFile = (struct stat *) (malloc(sizeof(struct stat)));
 
@@ -21,12 +21,12 @@ ImgData::ImgData(const string &p) { //otteniamo un oggetto con i dati per il sor
 
 }
 
-ImgData::~ImgData() {
+Shredder::ImgData::~ImgData() {
     if (!statFile)
         free(statFile);
 }
 
-int ImgData::removeFile() {
+int Shredder::ImgData::removeFile() {
     if (remove(path.c_str())) {
         string tmp_str = "Failed to remove " + path + " , because: ";
         perror(tmp_str.c_str());
@@ -53,8 +53,10 @@ Shredder *Shredder::getInstance() { //not thread-safe
 
 Shredder::Shredder() {
 
+    cout << "[Shredder::Shredder] Initialize Shredder\n";
+
     if (initShredderLock()) {
-        cout << "[Shredder()] Fallita inizializzazione della sincronia";
+        cout << "[Shredder::Shredder] Fallita inizializzazione della sincronia";
         exit(EX_OSERR);
     }
 
@@ -66,17 +68,18 @@ Shredder::Shredder() {
 
 [[noreturn]] void Shredder::threadShr(Shredder *s) {
     pthread_setname_np(pthread_self(), "Shredder");
-
-    cout << "[Shredder::threadShr] Shredder started\n";
+#ifdef DEBUG_LOG
+    Log::db << "[Shredder::threadShr] Shredder started\n";
+#endif
     if (s->cacheSize > FILE_SIZE_LIMIT) {
         s->freeSpace();
     }
     for (;;) {
         s->waitUntilFullCache();    // aspettare la pool
-        //todo: capire perchè cacheSize non si aggiorna
+
         s->elaboratePipe();         // svuoto la pipe
-        cout << "Shredder::threadShr Verifying size of cache: " +
-                fmt::format("{:.{}f} MiB", (float) (s->cacheSize) / MiB, 2) + '\n';
+        cout << "[Shredder::threadShr] Verifying size of cache: " + sizeFormatted(s->cacheSize) +
+                ";\t N° Files: " + to_string(s->imgVect.size()) + '\n';
         if (s->cacheSize < FILE_SIZE_LIMIT) {
             continue;
         }
@@ -84,8 +87,9 @@ Shredder::Shredder() {
     }
 }
 
-
 void Shredder::fillImgVect(string &path) { //obtain a vector with all the files from a directory
+
+    emptyImgVect();
 
     for (auto &p: fs::recursive_directory_iterator(path)) {
         if (!fs::is_directory(p.path()) && (p.path().string().find("/.") == string::npos)) { // for .gitignore
@@ -100,30 +104,41 @@ uint_fast64_t Shredder::sizeOfCache() {
     for (auto &img : imgVect) {
         size += img.statFile->st_size;
     }
-    cout << "[Shredder::sizeOfCache()] size of cache: " +
-            fmt::format("{:.{}f} MiB", (float) (size) / MiB, 2) + '\n';
+    cout << "[Shredder::sizeOfCache] Size of cache: " + sizeFormatted(size) +
+            ";\t N° Files: " + to_string(imgVect.size()) + '\n';
     return size;
 }
 
 void Shredder::reduceCacheUsage() {
     sort(this->imgVect.begin(), this->imgVect.end()); //sort by last access time
 
-    // todo: cancellare finito il debug
+//#ifdef DEBUG_LOG
+    Log::db << "[Shredder::reduceCacheUsage] Actual size of cache: " + sizeFormatted(cacheSize) +
+               ";\t N° Files: " + to_string(imgVect.size()) + '\n';
     for (auto a : this->imgVect) {  // printa la lista sort-ata
-        std::cout << a.path << " time:" << a.statFile->st_atim.tv_sec << "\n";
+
+        struct tm *nowtm;
+        char tmbuf[64];
+        nowtm = localtime(&a.statFile->st_atim.tv_sec);
+        strftime(tmbuf, sizeof(tmbuf), "%F %T", nowtm);
+
+        Log::db << a.path << " time: " << tmbuf << "\n";
     }
+//#endif
     while (cacheSize > FILE_SIZE_LIMIT / 2 && imgVect.size() > 1) {
         int size = imgVect.back().removeFile();
         cacheSize -= size;
         imgVect.pop_back();
     }
-    // la restante parte viene deallocata dopo il rilascio del mutex, e prima dello sleep
+#ifdef DEBUG_LOG
+    Log::db << "[Shredder::reduceCacheUsage] New size of cache: " + sizeFormatted(cacheSize) +
+               ";\t N° Files: " + to_string(imgVect.size()) + '\n';
+#endif
+
 }
 
-void Shredder::emptyImgVect() {
-    while (!imgVect.empty()) {
-        imgVect.pop_back();
-    }
+inline void Shredder::emptyImgVect() {
+    imgVect.clear();
 }
 
 int Shredder::initSizePipe() {
@@ -210,5 +225,13 @@ void Shredder::freeSpace() {
 
     pthread_rwlock_unlock(rwlock); //UNLOCK
 
-    emptyImgVect();
+}
+
+string Shredder::sizeFormatted(uint_fast64_t size) {
+    if (size / MiB > 0)
+        return fmt::format("{:.{}f} MiB", (float) (size) / MiB, 2);
+    else if (size / KiB > 0)
+        return fmt::format("{:.{}f} KiB", (float) (size) / KiB, 2);
+    else
+        return to_string(size) + " B";
 }

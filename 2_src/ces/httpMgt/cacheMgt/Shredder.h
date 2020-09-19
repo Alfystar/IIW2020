@@ -12,6 +12,8 @@
 #include <algorithm>
 #include <filesystem>
 
+#include <Log.h>
+
 #include <sysexits.h>
 
 #ifndef  _GNU_SOURCE
@@ -46,27 +48,28 @@ namespace CES {
     using namespace std;
     namespace fs = std::filesystem;
 
-
-    class ImgData {
-    public:
-        string path;
-        struct stat *statFile = nullptr;
-
-        bool operator<(const ImgData &other) const { // con questo operatore posso effettuare il sort
-            // usiamo ">" così da ordinare dal più remoto al più recente
-            return timercmpSpec(&statFile->st_atim, &other.statFile->st_atim, >);
-
-        }
-
-        explicit ImgData(const string &p); //constructor
-        int removeFile();
-
-
-        ~ImgData();
-    };
-
-
     class Shredder { // singleton class for managing files
+
+    public:
+        class ImgData {
+        public:
+            string path;
+            struct stat *statFile = nullptr;
+
+            bool operator<(const ImgData &other) const { // con questo operatore posso effettuare il sort
+                // usiamo ">" così da ordinare dal più remoto al più recente
+                return timercmpSpec(&statFile->st_atim, &other.statFile->st_atim, >);
+
+            }
+
+            explicit ImgData(const string &p); //constructor
+            int removeFile();
+
+
+            ~ImgData();
+        };
+
+    private:
 
         static Shredder *instance;
         thread *tShr;
@@ -75,7 +78,7 @@ namespace CES {
         struct pollfd pollfd = {0, 0, 0};
 
         vector<ImgData> imgVect;
-        uint_fast64_t cacheSize;
+        uint_fast64_t cacheSize = 0;
 
         string cache_path = CACHE_PATH;
 
@@ -107,7 +110,9 @@ namespace CES {
 
         void reduceCacheUsage();
 
-        void emptyImgVect();
+        inline void emptyImgVect();
+
+        static string sizeFormatted(uint_fast64_t size);
     };
 }
 
