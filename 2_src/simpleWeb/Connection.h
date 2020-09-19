@@ -49,10 +49,9 @@ namespace NCS {
         struct sockaddr sockInfo;
         socklen_t socklen;
 
-        ConnectType cType = unknown;
-
     private:
-        static std::atomic<unsigned long> count;
+	    ConnectType cType = unknown;
+	    static std::atomic<unsigned long> count;
     public:
         Connection(int fd);
 
