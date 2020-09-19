@@ -1,0 +1,24 @@
+# How to install from repository apache2:
+
+sudo apt install apache2
+
+##### in caso di errorore di "digimend-dkms error 1" ##
+
+    sudo apt install libncurses-dev flex bison openssl libssl-dev dkms libelf-dev libudev-dev libpci-dev libiberty-dev autoconf
+
+    sudo dpkg --remove --force-remove-reinstreq digimend-dkms
+
+quindi riprivare
+
+
+# How to setup apche2
+Di default la home del server è in
+    /var/www/html
+directory creata da apache2
+
+Quindi aggiungere il proprio utente al gruppo "www-data" con cui esegue apache2
+     useradd -G www-data filippob
+     
+e per concludere rendiamo la directory /var/www/html di www-data:
+    sudo chown www-data:www-data /var/www/html/index.html 
+
