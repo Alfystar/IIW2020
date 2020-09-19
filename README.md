@@ -34,9 +34,9 @@ Tenuto dal professore: Francesco Lo Presti
 - Moving throw the fileSystem (no security)
 - Log System, visualizzabile in real time mediante:
 ```
-	tail -f logDb.txt -s 1    
+	tail -f logDb.txt -n 50 -s 1    
 ```
-o accedendo allo storico dentro la cartella Debug/
+    o accedendo allo storico dentro la cartella Debug/
 - No busy Wait to all CODE
 
 ### Tool di supporto:
