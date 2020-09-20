@@ -24,6 +24,10 @@ Per una descrizione migliore guardare readmi sul repository del progetto.
 # Repeate Benchmark script
 Per eseguire i test ripetutamente e con i parametri ipotizzati, è stato scritto uno script in python che gestisca le chiamate del programma con i diversi parametri.
 
+Prima lo si lancia e parte il test di badAlpha, 
+finito il test rimane in attesa di un invio, così da poter spegnere il server, e accendere apache
+Premuto invio parte il test di apache2
+
 
 # Matlab Elaboration
 Per estrapolare dei dati dai vari bechmark effettuati, è stato creato uno script di Matlab che preso il file xml, genera i grafici di cui abbiamo bisogno.
