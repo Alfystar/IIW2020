@@ -49,6 +49,7 @@ Tenuto dal professore: Francesco Lo Presti
 ```
 	sudo apt install webp, ffmpeg    
 ```
+- Go-HttpBench reperibile all'url https://github.com/parkghost/gohttpbench
 
 ### Librerie in uso:
 - Boost (per operazioni avanzate su stringhe e path)
