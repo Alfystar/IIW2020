@@ -1,0 +1,3 @@
+Prove sperimentali del file <index> i dati sono raccolti nelle colonne:
+N°CPU | N° parallel Connection | N° Request x Sec | Request Time | Http Speed Rate
+1	100	5086.89	19.658	6134.13
