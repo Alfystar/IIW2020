@@ -143,6 +143,7 @@ Connection *Queue::reduceList (int index){
 inline void Queue::pushPipe (int pipeWriteEnd, Connection *con){
     // Dovendo scrivere 1 puntatore, ovvero 8 byte, l'operazione risulta atomica
     // e a meno di errori di altra natura è impossibile essere bloccati per un SEGNALE
+    //TODO: Gestire EAGAIN dovuto al fatto che una delle pipe è NON_BLOCCANTE
     if (write(pipeWriteEnd, (void *) &con, sizeof(Connection *)) == -1){
         perror("[Queue::pushReadyCon] Pipe write error:");
         sleep(1);
