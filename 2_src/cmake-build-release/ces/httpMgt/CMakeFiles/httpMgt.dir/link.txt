@@ -1,0 +1,2 @@
+/usr/bin/ar qc libhttpMgt.a  CMakeFiles/httpMgt.dir/HttpMgt.cpp.o CMakeFiles/httpMgt.dir/HtmlMessage.cpp.o
+/usr/bin/ranlib libhttpMgt.a

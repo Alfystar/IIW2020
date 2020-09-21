@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="HTTP-ImageServer"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\simpleWeb\;CMake Files\ncs\;CMake Files\logSystem\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\usr\lib\;CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\;CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\;CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\fmt\;CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Boost-1.71.0\;CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\boost_headers-1.71.0\;CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\boost_filesystem-1.71.0\;CMake Files\ces\;CMake Files\ces\httpMgt\;CMake Files\ces\httpMgt\cacheMgt\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="badAlphaWeb">
+				<Option output="/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/badAlphaWeb" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ncs/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ces/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ces/httpMgt/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ces/httpMgt/cacheMgt/."/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/Makefile&quot;  VERBOSE=1 badAlphaWeb"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="badAlphaWeb/fast">
+				<Option output="/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/badAlphaWeb" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ncs/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ces/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ces/httpMgt/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ces/httpMgt/cacheMgt/."/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/Makefile&quot;  VERBOSE=1 badAlphaWeb/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="simpleWeb">
+				<Option output="/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/simpleWeb/libsimpleWeb.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/simpleWeb"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem"/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem/."/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/simpleWeb/Makefile&quot;  VERBOSE=1 simpleWeb"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/simpleWeb/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/simpleWeb/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/simpleWeb/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="simpleWeb/fast">
+				<Option output="/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/simpleWeb/libsimpleWeb.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/simpleWeb"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem"/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem/."/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/simpleWeb/Makefile&quot;  VERBOSE=1 simpleWeb/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/simpleWeb/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/simpleWeb/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/simpleWeb/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ncs">
+				<Option output="/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ncs/libncs.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ncs"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ncs/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb"/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem"/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem/."/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ncs/Makefile&quot;  VERBOSE=1 ncs"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ncs/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ncs/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ncs/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ncs/fast">
+				<Option output="/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ncs/libncs.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ncs"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ncs/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb"/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem"/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem/."/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ncs/Makefile&quot;  VERBOSE=1 ncs/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ncs/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ncs/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ncs/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="logSystem">
+				<Option output="/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/logSystem/liblogSystem.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/logSystem"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem/."/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/logSystem/Makefile&quot;  VERBOSE=1 logSystem"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/logSystem/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/logSystem/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/logSystem/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="logSystem/fast">
+				<Option output="/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/logSystem/liblogSystem.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/logSystem"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem/."/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/logSystem/Makefile&quot;  VERBOSE=1 logSystem/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/logSystem/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/logSystem/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/logSystem/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ces">
+				<Option output="/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/libces.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ces/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb"/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem"/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ncs"/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ncs/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ces/httpMgt/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ces/httpMgt/cacheMgt/."/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/Makefile&quot;  VERBOSE=1 ces"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ces/fast">
+				<Option output="/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/libces.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ces/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb"/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem"/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ncs"/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ncs/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ces/httpMgt/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ces/httpMgt/cacheMgt/."/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/Makefile&quot;  VERBOSE=1 ces/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="httpMgt">
+				<Option output="/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/httpMgt/libhttpMgt.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/httpMgt"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb"/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem"/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ncs"/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ces/httpMgt/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ces/httpMgt/cacheMgt/."/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/httpMgt/Makefile&quot;  VERBOSE=1 httpMgt"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/httpMgt/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/httpMgt/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/httpMgt/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="httpMgt/fast">
+				<Option output="/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/httpMgt/libhttpMgt.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/httpMgt"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DBOOST_ALL_NO_LIB"/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb"/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem"/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ncs"/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ces/httpMgt/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem/."/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ces/httpMgt/cacheMgt/."/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/httpMgt/Makefile&quot;  VERBOSE=1 httpMgt/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/httpMgt/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/httpMgt/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/httpMgt/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="cacheMgt">
+				<Option output="/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/httpMgt/cacheMgt/libcacheMgt.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/httpMgt/cacheMgt"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb"/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem"/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ncs"/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ces/httpMgt/cacheMgt/."/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/httpMgt/cacheMgt/Makefile&quot;  VERBOSE=1 cacheMgt"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/httpMgt/cacheMgt/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/httpMgt/cacheMgt/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/httpMgt/cacheMgt/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="cacheMgt/fast">
+				<Option output="/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/httpMgt/cacheMgt/libcacheMgt.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/httpMgt/cacheMgt"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb"/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem"/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ncs"/>
+					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ces/httpMgt/cacheMgt/."/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/httpMgt/cacheMgt/Makefile&quot;  VERBOSE=1 cacheMgt/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/httpMgt/cacheMgt/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/httpMgt/cacheMgt/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/alfystar/Scrivania/IIW2020/2_src/cmake-build-release/ces/httpMgt/cacheMgt/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/GLOBAL_DEF.h">
+			<Option target="badAlphaWeb"/>
+			<Option target="ncs"/>
+			<Option target="cacheMgt"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/ces/CES.cpp">
+			<Option target="ces"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/ces/CES.h">
+			<Option target="ces"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/ces/Worker.cpp">
+			<Option target="ces"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/ces/Worker.h">
+			<Option target="ces"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/ces/httpMgt/HtmlMessage.cpp">
+			<Option target="httpMgt"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/ces/httpMgt/HtmlMessage.h">
+			<Option target="httpMgt"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/ces/httpMgt/HttpMgt.cpp">
+			<Option target="httpMgt"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/ces/httpMgt/HttpMgt.h">
+			<Option target="httpMgt"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/ces/httpMgt/cacheMgt/Resource.cpp">
+			<Option target="cacheMgt"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/ces/httpMgt/cacheMgt/Resource.h">
+			<Option target="cacheMgt"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/ces/httpMgt/cacheMgt/Shredder.cpp">
+			<Option target="cacheMgt"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/ces/httpMgt/cacheMgt/Shredder.h">
+			<Option target="cacheMgt"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/ces/httpMgt/cacheMgt/SyncUtilities.cpp">
+			<Option target="cacheMgt"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/ces/httpMgt/cacheMgt/SyncUtilities.h">
+			<Option target="cacheMgt"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/ces/httpMgt/cacheMgt/timeSpecOp.h">
+			<Option target="cacheMgt"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/ces/httpMgt/headerForm.h">
+			<Option target="httpMgt"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/logSystem/Log.cpp">
+			<Option target="logSystem"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/logSystem/Log.h">
+			<Option target="logSystem"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/main.cpp">
+			<Option target="badAlphaWeb"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/ncs/Accept.cpp">
+			<Option target="ncs"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/ncs/Accept.h">
+			<Option target="ncs"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/ncs/NCS.cpp">
+			<Option target="ncs"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/ncs/NCS.h">
+			<Option target="ncs"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/ncs/Queue.cpp">
+			<Option target="ncs"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/ncs/Queue.h">
+			<Option target="ncs"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/ncs/ncsDefine.h">
+			<Option target="ncs"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/ncs/timeSpecOp.h">
+			<Option target="ncs"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb/Connection.cpp">
+			<Option target="simpleWeb"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb/Connection.h">
+			<Option target="simpleWeb"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb/Utility.hpp">
+			<Option target="simpleWeb"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb/status_code.hpp">
+			<Option target="simpleWeb"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\simpleWeb\"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/ncs/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\ncs\"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/logSystem/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\logSystem\"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/../../../../../usr/lib/x86_64-linux-gnu/cmake/BoostDetectToolset-1.71.0.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/../../../../../usr/lib/x86_64-linux-gnu/cmake/fmt/fmt-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\fmt\"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/../../../../../usr/lib/x86_64-linux-gnu/cmake/fmt/fmt-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\fmt\"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/../../../../../usr/lib/x86_64-linux-gnu/cmake/fmt/fmt-targets-none.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\fmt\"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/../../../../../usr/lib/x86_64-linux-gnu/cmake/fmt/fmt-targets.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\fmt\"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/../../../../../usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Boost-1.71.0\"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/../../../../../usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Boost-1.71.0\"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/../../../../../usr/lib/x86_64-linux-gnu/cmake/boost_headers-1.71.0/boost_headers-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\boost_headers-1.71.0\"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/../../../../../usr/lib/x86_64-linux-gnu/cmake/boost_headers-1.71.0/boost_headers-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\boost_headers-1.71.0\"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/../../../../../usr/lib/x86_64-linux-gnu/cmake/boost_filesystem-1.71.0/boost_filesystem-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\boost_filesystem-1.71.0\"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/../../../../../usr/lib/x86_64-linux-gnu/cmake/boost_filesystem-1.71.0/boost_filesystem-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\boost_filesystem-1.71.0\"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/../../../../../usr/lib/x86_64-linux-gnu/cmake/boost_filesystem-1.71.0/libboost_filesystem-variant-shared.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\boost_filesystem-1.71.0\"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/../../../../../usr/lib/x86_64-linux-gnu/cmake/boost_filesystem-1.71.0/libboost_filesystem-variant-static.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\boost_filesystem-1.71.0\"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/ces/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\ces\"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/ces/httpMgt/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\ces\httpMgt\"/>
+		</Unit>
+		<Unit filename="/home/alfystar/Scrivania/IIW2020/2_src/ces/httpMgt/cacheMgt/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\ces\httpMgt\cacheMgt\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

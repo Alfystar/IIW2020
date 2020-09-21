@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/badAlphaWeb.dir/main.cpp.o  -o badAlphaWeb  simpleWeb/libsimpleWeb.a ncs/libncs.a logSystem/liblogSystem.a ces/libces.a ncs/libncs.a -lstdc++fs ces/httpMgt/libhttpMgt.a simpleWeb/libsimpleWeb.a logSystem/liblogSystem.a -lfmt ces/httpMgt/cacheMgt/libcacheMgt.a -lpthread /usr/lib/x86_64-linux-gnu/libboost_filesystem.a 

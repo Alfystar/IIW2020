@@ -1,0 +1,2 @@
+/usr/bin/ar qc libncs.a  CMakeFiles/ncs.dir/NCS.cpp.o CMakeFiles/ncs.dir/Accept.cpp.o CMakeFiles/ncs.dir/Queue.cpp.o
+/usr/bin/ranlib libncs.a

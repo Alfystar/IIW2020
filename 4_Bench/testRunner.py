@@ -74,7 +74,7 @@ def initFileExperiment(pathSave, name):
     f = open(pathSave + "/" + name + "BenchMark.dat", "w")
     # line = str(cpu) + sep + str(parallelCon) + sep + str(nReqSec)+ sep + str(reqTime) + sep + str(speedTransf) + "\n"
     title = "Prove sperimentali del file <" + name + "> i dati sono raccolti nelle colonne:\n"
-    title += "N°CPU | N° parallel Connection | N° Request x Sec | Request Time | Http Speed Rate\n"
+    title += "N_CPU\tN_parCon\tN_ReqXSec\tReqTime\tHttpSpeedRate\n"
     f.write(title)
 
     return f
@@ -126,7 +126,7 @@ def runTest(parallelCon, totCon, cpu, url, port, path):
 
 def testResource(fdWrite, port, rsc):
     for nCpu in range(1, os.cpu_count()):
-        for pCon in range(100, 1000, 100):
+        for pCon in range(10, 1000, 100):
             line = runTest(pCon, 10000, nCpu, url, port, rsc)
             fdWrite.write(line)
     return
@@ -180,9 +180,9 @@ def main():
 
     savePath = initDatSave(outDir)
 
-    runExperiment(savePath, badAlphaPort, "badAlpha")
-    input("Press Enter to continue...")
     runExperiment(savePath, apachePort, "apache2")
+    input("Press Enter to continue...")
+    runExperiment(savePath, badAlphaPort, "badAlpha")
 
     return 0
 

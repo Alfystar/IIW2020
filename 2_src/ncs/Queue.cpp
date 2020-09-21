@@ -7,10 +7,20 @@
 using namespace NCS;
 
 Queue::Queue (){
-    if (pipe2(waitPipe, O_DIRECT | O_NONBLOCK))
+    if (pipe2(waitPipe, O_DIRECT)){
         perror("[Queue::Queue] Error create waitPipe:");
-    if (pipe2(readyPipe, O_DIRECT))
+        exit(EX_IOERR);
+    }
+    // Rendo NON BLOCCANTE solo l'estremo in lettura
+    if (fcntl(waitPipe[readEnd], F_SETFL, O_NONBLOCK) < 0){
+        perror("[Queue::Queue] Error make waitPipe[readEnd] O_NONBLOCK:");
+        exit(EX_IOERR);
+    }
+
+    if (pipe2(readyPipe, O_DIRECT)){
         perror("[Queue::Queue] Error create readyPipe:");
+        exit(EX_IOERR);
+    }
 
     pollList = (struct pollfd *) calloc(MAX_CON, sizeof(struct pollfd));
     connectionList = (Connection **) calloc(MAX_CON, sizeof(Connection **));
@@ -77,6 +87,9 @@ void Queue::thDispatcher (Queue *q){
 }
 
 void Queue::pushWaitCon (Connection *con){
+    static int i = 0;
+    cout << "pushPipe" << i << "\n";
+    i++;
     pushPipe(waitPipe[writeEnd], con);
 }
 
@@ -144,8 +157,9 @@ inline void Queue::pushPipe (int pipeWriteEnd, Connection *con){
     // Dovendo scrivere 1 puntatore, ovvero 8 byte, l'operazione risulta atomica
     // e a meno di errori di altra natura è impossibile essere bloccati per un SEGNALE
     //TODO: Gestire EAGAIN dovuto al fatto che una delle pipe è NON_BLOCCANTE
+
     if (write(pipeWriteEnd, (void *) &con, sizeof(Connection *)) == -1){
-        perror("[Queue::pushReadyCon] Pipe write error:");
+        perror("[Queue::pushPipe] Pipe write error:");
         sleep(1);
         exit(-1);
     }

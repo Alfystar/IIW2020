@@ -11,7 +11,6 @@
 #include <Log.h>
 #include "GLOBAL_DEF.h"
 
-#define nWorker get_nprocs()*2  //Per avere il doppio dei core e gestire le situazioni di wait forzate
 
 volatile int SERV_PORT = 8080;
 

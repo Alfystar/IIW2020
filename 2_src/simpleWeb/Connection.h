@@ -48,13 +48,13 @@ namespace NCS {
 
     private:
         ConnectType cType = unknown;
-        static std::atomic <unsigned long> count;
+//        static std::atomic <unsigned long> count;
 
     public:
         Connection (int fd);
         Connection (int fd, struct sockaddr *sockInfo, socklen_t socklen);
         ~Connection ();
-        unsigned long activeConnection ();
+//        unsigned long activeConnection ();
         void compilePollFD (struct pollfd *pollFd);
         ConnectType getType ();
         int sendData (const void *data, int datalen);    // 0 = send succes, -1 = error, look errno

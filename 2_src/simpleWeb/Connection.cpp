@@ -6,7 +6,7 @@
 
 using namespace NCS;
 
-std::atomic <unsigned long> Connection::count(0);
+//std::atomic <unsigned long> Connection::count(0);
 
 Connection::Connection (int fd) : Connection(fd, NULL, 0){
     cType = internalConnect;
@@ -14,6 +14,9 @@ Connection::Connection (int fd) : Connection(fd, NULL, 0){
 
 Connection::Connection (int fd, struct sockaddr *sockInfo, socklen_t socklen){
     this->fd = fd;
+    if(fd<=0)
+        cerr << "fd impossibile\n";
+
     this->socklen = socklen;
     if (sockInfo){
         memcpy(&this->sockInfo, sockInfo, sizeof(struct sockaddr));
@@ -23,13 +26,13 @@ Connection::Connection (int fd, struct sockaddr *sockInfo, socklen_t socklen){
     else
         memset(&this->sockInfo, 0, sizeof(struct sockaddr));
 
-    count++;
+//    count++;
 }
 
 Connection::~Connection (){
-    count--;
+//    count--;
     close(fd);
-    Log::out << "Connection fd: " << fd << "was closed" << endl;
+    Log::out << ("Connection fd: " + to_string(fd) + " was closed\n");
 }
 
 void Connection::compilePollFD (struct pollfd *pollFd){
@@ -37,9 +40,9 @@ void Connection::compilePollFD (struct pollfd *pollFd){
     pollFd->events = POLLIN | POLLRDHUP;
 }
 
-unsigned long Connection::activeConnection (){
-    return count;
-}
+//unsigned long Connection::activeConnection (){
+//    return count;
+//}
 
 Connection::ConnectType Connection::getType (){
     return cType;
@@ -71,7 +74,7 @@ NCS::Connection::httpHeader *Connection::readHttpHeader (){
         lIndex = index;
         bRead = read(fd, &buff[index], MAXLINE - index);
         if (bRead < 0){
-            perror("Connection::readHttpHeader read reach error:");
+            perror("[Connection::readHttpHeader] read reach error:");
             return nullptr;
         }
         index += bRead;

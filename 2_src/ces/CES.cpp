@@ -11,9 +11,10 @@ Shredder *shr = nullptr;
 Worker **CES::workers = nullptr; //worker per la gestione delle richieste
 
 void CES::initCES (int n){
+    #ifdef IMAGE_RESIZE
     shr = Shredder::getInstance();
     sleep(1);
-
+    #endif
     CES::nWorkers = n;
     workers = (Worker **) calloc(n, sizeof(Worker **));
     string name;

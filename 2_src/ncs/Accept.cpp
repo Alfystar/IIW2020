@@ -20,6 +20,7 @@ void Accept::thListener (NCS::Accept *a){
     int connsd;
     struct sockaddr info;
     socklen_t lenSockAddr = sizeof(info);
+    int count = 0;
     for (;;){
         // Attende sia presente almeno una connessione (che ha già superato l'handShake a 3 vie)
         // Si ottiene un Soket connesso
@@ -30,6 +31,7 @@ void Accept::thListener (NCS::Accept *a){
                     #ifdef DEBUG_LOG
                     Log::db << "Accept::thListener " << strerror(EMFILE) << "\n";
                     #endif
+                    cerr << "[Accept::thListener] error in accept, FD of process ended\n" << endl;
                     sleep(1);   //Sicuramente ci sono tante connessioni da gestire ancora
                     break;
                 default:
@@ -38,6 +40,7 @@ void Accept::thListener (NCS::Accept *a){
             }
         }
         c = new Connection(connsd, &info, lenSockAddr);
+        count++;
         a->q->pushWaitCon(c);
     }
 }

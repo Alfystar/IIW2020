@@ -1,0 +1,2 @@
+/usr/bin/ar qc libsimpleWeb.a  CMakeFiles/simpleWeb.dir/Connection.cpp.o
+/usr/bin/ranlib libsimpleWeb.a

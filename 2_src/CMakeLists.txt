@@ -7,8 +7,8 @@ project(HTTP-ImageServer)
 message("Sono Unix : ${UNIX}")
 
 add_compile_options(-Wall -Wextra -pedantic -Werror)
-add_compile_definitions(DEBUG_LOG)      # Abilita la scrittura sul file di log
-add_compile_definitions(IMAGE_RESIZE)   # Abilita il ridimensionamento dinamico delle immagini
+#add_compile_definitions(DEBUG_LOG)      # Abilita la scrittura sul file di log
+#add_compile_definitions(IMAGE_RESIZE)   # Abilita il ridimensionamento dinamico delle immagini
 #add_compile_definitions(DAD_RECREATE)   # Abilita la resilienza di ricreare il server se crasha
 
 set(EXE_NAME badAlphaWeb)

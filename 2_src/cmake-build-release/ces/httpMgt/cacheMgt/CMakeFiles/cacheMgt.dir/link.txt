@@ -1,0 +1,2 @@
+/usr/bin/ar qc libcacheMgt.a  CMakeFiles/cacheMgt.dir/Resource.cpp.o CMakeFiles/cacheMgt.dir/Shredder.cpp.o CMakeFiles/cacheMgt.dir/SyncUtilities.cpp.o
+/usr/bin/ranlib libcacheMgt.a
