@@ -263,6 +263,14 @@ void HtmlMessage::acceptExtractor (NCS::Connection::httpHeader &hHeader, imgRequ
     #ifdef DEBUG_LOG
     Log::db << "[HtmlMessage::acceptExtractor] " << it->first << " = " << it->second << endl;
     #endif
+    if(!it._M_cur){ // Non ho Trovato l'Accept, quindi di defautl ritorno il file
+        img.fileType = "*";
+        img.qFactor = 1;
+        return;
+    }
+//    cout << "[HtmlMessage::acceptExtractor] " << it->first << " = " << it->second << endl;
+
+
     size_t start = it->second.find("image/");
     if (start == string::npos){  // se non trovo "<MIME_type>" => non accetta "image/"
         start = it->second.find("*/*");

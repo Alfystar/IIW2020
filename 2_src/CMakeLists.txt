@@ -13,7 +13,7 @@ add_compile_options(-Wall -Wextra -pedantic -Werror)
 #add_compile_definitions(DAD_RECREATE)   # Abilita la resilienza di ricreare il server se crasha
 
 #add_compile_definitions(DEBUG_LOG)      # Abilita la scrittura sul file di log
-#add_compile_definitions(DEBUG_VERBOSE)      # Abilita la scrittura sul file di log
+add_compile_definitions(DEBUG_VERBOSE)      # Abilita la scrittura sul file di log
 
 
 set(EXE_NAME badAlphaWeb)
