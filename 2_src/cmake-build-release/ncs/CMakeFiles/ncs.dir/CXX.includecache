@@ -98,45 +98,7 @@ vector
 sysexits.h
 -
 
-/home/alfystar/Scrivania/IIW2020/2_src/ncs/Accept.cpp
-Accept.h
-/home/alfystar/Scrivania/IIW2020/2_src/ncs/Accept.h
-
-/home/alfystar/Scrivania/IIW2020/2_src/ncs/Accept.h
-cstdio
--
-cstring
--
-netinet/in.h
--
-mutex
--
-sys/time.h
--
-sys/resource.h
--
-Queue.h
-/home/alfystar/Scrivania/IIW2020/2_src/ncs/Queue.h
-Connection.h
--
-ncsDefine.h
-/home/alfystar/Scrivania/IIW2020/2_src/ncs/ncsDefine.h
-Log.h
--
-../GLOBAL_DEF.h
-/home/alfystar/Scrivania/IIW2020/2_src/GLOBAL_DEF.h
-
-/home/alfystar/Scrivania/IIW2020/2_src/ncs/NCS.cpp
-NCS.h
-/home/alfystar/Scrivania/IIW2020/2_src/ncs/NCS.h
-
-/home/alfystar/Scrivania/IIW2020/2_src/ncs/NCS.h
-mutex
--
-Accept.h
-/home/alfystar/Scrivania/IIW2020/2_src/ncs/Accept.h
-Connection.h
--
+/home/alfystar/Scrivania/IIW2020/2_src/ncs/Queue.cpp
 Queue.h
 /home/alfystar/Scrivania/IIW2020/2_src/ncs/Queue.h
 
@@ -169,6 +131,8 @@ timeSpecOp.h
 /home/alfystar/Scrivania/IIW2020/2_src/ncs/timeSpecOp.h
 
 /home/alfystar/Scrivania/IIW2020/2_src/ncs/ncsDefine.h
+../GLOBAL_DEF.h
+/home/alfystar/Scrivania/IIW2020/2_src/GLOBAL_DEF.h
 sysexits.h
 -
 

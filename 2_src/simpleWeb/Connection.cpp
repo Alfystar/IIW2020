@@ -6,7 +6,9 @@
 
 using namespace NCS;
 
-//std::atomic <unsigned long> Connection::count(0);
+#ifdef COUNT_INSTANCE
+std::atomic <unsigned long> Connection::count(0);
+#endif
 
 Connection::Connection (int fd) : Connection(fd, NULL, 0){
     cType = internalConnect;
@@ -14,8 +16,6 @@ Connection::Connection (int fd) : Connection(fd, NULL, 0){
 
 Connection::Connection (int fd, struct sockaddr *sockInfo, socklen_t socklen){
     this->fd = fd;
-    if(fd<=0)
-        cerr << "fd impossibile\n";
 
     this->socklen = socklen;
     if (sockInfo){
@@ -25,24 +25,43 @@ Connection::Connection (int fd, struct sockaddr *sockInfo, socklen_t socklen){
     }
     else
         memset(&this->sockInfo, 0, sizeof(struct sockaddr));
-
-//    count++;
+    //todo cancelare
+    if (cType == tcpConnect){
+        char hex_string[20];
+        sprintf(hex_string, "%p", (void *) this); //convert number to hex
+        cout << ("Connection fd: " + to_string(fd) + " are created, memory: " + string(hex_string) + "\n");
+    }
+    #ifdef COUNT_INSTANCE
+    count++;
+    #endif
 }
 
 Connection::~Connection (){
-//    count--;
+    #ifdef COUNT_INSTANCE
+    count--;
+    #endif
+
+    //todo cancelare
+    char hex_string[20];
+    sprintf(hex_string, "%p", (void *) this); //convert number to hex
+    cout << ("Connection fd: " + to_string(fd) + " will closed, memory: " + string(hex_string) + "\n");
+    if (cType == httpConnect)
+        shutdown(fd, SHUT_RDWR);
     close(fd);
-    Log::out << ("Connection fd: " + to_string(fd) + " was closed\n");
 }
 
 void Connection::compilePollFD (struct pollfd *pollFd){
     pollFd->fd = fd;
-    pollFd->events = POLLIN | POLLRDHUP;
+    pollFd->events = POLLIN | POLLRDHUP | POLLERR | POLLHUP | POLLNVAL;
 }
 
-//unsigned long Connection::activeConnection (){
-//    return count;
-//}
+#ifdef COUNT_INSTANCE
+
+unsigned long Connection::activeConnection (){
+    return count;
+}
+
+#endif
 
 Connection::ConnectType Connection::getType (){
     return cType;
@@ -84,11 +103,12 @@ NCS::Connection::httpHeader *Connection::readHttpHeader (){
             endHeader += 4;
             break;
         }
-        else if (bRead == 0){ //Raggiunto end-of-file o fine del buffer
+        else if (bRead == 0){ // Connessione troncata dall'altra metà
             return nullptr;
         }
     }
     //Definiamo una stringa dal buffer letto
+    // Sottraendo i 2 puntatori otteniamo la lunghezza dei byte da copiare
     string str(buff, endHeader - buff);
 
     // Trasformiamo la stringa in uno streambuf
@@ -103,7 +123,8 @@ NCS::Connection::httpHeader *Connection::readHttpHeader (){
         cType = httpConnect;
     }
     else{
-        delete ret;
+        cout << "[Connection::readHttpHeader] delete message\n";
+        //        delete ret;
         return nullptr; //Il messaggio ricevuto non era http
     }
     return ret;

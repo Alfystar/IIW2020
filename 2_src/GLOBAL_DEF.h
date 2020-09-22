@@ -5,7 +5,6 @@
 #ifndef HTTP_IMAGESERVER_GLOBAL_DEF_H
 #define HTTP_IMAGESERVER_GLOBAL_DEF_H
 
-
 #include <sysexits.h>
 
 // main startUp
@@ -13,10 +12,10 @@
 
 
 // Accept settings
-#define BACKLOG 100000
+#define BACKLOG 1000    //Connessioni pendenti sul File System
+#define MAX_CON 4096    //File descriptor che il processo può accettare al massimo
 
 // Queue setting
-#define MAX_CON 4096
 
 // Shreader setting
 #define KiB 1024

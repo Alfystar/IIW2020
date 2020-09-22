@@ -43,10 +43,11 @@ namespace NCS {
         int waitPipe[2], readyPipe[2];
         // pollList contiene dati per la poll
         // connectionList è il nostro oggetto Connesione per mantenere traccia
-        int nextPoll; //Primo indice libero / n° elementi presenti
-        struct pollfd *pollList;    //Array necessario alla poll
-        Connection **connectionList; // Array di PUNTATORI
 
+        int nextPoll; //Primo INDICE libero / n°-1 elementi presenti
+        struct pollfd pollList[MAX_CON];     //Array necessario alla poll
+        Connection *connectionList[MAX_CON]; // Array di PUNTATORI
+        std::mutex popReadyWait;
     public:
         Queue ();
         Connection *popReadyCon ();

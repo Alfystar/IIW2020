@@ -179,7 +179,7 @@ namespace SimpleWeb {
             CaseInsensitiveMultimap result;
             std::string line;
             std::size_t param_end;
-            while (getline(stream, line) && (param_end = line.find(':')) != std::string::npos){
+            while (getline(stream, line) && ((param_end = line.find(':')) != std::string::npos)){
                 std::size_t value_start = param_end + 1;
                 while (value_start + 1 < line.size() && line[value_start] == ' ')
                     ++value_start;

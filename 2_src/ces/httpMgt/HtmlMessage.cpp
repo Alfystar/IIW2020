@@ -104,7 +104,8 @@ void HtmlMessage::htmlPageLoad (){
     body = "";
     int bytes;
     do{
-        if (!textFile.getline(lineBuff, std::min(len, sizeof(lineBuff)))){
+        //todo: cambio logica del /r/n per i file di testo
+        if (!textFile.read(lineBuff, std::min(len, sizeof(lineBuff) - 1))){
             Log::err << "HtmlMessage::htmlPageLoad Reading text from filesystem get error " << strerror(errno) << "\n";
             status = SimpleWeb::StatusCode::server_error_internal_server_error;
             typePayload = noBody;
@@ -112,7 +113,7 @@ void HtmlMessage::htmlPageLoad (){
         }
 
         bytes = textFile.gcount();
-
+        lineBuff[bytes] = '\0';
         if (textFile.rdstate() == ifstream::eofbit){ //Raggiunto End-Of-File Prematuramente
             Log::err << "HtmlMessage::htmlPageLoad Raggiunto End-Of-File Prematuramente" << endl;
             status = SimpleWeb::StatusCode::server_error_internal_server_error;
@@ -134,10 +135,10 @@ void HtmlMessage::htmlPageLoad (){
         }
 
         body.append(lineBuff);
-        body.append("\r\n");
+        //        body.append("\r\n");
         len -= bytes;
     }while (len > 0);
-    body.append("\r\n\r\n");
+    //    body.append("\r\n");
     lenBody = body.length();
 }
 
@@ -240,9 +241,9 @@ string HtmlMessage::dataNow (){
 //Funzione che dato il path di un file, ritorna l'ultima modifica dello stesso
 //Da trasformare per ritornare la stringa e non printarla
 string HtmlMessage::lastChangeFile (const char *path){
-    struct stat attr;
-    stat(path, &attr);
-    char *dataStr = ctime(&attr.st_mtime);
+    struct stat attribute;
+    stat(path, &attribute);
+    char *dataStr = ctime(&attribute.st_mtime);
     dataStr[strlen(dataStr) - 2] = '\0';    //Rimuovo 'accapo automatico
     string lastDate = dataStr;
     return lastDate;

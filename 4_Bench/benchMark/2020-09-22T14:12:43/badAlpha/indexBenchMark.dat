@@ -1,0 +1,6 @@
+Prove sperimentali del file <index> i dati sono raccolti nelle colonne:
+N_CPU	N_parCon	N_ReqXSec	ReqTime	HttpSpeedRate
+1	10	5315.73	1.881	6203.45
+1	20	5609.63	3.565	6546.44
+1	30	5594.1	5.363	6528.32
+1	40	258.3	154.861	301.69
