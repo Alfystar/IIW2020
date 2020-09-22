@@ -32,9 +32,11 @@ void Accept::thListener (NCS::Accept *a){
                     #ifdef DEBUG_LOG
                     Log::db << "Accept::thListener " << strerror(EMFILE) << "\n";
                     #endif
+
+                    #ifdef DEBUG_VERBOSE
                     cerr << "[Accept::thListener] too many connection\n" << endl;
+                    #endif
                     close(connsd);
-//                    sleep(1);   //Sicuramente ci sono tante connessioni da gestire ancora
                     continue;
                 default:
                     Log::err << "[Accept::thListener] Error in accept" << strerror(EMFILE) << "\n";
@@ -42,11 +44,6 @@ void Accept::thListener (NCS::Accept *a){
             }
         }
         c = new Connection(connsd, &info, lenSockAddr);
-        //        // todo cancellare
-        //        char hex_string[20];
-        //        sprintf(hex_string, "%p", (void *)c); //convert number to hex
-        //        cout << ("[Accept::thListener] Create connection: " + string(hex_string) +"\n");
-
         count++;
         a->q->pushWaitCon(c);
     }

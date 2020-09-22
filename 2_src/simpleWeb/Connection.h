@@ -21,7 +21,7 @@
 
 #define MAXLINE 4096
 
-#define COUNT_INSTANCE 1 // Define di debug
+//#define COUNT_INSTANCE 1 // Define di debug
 
 namespace NCS {
     using namespace std;

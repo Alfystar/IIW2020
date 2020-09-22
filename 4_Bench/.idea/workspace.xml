@@ -20,20 +20,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="35244099-d818-433d-ba8a-cb62e9c2bd02" name="Default Changelist" comment="testRunner ongoing">
-      <change beforePath="$PROJECT_DIR$/../03_TCP_apache2_Capture Comlete.pcapng" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../03_TCP_apache2_Capture LastMissing.pcapng" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../1_Progettazione/iiwPrj.xopp" beforeDir="false" afterPath="$PROJECT_DIR$/../1_Progettazione/iiwPrj.xopp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/GLOBAL_DEF.h" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/GLOBAL_DEF.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/benchMark/2020-09-22T17:50:00/apache2/indexBenchMark.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/benchMark/2020-09-22T17:50:00/badAlpha/indexBenchMark.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../2_src/ces/Worker.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/ces/Worker.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/ces/httpMgt/HttpMgt.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/ces/httpMgt/HttpMgt.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/ces/httpMgt/headerForm.h" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/ces/httpMgt/headerForm.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/ces/httpMgt/HtmlMessage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/ces/httpMgt/HtmlMessage.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../2_src/ncs/Accept.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/ncs/Accept.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../2_src/ncs/Queue.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/ncs/Queue.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../2_src/simpleWeb/Connection.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/simpleWeb/Connection.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/simpleWeb/Connection.h" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/simpleWeb/Connection.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/benchMark/2020-09-22T14:09:57/badAlpha/indexBenchMark.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/benchMark/2020-09-22T14:12:43/badAlpha/indexBenchMark.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/benchMark/2020-09-22T14:17:14/badAlpha/indexBenchMark.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/elencoDat.txt" beforeDir="false" afterPath="$PROJECT_DIR$/elencoDat.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testRunner.py" beforeDir="false" afterPath="$PROJECT_DIR$/testRunner.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -111,7 +108,7 @@
       <workItem from="1600629890485" duration="9539000" />
       <workItem from="1600681326313" duration="5908000" />
       <workItem from="1600699376570" duration="21449000" />
-      <workItem from="1600767487497" duration="18267000" />
+      <workItem from="1600767487497" duration="19317000" />
     </task>
     <task id="LOCAL-00001" summary="testRunner ongoing">
       <created>1600634635703</created>
@@ -148,7 +145,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600779530600</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="testRunner ongoing">
+      <created>1600789597179</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1600789597179</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -180,22 +184,22 @@
       <screen x="0" y="0" width="1920" height="1038" />
     </state>
     <state x="747" y="177" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1038@0.0.1920.1038" timestamp="1600632419923" />
-    <state width="914" height="275" key="GridCell.Tab.0.bottom" timestamp="1600777058826">
+    <state width="914" height="391" key="GridCell.Tab.0.bottom" timestamp="1600789991500">
       <screen x="0" y="0" width="1920" height="1038" />
     </state>
-    <state width="914" height="275" key="GridCell.Tab.0.bottom/0.0.1920.1038@0.0.1920.1038" timestamp="1600777058826" />
-    <state width="914" height="275" key="GridCell.Tab.0.center" timestamp="1600777058826">
+    <state width="914" height="391" key="GridCell.Tab.0.bottom/0.0.1920.1038@0.0.1920.1038" timestamp="1600789991500" />
+    <state width="914" height="391" key="GridCell.Tab.0.center" timestamp="1600789991500">
       <screen x="0" y="0" width="1920" height="1038" />
     </state>
-    <state width="914" height="275" key="GridCell.Tab.0.center/0.0.1920.1038@0.0.1920.1038" timestamp="1600777058826" />
-    <state width="914" height="275" key="GridCell.Tab.0.left" timestamp="1600777058825">
+    <state width="914" height="391" key="GridCell.Tab.0.center/0.0.1920.1038@0.0.1920.1038" timestamp="1600789991500" />
+    <state width="914" height="391" key="GridCell.Tab.0.left" timestamp="1600789991499">
       <screen x="0" y="0" width="1920" height="1038" />
     </state>
-    <state width="914" height="275" key="GridCell.Tab.0.left/0.0.1920.1038@0.0.1920.1038" timestamp="1600777058825" />
-    <state width="914" height="275" key="GridCell.Tab.0.right" timestamp="1600777058826">
+    <state width="914" height="391" key="GridCell.Tab.0.left/0.0.1920.1038@0.0.1920.1038" timestamp="1600789991499" />
+    <state width="914" height="391" key="GridCell.Tab.0.right" timestamp="1600789991500">
       <screen x="0" y="0" width="1920" height="1038" />
     </state>
-    <state width="914" height="275" key="GridCell.Tab.0.right/0.0.1920.1038@0.0.1920.1038" timestamp="1600777058826" />
+    <state width="914" height="391" key="GridCell.Tab.0.right/0.0.1920.1038@0.0.1920.1038" timestamp="1600789991500" />
     <state width="1314" height="337" key="GridCell.Tab.1.bottom" timestamp="1600639572924">
       <screen x="0" y="0" width="1920" height="1038" />
     </state>
@@ -216,16 +220,16 @@
       <screen x="0" y="0" width="1920" height="1038" />
     </state>
     <state x="1028" y="265" key="IDE.errors.dialog/0.0.1920.1038@0.0.1920.1038" timestamp="1600638297622" />
-    <state x="883" y="255" key="Vcs.Push.Dialog.v2" timestamp="1600779532335">
+    <state x="883" y="255" key="Vcs.Push.Dialog.v2" timestamp="1600789609341">
       <screen x="0" y="0" width="1920" height="1038" />
     </state>
-    <state x="883" y="255" key="Vcs.Push.Dialog.v2/0.0.1920.1038@0.0.1920.1038" timestamp="1600779532335" />
+    <state x="883" y="255" key="Vcs.Push.Dialog.v2/0.0.1920.1038@0.0.1920.1038" timestamp="1600789609341" />
     <state width="637" height="519" key="XDebugger.FullValuePopup" timestamp="1600632971220">
       <screen x="0" y="0" width="1920" height="1038" />
     </state>
     <state width="637" height="519" key="XDebugger.FullValuePopup/0.0.1920.1038@0.0.1920.1038" timestamp="1600632971220" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/4_Bench$testRunner.coverage" NAME="testRunner Coverage Results" MODIFIED="1600777034359" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/4_Bench$testRunner.coverage" NAME="testRunner Coverage Results" MODIFIED="1600789800414" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

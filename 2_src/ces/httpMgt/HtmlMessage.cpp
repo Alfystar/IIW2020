@@ -104,7 +104,6 @@ void HtmlMessage::htmlPageLoad (){
     body = "";
     int bytes;
     do{
-        //todo: cambio logica del /r/n per i file di testo
         if (!textFile.read(lineBuff, std::min(len, sizeof(lineBuff) - 1))){
             Log::err << "HtmlMessage::htmlPageLoad Reading text from filesystem get error " << strerror(errno) << "\n";
             status = SimpleWeb::StatusCode::server_error_internal_server_error;
@@ -135,10 +134,8 @@ void HtmlMessage::htmlPageLoad (){
         }
 
         body.append(lineBuff);
-        //        body.append("\r\n");
         len -= bytes;
     }while (len > 0);
-    //    body.append("\r\n");
     lenBody = body.length();
 }
 

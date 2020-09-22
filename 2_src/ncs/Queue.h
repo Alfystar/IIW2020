@@ -47,7 +47,6 @@ namespace NCS {
         int nextPoll; //Primo INDICE libero / n°-1 elementi presenti
         struct pollfd pollList[MAX_CON];     //Array necessario alla poll
         Connection *connectionList[MAX_CON]; // Array di PUNTATORI
-        std::mutex popReadyWait;
     public:
         Queue ();
         Connection *popReadyCon ();

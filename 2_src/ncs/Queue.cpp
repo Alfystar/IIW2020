@@ -7,9 +7,6 @@
 using namespace NCS;
 
 Queue::Queue (){
-
-    if (popReadyWait.try_lock())popReadyWait.unlock();
-
     //O_DIRECT
     if (pipe2(waitPipe, 0)){
         perror("[Queue::Queue] Error create waitPipe:");
@@ -54,16 +51,12 @@ void Queue::thDispatcher (Queue *q){
     sigset_t sigmask;
     sigfillset(&sigmask);
 
-    int __attribute__((unused)) originalReady;
-
     while (true){
-
         ready = ppoll(q->pollList, q->nextPoll, &t, &sigmask);
-        originalReady = ready;
 
         if (ready == 0){ //Time out
             #ifdef DEBUG_LOG
-//            cout << "[Queue::thDispatcher] poll Time out\n";
+            //Log::db << "[Queue::thDispatcher] poll Time out\n";
             #endif
             continue;
         }
@@ -91,41 +84,46 @@ void Queue::thDispatcher (Queue *q){
                 }
 
                 if (bitMask & POLLHUP){
+                    #ifdef DEBUG_VERBOSE
                     cout << "[Queue::thDispatcher] POLLHUP bit: Fin & Ack has been recived and send\n";
+                    #endif
                     q->unValidCon(i);
                     continue;
                 }
                 if (bitMask & (POLLRDHUP)){
                     // La CON è stata tagliata dal keep-alive
+                    #ifdef DEBUG_VERBOSE
                     cout << "[Queue::thDispatcher] POLLRDHUP bit: Stream  socket  peer  closed  connection\n";
+                    #endif
                     q->unValidCon(i);
                     continue;
                 }
                 if (bitMask & POLLERR){
-                    cout
-                            << "[Queue::thDispatcher] POLLERR bit: Error condition (only returned in revents; ignored in events)\n";
+                    #ifdef DEBUG_VERBOSE
+                    cout << "[Queue::thDispatcher] POLLERR bit: Error condition (only returned in revents; ignored in events)\n";
+                    #endif
                     q->unValidCon(i);
                     continue;
                 }
                 if (bitMask & POLLNVAL){
-                    cout
-                            << "[Queue::thDispatcher] POLLNVAL bit: Invalid request: fd not open (only returned in revents; ignored in events)\n";
+                    #ifdef DEBUG_VERBOSE
+                    cout << "[Queue::thDispatcher] POLLNVAL bit: Invalid request: fd not open (only returned in revents; ignored in events)\n";
+                    #endif
                     q->unValidCon(i);
                     continue;
                 }
 
                 if (bitMask & POLLIN){
+                    #ifdef DEBUG_VERBOSE
                     cout << "[Queue::thDispatcher] POLLIN bit: Dato da leggere\n";
-                    //                    q->unValidCon(i);
+                    #endif
                     continue;
                 }
                 #ifdef DEBUG_LOG
                 std::bitset <16> x(bitMask);
                 Log::db << "[Queue::thDispatcher] poll bitMask = " << x << '\n';
                 #endif
-                cerr << "Queue [FINITO FOR SENZA AVER FATTO NULLA]\n";
             }
-
         }
     }
 }
@@ -168,15 +166,10 @@ void Queue::popWaitingCon (){
 
 void Queue::pushReadyCon (int index){
     Connection *c = reduceList(index);
-    //    //todo cancellare
-    //    char hex_string[20];
-    //    sprintf(hex_string, "%p", (void *) c); //convert number to hex
-    //    cout << ("[Queue::pushReadyCon] push on the connection: " + string(hex_string) + "\n");
     pushPipe(readyPipe[writeEnd], c);
 }
 
 Connection *Queue::popReadyCon (){
-    //    const std::lock_guard <std::mutex> lock(popReadyWait);
     Connection *ret;
     if (read(readyPipe[readEnd], &ret, sizeof(Connection *)) == -1){
         switch (errno){
