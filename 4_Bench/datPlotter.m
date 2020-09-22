@@ -12,10 +12,14 @@ function out = datPlotter(argv)
 
 filesTab = readtable(argv, 'Delimiter', '\n');
 
+disp(filesTab)
+
 for i = 1:height(filesTab)
     file = char(filesTab.(1)(i));
+    disp("Working on .dat file: " + file);
     analizeDatFile(file);
 end
+
 out = 0;
 
 end
@@ -25,20 +29,28 @@ function sfile = analizeDatFile(file)
 datValue = retrieveData(file);
 
 for i = 2+1:size(datValue, 2)
+    disp("Start printing Graph n° " + i)
     fig = printGraph(datValue(:, [1 2 i]), i);
-    
+    disp("Printing Graph " + i + " done")
+
     k = strfind(file, '/');
     
     folder = extractBefore(file, k(end)); %% use last '/' to get path
     
+    
+    w = warning('off','all');
     mkdir(folder + "/imgs");
+    warning(w);
+    
+    
     
     filename = datValue(:,i).Properties.VariableNames(1);
     
     path = folder + "/imgs/" + filename;
-    
+    disp("Saving in: " + path + ".png")
     saveas(fig, path, 'png');
 end
+    fprintf('\n')
 
 sfile = 0;
 end
@@ -93,11 +105,8 @@ end
 
 hold off
 
-
 xlabel(XName)%, 'Interpreter', 'none');
 ylabel(YName)%, 'Interpreter', 'none');
-
-%legend('Interpreter','none', 'Location', 'best');
 
 if(valueTab(1,2) < valueTab(end,2)) %% the graph is increasing
     position = 'Northwest';

@@ -44,6 +44,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add option="-DDEBUG_VERBOSE"/>
 					<Add option="-DBOOST_ALL_NO_LIB"/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb/."/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem/."/>
@@ -73,6 +74,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add option="-DDEBUG_VERBOSE"/>
 					<Add option="-DBOOST_ALL_NO_LIB"/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb/."/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem/."/>
@@ -102,6 +104,7 @@
 				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add option="-DDEBUG_VERBOSE"/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb/."/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem"/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem/."/>
@@ -127,6 +130,7 @@
 				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add option="-DDEBUG_VERBOSE"/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb/."/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem"/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem/."/>
@@ -152,6 +156,7 @@
 				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add option="-DDEBUG_VERBOSE"/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ncs/."/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb"/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem"/>
@@ -179,6 +184,7 @@
 				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add option="-DDEBUG_VERBOSE"/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ncs/."/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb"/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem"/>
@@ -206,6 +212,7 @@
 				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add option="-DDEBUG_VERBOSE"/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem/."/>
 					<Add directory="/usr/include/c++/9"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
@@ -229,6 +236,7 @@
 				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add option="-DDEBUG_VERBOSE"/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem/."/>
 					<Add directory="/usr/include/c++/9"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
@@ -252,6 +260,7 @@
 				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add option="-DDEBUG_VERBOSE"/>
 					<Add option="-DBOOST_ALL_NO_LIB"/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ces/."/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb"/>
@@ -284,6 +293,7 @@
 				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add option="-DDEBUG_VERBOSE"/>
 					<Add option="-DBOOST_ALL_NO_LIB"/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ces/."/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb"/>
@@ -316,6 +326,7 @@
 				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add option="-DDEBUG_VERBOSE"/>
 					<Add option="-DBOOST_ALL_NO_LIB"/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb"/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem"/>
@@ -346,6 +357,7 @@
 				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add option="-DDEBUG_VERBOSE"/>
 					<Add option="-DBOOST_ALL_NO_LIB"/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb"/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem"/>
@@ -376,6 +388,7 @@
 				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add option="-DDEBUG_VERBOSE"/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb"/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem"/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ncs"/>
@@ -402,6 +415,7 @@
 				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add option="-DDEBUG_VERBOSE"/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb"/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/logSystem"/>
 					<Add directory="/home/alfystar/Scrivania/IIW2020/2_src/ncs"/>

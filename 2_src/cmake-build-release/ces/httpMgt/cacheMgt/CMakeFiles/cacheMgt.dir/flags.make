@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_FLAGS = -O3 -DNDEBUG   -Wall -Wextra -pedantic -Werror -std=gnu++17
 
-CXX_DEFINES = 
+CXX_DEFINES = -DDEBUG_VERBOSE
 
 CXX_INCLUDES = -I/home/alfystar/Scrivania/IIW2020/2_src/simpleWeb -I/home/alfystar/Scrivania/IIW2020/2_src/logSystem -I/home/alfystar/Scrivania/IIW2020/2_src/ncs -I/home/alfystar/Scrivania/IIW2020/2_src/ces/httpMgt/cacheMgt/. 
 
