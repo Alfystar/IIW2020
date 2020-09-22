@@ -15,7 +15,7 @@ Action HttpMgt::connectionRequest (NCS::Connection *c){
         #ifdef DEBUG_LOG
         Log::db << "[HttpMgt::connectionRequest] hHeader = null \n";
         #endif
-        delete c;
+//        delete c;
         return ConClosed;
     }
     Action actionRet;
@@ -39,34 +39,29 @@ Action HttpMgt::connectionRequest (NCS::Connection *c){
     switch (code){
         case StatusCode::success_ok: //get
             actionRet = send(c, mes);
-            if (actionRet != RequestComplete)
-                return actionRet;
+            if (actionRet == RequestComplete)
+                return RequestComplete;
             break;
         case StatusCode::success_no_content: // head
             actionRet = stringSend(c, mes.header);
-            if (actionRet != RequestComplete)
-                return actionRet;
+            if (actionRet == RequestComplete)
+                return RequestComplete;
             break;
-        case StatusCode::client_error_not_acceptable:
+        default:            // Connessione non gestita o errore, quindi da chiudere
             mes.status = code;
             mes.body = fmt::format(mes.body, hHeader->method);
-            actionRet = send(c, mes);
-            if (actionRet != RequestComplete)
-                return actionRet;
-            break;
-        default:
-            // Connessione invalida
+            send(c, mes);
             break;
     }
-    return RequestComplete;
+    return ConClosed;
 }
 
 Action HttpMgt::send (NCS::Connection *c, HtmlMessage &msg){
     Action actionRet;
 
     actionRet = stringSend(c, msg.header);
-    if (actionRet != RequestComplete)
-        return actionRet;
+    if (actionRet == ConClosed)
+        return ConClosed;
 
     switch (msg.typePayload){
         case text:
@@ -89,13 +84,13 @@ Action HttpMgt::stringSend (NCS::Connection *c, string &msg){
                 #ifdef DEBUG_LOG
                 Log::db << "[HttpMgt::stringSend] sendStr come brokenPipe error\n";
                 #endif
-                delete c;
+                //                delete c;
                 return ConClosed;
             default:
                 #ifdef DEBUG_LOG
                 Log::db << "[HttpMgt::stringSend] sendStr come error " << strerror(errno) << "\n";
                 #endif
-                delete c;
+                //                delete c;
                 return ConClosed;
         }
     }
@@ -108,7 +103,7 @@ Action HttpMgt::binarySend (NCS::Connection *c, HtmlMessage &msg){
         char data[4096];
         do{
             if (!msg.inStream->read(data, std::min(lenght, sizeof(data)))){
-                delete c;
+                //                delete c;
                 #ifdef DEBUG_LOG
                 Log::db << "[HttpMgt::rawSend] Reading image from filesystem get error " << strerror(errno) << "\n";
                 #endif
@@ -124,13 +119,13 @@ Action HttpMgt::binarySend (NCS::Connection *c, HtmlMessage &msg){
                         #ifdef DEBUG_LOG
                         Log::db << "[HttpMgt::rawSend] Send image to socket get brokenPipe error\n";
                         #endif
-                        delete c;
+                        //                        delete c;
                         return ConClosed;
                     default:
                         #ifdef DEBUG_LOG
                         Log::db << "[HttpMgt::rawSend] Send image to socket get error " << strerror(errno) << "\n";
                         #endif
-                        delete c;
+                        //                        delete c;
                         return ConClosed;
                 }
             }

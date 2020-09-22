@@ -7,7 +7,11 @@
 using namespace NCS;
 
 Queue::Queue (){
-    if (pipe2(waitPipe, O_DIRECT)){
+
+    if (popReadyWait.try_lock())popReadyWait.unlock();
+
+    //O_DIRECT
+    if (pipe2(waitPipe, 0)){
         perror("[Queue::Queue] Error create waitPipe:");
         exit(EX_IOERR);
     }
@@ -17,17 +21,25 @@ Queue::Queue (){
         exit(EX_IOERR);
     }
 
-    if (pipe2(readyPipe, O_DIRECT)){
+    if ((fcntl(waitPipe[readEnd], F_SETPIPE_SZ, 1 * MiB)) == -1){
+        perror("[Queue::Queue] Error to EncreIncreasease  waitPipe to 1Mib:");
+        exit(EX_IOERR);
+    }
+
+    if (pipe2(readyPipe, 0)){
         perror("[Queue::Queue] Error create readyPipe:");
         exit(EX_IOERR);
     }
 
-    pollList = (struct pollfd *) calloc(MAX_CON, sizeof(struct pollfd));
-    connectionList = (Connection **) calloc(MAX_CON, sizeof(Connection **));
+    if ((fcntl(readyPipe[readEnd], F_SETPIPE_SZ, 1 * MiB)) == -1){
+        perror("[Queue::Queue] Error to Increase  readyPipe to 1Mib:");
+        exit(EX_IOERR);
+    }
 
     connectionList[0] = new Connection(waitPipe[readEnd]);
     connectionList[0]->compilePollFD(&pollList[0]);
-    nextPoll = 1;
+
+    nextPoll = 1;   //Nella posizione 0 c'è il FD della waitPipe[readEnd]
 
     tDisp = new std::thread(thDispatcher, this);
 }
@@ -41,55 +53,84 @@ void Queue::thDispatcher (Queue *q){
     int ready;
     sigset_t sigmask;
     sigfillset(&sigmask);
+
+    int __attribute__((unused)) originalReady;
+
     while (true){
-        ready = ppoll(q->pollList, q->nextPoll, &t, &sigmask);
+        //&sigmask
+        ready = ppoll(q->pollList, q->nextPoll, &t, nullptr);
+        originalReady = ready;
+
         if (ready == 0){ //Time out
-            // All ok
+            #ifdef DEBUG_LOG
+            cout << "[Queue::thDispatcher] poll Time out\n";
+            #endif
+            continue;
         }
-        else if (ready == -1){
+        if (ready == -1){
             perror("[Queue::thDispatcher] ppoll error:");
-            exit(-1);
+            exit(EX_IOERR);
         }
-        else{ //Qualcosa da fare:
-            for (int i = 0; ready > 0; i++){
-                int bitMask = q->pollList[i].revents;
-                if (bitMask & POLLIN){ //Dato disponibile
-                    ready--;
+        //Qualcosa da fare:
+        for (int i = q->nextPoll - 1; ready > 0 && i >= 0; i--){
+            int bitMask = q->pollList[i].revents;
+
+            if (bitMask){
+                ready--;
+                if (bitMask == POLLIN){ //Dato disponibile
                     if (i == 0){
                         //Siamo stati svegliati dalla la ToWaitingPipe e c'è da leggere dati
                         q->popWaitingCon(); //leggo i dati nella pipe
+                        continue;
                     }
                     else{
                         //Una COM ha un dato Disponibile
                         q->pushReadyCon(i);
+                        continue;
                     }
                 }
-                else if (bitMask & POLLRDHUP){
-                    // La CON è stata tagliata dal keep-alive
-                    ready--;
+
+                if (bitMask & POLLHUP){
+                    cout << "[Queue::thDispatcher] POLLHUP bit: Fin & Ack has been recived and send\n";
                     q->unValidCon(i);
+                    continue;
                 }
-                else{
-                    // Un evento non specificato è avvenuto al FD
-                    #ifdef DEBUG_LOG
-                    if (bitMask){    // Un segnale ha causato uscita dalla poll
-                        std::bitset <16> x(bitMask);
-                        Log::db << "[Queue::thDispatcher] poll bitMask = " << x << '\n';
-                    }
-                    else{
-                        // Questo FD non è stato toccato
-                    }
-                    #endif
+                if (bitMask & (POLLRDHUP)){
+                    // La CON è stata tagliata dal keep-alive
+                    cout << "[Queue::thDispatcher] POLLRDHUP bit: Stream  socket  peer  closed  connection\n";
+                    q->unValidCon(i);
+                    continue;
                 }
+                if (bitMask & POLLERR){
+                    cout
+                            << "[Queue::thDispatcher] POLLERR bit: Error condition (only returned in revents; ignored in events)\n";
+                    q->unValidCon(i);
+                    continue;
+                }
+                if (bitMask & POLLNVAL){
+                    cout
+                            << "[Queue::thDispatcher] POLLNVAL bit: Invalid request: fd not open (only returned in revents; ignored in events)\n";
+                    q->unValidCon(i);
+                    continue;
+                }
+
+                if (bitMask & POLLIN){
+                    cout << "[Queue::thDispatcher] POLLIN bit: Dato da leggere\n";
+                    //                    q->unValidCon(i);
+                    continue;
+                }
+                #ifdef DEBUG_LOG
+                std::bitset <16> x(bitMask);
+                Log::db << "[Queue::thDispatcher] poll bitMask = " << x << '\n';
+                #endif
+                cerr << "Queue [FINITO FOR SENZA AVER FATTO NULLA]\n";
             }
+
         }
     }
 }
 
 void Queue::pushWaitCon (Connection *con){
-    static int i = 0;
-    cout << "pushPipe" << i << "\n";
-    i++;
     pushPipe(waitPipe[writeEnd], con);
 }
 
@@ -97,7 +138,7 @@ void Queue::popWaitingCon (){
 
     bool end = false;
     do{
-        Connection *c = nullptr;
+        Connection *c;
         if (read(waitPipe[readEnd], &c, sizeof(Connection *)) == -1){
             switch (errno){
                 case EAGAIN:
@@ -112,19 +153,30 @@ void Queue::popWaitingCon (){
             }
         }
         else{
-            connectionList[nextPoll] = c;
-            connectionList[nextPoll]->compilePollFD(&pollList[nextPoll]);
-            nextPoll++;
+            if (nextPoll == MAX_CON - 1){
+                cerr << "[Queue::popWaitingCon] try to add new wait connection but queue end!\nConnection will close";
+                delete c;
+            }
+            else{
+                connectionList[nextPoll] = c;
+                connectionList[nextPoll]->compilePollFD(&pollList[nextPoll]);
+                nextPoll++;
+            }
         }
     }while (!end);
 }
 
 void Queue::pushReadyCon (int index){
-    pushPipe(readyPipe[writeEnd], connectionList[index]);
-    reduceList(index);
+    Connection *c = reduceList(index);
+    //    //todo cancellare
+    //    char hex_string[20];
+    //    sprintf(hex_string, "%p", (void *) c); //convert number to hex
+    //    cout << ("[Queue::pushReadyCon] push on the connection: " + string(hex_string) + "\n");
+    pushPipe(readyPipe[writeEnd], c);
 }
 
 Connection *Queue::popReadyCon (){
+    //    const std::lock_guard <std::mutex> lock(popReadyWait);
     Connection *ret;
     if (read(readyPipe[readEnd], &ret, sizeof(Connection *)) == -1){
         switch (errno){
@@ -145,22 +197,30 @@ void Queue::unValidCon (int index){
 // Funzione NON rientrante (ma tanto deve essere chiamata sempre da solo thDispatcher)
 Connection *Queue::reduceList (int index){
     Connection *trash = connectionList[index];
-    //Copio l'ultimo nello slot liberato
+
+    // Cancello la casella per evitare copie
+    connectionList[index] = 0;
+    pollList[index] = {};
+    // Copio l'ultimo nello slot liberato
     connectionList[index] = connectionList[nextPoll - 1];
-    memcpy(&pollList[index], &pollList[nextPoll - 1], sizeof(struct pollfd));
+    pollList[index] = pollList[nextPoll - 1];
+    // Cancello l'ultimo per evitare copie
+    connectionList[nextPoll - 1] = 0;
+    pollList[nextPoll - 1] = {};
+    //    memcpy(&pollList[index], &pollList[nextPoll], sizeof(struct pollfd));
     //Riduco la dimensione della coda
     nextPoll--;
+
     return trash;
 }
 
 inline void Queue::pushPipe (int pipeWriteEnd, Connection *con){
     // Dovendo scrivere 1 puntatore, ovvero 8 byte, l'operazione risulta atomica
     // e a meno di errori di altra natura è impossibile essere bloccati per un SEGNALE
-    //TODO: Gestire EAGAIN dovuto al fatto che una delle pipe è NON_BLOCCANTE
 
     if (write(pipeWriteEnd, (void *) &con, sizeof(Connection *)) == -1){
         perror("[Queue::pushPipe] Pipe write error:");
         sleep(1);
-        exit(-1);
+        exit(EX_IOERR);
     }
 }

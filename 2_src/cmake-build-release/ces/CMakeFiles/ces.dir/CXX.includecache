@@ -227,6 +227,8 @@ timeSpecOp.h
 ../ncs/timeSpecOp.h
 
 ../ncs/ncsDefine.h
+../GLOBAL_DEF.h
+../GLOBAL_DEF.h
 sysexits.h
 -
 

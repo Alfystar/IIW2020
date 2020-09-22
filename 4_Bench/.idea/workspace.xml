@@ -20,28 +20,61 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="35244099-d818-433d-ba8a-cb62e9c2bd02" name="Default Changelist" comment="testRunner ongoing">
-      <change afterPath="$PROJECT_DIR$/benchMark/2020-09-21T12:52:20/badAlpha/indexBenchMark.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/benchMark/2020-09-21T12:54:09/badAlpha/indexBenchMark.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/benchMark/2020-09-21T12:57:11/badAlpha/indexBenchMark.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/benchMark/2020-09-21T13:01:40/badAlpha/indexBenchMark.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/benchMark/2020-09-21T13:04:27/badAlpha/indexBenchMark.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/benchMark/2020-09-21T13:06:16/badAlpha/indexBenchMark.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/benchMark/2020-09-21T13:06:56/badAlpha/indexBenchMark.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/benchMark/2020-09-21T13:07:08/badAlpha/indexBenchMark.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/File di testo.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/benchMark/2020-09-22T14:17:14/badAlpha/indexBenchMark.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../1_Progettazione/iiwPrj.xopp" beforeDir="false" afterPath="$PROJECT_DIR$/../1_Progettazione/iiwPrj.xopp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../2_src/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../2_src/GLOBAL_DEF.h" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/GLOBAL_DEF.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/ces/CES.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/ces/CES.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/ces/httpMgt/cacheMgt/Shredder.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/ces/httpMgt/cacheMgt/Shredder.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/ces/Worker.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/ces/Worker.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/ces/httpMgt/HtmlMessage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/ces/httpMgt/HtmlMessage.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/ces/httpMgt/HttpMgt.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/ces/httpMgt/HttpMgt.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/ces/httpMgt/headerForm.h" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/ces/httpMgt/headerForm.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/badAlphaWeb.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/badAlphaWeb.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/badAlphaWeb.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/badAlphaWeb.dir/main.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/badAlphaWeb" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/badAlphaWeb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/CMakeFiles/ces.dir/CES.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/CMakeFiles/ces.dir/CES.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/CMakeFiles/ces.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/CMakeFiles/ces.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/CMakeFiles/ces.dir/Worker.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/CMakeFiles/ces.dir/Worker.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/CMakeFiles/httpMgt.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/CMakeFiles/httpMgt.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/CMakeFiles/httpMgt.dir/HtmlMessage.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/CMakeFiles/httpMgt.dir/HtmlMessage.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/CMakeFiles/httpMgt.dir/HttpMgt.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/CMakeFiles/httpMgt.dir/HttpMgt.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/cacheMgt/CMakeFiles/cacheMgt.dir/Resource.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/cacheMgt/CMakeFiles/cacheMgt.dir/Resource.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/cacheMgt/CMakeFiles/cacheMgt.dir/Shredder.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/cacheMgt/CMakeFiles/cacheMgt.dir/Shredder.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/cacheMgt/CMakeFiles/cacheMgt.dir/SyncUtilities.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/cacheMgt/CMakeFiles/cacheMgt.dir/SyncUtilities.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/cacheMgt/libcacheMgt.a" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/cacheMgt/libcacheMgt.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/libhttpMgt.a" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/libhttpMgt.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/libces.a" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/libces.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/logSystem/CMakeFiles/logSystem.dir/Log.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/logSystem/CMakeFiles/logSystem.dir/Log.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/logSystem/liblogSystem.a" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/logSystem/liblogSystem.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/ncs.dir/Accept.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/ncs.dir/Accept.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/ncs.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/ncs.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/ncs.dir/NCS.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/ncs.dir/NCS.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/ncs.dir/Queue.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/ncs.dir/Queue.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/ncs.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/ncs.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/ncs.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/ncs.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/libncs.a" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/libncs.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/simpleWeb/CMakeFiles/simpleWeb.dir/Connection.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/simpleWeb/CMakeFiles/simpleWeb.dir/Connection.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/simpleWeb/libsimpleWeb.a" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/simpleWeb/libsimpleWeb.a" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../2_src/ncs/Accept.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/ncs/Accept.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../2_src/ncs/Queue.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/ncs/Queue.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../2_src/ncs/Queue.h" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/ncs/Queue.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/ncs/ncsDefine.h" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/ncs/ncsDefine.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../2_src/simpleWeb/Connection.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/simpleWeb/Connection.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../2_src/simpleWeb/Connection.h" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/simpleWeb/Connection.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/simpleWeb/Utility.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/simpleWeb/Utility.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/benchMark/2020-09-20T23:49:50/apache2/indexBenchMark.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/benchMark/2020-09-20T23:49:50/badAlpha/indexBenchMark.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/benchMark/2020-09-21T12:52:20/badAlpha/indexBenchMark.dat" beforeDir="false" afterPath="$PROJECT_DIR$/benchMark/2020-09-22T14:09:57/badAlpha/indexBenchMark.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/benchMark/2020-09-21T12:54:09/badAlpha/indexBenchMark.dat" beforeDir="false" afterPath="$PROJECT_DIR$/benchMark/2020-09-22T14:12:43/badAlpha/indexBenchMark.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/benchMark/2020-09-21T12:57:11/badAlpha/indexBenchMark.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/benchMark/2020-09-21T13:01:40/badAlpha/indexBenchMark.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/benchMark/2020-09-21T13:04:27/badAlpha/indexBenchMark.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/benchMark/2020-09-21T13:06:16/badAlpha/indexBenchMark.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/benchMark/2020-09-21T13:06:56/badAlpha/indexBenchMark.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/benchMark/2020-09-21T13:07:08/badAlpha/indexBenchMark.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/benchMark/2020-09-21T13:14:52/apache2/indexBenchMark.dat" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/testRunner.py" beforeDir="false" afterPath="$PROJECT_DIR$/testRunner.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,12 +94,15 @@
   </component>
   <component name="JupyterTrust" id="de2d1e41-3a7d-4a13-9dea-2cbca398c596" />
   <component name="ProjectId" id="1hmx5UdBlPGSX6e4gjyyE9t1WJa" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -114,7 +150,9 @@
       <option name="presentableId" value="Default" />
       <updated>1600629886019</updated>
       <workItem from="1600629890485" duration="9539000" />
-      <workItem from="1600681326313" duration="5180000" />
+      <workItem from="1600681326313" duration="5908000" />
+      <workItem from="1600699376570" duration="21449000" />
+      <workItem from="1600767487497" duration="9155000" />
     </task>
     <task id="LOCAL-00001" summary="testRunner ongoing">
       <created>1600634635703</created>
@@ -163,30 +201,35 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="testRunner ongoing" />
     <option name="LAST_COMMIT_MESSAGE" value="testRunner ongoing" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="1156" y="84" width="557" height="349" key="#Notifications" timestamp="1600772680834">
+      <screen x="0" y="0" width="1920" height="1038" />
+    </state>
+    <state x="1156" y="84" width="557" height="349" key="#Notifications/0.0.1920.1038@0.0.1920.1038" timestamp="1600772680834" />
     <state x="747" y="177" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600632419923">
       <screen x="0" y="0" width="1920" height="1038" />
     </state>
     <state x="747" y="177" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1038@0.0.1920.1038" timestamp="1600632419923" />
-    <state width="914" height="273" key="GridCell.Tab.0.bottom" timestamp="1600686428068">
+    <state width="914" height="275" key="GridCell.Tab.0.bottom" timestamp="1600777058826">
       <screen x="0" y="0" width="1920" height="1038" />
     </state>
-    <state width="914" height="273" key="GridCell.Tab.0.bottom/0.0.1920.1038@0.0.1920.1038" timestamp="1600686428068" />
-    <state width="914" height="273" key="GridCell.Tab.0.center" timestamp="1600686428068">
+    <state width="914" height="275" key="GridCell.Tab.0.bottom/0.0.1920.1038@0.0.1920.1038" timestamp="1600777058826" />
+    <state width="914" height="275" key="GridCell.Tab.0.center" timestamp="1600777058826">
       <screen x="0" y="0" width="1920" height="1038" />
     </state>
-    <state width="914" height="273" key="GridCell.Tab.0.center/0.0.1920.1038@0.0.1920.1038" timestamp="1600686428068" />
-    <state width="914" height="273" key="GridCell.Tab.0.left" timestamp="1600686428067">
+    <state width="914" height="275" key="GridCell.Tab.0.center/0.0.1920.1038@0.0.1920.1038" timestamp="1600777058826" />
+    <state width="914" height="275" key="GridCell.Tab.0.left" timestamp="1600777058825">
       <screen x="0" y="0" width="1920" height="1038" />
     </state>
-    <state width="914" height="273" key="GridCell.Tab.0.left/0.0.1920.1038@0.0.1920.1038" timestamp="1600686428067" />
-    <state width="914" height="273" key="GridCell.Tab.0.right" timestamp="1600686428068">
+    <state width="914" height="275" key="GridCell.Tab.0.left/0.0.1920.1038@0.0.1920.1038" timestamp="1600777058825" />
+    <state width="914" height="275" key="GridCell.Tab.0.right" timestamp="1600777058826">
       <screen x="0" y="0" width="1920" height="1038" />
     </state>
-    <state width="914" height="273" key="GridCell.Tab.0.right/0.0.1920.1038@0.0.1920.1038" timestamp="1600686428068" />
+    <state width="914" height="275" key="GridCell.Tab.0.right/0.0.1920.1038@0.0.1920.1038" timestamp="1600777058826" />
     <state width="1314" height="337" key="GridCell.Tab.1.bottom" timestamp="1600639572924">
       <screen x="0" y="0" width="1920" height="1038" />
     </state>
@@ -217,6 +260,6 @@
     <state width="637" height="519" key="XDebugger.FullValuePopup/0.0.1920.1038@0.0.1920.1038" timestamp="1600632971220" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/4_Bench$testRunner.coverage" NAME="testRunner Coverage Results" MODIFIED="1600686428061" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/4_Bench$testRunner.coverage" NAME="testRunner Coverage Results" MODIFIED="1600777034359" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

@@ -25,7 +25,8 @@ void Accept::thListener (NCS::Accept *a){
         // Attende sia presente almeno una connessione (che ha già superato l'handShake a 3 vie)
         // Si ottiene un Soket connesso
         memset(&info, 0, sizeof(struct sockaddr));
-        if ((connsd = accept(a->listensd, &info, &lenSockAddr)) < 0){
+        c = nullptr;
+        if ((connsd = accept(a->listensd, &info, &lenSockAddr)) == -1){
             switch (errno){
                 case EMFILE:
                     #ifdef DEBUG_LOG
@@ -40,6 +41,11 @@ void Accept::thListener (NCS::Accept *a){
             }
         }
         c = new Connection(connsd, &info, lenSockAddr);
+        //        // todo cancellare
+        //        char hex_string[20];
+        //        sprintf(hex_string, "%p", (void *)c); //convert number to hex
+        //        cout << ("[Accept::thListener] Create connection: " + string(hex_string) +"\n");
+
         count++;
         a->q->pushWaitCon(c);
     }

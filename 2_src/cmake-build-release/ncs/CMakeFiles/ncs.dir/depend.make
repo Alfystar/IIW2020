@@ -28,6 +28,7 @@ ncs/CMakeFiles/ncs.dir/Queue.cpp.o: ../logSystem/Log.h
 ncs/CMakeFiles/ncs.dir/Queue.cpp.o: ../simpleWeb/Connection.h
 ncs/CMakeFiles/ncs.dir/Queue.cpp.o: ../simpleWeb/Utility.hpp
 ncs/CMakeFiles/ncs.dir/Queue.cpp.o: ../simpleWeb/status_code.hpp
+ncs/CMakeFiles/ncs.dir/Queue.cpp.o: ../GLOBAL_DEF.h
 ncs/CMakeFiles/ncs.dir/Queue.cpp.o: ../ncs/Queue.cpp
 ncs/CMakeFiles/ncs.dir/Queue.cpp.o: ../ncs/Queue.h
 ncs/CMakeFiles/ncs.dir/Queue.cpp.o: ../ncs/ncsDefine.h
