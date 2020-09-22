@@ -45,8 +45,11 @@ Connection::~Connection (){
     char hex_string[20];
     sprintf(hex_string, "%p", (void *) this); //convert number to hex
     cout << ("Connection fd: " + to_string(fd) + " will closed, memory: " + string(hex_string) + "\n");
-    if (cType == httpConnect)
-        shutdown(fd, SHUT_RDWR);
+//    if(cType == tcpConnect || cType == httpConnect){
+//        if(shutdown(fd,SHUT_RDWR))
+//            perror("[Connection::~Connection] Shutdown get error");
+//    }
+
     close(fd);
 }
 
@@ -71,7 +74,16 @@ int Connection::sendData (const void *data, int datalen){
     const char *ptr = static_cast<const char *>(data);
     while (datalen > 0){
         int bytes = send(this->fd, ptr, datalen, MSG_NOSIGNAL);
-        if (bytes <= 0) return -1;
+        if (bytes == -1) {
+            switch (errno){
+                case EINTR:
+                    bytes = 0;
+                    break;
+                case EPIPE:
+                default:
+                    return -1;
+            }
+        }
         ptr += bytes;
         datalen -= bytes;
     }

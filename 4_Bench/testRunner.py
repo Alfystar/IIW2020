@@ -103,7 +103,7 @@ def runTest(parallelCon, totCon, cpu, url, port, path):
     :return : @string           Linea da appendere al file .Dat con i risultati di questo esperimento
     """
     global sep
-    command = "./gb -k -c " + str(parallelCon) + " -n " + str(totCon) + \
+    command = "./gb -k -c -t 10 " + str(parallelCon) + " -n " + str(totCon) + \
               " -G " + str(cpu) + " http://" + url + ":" + str(port) + "/" + path
     print(command)
 
@@ -127,10 +127,10 @@ def runTest(parallelCon, totCon, cpu, url, port, path):
 
 
 def testResource(fdWrite, port, rsc):
-    for nCpu in range(1, os.cpu_count()):
-        for pCon in range(10, 100, 10):
-            line = runTest(pCon, 1000, nCpu, url, port, rsc)
-            fdWrite.write(line)
+    # for nCpu in range(1, os.cpu_count()):
+    for pCon in range(10, 100, 10):
+        line = runTest(pCon, 10000000, 4, url, port, rsc)
+        fdWrite.write(line)
     return
 
 

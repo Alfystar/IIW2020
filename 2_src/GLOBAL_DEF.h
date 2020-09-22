@@ -10,7 +10,6 @@
 // main startUp
 #define nWorker get_nprocs()  //Per avere il doppio dei core e gestire le situazioni di wait forzate
 
-
 // Accept settings
 #define BACKLOG 1000    //Connessioni pendenti sul File System
 #define MAX_CON 4096    //File descriptor che il processo può accettare al massimo

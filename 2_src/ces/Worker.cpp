@@ -23,8 +23,7 @@ Worker::Worker (string &name){
     Action ret;
     for (;;){
         c = j->q->popReadyCon();
-        if (!c)
-            continue;
+
         //todo cancellare
         char hex_string[20];
         sprintf(hex_string, "%p", (void *) c); //convert number to hex

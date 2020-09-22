@@ -20,61 +20,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="35244099-d818-433d-ba8a-cb62e9c2bd02" name="Default Changelist" comment="testRunner ongoing">
-      <change afterPath="$PROJECT_DIR$/File di testo.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/benchMark/2020-09-22T14:17:14/badAlpha/indexBenchMark.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../03_TCP_apache2_Capture Comlete.pcapng" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../03_TCP_apache2_Capture LastMissing.pcapng" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../1_Progettazione/iiwPrj.xopp" beforeDir="false" afterPath="$PROJECT_DIR$/../1_Progettazione/iiwPrj.xopp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../2_src/GLOBAL_DEF.h" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/GLOBAL_DEF.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../2_src/ces/Worker.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/ces/Worker.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/ces/httpMgt/HtmlMessage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/ces/httpMgt/HtmlMessage.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../2_src/ces/httpMgt/HttpMgt.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/ces/httpMgt/HttpMgt.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../2_src/ces/httpMgt/headerForm.h" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/ces/httpMgt/headerForm.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/badAlphaWeb.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/badAlphaWeb.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/badAlphaWeb.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/badAlphaWeb.dir/main.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/clion-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/badAlphaWeb" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/badAlphaWeb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/CMakeFiles/ces.dir/CES.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/CMakeFiles/ces.dir/CES.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/CMakeFiles/ces.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/CMakeFiles/ces.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/CMakeFiles/ces.dir/Worker.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/CMakeFiles/ces.dir/Worker.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/CMakeFiles/httpMgt.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/CMakeFiles/httpMgt.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/CMakeFiles/httpMgt.dir/HtmlMessage.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/CMakeFiles/httpMgt.dir/HtmlMessage.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/CMakeFiles/httpMgt.dir/HttpMgt.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/CMakeFiles/httpMgt.dir/HttpMgt.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/cacheMgt/CMakeFiles/cacheMgt.dir/Resource.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/cacheMgt/CMakeFiles/cacheMgt.dir/Resource.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/cacheMgt/CMakeFiles/cacheMgt.dir/Shredder.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/cacheMgt/CMakeFiles/cacheMgt.dir/Shredder.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/cacheMgt/CMakeFiles/cacheMgt.dir/SyncUtilities.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/cacheMgt/CMakeFiles/cacheMgt.dir/SyncUtilities.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/cacheMgt/libcacheMgt.a" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/cacheMgt/libcacheMgt.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/libhttpMgt.a" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/libhttpMgt.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/libces.a" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/libces.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/logSystem/CMakeFiles/logSystem.dir/Log.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/logSystem/CMakeFiles/logSystem.dir/Log.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/logSystem/liblogSystem.a" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/logSystem/liblogSystem.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/ncs.dir/Accept.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/ncs.dir/Accept.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/ncs.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/ncs.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/ncs.dir/NCS.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/ncs.dir/NCS.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/ncs.dir/Queue.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/ncs.dir/Queue.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/ncs.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/ncs.dir/depend.internal" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/ncs.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/ncs.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/libncs.a" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/libncs.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/simpleWeb/CMakeFiles/simpleWeb.dir/Connection.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/simpleWeb/CMakeFiles/simpleWeb.dir/Connection.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/simpleWeb/libsimpleWeb.a" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/simpleWeb/libsimpleWeb.a" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../2_src/ncs/Accept.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/ncs/Accept.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../2_src/ncs/Queue.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/ncs/Queue.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/ncs/Queue.h" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/ncs/Queue.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../2_src/simpleWeb/Connection.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/simpleWeb/Connection.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/simpleWeb/Connection.h" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/simpleWeb/Connection.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/simpleWeb/Utility.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/simpleWeb/Utility.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/benchMark/2020-09-21T12:52:20/badAlpha/indexBenchMark.dat" beforeDir="false" afterPath="$PROJECT_DIR$/benchMark/2020-09-22T14:09:57/badAlpha/indexBenchMark.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/benchMark/2020-09-21T12:54:09/badAlpha/indexBenchMark.dat" beforeDir="false" afterPath="$PROJECT_DIR$/benchMark/2020-09-22T14:12:43/badAlpha/indexBenchMark.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/benchMark/2020-09-21T12:57:11/badAlpha/indexBenchMark.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/benchMark/2020-09-21T13:01:40/badAlpha/indexBenchMark.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/benchMark/2020-09-21T13:04:27/badAlpha/indexBenchMark.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/benchMark/2020-09-21T13:06:16/badAlpha/indexBenchMark.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/benchMark/2020-09-21T13:06:56/badAlpha/indexBenchMark.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/benchMark/2020-09-21T13:07:08/badAlpha/indexBenchMark.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/benchMark/2020-09-21T13:14:52/apache2/indexBenchMark.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/benchMark/2020-09-22T14:09:57/badAlpha/indexBenchMark.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/benchMark/2020-09-22T14:12:43/badAlpha/indexBenchMark.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/benchMark/2020-09-22T14:17:14/badAlpha/indexBenchMark.dat" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/testRunner.py" beforeDir="false" afterPath="$PROJECT_DIR$/testRunner.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -152,7 +111,7 @@
       <workItem from="1600629890485" duration="9539000" />
       <workItem from="1600681326313" duration="5908000" />
       <workItem from="1600699376570" duration="21449000" />
-      <workItem from="1600767487497" duration="9155000" />
+      <workItem from="1600767487497" duration="18267000" />
     </task>
     <task id="LOCAL-00001" summary="testRunner ongoing">
       <created>1600634635703</created>
@@ -182,7 +141,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600634951286</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="testRunner ongoing">
+      <created>1600779530600</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1600779530600</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -250,10 +216,10 @@
       <screen x="0" y="0" width="1920" height="1038" />
     </state>
     <state x="1028" y="265" key="IDE.errors.dialog/0.0.1920.1038@0.0.1920.1038" timestamp="1600638297622" />
-    <state x="883" y="255" key="Vcs.Push.Dialog.v2" timestamp="1600634957105">
+    <state x="883" y="255" key="Vcs.Push.Dialog.v2" timestamp="1600779532335">
       <screen x="0" y="0" width="1920" height="1038" />
     </state>
-    <state x="883" y="255" key="Vcs.Push.Dialog.v2/0.0.1920.1038@0.0.1920.1038" timestamp="1600634957105" />
+    <state x="883" y="255" key="Vcs.Push.Dialog.v2/0.0.1920.1038@0.0.1920.1038" timestamp="1600779532335" />
     <state width="637" height="519" key="XDebugger.FullValuePopup" timestamp="1600632971220">
       <screen x="0" y="0" width="1920" height="1038" />
     </state>

@@ -57,13 +57,13 @@ void Queue::thDispatcher (Queue *q){
     int __attribute__((unused)) originalReady;
 
     while (true){
-        //&sigmask
-        ready = ppoll(q->pollList, q->nextPoll, &t, nullptr);
+
+        ready = ppoll(q->pollList, q->nextPoll, &t, &sigmask);
         originalReady = ready;
 
         if (ready == 0){ //Time out
             #ifdef DEBUG_LOG
-            cout << "[Queue::thDispatcher] poll Time out\n";
+//            cout << "[Queue::thDispatcher] poll Time out\n";
             #endif
             continue;
         }

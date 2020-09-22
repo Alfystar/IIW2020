@@ -84,13 +84,11 @@ Action HttpMgt::stringSend (NCS::Connection *c, string &msg){
                 #ifdef DEBUG_LOG
                 Log::db << "[HttpMgt::stringSend] sendStr come brokenPipe error\n";
                 #endif
-                //                delete c;
                 return ConClosed;
             default:
                 #ifdef DEBUG_LOG
                 Log::db << "[HttpMgt::stringSend] sendStr come error " << strerror(errno) << "\n";
                 #endif
-                //                delete c;
                 return ConClosed;
         }
     }
@@ -116,16 +114,8 @@ Action HttpMgt::binarySend (NCS::Connection *c, HtmlMessage &msg){
                 switch (errno){
                     case EPIPE:
                         perror("[HttpMgt::binarySend] Epipe sendData");
-                        #ifdef DEBUG_LOG
-                        Log::db << "[HttpMgt::rawSend] Send image to socket get brokenPipe error\n";
-                        #endif
-                        //                        delete c;
                         return ConClosed;
                     default:
-                        #ifdef DEBUG_LOG
-                        Log::db << "[HttpMgt::rawSend] Send image to socket get error " << strerror(errno) << "\n";
-                        #endif
-                        //                        delete c;
                         return ConClosed;
                 }
             }
