@@ -25,12 +25,15 @@ Connection::Connection (int fd, struct sockaddr *sockInfo, socklen_t socklen){
     }
     else
         memset(&this->sockInfo, 0, sizeof(struct sockaddr));
-    //todo cancelare
+
+    #ifdef DEBUG_VERBOSE
     if (cType == tcpConnect){
         char hex_string[20];
         sprintf(hex_string, "%p", (void *) this); //convert number to hex
         cout << ("Connection fd: " + to_string(fd) + " are created, memory: " + string(hex_string) + "\n");
     }
+    #endif
+
     #ifdef COUNT_INSTANCE
     count++;
     #endif
@@ -41,14 +44,11 @@ Connection::~Connection (){
     count--;
     #endif
 
-    //todo cancelare
+    #ifdef DEBUG_VERBOSE
     char hex_string[20];
     sprintf(hex_string, "%p", (void *) this); //convert number to hex
     cout << ("Connection fd: " + to_string(fd) + " will closed, memory: " + string(hex_string) + "\n");
-//    if(cType == tcpConnect || cType == httpConnect){
-//        if(shutdown(fd,SHUT_RDWR))
-//            perror("[Connection::~Connection] Shutdown get error");
-//    }
+    #endif
 
     close(fd);
 }

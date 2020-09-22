@@ -1,0 +1,9 @@
+Prove sperimentali del file <index> i dati sono raccolti nelle colonne:
+N°Worker	N°Parallel Connection	Requests [#ps]	RequestTime [ms]	HttpSpeedRate [KBps]
+4	500	20976.52	23.836	24499.9
+4	1000	20526.64	48.717	23974.4
+4	1500	18888.29	79.414	22060.91
+4	2000	19580.09	102.145	22868.84
+4	2500	17610.08	141.964	20567.97
+4	3000	19083.75	157.202	22289.18
+4	3500	19026.55	183.953	22222.33

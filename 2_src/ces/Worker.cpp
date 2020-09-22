@@ -24,25 +24,27 @@ Worker::Worker (string &name){
     for (;;){
         c = j->q->popReadyCon();
 
-        //todo cancellare
+        #ifdef DEBUG_VERBOSE
         char hex_string[20];
         sprintf(hex_string, "%p", (void *) c); //convert number to hex
         cout << (j->myName + " get connect connection: " + string(hex_string) + "\n");
+        #endif
+
         ret = httpMgt.connectionRequest(c);
 
         switch (ret){
             case ConClosed:
-                //                //todo cancellare
+                #ifdef DEBUG_VERBOSE
                 cout << (j->myName + " delete connect: " + string(hex_string) + "\n");
+                #endif
                 delete c;
-                c = nullptr;
                 // Connessione chiusa dentro httpMgt
                 break;
             default:
-                //                //todo cancellare
+                #ifdef DEBUG_VERBOSE
                 cout << (j->myName + " push connect: " + string(hex_string) + "\n");
+                #endif
                 j->q->pushWaitCon(c);
-                c = nullptr;
                 break;
         }
     }
