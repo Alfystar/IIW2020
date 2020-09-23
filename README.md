@@ -2,6 +2,7 @@
 Progetto di IIW Web Server
 Sviluppato in C++ per il corso di Ingegneria di Internet
 Tenuto dal professore: Francesco Lo Presti
+La richiesta del progetto è reperibile [qui](https://github.com/Alfystar/IIW2020/blob/master/WebServer_Project.pdf)
 
 ### Sviluppato da:
 - Alfano Emanuele
@@ -23,9 +24,11 @@ Tenuto dal professore: Francesco Lo Presti
 
 #### Guide di supporto
 Per poter replicare i test trovate:
---[Guida per la compilazione del progetto][https://github.com/Alfystar/IIW2020/blob/master/ProjectCompiling.md] per creare correttamente l'eseguibile
--[Guida per installare apache2][https://github.com/Alfystar/IIW2020/blob/master/Install_Apache2.md] per replicare la nostra condizione di test
--[Guida per eseguire i test di benckmark][https://github.com/Alfystar/IIW2020/blob/master/4_Bench/Execute_Test.md] per replicare i nostri risultati
+- [Guida per la compilazione del progetto](https://github.com/Alfystar/IIW2020/blob/master/ProjectCompiling.md]) per creare correttamente l'eseguibile
+
+- [Guida per installare apache2](https://github.com/Alfystar/IIW2020/blob/master/Install_Apache2.md) per replicare la nostra condizione di test
+
+- [Guida per eseguire i test di benckmark](https://github.com/Alfystar/IIW2020/blob/master/4_Bench/Execute_Test.md) per replicare i nostri risultati
 
 
 #### Features
