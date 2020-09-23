@@ -35,6 +35,9 @@ namespace CES {
     enum Action{
         RequestComplete, ConClosed
     };
+    enum Method{
+        Get, Head, Other
+    };
 
     class HttpMgt{
     public:

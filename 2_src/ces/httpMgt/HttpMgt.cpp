@@ -21,38 +21,43 @@ Action HttpMgt::connectionRequest (NCS::Connection *c){
     Action actionRet;
 
     //La libreria boost è case insensitive
-    SimpleWeb::StatusCode code;
+    Method code;
     if (boost::iequals(hHeader->method, "GET"))
-        code = StatusCode::success_ok;
+        code = Get;
     else if (boost::iequals(hHeader->method, "HEAD"))
-        code = StatusCode::success_no_content;
+        code = Head;
     else
-        code = StatusCode::client_error_not_acceptable;
+        code = Other;
 
     // Cambio la pagina se il metodo è non gestito
-    if (code == StatusCode::client_error_not_acceptable){ //connessione valida ma richiesta non gestita
+    if (code == Other){ //connessione valida ma richiesta non gestita
         hHeader->path = "/web/sys/406.html";
     }
-
+    //todo: Far leggere se la connessione è keep-alive o close e gestirla
     HtmlMessage mes(*hHeader);
 
     switch (code){
-        case StatusCode::success_ok: //get
+
+        case Get:
             actionRet = send(c, mes);
             if (actionRet == RequestComplete)
                 return RequestComplete;
             break;
-        case StatusCode::success_no_content: // head
+        case Head:
             actionRet = stringSend(c, mes.header);
+            mes.inStream->close();
             if (actionRet == RequestComplete)
                 return RequestComplete;
             break;
-        default:            // Connessione non gestita o errore, quindi da chiudere
-            mes.status = code;
+        case Other:
+            mes.status = StatusCode::client_error_not_acceptable;
             mes.body = fmt::format(mes.body, hHeader->method);
-            send(c, mes);
+            actionRet = send(c, mes);
+            if (actionRet == RequestComplete)
+                return RequestComplete;
             break;
     }
+
     return ConClosed;
 }
 
@@ -60,8 +65,10 @@ Action HttpMgt::send (NCS::Connection *c, HtmlMessage &msg){
     Action actionRet;
 
     actionRet = stringSend(c, msg.header);
-    if (actionRet == ConClosed)
+    if (actionRet == ConClosed){
+        msg.inStream->close();
         return ConClosed;
+    }
 
     switch (msg.typePayload){
         case text:
@@ -69,9 +76,10 @@ Action HttpMgt::send (NCS::Connection *c, HtmlMessage &msg){
             break;
         case imageData:
         case rawData:
-            actionRet = binarySend(c, msg);
+            actionRet = binarySend(c, msg); // Chiude la connessione all'interno
             break;
         case noBody:
+
             break;
     }
     return actionRet;
@@ -105,6 +113,7 @@ Action HttpMgt::binarySend (NCS::Connection *c, HtmlMessage &msg){
                 #ifdef DEBUG_LOG
                 Log::db << "[HttpMgt::rawSend] Reading image from filesystem get error " << strerror(errno) << "\n";
                 #endif
+                msg.inStream->close();
                 return ConClosed;
             }
 
@@ -114,13 +123,16 @@ Action HttpMgt::binarySend (NCS::Connection *c, HtmlMessage &msg){
                 switch (errno){
                     case EPIPE:
                         perror("[HttpMgt::binarySend] Epipe sendData");
+                        msg.inStream->close();
                         return ConClosed;
                     default:
+                        msg.inStream->close();
                         return ConClosed;
                 }
             }
             lenght -= bytes;
         }while (lenght > 0);
     }
+    msg.inStream->close();
     return RequestComplete;
 }

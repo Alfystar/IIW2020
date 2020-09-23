@@ -34,7 +34,7 @@ void Accept::thListener (NCS::Accept *a){
                     #endif
 
                     #ifdef DEBUG_VERBOSE
-                    cerr << "[Accept::thListener] too many connection\n" << endl;
+                    cerr << "[Accept::thListener] too many connection" << endl;
                     #endif
                     close(connsd);
                     continue;
@@ -43,6 +43,7 @@ void Accept::thListener (NCS::Accept *a){
                     exit(EX_PROTOCOL);
             }
         }
+        a->socketSettings(connsd);
         c = new Connection(connsd, &info, lenSockAddr);
         count++;
         a->q->pushWaitCon(c);
@@ -88,3 +89,49 @@ void Accept::sockInit (){
         exit(EX_PROTOCOL);
     }
 }
+
+#define check(expr) if (!(expr)) { perror(#expr); kill(0, SIGTERM); }
+
+void Accept::socketSettings (int sock){
+
+    int yes = 1;
+    check(setsockopt(sock, SOL_SOCKET, SO_KEEPALIVE, &yes, sizeof(int)) != -1);
+
+
+    //TCP_KEEPIDLE (since Linux 2.4)
+    //              The time (in seconds) the connection needs to remain idle
+    //              before TCP starts sending keepalive probes, if the socket
+    //              option SO_KEEPALIVE has been set on this socket.  This option
+    //              should not be used in code intended to be portable.
+    int idle = 1;
+    check(setsockopt(sock, IPPROTO_TCP, TCP_KEEPIDLE, &idle, sizeof(int)) != -1);
+
+    //TCP_KEEPINTVL (since Linux 2.4)
+    //              The time (in seconds) between individual keepalive probes.
+    //              This option should not be used in code intended to be
+    //              portable.
+    int interval = 1;
+    check(setsockopt(sock, IPPROTO_TCP, TCP_KEEPINTVL, &interval, sizeof(int)) != -1);
+
+    //TCP_KEEPCNT (since Linux 2.4)
+    //              The maximum number of keepalive probes TCP should send before
+    //              dropping the connection.  This option should not be used in
+    //              code intended to be portable.
+    int maxpkt = 10;
+    check(setsockopt(sock, IPPROTO_TCP, TCP_KEEPCNT, &maxpkt, sizeof(int)) != -1);
+
+    //TCP_NODELAY
+    //              If set, disable the Nagle algorithm.  This means that segments
+    //              are always sent as soon as possible, even if there is only a
+    //              small amount of data.  When not set, data is buffered until
+    //              there is a sufficient amount to send out, thereby avoiding the
+    //              frequent sending of small packets, which results in poor
+    //              utilization of the network.  This option is overridden by
+    //              TCP_CORK; however, setting this option forces an explicit
+    //              flush of pending output, even if TCP_CORK is currently set.
+    // Lo vogliamo DISATTIVATO, per aumentare l'efficenza della rete, al costo di un piccolo ritardo
+    int no = 0;
+    check(setsockopt(sock, IPPROTO_TCP, TCP_NODELAY, &no, sizeof(int)) != -1);
+}
+
+#undef check

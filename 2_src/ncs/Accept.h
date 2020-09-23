@@ -6,10 +6,16 @@
 #define HTTP_IMAGESERVER_ACCEPT_H
 #include <cstdio>
 #include <cstring>
-#include <netinet/in.h>
 #include <mutex>
+
 #include <sys/time.h>
 #include <sys/resource.h>
+#include <sys/socket.h>
+#include <sys/signal.h>
+#include <arpa/inet.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+
 #include "Queue.h"
 #include <Connection.h>
 #include "ncsDefine.h"
@@ -32,6 +38,7 @@ namespace NCS {
     private:
         static void thListener (Accept *a);
         void sockInit ();
+        void socketSettings (int sock);
     };
 }
 #endif //HTTP_IMAGESERVER_ACCEPT_H
