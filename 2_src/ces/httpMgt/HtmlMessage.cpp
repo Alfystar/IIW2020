@@ -56,11 +56,11 @@ HtmlMessage::HtmlMessage (NCS::Connection::httpHeader &hHeader){
                 Resource rsc(pathBody, request.fileType, request.qFactor);
                 pathBody = rsc.getPath();
                 #endif
-                this->imageOpen();    // in caso di errore cambia il tipo di typePayload in text e ci scrive l'errore
+                this->imageOpen();
             }
             break;
         case rawData:
-            this->imageOpen();    // in caso di errore cambia il tipo di typePayload in text e ci scrive l'errore
+            this->imageOpen();
             break;
         case noBody:
             // niente da caricare

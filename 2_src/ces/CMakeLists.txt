@@ -2,7 +2,6 @@
 
 get_filename_component(libName ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 if (NOT TARGET ${libName})
-    message("\n")
     add_library(${libName}
             CES.cpp CES.h
             Worker.cpp Worker.h)
@@ -33,9 +32,9 @@ if (NOT TARGET ${libName})
     #compito di HttpMgt, presente solo per la demo
     find_package(fmt REQUIRED)
     target_link_libraries(${libName} PUBLIC fmt)
-    message("\t-FMT library linked on ${libName}")
+    message("[${libName}]\t-FMT library linked on ${libName}")
 
 
-    message("##${libName} subsystem included")
+    message("[${libName}] subsystem included")
 
 endif ()

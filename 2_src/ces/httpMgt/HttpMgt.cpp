@@ -18,7 +18,7 @@ Action HttpMgt::connectionRequest (NCS::Connection *c){
         return ConClosed;
     }
 
-    //La libreria boost è case insensitive
+    //La libraries boost are case insensitive
     Method code;
     if (boost::iequals(hHeader->method, "GET"))
         code = Get;
@@ -27,8 +27,8 @@ Action HttpMgt::connectionRequest (NCS::Connection *c){
     else
         code = Other;
 
-    // Cambio la pagina se il metodo è non gestito
-    if (code == Other){ //connessione valida ma richiesta non gestita
+    // Redirect to error page if the method aren't management
+    if (code == Other){ //Connection valid but requested method not management
         hHeader->path = "/web/sys/406.html";
     }
 
@@ -69,7 +69,7 @@ Action HttpMgt::sendGet (NCS::Connection *c, HtmlMessage &msg){
             break;
         case imageData:
         case rawData:
-            actionRet = binarySend(c, msg); // Chiude la connessione all'interno
+            actionRet = binarySend(c, msg);
             break;
         case noBody:
 
@@ -109,11 +109,11 @@ Action HttpMgt::stringSend (NCS::Connection *c, string &msg){
 }
 
 Action HttpMgt::binarySend (NCS::Connection *c, HtmlMessage &msg){
-    std::size_t lenght = msg.lenBody;
-    if (lenght > 0){
+    std::size_t len = msg.lenBody;
+    if (len > 0){
         char data[4096];
         do{
-            if (!msg.inStream->read(data, std::min(lenght, sizeof(data)))){
+            if (!msg.inStream->read(data, std::min(len, sizeof(data)))){
                 //                delete c;
                 #ifdef DEBUG_LOG
                 Log::db << "[HttpMgt::rawSend] Reading image from filesystem get error " << strerror(errno) << "\n";
@@ -132,8 +132,8 @@ Action HttpMgt::binarySend (NCS::Connection *c, HtmlMessage &msg){
                         return ConClosed;
                 }
             }
-            lenght -= bytes;
-        }while (lenght > 0);
+            len -= bytes;
+        }while (len > 0);
     }
     return RequestComplete;
 }

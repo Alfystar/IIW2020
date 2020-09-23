@@ -143,10 +143,16 @@ inline void Shredder::emptyImgVect (){
 }
 
 int Shredder::initSizePipe (){
-    if (pipe2(sizePipe, O_DIRECT | O_NONBLOCK)){
+    if (pipe2(sizePipe, O_DIRECT)){
         perror("[initSizePipe]: ");
         return -1;
     }
+    // Rendo NON BLOCCANTE solo l'estremo in lettura
+    if (fcntl(sizePipe[readEndPipe], F_SETFL, O_NONBLOCK) < 0){
+        perror("[Queue::Queue] Error make waitPipe[readEnd] O_NONBLOCK:");
+        exit(EX_IOERR);
+    }
+
     pollFd = {sizePipe[readEndPipe], POLLIN, 0};
     return 0;
 }
@@ -182,7 +188,8 @@ void Shredder::waitUntilFullCache (){
             case 0:
                 continue;
                 break;
-            default: //siccome guardiamo solo un file descriptor, c'è qualcosa da leggere
+            default:
+                //siccome guardiamo solo un file descriptor, c'è qualcosa da leggere
                 return;
         }
     }
@@ -219,7 +226,6 @@ void Shredder::freeSpace (){
     reduceCacheUsage();
 
     pthread_rwlock_unlock(rwlock); //UNLOCK
-
 }
 
 string Shredder::sizeFormatted (uint_fast64_t size){

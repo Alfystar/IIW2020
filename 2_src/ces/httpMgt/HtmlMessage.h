@@ -54,16 +54,18 @@ namespace CES {
         ~HtmlMessage ();
 
     private:
-        void htmlPageLoad ();
-        // In caso di errore viene cambiato status, così da montare conseguentemente l'header
-        void imageOpen ();               //Carica immagine
-        void headerMount ();             //header normali pagine HTML
+        // In caso di errore le funzioni di load cambiano status dell'oggetto,
+        // così da mandare conseguentemente l'header adatto a notificare il client
+        void htmlPageLoad ();            // Crea la stringa del body che verrà inviata
+        void imageOpen ();               // Inizializza lo stream per leggere l'immagine
+        void headerMount ();             // header normali pagine HTML
+        void acceptExtractor (NCS::Connection::httpHeader &hHeader, imgRequest &img);
+        // Metodi di supporto
         void discoverFileTypeRequest ();
         string dataNow ();
         string lastChangeFile (const char *path);
         string lastChangeFile (string &path);
         bool fileExists (string &path);
-        void acceptExtractor (NCS::Connection::httpHeader &hHeader, imgRequest &img);
     };
 }
 #endif //HTTP_IMAGESERVER_HTMLMESSAGE_H

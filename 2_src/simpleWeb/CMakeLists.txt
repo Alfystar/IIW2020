@@ -5,7 +5,6 @@
 #Assegna a libName il nome della directory corrente
 get_filename_component(libName ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 if (NOT TARGET ${libName})
-    message("\n")
     add_library(${libName}
             Connection.h Connection.cpp
             status_code.hpp
@@ -16,5 +15,5 @@ if (NOT TARGET ${libName})
     include_directories(${PROJECT_SOURCE_DIR}/logSystem)
     target_link_libraries(${libName} PUBLIC logSystem)
 
-    message("##${libName} subsystem included")
+    message("[${libName}] subsystem included")
 endif ()

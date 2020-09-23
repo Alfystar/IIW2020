@@ -1,7 +1,6 @@
 #Assegna a libName il nome della directory corrente
 get_filename_component(libName ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 if (NOT TARGET ${libName})
-    message("\n")
     add_library(${libName}
             HttpMgt.cpp HttpMgt.h
             HtmlMessage.cpp HtmlMessage.h headerForm.h)
@@ -18,7 +17,7 @@ if (NOT TARGET ${libName})
     #Librerie di SO
     find_package(fmt REQUIRED)
     target_link_libraries(${libName} PUBLIC fmt)
-    message("\t-FMT library linked on ${libName}")
+    message("[${libName}]\t-FMT library linked on ${libName}")
 
 
     set(Boost_USE_STATIC_LIBS ON)
@@ -28,8 +27,8 @@ if (NOT TARGET ${libName})
     find_package(Boost COMPONENTS filesystem REQUIRED)
     include_directories(${Boost_INCLUDE_DIRS})
     target_link_libraries(${libName} PUBLIC ${Boost_FILESYSTEM_LIBRARY})
-    message("\t-Boost library linked on ${libName}")
+    message("[${libName}]\t-Boost library linked on ${libName}")
 
-    message("##${libName} subsystem included")
+    message("[${libName}] subsystem included")
 
 endif ()

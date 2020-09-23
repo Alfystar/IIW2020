@@ -1,7 +1,6 @@
 #Assegna a libName il nome della directory corrente
 get_filename_component(libName ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 if (NOT TARGET ${libName})
-    message("\n")
     add_library(${libName}
             Resource.cpp Resource.h
             Shredder.cpp Shredder.h
@@ -15,6 +14,6 @@ if (NOT TARGET ${libName})
     target_link_libraries(${libName} PUBLIC ${CMAKE_THREAD_LIBS_INIT})
 
 
-    message("##${libName} subsystem included")
+    message("[${libName}] subsystem included")
 
 endif ()
