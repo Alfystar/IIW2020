@@ -5,12 +5,10 @@
 #ifndef HTTP_IMAGESERVER_CES_H
 #define HTTP_IMAGESERVER_CES_H
 
-
 #include <fmt/format.h>
 
 #include "Worker.h"
 #include "httpMgt/cacheMgt/Shredder.h"
-
 
 namespace CES {
     extern Shredder *shredder;

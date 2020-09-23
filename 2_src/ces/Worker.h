@@ -5,7 +5,6 @@
 #ifndef HTTP_IMAGESERVER_WORKER_H
 #define HTTP_IMAGESERVER_WORKER_H
 
-
 #include <cstdio>
 #include <string>
 #include <unistd.h>

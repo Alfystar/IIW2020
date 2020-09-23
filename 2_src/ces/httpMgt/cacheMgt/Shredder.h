@@ -20,7 +20,6 @@
 #define _GNU_SOURCE
 #endif
 
-
 #include <csignal>
 #include <poll.h>
 
@@ -41,7 +40,6 @@
 #ifndef FILE_SIZE_LIMIT
 #define FILE_SIZE_LIMIT 10*1024*1024 // 10 MB of images allowed before halving
 #endif
-
 
 namespace CES {
 

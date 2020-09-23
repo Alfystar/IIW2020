@@ -21,7 +21,7 @@
 
 #define MAXLINE 4096
 
-#define COUNT_INSTANCE 1 // Define di debug
+//#define COUNT_INSTANCE 1 // Define di debug
 
 namespace NCS {
     using namespace std;
@@ -50,6 +50,7 @@ namespace NCS {
 
     private:
         ConnectType cType = unknown;
+        httpHeader *hHeader = nullptr;
         #ifdef COUNT_INSTANCE
         static std::atomic <unsigned long> count;
         #endif
@@ -62,7 +63,7 @@ namespace NCS {
         #endif
         void compilePollFD (struct pollfd *pollFd);
         ConnectType getType ();
-        int sendData (const void *data, int datalen);    // 0 = send succes, -1 = error, look errno
+        int sendData (const void *data, int datalen);    // 0 = sendGet succes, -1 = error, look errno
         int sendStr (const std::string &s);
         httpHeader *readHttpHeader ();
     };

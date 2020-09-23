@@ -3,6 +3,7 @@ Abbiamo optato per un tool scritto in go, recente e multithread, per analizzare 
 Per scaricare ed installare Go, seguire la guida su:
 https://golang.org/doc/install?download=go1.15.2.linux-amd64.tar.gz
 
+In oltre è necessario avere installato python3.8 per poter eseguire lo script di test che eseguie in serie tutti i test, li salva e ottiene i grafici.
 
 # Go-HttpBench
 Il programma di Benchmark è reperibile all'url:

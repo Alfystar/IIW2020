@@ -37,7 +37,6 @@ Resource::Resource (string &p, string &format, float qValue){
     }
     // partiamo da 2 perche il path p = "./web....", quindi i primi due sono sicuramente quei simboli
     string relSubFold = p.substr(1, (p.rfind('/')));
-
     string subFolder = string(CACHE_PATH) + relSubFold + nameOriginal;
     path = subFolder + "/" + tmp;
 
@@ -76,7 +75,6 @@ Resource::~Resource (){
     close(fd);
     pthread_rwlock_unlock(rwlock); //UNLOCK SHREDDER
 }
-
 
 string &Resource::getPath (){
     return path;

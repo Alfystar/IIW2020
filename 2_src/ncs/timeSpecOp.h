@@ -5,7 +5,6 @@
 #ifndef PIDCTRLDEMO_TIMESPECOP_H
 #define PIDCTRLDEMO_TIMESPECOP_H
 
-
 #include <time.h>
 ///###################################################################################################
 ///################################# Macro for Time Operation ########################################

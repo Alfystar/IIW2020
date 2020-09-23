@@ -43,10 +43,10 @@ HtmlMessage::HtmlMessage (NCS::Connection::httpHeader &hHeader){
                 typePayload = noBody;
             }
             else{
-	            #ifdef IMAGE_RESIZE
+                #ifdef IMAGE_RESIZE
                 Resource rsc(pathBody, request.fileType, request.qFactor);
                 pathBody = rsc.getPath();
-				#endif
+                #endif
                 this->imageOpen();    // in caso di errore cambia il tipo di typePayload in text e ci scrive l'errore
             }
             break;
@@ -64,8 +64,10 @@ HtmlMessage::HtmlMessage (NCS::Connection::httpHeader &hHeader){
 }
 
 HtmlMessage::~HtmlMessage (){
-    if (!inStream)
-        delete inStream;
+    if (inStream){
+        if (inStream->is_open())
+            inStream->close();
+    }
 }
 
 void HtmlMessage::htmlPageLoad (){
@@ -263,12 +265,12 @@ void HtmlMessage::acceptExtractor (NCS::Connection::httpHeader &hHeader, imgRequ
     #ifdef DEBUG_LOG
     Log::db << "[HtmlMessage::acceptExtractor] " << it->first << " = " << it->second << endl;
     #endif
-    if(!it._M_cur){ // Non ho Trovato l'Accept, quindi di defautl ritorno il file
+    if (!it._M_cur){ // Non ho Trovato l'Accept, quindi di defautl ritorno il file
         img.fileType = "*";
         img.qFactor = 1;
         return;
     }
-//    cout << "[HtmlMessage::acceptExtractor] " << it->first << " = " << it->second << endl;
+    //    cout << "[HtmlMessage::acceptExtractor] " << it->first << " = " << it->second << endl;
 
 
     size_t start = it->second.find("image/");

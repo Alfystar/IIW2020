@@ -25,6 +25,7 @@
 #endif
 namespace CES {
     using namespace std;
+
     class Resource{
         string path;
         int fd;

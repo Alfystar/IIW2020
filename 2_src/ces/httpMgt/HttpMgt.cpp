@@ -15,10 +15,8 @@ Action HttpMgt::connectionRequest (NCS::Connection *c){
         #ifdef DEBUG_LOG
         Log::db << "[HttpMgt::connectionRequest] hHeader = null \n";
         #endif
-//        delete c;
         return ConClosed;
     }
-    Action actionRet;
 
     //La libreria boost è case insensitive
     Method code;
@@ -37,36 +35,21 @@ Action HttpMgt::connectionRequest (NCS::Connection *c){
     HtmlMessage mes(*hHeader);
 
     switch (code){
-
         case Get:
-            actionRet = send(c, mes);
-            if (actionRet == RequestComplete)
-                return RequestComplete;
-            break;
+            return sendGet(c, mes);
         case Head:
-            actionRet = stringSend(c, mes.header);
-            mes.inStream->close();
-            if (actionRet == RequestComplete)
-                return RequestComplete;
-            break;
+            return sendHead(c, mes);
         case Other:
-            mes.status = StatusCode::client_error_not_acceptable;
-            mes.body = fmt::format(mes.body, hHeader->method);
-            actionRet = send(c, mes);
-            if (actionRet == RequestComplete)
-                return RequestComplete;
-            break;
+            return sendMethodInvalid(c, mes, hHeader);
     }
-
     return ConClosed;
 }
 
-Action HttpMgt::send (NCS::Connection *c, HtmlMessage &msg){
+Action HttpMgt::sendGet (NCS::Connection *c, HtmlMessage &msg){
     Action actionRet;
 
     actionRet = stringSend(c, msg.header);
     if (actionRet == ConClosed){
-        msg.inStream->close();
         return ConClosed;
     }
 
@@ -83,6 +66,18 @@ Action HttpMgt::send (NCS::Connection *c, HtmlMessage &msg){
             break;
     }
     return actionRet;
+}
+
+Action HttpMgt::sendHead (NCS::Connection *c, HtmlMessage &msg){
+    Action actionRet = stringSend(c, msg.header);
+
+    return actionRet;
+}
+
+Action HttpMgt::sendMethodInvalid (NCS::Connection *c, HtmlMessage &msg, NCS::Connection::httpHeader *hHeader){
+    msg.status = StatusCode::client_error_not_acceptable;
+    msg.body = fmt::format(msg.body, hHeader->method);
+    return sendGet(c, msg); //Strutturalmente come una get, ma è un codice di errore
 }
 
 Action HttpMgt::stringSend (NCS::Connection *c, string &msg){
@@ -113,7 +108,6 @@ Action HttpMgt::binarySend (NCS::Connection *c, HtmlMessage &msg){
                 #ifdef DEBUG_LOG
                 Log::db << "[HttpMgt::rawSend] Reading image from filesystem get error " << strerror(errno) << "\n";
                 #endif
-                msg.inStream->close();
                 return ConClosed;
             }
 
@@ -123,16 +117,25 @@ Action HttpMgt::binarySend (NCS::Connection *c, HtmlMessage &msg){
                 switch (errno){
                     case EPIPE:
                         perror("[HttpMgt::binarySend] Epipe sendData");
-                        msg.inStream->close();
                         return ConClosed;
                     default:
-                        msg.inStream->close();
                         return ConClosed;
                 }
             }
             lenght -= bytes;
         }while (lenght > 0);
     }
-    msg.inStream->close();
     return RequestComplete;
 }
+
+void HttpMgt::tcpFlush (NCS::Connection *c){
+    #define check(expr) if (!(expr)) { perror("[HttpMgt::tcpFlush] "#expr); exit(EX_OSERR); }
+    int yes = 1, no = 0; // 1 - on, 0 - off
+    if (c->getType() == NCS::Connection::tcpConnect || c->getType() == NCS::Connection::httpConnect){
+        check(setsockopt(c->fd, IPPROTO_TCP, TCP_NODELAY, (char *) &yes, sizeof(int)) != -1);
+        check(setsockopt(c->fd, IPPROTO_TCP, TCP_NODELAY, (char *) &no, sizeof(int)) != -1);
+    }
+    #undef check
+}
+
+

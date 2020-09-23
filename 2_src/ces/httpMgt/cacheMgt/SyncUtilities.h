@@ -9,6 +9,7 @@
 
 #include <thread>
 #include <malloc.h>
+
 #ifndef _GNU_SOURCE
 #define _GNU_SOURCE
 #endif
@@ -20,7 +21,6 @@
 
 extern pthread_rwlock_t *rwlock; //lock for shredder and workers
 extern pthread_rwlockattr_t *attr;
-
 extern std::mutex openMutex;    // Mutex per rendere atomica l'apertura dei file
 
 int initShredderLock ();

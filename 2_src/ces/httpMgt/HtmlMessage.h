@@ -21,7 +21,6 @@
 #include "headerForm.h"
 #include <Resource.h>
 
-
 namespace CES {
     using namespace std;
     enum payloadType : char{
@@ -31,7 +30,6 @@ namespace CES {
         float qFactor;      // numero di default1 o 0 se image/ non è presente
         string fileType;    // "*" o "nome Tipo" se c'è, "" se image/ non è presente e neanche */*
     };
-
     typedef struct imgRequest_ imgRequest;
 
     class HtmlMessage{

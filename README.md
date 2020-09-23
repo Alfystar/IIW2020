@@ -21,6 +21,12 @@ Tenuto dal professore: Francesco Lo Presti
     sudo apt-get install libboost-all-dev
 ```
 
+#### Guide di supporto
+Per poter replicare i test trovate:
+-[Guida per installare apache2][https://github.com/Alfystar/IIW2020/blob/master/Install_Apache2.md] per replicare la nostra condizione di test
+-[Guida per eseguire i test di benckmark][https://github.com/Alfystar/IIW2020/blob/master/4_Bench/Execute_Test.md] per replicare i nostri risultati
+
+
 #### Features
 - Automatic redirect to HOME if path empty
 - Errors: 404 Page, 406 Page, ...
@@ -41,6 +47,7 @@ Tenuto dal professore: Francesco Lo Presti
 	sudo apt install links2
 ```
 - curl
+- ecc...
 
 ### Tool di supporto:
 - gdb (debug codice C++)

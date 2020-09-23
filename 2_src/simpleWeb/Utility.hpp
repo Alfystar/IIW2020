@@ -1,7 +1,6 @@
 #ifndef SIMPLE_WEB_UTILITY_HPP
 #define SIMPLE_WEB_UTILITY_HPP
 
-
 #include "status_code.hpp"
 #include <atomic>
 #include <chrono>
@@ -466,7 +465,6 @@ namespace SimpleWeb {
 } // namespace SimpleWeb
 
 #ifdef __SSE2__
-
 
 #include <emmintrin.h>
 

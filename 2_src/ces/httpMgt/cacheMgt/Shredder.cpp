@@ -162,9 +162,9 @@ void Shredder::initCache (){ // init cache and cache_size (if some file are alre
 }
 
 void Shredder::updateSizeCache (uint_fast64_t fSize){
-     if(write(sizePipe[writeEndPipe], &fSize, sizeof(uint_fast64_t)) == -1){
-         perror("[Shredder::updateSizeCache] Write on sizePipe[writeEndPipe] take error");
-     }
+    if (write(sizePipe[writeEndPipe], &fSize, sizeof(uint_fast64_t)) == -1){
+        perror("[Shredder::updateSizeCache] Write on sizePipe[writeEndPipe] take error");
+    }
 }
 
 void Shredder::waitUntilFullCache (){

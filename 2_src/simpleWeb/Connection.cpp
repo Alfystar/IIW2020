@@ -44,12 +44,14 @@ Connection::~Connection (){
     count--;
     #endif
 
+    if (hHeader)
+        delete hHeader;
+
     #ifdef DEBUG_VERBOSE
     char hex_string[20];
     sprintf(hex_string, "%p", (void *) this); //convert number to hex
     cout << ("Connection fd: " + to_string(fd) + " will closed, memory: " + string(hex_string) + "\n");
     #endif
-
     close(fd);
 }
 
@@ -59,11 +61,9 @@ void Connection::compilePollFD (struct pollfd *pollFd){
 }
 
 #ifdef COUNT_INSTANCE
-
 unsigned long Connection::activeConnection (){
     return count;
 }
-
 #endif
 
 Connection::ConnectType Connection::getType (){
@@ -74,7 +74,7 @@ int Connection::sendData (const void *data, int datalen){
     const char *ptr = static_cast<const char *>(data);
     while (datalen > 0){
         int bytes = send(this->fd, ptr, datalen, MSG_NOSIGNAL);
-        if (bytes == -1) {
+        if (bytes == -1){
             switch (errno){
                 case EINTR:
                     bytes = 0;
@@ -129,9 +129,10 @@ NCS::Connection::httpHeader *Connection::readHttpHeader (){
     istream istream1(&sBuf);
 
     // Definiamo i campi di risposta
-    auto *ret = new httpHeader();
+    hHeader = new httpHeader();
     //Analizziamo la richiesta e la salviamo sui campo
-    if (SimpleWeb::RequestMessage::parse(istream1, ret->method, ret->path, ret->query_string, ret->version, ret->cim)){
+    if (SimpleWeb::RequestMessage::parse(istream1, hHeader->method, hHeader->path, hHeader->query_string,
+                                         hHeader->version, hHeader->cim)){
         cType = httpConnect;
     }
     else{
@@ -139,6 +140,6 @@ NCS::Connection::httpHeader *Connection::readHttpHeader (){
         //        delete ret;
         return nullptr; //Il messaggio ricevuto non era http
     }
-    return ret;
+    return hHeader;
 }
 

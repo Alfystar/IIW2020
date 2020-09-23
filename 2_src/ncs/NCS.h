@@ -5,12 +5,10 @@
 #ifndef HTTP_IMAGESERVER_NCS_H
 #define HTTP_IMAGESERVER_NCS_H
 
-
 #include <mutex>
 #include "Accept.h"
 #include <Connection.h>
 #include "Queue.h"
-
 
 namespace NCS {
     extern Queue *queueObj;
@@ -22,6 +20,5 @@ namespace NCS {
     Accept *ncsGetAccept ();   //"Singleton di Sistema"
 
 }
-
 
 #endif //HTTP_IMAGESERVER_NCS_H

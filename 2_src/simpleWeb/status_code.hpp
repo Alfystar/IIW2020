@@ -1,7 +1,6 @@
 #ifndef SIMPLE_WEB_STATUS_CODE_HPP
 #define SIMPLE_WEB_STATUS_CODE_HPP
 
-
 #include <cstdlib>
 #include <map>
 #include <string>
@@ -157,7 +156,6 @@ namespace SimpleWeb {
             }
         };
         static StringToStatusCode string_to_status_code;
-
         auto pos = string_to_status_code.find(number);
         if (pos == string_to_status_code.end())
             return static_cast<StatusCode>(atoi(number.c_str()));

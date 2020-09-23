@@ -7,9 +7,7 @@
 using namespace NCS;
 
 Queue *NCS::queueObj = nullptr;
-
 Accept *NCS::acceptObj = nullptr;
-
 std::mutex NCS::queueLock;
 std::mutex NCS::acceptLock;
 

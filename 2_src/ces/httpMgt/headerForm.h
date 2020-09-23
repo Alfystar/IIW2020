@@ -5,7 +5,6 @@
 #ifndef HTTP_IMAGESERVER_HEADERFORM_H
 #define HTTP_IMAGESERVER_HEADERFORM_H
 
-
 #include <cstdio>
 #include <string>
 

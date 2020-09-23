@@ -20,8 +20,73 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="35244099-d818-433d-ba8a-cb62e9c2bd02" name="Default Changelist" comment="testRunner ongoing">
+      <change beforePath="$PROJECT_DIR$/../2_src/ces/httpMgt/HtmlMessage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/ces/httpMgt/HtmlMessage.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/ces/httpMgt/HttpMgt.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/ces/httpMgt/HttpMgt.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/ces/httpMgt/HttpMgt.h" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/ces/httpMgt/HttpMgt.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/3.17.3/CMakeSystem.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/3.17.3/CMakeSystem.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/CMakeError.log" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/CMakeError.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/badAlphaWeb.dir/CXX.includecache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/badAlphaWeb.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/badAlphaWeb.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/badAlphaWeb.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/badAlphaWeb.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/badAlphaWeb.dir/depend.internal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/badAlphaWeb.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/badAlphaWeb.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/badAlphaWeb.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/badAlphaWeb.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/badAlphaWeb.dir/main.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/HTTP-ImageServer.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/HTTP-ImageServer.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/CMakeFiles/ces.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/CMakeFiles/ces.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/CMakeFiles/ces.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/CMakeFiles/ces.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/CMakeFiles/ces.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/CMakeFiles/ces.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/CMakeFiles/httpMgt.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/CMakeFiles/httpMgt.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/CMakeFiles/httpMgt.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/CMakeFiles/httpMgt.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/CMakeFiles/httpMgt.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/CMakeFiles/httpMgt.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/cacheMgt/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/cacheMgt/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/cacheMgt/CMakeFiles/cacheMgt.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/cacheMgt/CMakeFiles/cacheMgt.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/cacheMgt/CMakeFiles/cacheMgt.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/cacheMgt/CMakeFiles/cacheMgt.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/cacheMgt/CMakeFiles/cacheMgt.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/cacheMgt/CMakeFiles/cacheMgt.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/cacheMgt/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/cacheMgt/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/cacheMgt/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/cacheMgt/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ces/httpMgt/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/logSystem/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/logSystem/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/logSystem/CMakeFiles/logSystem.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/logSystem/CMakeFiles/logSystem.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/logSystem/CMakeFiles/logSystem.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/logSystem/CMakeFiles/logSystem.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/logSystem/CMakeFiles/logSystem.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/logSystem/CMakeFiles/logSystem.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/logSystem/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/logSystem/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/logSystem/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/logSystem/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/ncs.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/ncs.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/ncs.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/ncs.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/ncs.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/CMakeFiles/ncs.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/ncs/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/simpleWeb/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/simpleWeb/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/simpleWeb/CMakeFiles/simpleWeb.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/simpleWeb/CMakeFiles/simpleWeb.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/simpleWeb/CMakeFiles/simpleWeb.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/simpleWeb/CMakeFiles/simpleWeb.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/simpleWeb/CMakeFiles/simpleWeb.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/simpleWeb/CMakeFiles/simpleWeb.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/simpleWeb/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/simpleWeb/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/cmake-build-release/simpleWeb/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/cmake-build-release/simpleWeb/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/ncs/Accept.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/ncs/Accept.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/ncs/Queue.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/ncs/Queue.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/simpleWeb/Connection.h" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/simpleWeb/Connection.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/webRsc/Debug/2020-09-21__19:04:45__logDb.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/webRsc/Debug/2020-09-21__19:09:47__logDb.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/webRsc/logDb.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/webRsc/logErr.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2_src/webRsc/logOut.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testRunner.py" beforeDir="false" afterPath="$PROJECT_DIR$/testRunner.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,6 +165,7 @@
       <workItem from="1600699376570" duration="21449000" />
       <workItem from="1600767487497" duration="23835000" />
       <workItem from="1600846711825" duration="5794000" />
+      <workItem from="1600879881455" duration="4924000" />
     </task>
     <task id="LOCAL-00001" summary="testRunner ongoing">
       <created>1600634635703</created>
@@ -175,6 +241,10 @@
       <screen x="0" y="0" width="1920" height="1038" />
     </state>
     <state x="747" y="177" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1038@0.0.1920.1038" timestamp="1600632419923" />
+    <state x="1016" y="68" key="CommitChangelistDialog2" timestamp="1600879904816">
+      <screen x="0" y="0" width="1920" height="1038" />
+    </state>
+    <state x="1016" y="68" key="CommitChangelistDialog2/0.0.1920.1038@0.0.1920.1038" timestamp="1600879904816" />
     <state width="914" height="391" key="GridCell.Tab.0.bottom" timestamp="1600789991500">
       <screen x="0" y="0" width="1920" height="1038" />
     </state>

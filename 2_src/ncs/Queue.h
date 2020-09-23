@@ -35,7 +35,6 @@
 #include <Connection.h>
 #include "timeSpecOp.h"
 
-
 namespace NCS {
     class Queue{
     private:

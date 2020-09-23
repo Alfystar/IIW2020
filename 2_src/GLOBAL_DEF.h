@@ -8,7 +8,8 @@
 #include <sysexits.h>
 
 // main startUp
-#define nWorker get_nprocs()  //Per avere il doppio dei core e gestire le situazioni di wait forzate
+//#define nWorker get_nprocs()  //Per avere il doppio dei core e gestire le situazioni di wait forzate
+extern volatile int nWorker; //8080 di default
 
 // Accept settings
 #define BACKLOG 1000    //Connessioni pendenti sul File System
@@ -23,7 +24,6 @@
 
 // Cache system
 #define CACHE_PATH "./web/sys/cache"
-
 
 extern volatile int SERV_PORT; //8080 di default
 //#define SERV_PORT   8080

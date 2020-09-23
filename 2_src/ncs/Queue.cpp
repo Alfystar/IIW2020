@@ -42,7 +42,6 @@ Queue::Queue (){
 }
 
 void Queue::thDispatcher (Queue *q){
-
     pthread_setname_np(pthread_self(), "Queue");
 
     std::cout << "[Queue::thDispatcher] Start work\n";
@@ -53,7 +52,6 @@ void Queue::thDispatcher (Queue *q){
 
     while (true){
         ready = ppoll(q->pollList, q->nextPoll, &t, &sigmask);
-
         if (ready == 0){ //Time out
             #ifdef DEBUG_LOG
             //Log::db << "[Queue::thDispatcher] poll Time out\n";
@@ -67,7 +65,6 @@ void Queue::thDispatcher (Queue *q){
         //Qualcosa da fare:
         for (int i = q->nextPoll - 1; ready > 0 && i >= 0; i--){
             int bitMask = q->pollList[i].revents;
-
             if (bitMask){
                 ready--;
                 if (bitMask == POLLIN){ //Dato disponibile
@@ -85,38 +82,17 @@ void Queue::thDispatcher (Queue *q){
 
                 if (bitMask & POLLHUP){
                     #ifdef DEBUG_VERBOSE
-                    cout << "[Queue::thDispatcher] POLLHUP bit: Fin & Ack has been recived and send\n";
-                    #endif
-                    q->unValidCon(i);
-                    continue;
-                }
-                if (bitMask & (POLLRDHUP)){
-                    // La CON è stata tagliata dal keep-alive
-                    #ifdef DEBUG_VERBOSE
-                    cout << "[Queue::thDispatcher] POLLRDHUP bit: Stream  socket  peer  closed  connection\n";
+                    cout << "[Queue::thDispatcher] POLLHUP bit: Fin & Ack has been recived and sendGet\n";
                     #endif
                     q->unValidCon(i);
                     continue;
                 }
                 if (bitMask & POLLERR){
                     #ifdef DEBUG_VERBOSE
-                    cout << "[Queue::thDispatcher] POLLERR bit: Error condition (only returned in revents; ignored in events)\n";
+                    cout
+                            << "[Queue::thDispatcher] POLLERR bit: Error condition (only returned in revents; ignored in events)\n";
                     #endif
                     q->unValidCon(i);
-                    continue;
-                }
-                if (bitMask & POLLNVAL){
-                    #ifdef DEBUG_VERBOSE
-                    cout << "[Queue::thDispatcher] POLLNVAL bit: Invalid request: fd not open (only returned in revents; ignored in events)\n";
-                    #endif
-                    q->unValidCon(i);
-                    continue;
-                }
-
-                if (bitMask & POLLIN){
-                    #ifdef DEBUG_VERBOSE
-                    cout << "[Queue::thDispatcher] POLLIN bit: Dato da leggere\n";
-                    #endif
                     continue;
                 }
                 #ifdef DEBUG_LOG
@@ -133,16 +109,15 @@ void Queue::pushWaitCon (Connection *con){
 }
 
 void Queue::popWaitingCon (){
-
     bool end = false;
     do{
         Connection *c;
         if (read(waitPipe[readEnd], &c, sizeof(Connection *)) == -1){
             switch (errno){
                 case EAGAIN:
-                    // la lettura vorrebbe bloccare, ma noi l'abbiamo segnata non bloccante
-                    // Quindi la pipe è stata svuotata
-                    end = true; //termino il while perchè ho lettot tutto
+                    // La lettura vorrebbe bloccare, ma noi l'abbiamo segnata non bloccante
+                    //    => segue che la pipe è stata svuotata e non è necessario leggere altro
+                    end = true;
                     break;
                 default:
                     perror("[Queue::popWaitingCon] Pipe write error:");
@@ -176,7 +151,7 @@ Connection *Queue::popReadyCon (){
             default:
                 perror("[Queue::popWaitingCon] Pipe write error:");
                 sleep(1);
-                exit(-1);
+                exit(EX_IOERR);
         }
     }
     return ret;
@@ -191,12 +166,10 @@ void Queue::unValidCon (int index){
 Connection *Queue::reduceList (int index){
     Connection *trash = connectionList[index];
 
-    // Cancello la casella per evitare copie
-    connectionList[index] = 0;
-    pollList[index] = {};
     // Copio l'ultimo nello slot liberato
     connectionList[index] = connectionList[nextPoll - 1];
     pollList[index] = pollList[nextPoll - 1];
+
     // Cancello l'ultimo per evitare copie
     connectionList[nextPoll - 1] = 0;
     pollList[nextPoll - 1] = {};
@@ -210,7 +183,6 @@ Connection *Queue::reduceList (int index){
 inline void Queue::pushPipe (int pipeWriteEnd, Connection *con){
     // Dovendo scrivere 1 puntatore, ovvero 8 byte, l'operazione risulta atomica
     // e a meno di errori di altra natura è impossibile essere bloccati per un SEGNALE
-
     if (write(pipeWriteEnd, (void *) &con, sizeof(Connection *)) == -1){
         perror("[Queue::pushPipe] Pipe write error:");
         sleep(1);

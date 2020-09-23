@@ -1,2 +1,0 @@
-/usr/bin/ar qc libces.a  CMakeFiles/ces.dir/CES.cpp.o CMakeFiles/ces.dir/Worker.cpp.o
-/usr/bin/ranlib libces.a
