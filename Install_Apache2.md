@@ -64,7 +64,3 @@ sudo service apache2 restart    # Avvia il server dopo essere stato stoppato
 sudo service apache2 stop       # Chiude il server se è avviato
 sudo service apache2 reload     # Ricarica configurazioni (se presenti cambiamenti) a SERVER AVVIATO 
 ```
-
-# Httpperf usage
-Per usare
-
