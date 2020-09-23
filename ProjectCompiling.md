@@ -35,3 +35,17 @@ cmake .. -DIMAGE_RESIZE_EN=True -DDAD_RECREATE_EN=True
 E successivamente eseguire nuovamente il `make` per ottenere l'eseguibile.
 Il nome dell'eseguibile è dinamico così da non cancellare le istanze precedenti
 E si otterà come risultato: `badAlphaWeb_img_dadRecreate` in questo caso particolare
+
+### Esecuzione del server
+Per eseguire il server a questo punto digitare sul terminale:
+```
+./
+Per eseguire correttamente il programma digitare:
+         1)  ./badAlphaWeb_basic <PORT> [OPTION]                := Home server al PWD corrente
+  ---->  2)  ./badAlphaWeb_basic <PORT> <serverHome> [opzioni]  := Home server spostata alla dir desiderata
+         3)  ./badAlphaWeb_basic -h  o  badAlpha --help         := Per leggere questa guida
+OPTION List: (In caso di ripetizioni, l'ultimo ha effetto)
+         -w <NumberOfWorker>    := numero di worker instanziati dal server, di default = 8 and MUST be >=0
+```
+
+Di cui il secondo formato è il preferibile, altrimenti `serverHome` sarà la `pwd` del processo.

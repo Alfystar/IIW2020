@@ -37,6 +37,9 @@ if (NOT DEFINED EXTENSION)    # Define e setting di defautl
 endif ()
 
 set(EXE_NAME badAlphaWeb_${EXTENSION})
+
+ADD_DEFINITIONS(-DEXE_NAME_STRING="${EXE_NAME}")
+
 add_executable(${EXE_NAME} main.cpp GLOBAL_DEF.h)
 
 ## Ricerca e linking codice necessario

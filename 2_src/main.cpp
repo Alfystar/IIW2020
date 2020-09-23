@@ -17,12 +17,18 @@ volatile int nWorker = get_nprocs();
 
 using namespace std;
 
+#ifdef EXE_NAME_STRING
+#define NAME EXE_NAME_STRING
+#else
+#define NAME "badAlphaWeb"
+#endif
+
 void help (){
     cout << "Server web badAlphaWeb, versione 0.1\n";
     cout << "Per eseguire correttamente il programma digitare:\n";
-    cout << "\t 1) >> badAlphaWeb <PORT> [OPTION]                := Home server al PWD corrente\n";
-    cout << "\t 2) >> badAlphaWeb <PORT> <serverHome> [opzioni]  := Home server spostata alla dir desiderata\n";
-    cout << "\t 3) >> badAlphaWeb -h  o  badAlpha --help         := Per leggere questa guida\n";
+    cout << "\t 1)  ./" << NAME << " <PORT> [OPTION]                := Home server al PWD corrente\n";
+    cout << "\t 2)  ./" << NAME << " <PORT> <serverHome> [opzioni]  := Home server spostata alla dir desiderata\n";
+    cout << "\t 3)  ./" << NAME << " -h  o  badAlpha --help         := Per leggere questa guida\n";
     cout << "OPTION List: (In caso di ripetizioni, l'ultimo ha effetto)\n";
     cout << "\t -w <NumberOfWorker>\t:= numero di worker instanziati dal server, di default = 8 and MUST be >=0\n";
 }
@@ -82,6 +88,7 @@ int initStorage (char *storage)  //apre o crea un nuovo storage per il server, l
 }
 
 void dadCreator (){
+    //todo: Verificare che al ctrl+c, a terminare sia il figlio e non il padre
     while (true){
         pid_t pid = fork();
         if (pid == -1){
@@ -112,6 +119,10 @@ void dadCreator (){
                         break;
                     case SIGTERM:
                         cerr << "[MAIN::DAD] caused by the SIGTERM";
+                        exit(EX_OK);
+                        break;
+                    case SIGINT:
+                        cerr << "[MAIN::DAD] caused by the SIGINT";
                         exit(EX_OK);
                         break;
                     default:
@@ -146,8 +157,13 @@ int paramParse (int argc, char *argv[]){
 }
 
 void systemSetup (int argc, char *argv[]){
+    if (argc < 2){
+        help();
+        exit(EXIT_FAILURE);
+    }
+
     /// Parametri obbligatori
-    if (argc >= 1){
+    if (argc > 1){
         if (strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0){
             help();
             exit(EX_OK);
@@ -160,7 +176,7 @@ void systemSetup (int argc, char *argv[]){
             }
         }
     }
-    if (argc >= 2){
+    if (argc > 2){
         if (initStorage(argv[2])){
             cout << "[MAIN::main] Direcotry change fail\n";
             exit(EX_OSFILE);
