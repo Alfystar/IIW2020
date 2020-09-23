@@ -24,8 +24,8 @@ namespace CES {
     const string endHead = "Content-Length: {}\r\n"        // Lunghezza in byte della comunicazione
                            "Server: BadAlpha 0.1 (unix)\r\n"
                            "Accept-Ranges: bytes\r\n"
-                           "Keep-Alive: timeout=5, max=100\r\n"
                            "Connection: Keep-Alive\r\n"
+                           "Keep-Alive: timeout=5, max=100\r\n"
                            "\r\n";
 }
 #endif //HTTP_IMAGESERVER_HEADERFORM_H

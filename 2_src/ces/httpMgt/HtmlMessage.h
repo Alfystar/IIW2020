@@ -26,6 +26,9 @@ namespace CES {
     enum payloadType : char{
         text, imageData, rawData, noBody
     };
+    enum ConType : char{
+        KeepAlive, close
+    };
     struct imgRequest_{
         float qFactor;      // numero di default1 o 0 se image/ non è presente
         string fileType;    // "*" o "nome Tipo" se c'è, "" se image/ non è presente e neanche */*
@@ -41,7 +44,7 @@ namespace CES {
         string body;
         ifstream *inStream = nullptr;
         payloadType typePayload = noBody;
-
+        ConType conType = KeepAlive;
     private:
         string redirect;
 

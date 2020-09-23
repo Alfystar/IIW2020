@@ -49,7 +49,6 @@ namespace CES {
         Action sendMethodInvalid (NCS::Connection *c, HtmlMessage &msg, NCS::Connection::httpHeader *hHeader);
         Action stringSend (NCS::Connection *c, string &msg);
         Action binarySend (NCS::Connection *c, HtmlMessage &msg);
-        void tcpFlush (NCS::Connection *c);
     };
 }
 

@@ -31,17 +31,27 @@ Action HttpMgt::connectionRequest (NCS::Connection *c){
     if (code == Other){ //connessione valida ma richiesta non gestita
         hHeader->path = "/web/sys/406.html";
     }
-    //todo: Far leggere se la connessione è keep-alive o close e gestirla
-    HtmlMessage mes(*hHeader);
 
+    HtmlMessage mes(*hHeader);
+    Action ret;
     switch (code){
         case Get:
-            return sendGet(c, mes);
+            ret = sendGet(c, mes);
+            break;
         case Head:
-            return sendHead(c, mes);
+            ret = sendHead(c, mes);
+            break;
         case Other:
-            return sendMethodInvalid(c, mes, hHeader);
+            ret = sendMethodInvalid(c, mes, hHeader);
+            break;
+        default:
+            cerr << "[HttpMgt::connectionRequest] Value on the Switch unexpected!!\n";
+            ret = ConClosed;
     }
+
+    if (mes.conType == KeepAlive)
+        return ret;
+
     return ConClosed;
 }
 
@@ -127,15 +137,3 @@ Action HttpMgt::binarySend (NCS::Connection *c, HtmlMessage &msg){
     }
     return RequestComplete;
 }
-
-void HttpMgt::tcpFlush (NCS::Connection *c){
-    #define check(expr) if (!(expr)) { perror("[HttpMgt::tcpFlush] "#expr); exit(EX_OSERR); }
-    int yes = 1, no = 0; // 1 - on, 0 - off
-    if (c->getType() == NCS::Connection::tcpConnect || c->getType() == NCS::Connection::httpConnect){
-        check(setsockopt(c->fd, IPPROTO_TCP, TCP_NODELAY, (char *) &yes, sizeof(int)) != -1);
-        check(setsockopt(c->fd, IPPROTO_TCP, TCP_NODELAY, (char *) &no, sizeof(int)) != -1);
-    }
-    #undef check
-}
-
-
