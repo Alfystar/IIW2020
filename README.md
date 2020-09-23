@@ -24,7 +24,7 @@ La richiesta del progetto è reperibile [qui](https://github.com/Alfystar/IIW202
 
 #### Guide di supporto
 Per poter replicare i test trovate:
-- [Guida per la compilazione del progetto](https://github.com/Alfystar/IIW2020/blob/master/ProjectCompiling.md]) per creare correttamente l'eseguibile
+- [Guida per la compilazione del progetto](https://github.com/Alfystar/IIW2020/blob/master/ProjectCompiling.md) per creare correttamente l'eseguibile
 
 - [Guida per installare apache2](https://github.com/Alfystar/IIW2020/blob/master/Install_Apache2.md) per replicare la nostra condizione di test
 
