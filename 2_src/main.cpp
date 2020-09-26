@@ -6,6 +6,7 @@
 #include <sys/sysinfo.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/prctl.h>
 
 #include <CES.h>
 #include <Log.h>
@@ -97,6 +98,7 @@ void dadCreator (){
         }
         if (pid == 0){ //son
             cout << "[MAIN::SON] start new instance" << endl;
+            prctl(PR_SET_PDEATHSIG, SIGHUP);
             sonServer();
         }
         else{        //dad

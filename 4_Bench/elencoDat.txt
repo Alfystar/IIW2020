@@ -1,3 +1,0 @@
-Nomi_File
-./benchMark/2020-09-22T17\:50\:00/apache2/indexBenchMark.dat
-./benchMark/2020-09-22T17\:50\:00/badAlpha/indexBenchMark.dat

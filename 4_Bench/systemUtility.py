@@ -8,7 +8,7 @@ def initExpDir(dirOut):
     e ritorna il path dell'uscita
 
     :param dirOut: @strint      Path della directory su cui salvare i risultati SENZA '/' FINALE
-    :return: @strint            Ritorno il path della direcory su cui salvare
+    :return: @strint            Ritorno il path della direcory su cui salvare "./<direcotries>/"
     """
     start_time = datetime.now()
 
@@ -34,9 +34,11 @@ def initFileExperiment(pathDir, name):
     """
     name = pathDir + "/" + name + "_BenchMark.dat"
     f = open(name, "w")
-    # line = str(cpu) + sep + str(parallelCon) + sep + str(nReqSec)+ sep + str(reqTime) + sep + str(speedTransf) + "\n"
     title = "Prove sperimentali del file <" + name + "> i dati sono raccolti nelle colonne:\n"
-    title += "N°Worker\tN°Parallel Connection\tRequests [#ps]\tRequestTime [ms]\tHttpSpeedRate [KBps]\n"
+    title += "N°Worker\tN°Parallel Connection\tRequests [#ps]\tRequestTime [ms]\tHttpSpeedRate [KBps]\tMin Response [ms]\t" \
+             "50% Response [ms]\t66% Response [ms]\t75% Response [ms]\t80% Response [ms]\t90% Response [ms]\t" \
+             "95% Response [ms]\t98% Response [ms]\t99% Response [ms]\t100% Response [ms]\t\n"
     f.write(title)
+    f.flush()
 
     return f, name
