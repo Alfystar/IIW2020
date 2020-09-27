@@ -19,23 +19,20 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="35244099-d818-433d-ba8a-cb62e9c2bd02" name="Default Changelist" comment="testRunner ongoing">
-      <change afterPath="$PROJECT_DIR$/benchMark/1-Success/apache2/caffe_BenchMark.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/benchMark/1-Success/apache2/car_BenchMark.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/benchMark/1-Success/apache2/computerAi_BenchMark.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/benchMark/1-Success/apache2/enterprise_BenchMark.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/benchMark/1-Success/apache2/index_BenchMark.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/benchMark/1-Success/badAlpha/caffe_BenchMark.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/benchMark/1-Success/badAlpha/car_BenchMark.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/benchMark/1-Success/badAlpha/computerAi_BenchMark.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/benchMark/1-Success/badAlpha/enterprise_BenchMark.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/benchMark/1-Success/badAlpha/index_BenchMark.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/benchMark/1-Success/matlabList.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../2_src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../2_src/main.cpp" afterDir="false" />
+    <list default="true" id="35244099-d818-433d-ba8a-cb62e9c2bd02" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/benchMark/2020-09-27T13:08:09/ErrorTestList.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/benchMark/2020-09-27T13:08:09/apache2/caffe_BenchMark.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/benchMark/2020-09-27T13:08:09/apache2/car_BenchMark.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/benchMark/2020-09-27T13:08:09/apache2/computerAi_BenchMark.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/benchMark/2020-09-27T13:08:09/apache2/enterprise_BenchMark.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/benchMark/2020-09-27T13:08:09/apache2/index_BenchMark.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/benchMark/2020-09-27T13:08:09/badAlpha/caffe_BenchMark.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/benchMark/2020-09-27T13:08:09/badAlpha/car_BenchMark.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/benchMark/2020-09-27T13:08:09/badAlpha/computerAi_BenchMark.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/benchMark/2020-09-27T13:08:09/badAlpha/enterprise_BenchMark.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/benchMark/2020-09-27T13:08:09/badAlpha/index_BenchMark.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/benchMark/2020-09-27T13:08:09/matlabList.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/benchMark/2020-09-22T17:50:00/apache2/indexBenchMark.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/benchMark/2020-09-22T17:50:00/badAlpha/indexBenchMark.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/elencoDat.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/experiment.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiment.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/systemUtility.py" beforeDir="false" afterPath="$PROJECT_DIR$/systemUtility.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testRunner.py" beforeDir="false" afterPath="$PROJECT_DIR$/testRunner.py" afterDir="false" />
@@ -118,7 +115,8 @@
       <workItem from="1600767487497" duration="23835000" />
       <workItem from="1600846711825" duration="5794000" />
       <workItem from="1600879881455" duration="5514000" />
-      <workItem from="1601112089374" duration="16071000" />
+      <workItem from="1601112089374" duration="16167000" />
+      <workItem from="1601202109516" duration="3741000" />
     </task>
     <task id="LOCAL-00001" summary="testRunner ongoing">
       <created>1600634635703</created>
@@ -162,7 +160,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600789597179</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="testRunner first success">
+      <created>1601151431695</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1601151431695</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -183,7 +188,8 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="testRunner ongoing" />
-    <option name="LAST_COMMIT_MESSAGE" value="testRunner ongoing" />
+    <MESSAGE value="testRunner first success" />
+    <option name="LAST_COMMIT_MESSAGE" value="testRunner first success" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1156" y="84" width="557" height="349" key="#Notifications" timestamp="1600772680834">
@@ -202,56 +208,56 @@
       <screen x="0" y="0" width="1920" height="1038" />
     </state>
     <state x="517" y="264" key="#xdebugger.evaluate/0.0.1920.1038@0.0.1920.1038" timestamp="1601141557059" />
-    <state x="1016" y="68" key="CommitChangelistDialog2" timestamp="1600879904816">
+    <state x="1016" y="68" key="CommitChangelistDialog2" timestamp="1601151431544">
       <screen x="0" y="0" width="1920" height="1038" />
     </state>
-    <state x="1016" y="68" key="CommitChangelistDialog2/0.0.1920.1038@0.0.1920.1038" timestamp="1600879904816" />
-    <state width="1342" height="391" key="GridCell.Tab.0.bottom" timestamp="1601151044567">
+    <state x="1016" y="68" key="CommitChangelistDialog2/0.0.1920.1038@0.0.1920.1038" timestamp="1601151431544" />
+    <state width="1100" height="391" key="GridCell.Tab.0.bottom" timestamp="1601204889820">
       <screen x="0" y="0" width="1920" height="1038" />
     </state>
-    <state width="1342" height="391" key="GridCell.Tab.0.bottom/0.0.1920.1038@0.0.1920.1038" timestamp="1601151044567" />
-    <state width="1342" height="391" key="GridCell.Tab.0.center" timestamp="1601151044566">
+    <state width="1100" height="391" key="GridCell.Tab.0.bottom/0.0.1920.1038@0.0.1920.1038" timestamp="1601204889820" />
+    <state width="1100" height="391" key="GridCell.Tab.0.center" timestamp="1601204889820">
       <screen x="0" y="0" width="1920" height="1038" />
     </state>
-    <state width="1342" height="391" key="GridCell.Tab.0.center/0.0.1920.1038@0.0.1920.1038" timestamp="1601151044566" />
-    <state width="1342" height="391" key="GridCell.Tab.0.left" timestamp="1601151044566">
+    <state width="1100" height="391" key="GridCell.Tab.0.center/0.0.1920.1038@0.0.1920.1038" timestamp="1601204889820" />
+    <state width="1100" height="391" key="GridCell.Tab.0.left" timestamp="1601204889819">
       <screen x="0" y="0" width="1920" height="1038" />
     </state>
-    <state width="1342" height="391" key="GridCell.Tab.0.left/0.0.1920.1038@0.0.1920.1038" timestamp="1601151044566" />
-    <state width="1342" height="391" key="GridCell.Tab.0.right" timestamp="1601151044567">
+    <state width="1100" height="391" key="GridCell.Tab.0.left/0.0.1920.1038@0.0.1920.1038" timestamp="1601204889819" />
+    <state width="1100" height="391" key="GridCell.Tab.0.right" timestamp="1601204889820">
       <screen x="0" y="0" width="1920" height="1038" />
     </state>
-    <state width="1342" height="391" key="GridCell.Tab.0.right/0.0.1920.1038@0.0.1920.1038" timestamp="1601151044567" />
-    <state width="914" height="337" key="GridCell.Tab.1.bottom" timestamp="1601142564970">
+    <state width="1100" height="391" key="GridCell.Tab.0.right/0.0.1920.1038@0.0.1920.1038" timestamp="1601204889820" />
+    <state width="914" height="337" key="GridCell.Tab.1.bottom" timestamp="1601151445830">
       <screen x="0" y="0" width="1920" height="1038" />
     </state>
-    <state width="914" height="337" key="GridCell.Tab.1.bottom/0.0.1920.1038@0.0.1920.1038" timestamp="1601142564970" />
-    <state width="914" height="337" key="GridCell.Tab.1.center" timestamp="1601142564970">
+    <state width="914" height="337" key="GridCell.Tab.1.bottom/0.0.1920.1038@0.0.1920.1038" timestamp="1601151445830" />
+    <state width="914" height="337" key="GridCell.Tab.1.center" timestamp="1601151445830">
       <screen x="0" y="0" width="1920" height="1038" />
     </state>
-    <state width="914" height="337" key="GridCell.Tab.1.center/0.0.1920.1038@0.0.1920.1038" timestamp="1601142564970" />
-    <state width="914" height="337" key="GridCell.Tab.1.left" timestamp="1601142564969">
+    <state width="914" height="337" key="GridCell.Tab.1.center/0.0.1920.1038@0.0.1920.1038" timestamp="1601151445830" />
+    <state width="914" height="337" key="GridCell.Tab.1.left" timestamp="1601151445830">
       <screen x="0" y="0" width="1920" height="1038" />
     </state>
-    <state width="914" height="337" key="GridCell.Tab.1.left/0.0.1920.1038@0.0.1920.1038" timestamp="1601142564969" />
-    <state width="914" height="337" key="GridCell.Tab.1.right" timestamp="1601142564970">
+    <state width="914" height="337" key="GridCell.Tab.1.left/0.0.1920.1038@0.0.1920.1038" timestamp="1601151445830" />
+    <state width="914" height="337" key="GridCell.Tab.1.right" timestamp="1601151445830">
       <screen x="0" y="0" width="1920" height="1038" />
     </state>
-    <state width="914" height="337" key="GridCell.Tab.1.right/0.0.1920.1038@0.0.1920.1038" timestamp="1601142564970" />
+    <state width="914" height="337" key="GridCell.Tab.1.right/0.0.1920.1038@0.0.1920.1038" timestamp="1601151445830" />
     <state x="1028" y="265" key="IDE.errors.dialog" timestamp="1600638297622">
       <screen x="0" y="0" width="1920" height="1038" />
     </state>
     <state x="1028" y="265" key="IDE.errors.dialog/0.0.1920.1038@0.0.1920.1038" timestamp="1600638297622" />
-    <state x="883" y="255" key="Vcs.Push.Dialog.v2" timestamp="1600789609341">
+    <state x="883" y="255" key="Vcs.Push.Dialog.v2" timestamp="1601151433796">
       <screen x="0" y="0" width="1920" height="1038" />
     </state>
-    <state x="883" y="255" key="Vcs.Push.Dialog.v2/0.0.1920.1038@0.0.1920.1038" timestamp="1600789609341" />
+    <state x="883" y="255" key="Vcs.Push.Dialog.v2/0.0.1920.1038@0.0.1920.1038" timestamp="1601151433796" />
     <state width="637" height="519" key="XDebugger.FullValuePopup" timestamp="1601142208039">
       <screen x="0" y="0" width="1920" height="1038" />
     </state>
     <state width="637" height="519" key="XDebugger.FullValuePopup/0.0.1920.1038@0.0.1920.1038" timestamp="1601142208039" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/4_Bench$testRunner.coverage" NAME="testRunner Coverage Results" MODIFIED="1601150192675" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/4_Bench$testRunner.coverage" NAME="testRunner Coverage Results" MODIFIED="1601204889808" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

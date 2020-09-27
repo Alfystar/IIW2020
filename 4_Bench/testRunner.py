@@ -113,26 +113,28 @@ def main():
 
     savePath = initExpDir(outDir)
     nameOutList = savePath + "matlabList.txt"
+    errorTestList = savePath + "ErrorTestList.txt"
 
-    try:
-        os.remove(nameOutList)
-        print("% s removed successfully" % nameOutList)
-    except OSError as error:
-        print(error)
-        print("File path can not be removed")
-
-    outPathFile = open(nameOutList, "w")
+    matlabPaths = open(nameOutList, "w")
+    errorTest = open(errorTestList, "w")
+    outFD = [matlabPaths, errorTest]
     rscList = ["index.html", "web/img/caffe.jpg", "web/img/computerAi.webp", "web/img/enterprise.png",
                "web/img/car.jpg"]
 
+    errorTest.write("badAlpha error command:\n")
+    errorTest.flush()
     for rsc in rscList:
-        runBadAlphaExperiment(savePath, IP, badAlphaPort, rsc, badAlphaParam, outPathFile)
+        runBadAlphaExperiment(savePath, IP, badAlphaPort, rsc, badAlphaParam, outFD)
 
     time.sleep(1)
     # input("Press Enter to continue...")
+    errorTest.write("\n#######################\n\napache2 error command:\n")
+    errorTest.flush()
     for rsc in rscList:
-        runApache2experiment(savePath, IP, apachePort, rsc, outPathFile)
+        runApache2experiment(savePath, IP, apachePort, rsc, outFD)
 
+    matlabPaths.close()
+    errorTest.close()
     #todo: Comando matlab per l'elaborazioni delle immagini
 
     return 0

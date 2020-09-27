@@ -25,15 +25,25 @@ def initExpDir(dirOut):
     return path
 
 
-def initFileExperiment(pathDir, name):
+def initFileExperiment(pathExperiment, name, matlabPaths):
     """
     La funzione prende il path della directory che conterrà l'esperimento e ritorna un FD di questo file e il suo path
-    :param pathDir: @string     Path della directory su cui salvare i risultati SENZA '/' FINALE
-    :param name: @string        Nome del file
+    :param pathExperiment: @string      Path della directory su cui salvare i risultati SENZA '/' FINALE
+    :param name: @string                Nome del file
+    :param matlabPaths: @FD             File su cui salvare il path del file corrente
     :return: @FD, @string       File descriptro del file, e path dello stesso
     """
-    name = pathDir + "/" + name + "_BenchMark.dat"
-    f = open(name, "w")
+
+    try:
+        os.makedirs(pathExperiment)
+    except OSError:
+        print("Creation of the directory %s failed" % pathExperiment)
+    else:
+        print("Successfully created the directory %s" % pathExperiment)
+
+
+    fileExp = pathExperiment + "/" + name + "_BenchMark.dat"
+    f = open(fileExp, "w")
     title = "Prove sperimentali del file <" + name + "> i dati sono raccolti nelle colonne:\n"
     title += "N°Worker\tN°Parallel Connection\tRequests [#ps]\tRequestTime [ms]\tHttpSpeedRate [KBps]\tMin Response [ms]\t" \
              "50% Response [ms]\t66% Response [ms]\t75% Response [ms]\t80% Response [ms]\t90% Response [ms]\t" \
@@ -41,4 +51,7 @@ def initFileExperiment(pathDir, name):
     f.write(title)
     f.flush()
 
-    return f, name
+    matlabPaths.write(fileExp + "\n")
+    matlabPaths.flush()
+
+    return f
