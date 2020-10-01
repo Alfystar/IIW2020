@@ -53,8 +53,9 @@ void Accept::sockInit (){
     struct rlimit limit;
     if (getrlimit(RLIMIT_NOFILE, &limit))
         perror("[Accept::sockInit] Error in getrlimit:");
-
-    limit.rlim_cur = std::min((rlim_t) MAX_CON, limit.rlim_max);
+    
+    // MAX_CON * 2, poichè ogni connessione se usa il file System apre un ulteriore FD
+    limit.rlim_cur = std::min((rlim_t) MAX_CON * 2, limit.rlim_max);
     if (setrlimit(RLIMIT_NOFILE, &limit))
         perror("[Accept::sockInit] Error in setrlimit:");
 
