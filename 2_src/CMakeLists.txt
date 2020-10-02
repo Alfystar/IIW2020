@@ -5,23 +5,23 @@ project(HTTP-ImageServer)
 
 if (IMAGE_RESIZE_EN)
     message("IMAGE_RESIZE_EN evaluates to True")
-    set(EXTENSION ${EXTENSION}img_)
+    set(EXTENSION ${EXTENSION}_img)
     add_compile_definitions(IMAGE_RESIZE)   # Abilita il ridimensionamento dinamico delle immagini
 endif ()
 if (DAD_RECREATE_EN)
     message("DAD_RECREATE_EN evaluates to True")
-    set(EXTENSION ${EXTENSION}dadRecreate)
+    set(EXTENSION ${EXTENSION}_dadRecreate)
     add_compile_definitions(DAD_RECREATE)   # Abilita la resilienza di ricreare il server se crasha
 endif ()
 if (DEBUG_LOG_EN)
     message("DEBUG_LOG_EN evaluates to True")
     add_compile_definitions(DEBUG_LOG)      # Abilita la scrittura sul file di log
-    set(EXTENSION ${EXTENSION}log)
+    set(EXTENSION ${EXTENSION}_log)
 endif ()
 if (DEBUG_VERBOSE_EN)
     message("DEBUG_VERBOSE_EN evaluates to True")
     add_compile_definitions(DEBUG_VERBOSE)  # Abilita la scrittura sul terminale dei passi
-    set(EXTENSION ${EXTENSION}verbose)
+    set(EXTENSION ${EXTENSION}_verbose)
 endif ()
 
 message("Platform type Unix : ${UNIX}")
@@ -29,14 +29,14 @@ message("Platform type Unix : ${UNIX}")
 add_compile_options(-Wall -Wextra -pedantic -Werror)
 
 if (NOT DEFINED EXTENSION)    # Define e setting di defautl
-    set(EXTENSION basic)
+    set(EXTENSION _basic)
     #add_compile_definitions(IMAGE_RESIZE)   # Abilita il ridimensionamento dinamico delle immagini
     #add_compile_definitions(DAD_RECREATE)   # Abilita la resilienza di ricreare il server se crasha
     #add_compile_definitions(DEBUG_LOG)      # Abilita la scrittura sul file di log
     #add_compile_definitions(DEBUG_VERBOSE)  # Abilita la scrittura sul terminale dei passi
 endif ()
 
-set(EXE_NAME badAlphaWeb_${EXTENSION})
+set(EXE_NAME badAlphaWeb${EXTENSION})
 
 ADD_DEFINITIONS(-DEXE_NAME_STRING="${EXE_NAME}")
 

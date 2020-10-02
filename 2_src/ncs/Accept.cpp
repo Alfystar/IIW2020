@@ -133,7 +133,7 @@ void Accept::socketSettings (int sock){
     //              The time (in seconds) between individual keepalive probes.
     //              This option should not be used in code intended to be
     //              portable.
-    int interval = 1;
+    int interval = 5;
     check(setsockopt(sock, IPPROTO_TCP, TCP_KEEPINTVL, &interval, sizeof(int)) != -1);
 
     //TCP_KEEPCNT (since Linux 2.4)
