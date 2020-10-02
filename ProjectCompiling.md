@@ -1,10 +1,23 @@
 # How to compiling badAlpha server:
 
+## Libreri da installare dai Repository Linux 
+
 #### Pre-requisiti
 Per il progetto è stato usato cmake per la creazione automatizzata del make e il collegamento di tutte le dipendenze. 
 Risulta quindi necessario installare `cmake`, oltre al `make` e il compilatore C++
 ```
-sudo apt install cmake, make, g++
+sudo apt install cmake, make, g++, build-essential
+```
+
+- Per aggiungere la libreria format.h e montare le stringhe
+```
+    sudo add-apt-repository universe
+    sudo apt update
+    sudo apt install libfmt-dev
+```
+- Per la libreria boost (utility avanzate di C++)
+```
+    sudo apt-get install libboost-all-dev
 ```
 
 #### Compilazione della soluzione
@@ -17,8 +30,8 @@ make -j 8   #Per parallelizzare su 8 processi la compilazione
 
 Il programma è stato sviluppato usando vari `#define` che permettessero di rendere parametriche le aggiunte del codice, dal cmake è possibile selezionare l'estenzione che più aggrada, per poter selezionare le opzioni da attivare così da avere un compilato con quelle caratteristiche basterà digitare al posto di `cmake`:
 ```
-cmake .. -D<VariableName>=True
-
+cmake .. -D<VariableName>=True/False
+cmake .. -DIMAGE_RESIZE_EN=False -DDAD_RECREATE_EN=False -DDEBUG_LOG_EN=False -DDEBUG_VERBOSE_EN=False
 ```
 Dove `VariableName` è uno delle seguenti variabili:
 - IMAGE_RESIZE_EN
@@ -29,8 +42,7 @@ Dove `VariableName` è uno delle seguenti variabili:
 ##### È in oltre possibile creare una composizione di caratteristiche
 Ad esempio
 ```
-cmake .. -DIMAGE_RESIZE_EN=True -DDAD_RECREATE_EN=True
-
+cmake .. -DIMAGE_RESIZE_EN=True -DDAD_RECREATE_EN=True -DDEBUG_LOG_EN=False -DDEBUG_VERBOSE_EN=False
 ```
 E successivamente eseguire nuovamente il `make` per ottenere l'eseguibile.
 Il nome dell'eseguibile è dinamico così da non cancellare le istanze precedenti

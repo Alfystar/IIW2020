@@ -1,26 +1,15 @@
 # IIW2020
 Progetto di IIW Web Server
+
 Sviluppato in C++ per il corso di Ingegneria di Internet
+
 Tenuto dal professore: Francesco Lo Presti
+
 La richiesta del progetto è reperibile [qui](https://github.com/Alfystar/IIW2020/blob/master/WebServer_Project.pdf)
 
 ### Sviluppato da:
 - Alfano Emanuele
 - Badalamenti Filippo
-
-#### Repository Linux da Installare
-- Per aggiungere la libreria format.h e montare le stringhe
-    
-```
-    sudo add-apt-repository universe
-    sudo apt update
-    sudo apt install libfmt-dev
-```
-- Per la libreria boost (utility avanzate di C++)
-
-```
-    sudo apt-get install libboost-all-dev
-```
 
 #### Guide di supporto
 Per poter replicare i test trovate:
@@ -30,28 +19,22 @@ Per poter replicare i test trovate:
 
 - [Guida per eseguire i test di benckmark](https://github.com/Alfystar/IIW2020/blob/master/4_Bench/Execute_Test.md) per replicare i nostri risultati
 
-
 #### Features
 - Automatic redirect to HOME if path empty
 - Errors: 404 Page, 406 Page, ...
 - Moving throw the fileSystem (no security)
-- Log System, visualizzabile in real time mediante:
-```
-	tail -f logDb.txt -n 50 -s 1    
-```
+- Log System, visualizzabile in real time mediante: `tail -f logDb.txt -n 50 -s 1`
 - Storico dei debug, accedibile dentro la cartella Debug/
 - No busy Wait to all CODE
 
 ### Supporter Browser
+Il progetto è stato testato con successo su:
 - FireFox browser
 - Chromium
-- Chorme
-- links2
-```
-	sudo apt install links2
-```
+- Chrome
+- links2 ` sudo apt install links2 `
 - curl
-- ecc...
+
 
 ### Tool di supporto:
 - gdb (debug codice C++)
@@ -67,5 +50,6 @@ Per poter replicare i test trovate:
 - Format (per creare parametricamente le stringhe)
 
 
-### Progetti di Inspirazione
+### Codice Open-Source usato:
+Per l'estrazione delle informazioni dall'header di una richiesta, sono stati prese le librerie scritte in questo progetto, e riadattate al nostro codice
 - https://gitlab.com/eidheim/Simple-Web-Server
