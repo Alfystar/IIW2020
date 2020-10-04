@@ -1,3 +1,5 @@
+ProjectCompiling
+
 # How to compile badAlpha server:
 
 ## Librerie da installare dai Repository Linux 
