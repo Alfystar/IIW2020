@@ -1,6 +1,9 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.10)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+message("Platform type Unix : ${UNIX}")
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address")
+add_compile_options(-Wall -Wextra -pedantic -Werror)
 project(HTTP-ImageServer)
 
 if (IMAGE_RESIZE_EN)
@@ -24,9 +27,6 @@ if (DEBUG_VERBOSE_EN)
     set(EXTENSION ${EXTENSION}_verbose)
 endif ()
 
-message("Platform type Unix : ${UNIX}")
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address")
-add_compile_options(-Wall -Wextra -pedantic -Werror)
 
 if (NOT DEFINED EXTENSION)    # Define e setting di defautl
     set(EXTENSION _basic)
