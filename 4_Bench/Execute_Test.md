@@ -1,34 +1,31 @@
 # Benchmark:
-Abbiamo optato per un tool scritto in go, recente e multithread, per analizzare le performance del server.
+Per analizzare le performance del server, la scelta è ricaduta su un tool scritto in Go, recente e multithread.
 Per scaricare ed installare Go, seguire la guida su:
 https://golang.org/doc/install?download=go1.15.2.linux-amd64.tar.gz
 
-In oltre è necessario avere installato python3.8 per poter eseguire lo script di test che eseguie in serie tutti i test, li salva e ottiene i grafici.
+È inoltre necessario aver installato Python 3.8 per poter eseguire lo script di test, che chiama in sequenza il tool modificandone i parametri, salva i risultati ottenuti e ne grafica i valori.
 
 # Go-HttpBench
-Il programma di Benchmark è reperibile all'url:
+Il programma di benchmark è reperibile all'url:
 https://github.com/parkghost/gohttpbench.git
-Per poterlo installare sulla macchina
+Per poterlo installare sulla macchina:
 
 ```
-cd <Path dove installare>      # verrà qui creato un eseguibile
+cd <Path d'installazione>      # verrà qui creato un eseguibile
 go get github.com/parkghost/gohttpbench
 go build -o gb github.com/parkghost/gohttpbench
 ```
-Nella directory `<Path dove installare>` verrà creato l'eseguibile `gb`.
-Per esegurlo quindi lanciare da terminale:
+Nella directory `<Path d'installazione>` verrà creato l'eseguibile `gb`. Per eseguirlo lanciare da terminale:
 ```
 ./gb <PARAMETRI>
 ```
-Per una descrizione migliore guardare readmi sul repository del progetto.
+Per una descrizione più dettagliata dei parametri, riferirsi al README sul repository del progetto originale.
 
-# Repeate Benchmark script
-Per eseguire i test ripetutamente e con i parametri ipotizzati, è stato scritto uno script in python che gestisca le chiamate del programma con i diversi parametri.
+# Run benchmark script
+Anziché eseguire il tool variando i parametri manualmente, è stato scritto uno script in python per la gestione statica delle chiamate al programma. Al lancio, parte prima il test sul server badAlpha, finito il quale lo script rimane in attesa della pressione del tasto `ENTER`, così da spegnere il server, e far partire Apache2.
 
-Prima lo si lancia e parte il test di badAlpha, 
-finito il test rimane in attesa di un invio, così da poter spegnere il server, e accendere apache
-Premuto invio parte il test di apache2
+Raccolti i dati e salvati in un file .dat, è infine chiamato uno script Matlab per estrapolarli e produrre i grafici utili alla relazione. 
 
 
 # Matlab Elaboration
-Per estrapolare dei dati dai vari bechmark effettuati, è stato creato uno script di Matlab che preso il file xml, genera i grafici di cui abbiamo bisogno.
+Partendo da un file contenente tutti i path dei file .dat, si fa il plot del *numero e tempo di richiesta* (in ordinata) al variare del *numero di connessioni parallele* (in ascissa). Inoltre, è visualizzata quale percentuale di risposte è arrivata entro un determinato tempo.

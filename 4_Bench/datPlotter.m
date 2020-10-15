@@ -5,7 +5,7 @@
 % retCode = datPlotter_main("./elencoDat.txt");
 % 
 % % per simulare una chiamata dal main, decommentare le righe sopra
-% % e rinominare quella sottostante con il nome del file
+% % e rinominare la funzione sottostante in datPlotter_main
 % 
 
 function out = datPlotter(argv)
