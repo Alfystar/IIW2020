@@ -22,9 +22,12 @@ Nella directory `<Path d'installazione>` verrà creato l'eseguibile `gb`. Per es
 Per una descrizione più dettagliata dei parametri, riferirsi al README sul repository del progetto originale.
 
 # Run benchmark script
-Anziché eseguire il tool variando i parametri manualmente, è stato scritto uno script in python per la gestione statica delle chiamate al programma. Al lancio, parte prima il test sul server badAlpha, finito il quale lo script rimane in attesa della pressione del tasto `ENTER`, così da spegnere il server, e far partire Apache2.
+Anziché eseguire il tool variando i parametri manualmente, è stato scritto uno script in python per la gestione statica delle chiamate al programma.
 
-Raccolti i dati e salvati in un file .dat, è infine chiamato uno script Matlab per estrapolarli e produrre i grafici utili alla relazione. 
+Esso esegue autonomamente il server `BadAlpha` con i vari parametri, e gli stessi test su Apache2.
+
+Alla fine del test i risultati verranno raccolti i dati e salvati in dei file .dat nel filesystem e generato un file che contiene i loro path.
+Infine viene chiamato lo script Matlab passando l'elenco dei file .dat per elaborarli ed e produrre i grafici utili alla relazione (esportati come imagini png). 
 
 
 # Matlab Elaboration
