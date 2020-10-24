@@ -1,7 +1,6 @@
 function out = datPlotter(argv)
-
+% Todo: Argv diventa 2 path, il primo di badAlpha, il secondo Apache
 filesTab = readtable(argv, 'Delimiter', '\n');
-
 disp(filesTab)
 
 slash = strfind(argv, '/');
@@ -9,7 +8,10 @@ folder = extractBefore(argv, slash(end)); %% use last '/' to get path
 
 fid = fopen(folder + "/faultyTests.txt", "at");
 
-
+% TODO: dopo aver estratto tutti i dati dalle tabelle, unire i grafici
+% dello stesso tipo di Apache2 e BadAlpha
+% Salvare i file dentro una nuova cartella chiamata "MatlabPlot" e mettere
+% qui dentro TUTTO quello che viene generato da Matlab
 for i = 1:height(filesTab)
     file = char(filesTab.(1)(i));
     disp("Working on .dat file: " + file);
@@ -83,8 +85,8 @@ end
 
 function tab = retrieveData(path)
 % to retrieve numbers data
-tab = readtable(path, 'VariableNamingRule','preserve');
 
+  tab = benchMarkTable(path);
 end
 
 function figObj = printGraph(subDat, index)
@@ -126,6 +128,7 @@ end
 % analyzed all data, adding some info and save on file
 
 hold off
+% TODO: Nome del file di test nel titolo
 
 xlabel(XName)
 ylabel(YName)
@@ -165,21 +168,36 @@ numConn = reducedDat.(2)(1);
 % we have to discard some columns for plotting
 valueTab = table2array(reducedDat(:, [1 6:end]));
 
-percentage = [50 66 75 80 90 95 98 99 100]; % WARNING, w/o min in this case
+percentage = [1 50 66 75 80 90 95 98 99 100]; % WARNING, w/o min in this case
 
-for row = 1: height(valueTab)
+
+
+for row = 1: size(valueTab,1)
+    
+    for i = 1:length(valueTab(row,2:end))
+        if(valueTab(row,i) == 0)
+           valueTab(row,i) = 1; % Il diagramma semilogaritmico non vuole 0 
+        end
+    end
     % using 2 below, we include minimum response time! [default = 3]
-    plot(percentage, valueTab(row,3:end), '-*', ...
+%     semilogy(percentage, valueTab(row,2:end), '-*', ...
+%         'DisplayName', "N°Worker: " + valueTab(row,1));
+%     semilogx(valueTab(row,2:end),percentage, '-*', ...
+%         'DisplayName', "N°Worker: " + valueTab(row,1));
+    plot(valueTab(row,2:end),percentage, '-*', ...
         'DisplayName', "N°Worker: " + valueTab(row,1));
+    hold on  
     grid on
-    hold on 
 end
 
 hold off
 
+% TODO: Nome del file di test
 title("Time Response with " + numConn + " parallel connections")
-ylabel("Time [ms]")
-xlabel("Percentage [%]")
+% ylabel("Time [ms]")
+% xlabel("Percentage [%]")
+xlabel("Time [ms]")
+ylabel("Percentage [%]")
 
 legend('Interpreter','none', 'Location','best');
 

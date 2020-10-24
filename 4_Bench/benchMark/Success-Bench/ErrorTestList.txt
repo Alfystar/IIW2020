@@ -1,0 +1,55 @@
+badAlpha error command:
+
+nWorkers = 1
+
+nWorkers = 2
+
+nWorkers = 4
+
+nWorkers = 8
+
+nWorkers = 16
+
+nWorkers = 1
+
+nWorkers = 2
+
+nWorkers = 4
+
+nWorkers = 8
+
+nWorkers = 16
+
+nWorkers = 1
+
+nWorkers = 2
+
+nWorkers = 4
+
+nWorkers = 8
+
+nWorkers = 16
+
+nWorkers = 1
+
+nWorkers = 2
+
+nWorkers = 4
+
+nWorkers = 8
+
+nWorkers = 16
+
+nWorkers = 1
+
+nWorkers = 2
+
+nWorkers = 4
+
+nWorkers = 8
+
+nWorkers = 16
+
+#######################
+
+apache2 error command:

@@ -1,0 +1,6 @@
+Paths file apache 2 .Dat
+./benchMark/Success-Bench/apache2/index_BenchMark.dat
+./benchMark/Success-Bench/apache2/caffe_BenchMark.dat
+./benchMark/Success-Bench/apache2/computerAi_BenchMark.dat
+./benchMark/Success-Bench/apache2/enterprise_BenchMark.dat
+./benchMark/Success-Bench/apache2/car_BenchMark.dat

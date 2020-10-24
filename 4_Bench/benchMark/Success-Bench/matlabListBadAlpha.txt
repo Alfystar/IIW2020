@@ -1,0 +1,6 @@
+Paths file badAlpha .Dat
+./benchMark/Success-Bench/badAlpha/index_BenchMark.dat
+./benchMark/Success-Bench/badAlpha/caffe_BenchMark.dat
+./benchMark/Success-Bench/badAlpha/computerAi_BenchMark.dat
+./benchMark/Success-Bench/badAlpha/enterprise_BenchMark.dat
+./benchMark/Success-Bench/badAlpha/car_BenchMark.dat

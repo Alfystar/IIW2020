@@ -1,0 +1,7 @@
+dopo aver generato le immagini unite dei 2 sistemi, pensiamo di usare:
+Tempi a 500 1000 2000 3000 connessioni per i file index (testuale) e Car(immagine 4k)
+
+
+Passando invece ai parametri di SpeedRate, request ps, 
+Ci dimentichiamo di TimeRequest poichè poi abbiamo preso BENE i tempi di connessione
+
