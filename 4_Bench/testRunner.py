@@ -112,24 +112,32 @@ def main():
     # Inizio dell'esperimento
 
     savePath = initExpDir(outDir)
-    nameOutList = savePath + "matlabList.txt"
+    nameOutList = savePath + "matlabListBadAlpha.txt"
     errorTestList = savePath + "ErrorTestList.txt"
 
     matlabPaths = open(nameOutList, "w")
+    matlabPaths.write("Paths file badAlpha .Dat\n")
     errorTest = open(errorTestList, "w")
     outFD = [matlabPaths, errorTest]
     rscList = ["index.html", "web/img/caffe.jpg", "web/img/computerAi.webp", "web/img/enterprise.png",
                "web/img/car.jpg"]
+    #rscList = ["web/img/computerAi.webp"]
 
     errorTest.write("badAlpha error command:\n")
     errorTest.flush()
     for rsc in rscList:
         runBadAlphaExperiment(savePath, IP, badAlphaPort, rsc, badAlphaParam, outFD)
 
+    matlabPaths.close()
     time.sleep(1)
     # input("Press Enter to continue...")
     errorTest.write("\n#######################\n\napache2 error command:\n")
     errorTest.flush()
+    nameOutList = savePath + "matlabListApache.txt"
+    matlabPaths = open(nameOutList, "w")
+    matlabPaths.write("Paths file apache2 .Dat\n")
+    outFD = [matlabPaths, errorTest]
+
     for rsc in rscList:
         runApache2experiment(savePath, IP, apachePort, rsc, outFD)
 

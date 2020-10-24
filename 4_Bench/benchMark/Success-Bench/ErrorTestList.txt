@@ -9,10 +9,6 @@ nWorkers = 4
 nWorkers = 8
 
 nWorkers = 16
-./gb -r -k -n 1000000 -t 2 -c 1200 http://127.0.0.1:8080/index.html
-./gb -r -k -n 1000000 -t 2 -c 1400 http://127.0.0.1:8080/index.html
-./gb -r -k -n 1000000 -t 2 -c 1800 http://127.0.0.1:8080/index.html
-./gb -r -k -n 1000000 -t 2 -c 2000 http://127.0.0.1:8080/index.html
 
 nWorkers = 1
 
@@ -23,7 +19,6 @@ nWorkers = 4
 nWorkers = 8
 
 nWorkers = 16
-./gb -r -k -n 1000000 -t 2 -c 3000 http://127.0.0.1:8080/web/img/caffe.jpg
 
 nWorkers = 1
 
@@ -34,7 +29,6 @@ nWorkers = 4
 nWorkers = 8
 
 nWorkers = 16
-./gb -r -k -n 1000000 -t 2 -c 2000 http://127.0.0.1:8080/web/img/computerAi.webp
 
 nWorkers = 1
 

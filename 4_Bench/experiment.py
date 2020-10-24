@@ -54,7 +54,7 @@ def runTest(Worker, parallelCon, IP, Port, rsc, errorFd):
     startIndex = 0
     nReqSec, startIndex = paramNumExtract(stdOut, "Requests per second:    ", "[#/sec] (mean)", startIndex)
     reqTime, startIndex = paramNumExtract(stdOut, "(mean)\nTime per request:       ", "[ms]", startIndex)
-    speedTransf, startIndex = paramNumExtract(stdOut, "HTML Transfer rate:     ", "[Kbytes/sec] received", startIndex)
+    speedTransfer, startIndex = paramNumExtract(stdOut, "HTML Transfer rate:     ", "[Kbytes/sec] received", startIndex)
     minTime, startIndex = paramNumExtract(stdOut, "Total:", "\t", startIndex)
     pec50, startIndex = paramNumExtract(stdOut, "50%\t", "\n", startIndex)
     pec66, startIndex = paramNumExtract(stdOut, "66%\t", "\n", startIndex)
@@ -67,7 +67,7 @@ def runTest(Worker, parallelCon, IP, Port, rsc, errorFd):
     pec100, startIndex = paramNumExtract(stdOut, "100%\t", " (longest request)", startIndex)
 
     line = str(Worker) + sep + str(parallelCon) + sep + str(nReqSec) + sep + str(reqTime) + sep + \
-           str(speedTransf) + sep + str(minTime) + sep + str(pec50) + sep + str(pec66) + sep + str(pec75) + sep + \
+           str(speedTransfer) + sep + str(minTime) + sep + str(pec50) + sep + str(pec66) + sep + str(pec75) + sep + \
            str(pec80) + sep + str(pec90) + sep + str(pec95) + sep + str(pec98) + sep + str(pec99) + sep + \
            str(pec100) + "\n"
 

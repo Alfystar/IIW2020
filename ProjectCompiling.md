@@ -6,7 +6,7 @@
 Nel progetto è stato utilizzato CMake per la creazione automatizzata del makefile ed il collegamento di tutte le dipendenze. 
 Risulta quindi necessario installare `cmake`, oltre al `make` e al compilatore C++ (il pacchetto build-essential include la maggior parte delle dipendenze per C/C++)
 ```
-sudo apt install cmake, make, g++, build-essential
+sudo apt install cmake make g++ build-essential
 ```
 
 - Per aggiungere la libreria format.h necessaria ad assemblare le stringhe
@@ -17,7 +17,7 @@ sudo apt install cmake, make, g++, build-essential
 ```
 - Per la libreria boost (utility avanzate di C++)
 ```
-    sudo apt-get install libboost-all-dev
+    sudo apt install libboost-all-dev
 ```
 
 #### Compilazione del server

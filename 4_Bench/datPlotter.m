@@ -1,79 +1,104 @@
-% clc
-% close all
-% clear variables
-% 
-% retCode = datPlotter_main("./elencoDat.txt");
-% 
-% % per simulare una chiamata dal main, decommentare le righe sopra
-% % e rinominare la funzione sottostante in datPlotter_main
-% 
-
 function out = datPlotter(argv)
-
+% Todo: Argv diventa 2 path, il primo di badAlpha, il secondo Apache
 filesTab = readtable(argv, 'Delimiter', '\n');
-
 disp(filesTab)
 
+slash = strfind(argv, '/');
+folder = extractBefore(argv, slash(end)); %% use last '/' to get path
+
+fid = fopen(folder + "/faultyTests.txt", "at");
+
+% TODO: dopo aver estratto tutti i dati dalle tabelle, unire i grafici
+% dello stesso tipo di Apache2 e BadAlpha
+% Salvare i file dentro una nuova cartella chiamata "MatlabPlot" e mettere
+% qui dentro TUTTO quello che viene generato da Matlab
 for i = 1:height(filesTab)
     file = char(filesTab.(1)(i));
     disp("Working on .dat file: " + file);
-    analizeDatFile(file);
+    if (analizeDatFile(file) == -1)
+        disp("Error in " + file + " ; -1 found.")
+        % we save the file on a list of failed tests
+        fprintf(fid, file + '\n');
+    end
 end
 
-out = 0;
+fclose(fid);
 
+fprintf('\n');
+disp("######################")
+disp("# Elaboration ended. #")
+disp("######################")
+
+out = 0;
 end
 
 function sfile = analizeDatFile(file)
 
 datValue = retrieveData(file);
 
-for i = 2+1:size(datValue, 2)
+if (any(datValue.(1) == -1))
+    % we have at least an error in a sequence of tests
+    sfile = -1;
+    return;
+end
+
+for i = 2+1: 5 % the first part of graphs
     disp("Start printing Graph n° " + i)
     fig = printGraph(datValue(:, [1 2 i]), i);
     disp("Printing Graph " + i + " done")
-
-    k = strfind(file, '/');
     
-    folder = extractBefore(file, k(end)); %% use last '/' to get path
-    
+    dot = strfind(file, '.');
+    folder = extractBefore(file, dot(end)) + "/"; %% use last '.' to get path
     
     w = warning('off','all');
-    mkdir(folder + "/imgs");
+    mkdir(folder);
     warning(w);
-    
-    
     
     filename = datValue(:,i).Properties.VariableNames(1);
     
-    path = folder + "/imgs/" + filename;
+    path = folder + filename;
     disp("Saving in: " + path + ".png")
     saveas(fig, path, 'png');
 end
-    fprintf('\n')
+fprintf('\n')
+
+disp("Now saving the time response graph...")
+
+nParCon = getParConn(datValue);
+
+for con = 1:length(nParCon)
+    rows = datValue.(2) == nParCon(con);
+    resp_fig = printResponseTime(datValue(rows, :));
+    
+    path = folder + "TimeResp_" + nParCon(con);
+    disp("Saving Response graph for " + nParCon(con) + ...
+        " parallel connections in: ")
+    fprintf('\t');
+    disp(path + ".png")
+    saveas(resp_fig, path, 'png');
+end
+
+disp("Analysis of .dat file done.")
 
 sfile = 0;
 end
 
 function tab = retrieveData(path)
 % to retrieve numbers data
-tab = readtable(path, 'VariableNamingRule','preserve');
 
+  tab = benchMarkTable(path);
 end
 
 function figObj = printGraph(subDat, index)
 
 figObj = figure(index);
+% set(figObj, 'Visible', 'off'); % uncomment to avoid figure popup
 
 PlotName = subDat(:,1).Properties.VariableNames(1);
 XName = subDat(:,2).Properties.VariableNames(1);
 YName = subDat(:,3).Properties.VariableNames(1);
 
-
 nCore = subDat.(1)(end); % max number of core
-
-
-
 while(nCore > 0)
     
     c = subDat.(1);
@@ -100,20 +125,80 @@ while(nCore > 0)
     
     nCore = nCore - 1;
 end
-
 % analyzed all data, adding some info and save on file
 
 hold off
+% TODO: Nome del file di test nel titolo
 
-xlabel(XName)%, 'Interpreter', 'none');
-ylabel(YName)%, 'Interpreter', 'none');
+xlabel(XName)
+ylabel(YName)
 
-if(valueTab(1,2) < valueTab(end,2)) %% the graph is increasing
-    position = 'Northwest';
-else
-    position = 'Northeast';
+% if(valueTab(1,2) < valueTab(end,2)) %% the graph is increasing
+%     position = 'Northwest';
+% else
+%     position = 'Northeast';
+% end
+
+legend('Interpreter','none', 'Location','best');
+
 end
 
-legend('Interpreter','none', 'Location', position);
+function parConn = getParConn(datValue)
+
+indexConn = find(datValue.(1) == 1);
+
+tmp = indexConn; % same array size
+
+for ind = 1:length(indexConn)
+    tmp(ind) = datValue.(2)(ind);
+end
+
+parConn = tmp;
+
+end
+
+function resp_fig = printResponseTime(reducedDat)
+%reducedDat is only shorter, not slimmer
+
+resp_fig = figure(22);
+% set(resp_fig, 'Visible', 'off'); % uncomment to avoid figure popup
+
+numConn = reducedDat.(2)(1);
+
+% we have to discard some columns for plotting
+valueTab = table2array(reducedDat(:, [1 6:end]));
+
+percentage = [1 50 66 75 80 90 95 98 99 100]; % WARNING, w/o min in this case
+
+
+
+for row = 1: size(valueTab,1)
+    
+    for i = 1:length(valueTab(row,2:end))
+        if(valueTab(row,i) == 0)
+           valueTab(row,i) = 1; % Il diagramma semilogaritmico non vuole 0 
+        end
+    end
+    % using 2 below, we include minimum response time! [default = 3]
+%     semilogy(percentage, valueTab(row,2:end), '-*', ...
+%         'DisplayName', "N°Worker: " + valueTab(row,1));
+%     semilogx(valueTab(row,2:end),percentage, '-*', ...
+%         'DisplayName', "N°Worker: " + valueTab(row,1));
+    plot(valueTab(row,2:end),percentage, '-*', ...
+        'DisplayName', "N°Worker: " + valueTab(row,1));
+    hold on  
+    grid on
+end
+
+hold off
+
+% TODO: Nome del file di test
+title("Time Response with " + numConn + " parallel connections")
+% ylabel("Time [ms]")
+% xlabel("Percentage [%]")
+xlabel("Time [ms]")
+ylabel("Percentage [%]")
+
+legend('Interpreter','none', 'Location','best');
 
 end

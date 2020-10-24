@@ -22,10 +22,29 @@ Nella directory `<Path d'installazione>` verrà creato l'eseguibile `gb`. Per es
 Per una descrizione più dettagliata dei parametri, riferirsi al README sul repository del progetto originale.
 
 # Run benchmark script
-Anziché eseguire il tool variando i parametri manualmente, è stato scritto uno script in python per la gestione statica delle chiamate al programma. Al lancio, parte prima il test sul server badAlpha, finito il quale lo script rimane in attesa della pressione del tasto `ENTER`, così da spegnere il server, e far partire Apache2.
+Anziché eseguire il tool variando i parametri manualmente, è stato scritto uno script in python per la gestione statica delle chiamate al programma.
 
-Raccolti i dati e salvati in un file .dat, è infine chiamato uno script Matlab per estrapolarli e produrre i grafici utili alla relazione. 
+Esso esegue autonomamente il server `BadAlpha` con i vari parametri, e gli stessi test su Apache2.
+
+Alla fine del test i risultati verranno raccolti i dati e salvati in dei file .dat nel filesystem e generato un file che contiene i loro path.
+Infine viene chiamato lo script Matlab passando l'elenco dei file .dat per elaborarli ed e produrre i grafici utili alla relazione (esportati come imagini png). 
+
+Da dentro la directory `4_Bench`, dopo aver compilato l'eseguibile versione base, eseguire il test con questi argv e aspettare la terminazione dello stesso.
+```
+./testRunner.py -bas ../2_src/build/badAlphaWeb_basic ../Web
+```
 
 
 # Matlab Elaboration
-Partendo da un file contenente tutti i path dei file .dat, si fa il plot del *numero e tempo di richiesta* (in ordinata) al variare del *numero di connessioni parallele* (in ascissa). Inoltre, è visualizzata quale percentuale di risposte è arrivata entro un determinato tempo.
+Partendo da un file contenente tutti i path dei file .dat, si fa il plot del *numero e tempo di richiesta* (in ordinata) al variare del *numero di connessioni parallele* (in ascissa).
+
+Un altro grafico mostra invece la *percentuale del numero di richieste* elaborate entro un determinato *tempo*.
+
+Il tutto viene generato partendo da un file di testo contenente i *full path* delle tabelle di benchmark.
+
+Per avviare la generazione dei grafici è necessario avere installato `Matlab 2020b` e chiamare da `4_Bench` il comando: (si potrebbe aspettare un pò causa caricamento in ram dell'ambiente)
+
+```
+matlab -batch "datPlotter('<Path file "matlabList.txt">')"
+
+```
