@@ -1,10 +1,29 @@
-function out = datPlotter(argv)
-% Todo: Argv diventa 2 path, il primo di badAlpha, il secondo Apache
-filesTab = readtable(argv, 'Delimiter', '\n');
+function out = datPlotter(path_badalpha, path_apache)
+
+if (nargin ~= 2)
+    disp("Error in datPlotter, naragin ~= 2")
+    return;
+end
+
+for p = 1:nargin
+    analizePathList(varagin(p));
+end
+
+fprintf('\n');
+disp("######################")
+disp("# Elaboration ended. #")
+disp("######################")
+
+out = 0;
+end
+
+function t = analizePathList(path)
+
+filesTab = readtable(path, 'Delimiter', '\n');
 disp(filesTab)
 
-slash = strfind(argv, '/');
-folder = extractBefore(argv, slash(end)); %% use last '/' to get path
+slash = strfind(path, '/');
+folder = extractBefore(path, slash(end)); %% use last '/' to get path
 
 fid = fopen(folder + "/faultyTests.txt", "at");
 
@@ -12,6 +31,7 @@ fid = fopen(folder + "/faultyTests.txt", "at");
 % dello stesso tipo di Apache2 e BadAlpha
 % Salvare i file dentro una nuova cartella chiamata "MatlabPlot" e mettere
 % qui dentro TUTTO quello che viene generato da Matlab
+
 for i = 1:height(filesTab)
     file = char(filesTab.(1)(i));
     disp("Working on .dat file: " + file);
@@ -24,13 +44,8 @@ end
 
 fclose(fid);
 
-fprintf('\n');
-disp("######################")
-disp("# Elaboration ended. #")
-disp("######################")
-
-out = 0;
 end
+
 
 function sfile = analizeDatFile(file)
 
