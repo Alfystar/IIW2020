@@ -21,7 +21,7 @@ sudo apt install cmake make g++ build-essential
 ```
 
 #### Compilazione del server
-Una volta soddisfatti i prerequisiti, **recarsi nella directory dei sorgenti** ed eseguire:
+Una volta soddisfatti i prerequisiti, **recarsi nella directory dei sorgenti** ("./2_src") ed eseguire:
 ```
 mkdir build && cd build
 cmake ..
@@ -58,3 +58,7 @@ OPTION List: (In caso di ripetizioni, l'ultimo comando ha effetto)
 ```
 
 Tra di esse, il secondo formato è preferibile, altrimenti la `pwd` diventerà la `serverHome` del processo.
+
+
+./badAlphaWeb_basic 8080 ../../Web/
+
