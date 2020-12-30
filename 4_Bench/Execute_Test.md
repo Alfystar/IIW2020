@@ -45,6 +45,9 @@ Il tutto viene generato partendo da un file di testo contenente i *full path* de
 Per avviare la generazione dei grafici è necessario avere installato `Matlab 2020b` e chiamare da `4_Bench` il comando: (si potrebbe aspettare un pò causa caricamento in ram dell'ambiente)
 
 ```bash
-matlab -batch "datPlotter('<Path file "matlabList.txt">')"
+matlab -batch "datPlotter(path_badalpha.txt, path_apache.txt)"
 
 ```
+matlab -batch "datPlotter('benchMark/Success-Bench/matlabListBadAlpha.txt','benchMark/Success-Bench/matlabListApache.txt')"
+
+

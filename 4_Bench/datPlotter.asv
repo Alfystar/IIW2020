@@ -174,12 +174,11 @@ XName = subDat(:,2).Properties.VariableNames(1);
 YName = subDat(:,3).Properties.VariableNames(1);
 nMaxCore = subDat.(1)(end); % max number of core
 
-displayName = "";
-
 if (nMaxCore == 1)
-        displayName = "Apache";
+    displayName = "Apache";
+else
+    displayName = PlotName + ": " + nMaxCore;
 end
-
 
 while(nMaxCore > 0)
     
@@ -189,10 +188,6 @@ while(nMaxCore > 0)
     if (isempty(indexes)) % if we don't have considered this amount of core
         nMaxCore = nMaxCore - 1;
         continue;
-    end
-    
-    if (displayName ~= "Apache")
-        displayName = PlotName + ": " + nMaxCore;
     end
     
     
@@ -276,12 +271,11 @@ end
 
 hold off
 
+% TODO: Nome del file di test
 slash = strfind(fileName, '/');
 file = extractAfter(fileName, slash(end));
-dot = strfind(file, '.');
-title_file = extractBefore(file, dot(end));
 
-title("'" + title_file + "' : " + "Time Response, " + numConn + " Conns", "Interpreter", "none")
+title("'" + file + "': " + "Time Response with " + numConn + " parallel connections", "Interpreter", "none")
 
 xlabel("Time [ms]")
 ylabel("Percentage [%]")
