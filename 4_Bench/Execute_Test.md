@@ -10,13 +10,13 @@ Il programma di benchmark è reperibile all'url:
 https://github.com/parkghost/gohttpbench.git
 Per poterlo installare sulla macchina:
 
-```
+```bash
 cd <Path d'installazione>      # verrà qui creato un eseguibile
 go get github.com/parkghost/gohttpbench
 go build -o gb github.com/parkghost/gohttpbench
 ```
 Nella directory `<Path d'installazione>` verrà creato l'eseguibile `gb`. Per eseguirlo lanciare da terminale:
-```
+```bash
 ./gb <PARAMETRI>
 ```
 Per una descrizione più dettagliata dei parametri, riferirsi al README sul repository del progetto originale.
@@ -30,7 +30,7 @@ Alla fine del test i risultati verranno raccolti i dati e salvati in dei file .d
 Infine viene chiamato lo script Matlab passando l'elenco dei file .dat per elaborarli ed e produrre i grafici utili alla relazione (esportati come imagini png). 
 
 Da dentro la directory `4_Bench`, dopo aver compilato l'eseguibile versione base, eseguire il test con questi argv e aspettare la terminazione dello stesso.
-```
+```bash
 ./testRunner.py -bas ../2_src/build/badAlphaWeb_basic ../Web
 ```
 
@@ -44,7 +44,7 @@ Il tutto viene generato partendo da un file di testo contenente i *full path* de
 
 Per avviare la generazione dei grafici è necessario avere installato `Matlab 2020b` e chiamare da `4_Bench` il comando: (si potrebbe aspettare un pò causa caricamento in ram dell'ambiente)
 
-```
+```bash
 matlab -batch "datPlotter('<Path file "matlabList.txt">')"
 
 ```
