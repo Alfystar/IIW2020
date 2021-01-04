@@ -11,15 +11,15 @@ https://github.com/parkghost/gohttpbench.git
 Per poterlo installare sulla macchina:
 
 ```bash
-cd <Path d'installazione>      # verrà qui creato un eseguibile
+cd "<Path d'installazione>"      # verrà qui creato un eseguibile
 go get github.com/parkghost/gohttpbench
 go build -o gb github.com/parkghost/gohttpbench
 ```
 Nella directory `<Path d'installazione>` verrà creato l'eseguibile `gb`. Per eseguirlo lanciare da terminale:
 ```bash
-./gb <PARAMETRI>
+./gb "<PARAMETRI>"
 ```
-Per una descrizione più dettagliata dei parametri, riferirsi al README sul repository del progetto originale.
+Per una descrizione più dettagliata dei parametri, riferirsi al [README](https://github.com/parkghost/gohttpbench/blob/master/README.md) sul repository del progetto originale.
 
 # Run benchmark script
 Anziché eseguire il tool variando i parametri manualmente, è stato scritto uno script in python per la gestione statica delle chiamate al programma.
@@ -29,11 +29,10 @@ Esso esegue autonomamente il server `BadAlpha` con i vari parametri, e gli stess
 Alla fine del test i risultati verranno raccolti i dati e salvati in dei file .dat nel filesystem e generato un file che contiene i loro path.
 Infine viene chiamato lo script Matlab passando l'elenco dei file .dat per elaborarli ed e produrre i grafici utili alla relazione (esportati come imagini png). 
 
-Da dentro la directory `4_Bench`, dopo aver compilato l'eseguibile versione base, eseguire il test con questi argv e aspettare la terminazione dello stesso.
+Da dentro la directory **`4_Bench`**, dopo aver compilato l'eseguibile versione base, eseguire il test con questi argv e aspettare la terminazione dello stesso.
 ```bash
 ./testRunner.py -bas ../2_src/build/badAlphaWeb_basic ../Web
 ```
-
 
 # Matlab Elaboration
 Partendo da un file contenente tutti i path dei file .dat, si fa il plot del *numero e tempo di richiesta* (in ordinata) al variare del *numero di connessioni parallele* (in ascissa).
@@ -42,12 +41,18 @@ Un altro grafico mostra invece la *percentuale del numero di richieste* elaborat
 
 Il tutto viene generato partendo da un file di testo contenente i *full path* delle tabelle di benchmark.
 
-Per avviare la generazione dei grafici è necessario avere installato `Matlab 2020b` e chiamare da `4_Bench` il comando: (si potrebbe aspettare un pò causa caricamento in ram dell'ambiente)
+Per avviare la generazione dei grafici è necessario avere installato `Matlab 2020b` e chiamare da **`4_Bench`** il comando: (si potrebbe aspettare un pò causa caricamento in ram dell'ambiente)
+
+```bash
+matlab -batch "datPlotter('benchMark/Success-Bench/matlabListBadAlpha.txt','benchMark/Success-Bench/matlabListApache.txt')"
+```
+
+In generale la struttura del comando sarà:
 
 ```bash
 matlab -batch "datPlotter(path_badalpha.txt, path_apache.txt)"
-
 ```
-matlab -batch "datPlotter('benchMark/Success-Bench/matlabListBadAlpha.txt','benchMark/Success-Bench/matlabListApache.txt')"
 
+---
+[HOME](https://github.com/Alfystar/IIW2020/blob/master/README.md)
 

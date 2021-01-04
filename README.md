@@ -36,7 +36,7 @@ Il progetto è stato testato con successo su:
 - gdb (debug codice C++)
 - [Visual Paradigm](https://www.visual-paradigm.com/download/community.jsp) community version
 - ImageMagic, che necessita delle librerie:
-```
+```bash
 	sudo apt install webp, ffmpeg    
 ```
 - Go-HttpBench: https://github.com/parkghost/gohttpbench
