@@ -1,78 +1,43 @@
-function out = datPlotter(path_badalpha, path_apache)
+% manual function to create merged plot with the two subsystems.
+% to obtain the #response and kbps, it's necessary to uncomment
+% the printGraph part, otherwise only timeResponses will be
+% exported to a pdf file
+function out = plotter(path)
 
-if (nargin ~= 2)
-    disp("Error in datPlotter, naragin ~= 2")
+if (nargin ~= 1)
+    disp("Error in plotter, naragin ~= 1")
     return;
 end
 
-%get list of all the files
-filesTab_BA = readtable(path_badalpha, 'Delimiter', '\n');
-disp(filesTab_BA)
-filesTab_Ap = readtable(path_apache, 'Delimiter', '\n');
-disp(filesTab_Ap)
+analizeDatFile(path);
 
-%inizializate the faulty tests list
-slash = strfind(path_badalpha, '/');
-folder = extractBefore(path_badalpha, slash(end)); %% use last '/' to get path
-fid = fopen(folder + "/faultyTests.txt", "w");
-fprintf(fid, "Faulty experiments\n");
 
-% merged_dir = mkdir(folder + "/merged");
-
-for i = 1:height(filesTab_BA) % we assume that we've made the same number of
-    % tests per both the servers.
-    file_BA = char(filesTab_BA.(1)(i));
-    disp("Working on .dat file: " + file_BA);
-    if (analizeDatFile(file_BA, "BA") == -1) % we save the file on a list of failed tests
-        disp("Error in " + file_BA + " ; -1 found.")
-        fprintf(fid, file_BA + '\n');
-    end
-    file_Ap= char(filesTab_Ap.(1)(i));
-    disp("Working on .dat file: " + file_Ap);
-    if (analizeDatFile(file_Ap, "Ap") == -1)
-        disp("Error in " + file_Ap + " ; -1 found.")
-        fprintf(fid, file_Ap + '\n');
-    end
+out=0;
 end
 
-
-fclose(fid);
-
-fprintf('\n');
-disp("######################")
-disp("# Elaboration ended. #")
-disp("######################")
-
-out = 0;
-end
-
-function sfile = analizeDatFile(file, type)
+function sfile = analizeDatFile(file)
 
 datValue = retrieveData(file);
 
-if (any(datValue.(1) == -1))
-    % we have at least an error in a sequence of tests
-    sfile = -1;
-    return;
-end
-
 for i = 2+1: 5 % the first part of graphs
-    disp("Start printing Graph n° " + i)
-    fig = printGraph(datValue(:, [1 2 i]), i, file);
-    disp("Printing Graph " + i + " done")
+    %     disp("Start printing Graph n° " + i)
+    %     fig = printGraph(datValue(:, [1 2 i]), i, file);
+    %     disp("Printing Graph " + i + " done")
     
     dot = strfind(file, '.');
     folder = extractBefore(file, dot(end)) + "/"; %% use last '.' to get path
     
     w = warning('off','all');
     mkdir(folder);
+    mkdir(folder + 'TimeResponse/');
+    
     warning(w);
     
-    filename = datValue(:,i).Properties.VariableNames(1);
-    
-    path = folder + filename;
-    disp("Saving in: " + path + ".png")
-    saveas(fig, path, 'png');
+    %     filename = datValue(:,i).Properties.VariableNames(1);
+    %
+    %     path = folder + filename + ".pdf";
+    %     disp("Saving in: " + path + ".pdf")
+    %     exportgraphics(fig, path,'ContentType','vector')
 end
 fprintf('\n')
 
@@ -82,14 +47,14 @@ nParCon = getParConn(datValue);
 
 for con = 1:length(nParCon)
     rows = datValue.(2) == nParCon(con);
-    resp_fig = printResponseTime(datValue(rows, :), file, type);
+    resp_fig = printResponseTime(datValue(rows, :), file);
     
-    path = folder + "TimeResp_" + nParCon(con);
+    path = folder + 'TimeResponse/' + "TimeResp_" + nParCon(con);
     disp("Saving Response graph for " + nParCon(con) + ...
         " parallel connections in: ")
     fprintf('\t');
     disp(path + ".png")
-    saveas(resp_fig, path, 'png');
+    exportgraphics(resp_fig, path + '.pdf','ContentType','vector')
 end
 
 disp("Analysis of .dat file done.")
@@ -112,12 +77,6 @@ XName = subDat(:,2).Properties.VariableNames(1);
 YName = subDat(:,3).Properties.VariableNames(1);
 nMaxCore = subDat.(1)(end); % max number of core
 
-displayName = "";
-
-if (nMaxCore == 1)
-        displayName = "Apache";
-end
-
 
 while(nMaxCore > 0)
     
@@ -129,10 +88,11 @@ while(nMaxCore > 0)
         continue;
     end
     
-    if (displayName ~= "Apache")
-        displayName = PlotName + ": " + nMaxCore;
+    if (nMaxCore == 20)
+        displayName = "Apache";
+    else
+        displayName = "N° Worker: " + nMaxCore;
     end
-    
     
     valueTab = table2array( subDat(indexes(1):indexes(end),2:end) );
     
@@ -180,7 +140,7 @@ parConn = tmp;
 
 end
 
-function resp_fig = printResponseTime(reducedDat, fileName, type)
+function resp_fig = printResponseTime(reducedDat, fileName)
 %reducedDat is only shorter, not slimmer
 
 resp_fig = figure(22);
@@ -188,9 +148,9 @@ resp_fig = figure(22);
 numConn = reducedDat.(2)(1);
 
 % we have to discard some columns for plotting
-valueTab = table2array(reducedDat(:, [1 6:end]));
+valueTab = table2array(reducedDat(:, [1 7:end]));
 
-percentage = [1 50 66 75 80 90 95 98 99 100]; % WARNING, w/o min in this case
+percentage = [50 66 75 80 90 95 98 99 100]; % WARNING, w/o min in this case
 
 for row = 1: size(valueTab,1)
     
@@ -200,14 +160,12 @@ for row = 1: size(valueTab,1)
         end
     end
     
-    if (type == "Ap")
-        displayName = "Apache";
+    if (valueTab(row,1)==20)
+        displayName= "Apache";
     else
         displayName = "N°Worker: " + valueTab(row,1);
     end
-    
-    plot(valueTab(row,2:end),percentage, '-*', ...
-        'DisplayName', displayName);
+    plot(valueTab(row,2:end),percentage, '-*', 'DisplayName', displayName);
     hold on
     grid on
 end
