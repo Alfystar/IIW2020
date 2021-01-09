@@ -41,16 +41,10 @@ Un altro grafico mostra invece la *percentuale del numero di richieste* elaborat
 
 Il tutto viene generato partendo da un file di testo contenente i *full path* delle tabelle di benchmark.
 
-Per avviare la generazione dei grafici è necessario avere installato `Matlab 2020b` e chiamare da **`4_Bench`** il comando: (si potrebbe aspettare un pò causa caricamento in ram dell'ambiente)
+Per avviare la generazione dei grafici è necessario avere installato `Matlab 2020b` e chiamare da **`4_Bench/benchMark/benchMarkIMG/`** il comando: (si potrebbe aspettare un pò causa caricamento in ram dell'ambiente)
 
 ```bash
-matlab -batch "datPlotter('benchMark/Success-Bench/matlabListBadAlpha.txt','benchMark/Success-Bench/matlabListApache.txt')"
-```
-
-In generale la struttura del comando sarà:
-
-```bash
-matlab -batch "datPlotter(path_badalpha.txt, path_apache.txt)"
+matlab -batch "run GraphCalc.m" 
 ```
 
 ---
