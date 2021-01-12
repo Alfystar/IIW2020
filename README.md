@@ -2,6 +2,7 @@
 Corso di Ingegneria di Internet e Web, tenuto dal prof. Francesco Lo Presti. 
 
 Progetto A: Web Server con adattamento dinamico di contenuti statico (maggiori dettagli [qui](https://github.com/Alfystar/IIW2020/blob/master/WebServer_Project.pdf))
+Relazione: [Link alla Relazione](3_Relazione/Relazione_final.pdf)
 
 ### Sviluppato in C++ da:
 - Alfano Emanuele
