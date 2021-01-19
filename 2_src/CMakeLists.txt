@@ -4,6 +4,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 message("Platform type Unix : ${UNIX}")
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address")
 add_compile_options(-Wall -Wextra -pedantic -Werror)
+add_compile_options(-Ofast)
 project(HTTP-ImageServer)
 
 if (IMAGE_RESIZE_EN)
