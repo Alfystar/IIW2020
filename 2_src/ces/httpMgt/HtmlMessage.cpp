@@ -11,9 +11,7 @@ HtmlMessage::HtmlMessage (NCS::Connection::httpHeader &hHeader){
     auto it = hHeader.cim.find("Connection");
     if (!it._M_cur){ // Non ho Trovato la Connection, quindi di defautl sono in keep-alive mode
         conType = KeepAlive;
-    }
-
-    if (boost::iequals(it->second, "close")) // boost è key insensitive
+    } else if (boost::iequals(it->second, "close")) // boost è key insensitive
         conType = KeepAlive;
 
     pathBody = ".";
