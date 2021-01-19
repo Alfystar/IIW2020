@@ -68,9 +68,9 @@ Shredder::Shredder (){
         s->freeSpace();
     }
     for (;;){
-        s->waitUntilFullCache();    // aspettare la pool
+        s->waitUntilFullCache();    // aspettare la poll
         s->elaboratePipe();         // svuoto la pipe
-        if (s->cacheSize < FILE_SIZE_LIMIT){
+        if (s->cacheSize < FILE_SIZE_LIMIT) {
             continue;
         }
         s->freeSpace();

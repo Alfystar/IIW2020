@@ -42,23 +42,23 @@ Resource::Resource (string &p, string &format, float qValue){
 
     fs::create_directories(subFolder);
 
-    openMutex.lock();
+    openMutex.lock(); //Creation Lock
 
-    if ((fd = open(path.c_str(), O_CREAT | O_EXCL, S_IRUSR | S_IWUSR)) == -1){ // Provo a creare il file
-        if (errno != EEXIST){   // Se l'errore non è che il file già esiste è anomalo
+    if ((fd = open(path.c_str(), O_CREAT | O_EXCL, S_IRUSR | S_IWUSR)) == -1) { // Provo a creare il file
+        if (errno != EEXIST) {   // Se l'errore non è che il file già esiste è anomalo
             perror("[Resource::Resource]Error occurred at 1st open: ");
             cerr << path << endl;
             cerr << "format: " << format << endl;
             cerr << "qValue: " << qValue << endl;
             path = p;
-            openMutex.unlock();
+            openMutex.unlock(); //Creation unlock
             return;
         }
-        #ifdef DEBUG_LOG
+#ifdef DEBUG_LOG
         Log::db << "[Resource::Resource] file already exists:\n\t" << path << "\n";
-        #endif
+#endif
         fd = open(path.c_str(), 0, S_IRUSR); // accedo al file in sola lettura
-        openMutex.unlock();
+        openMutex.unlock(); // Creation unlock
         flock(fd, LOCK_SH); //in questo modo rimango in attesa che venga elaborato prima il file
         return;
     }
