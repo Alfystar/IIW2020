@@ -20,10 +20,10 @@ sudo apt install libfmt-dev
 sudo apt install libboost-all-dev
 ```
 
-- Per usare le facility di immage resize
+- Per usare le facility di image resize
 
 ```bash
-sudo apt install webp, ffmpeg
+sudo apt install webp ffmpeg
 ```
 
 #### Compilazione del server

@@ -38,7 +38,7 @@ Il progetto è stato testato con successo su:
 - [Visual Paradigm](https://www.visual-paradigm.com/download/community.jsp) community version
 - ImageMagic, che necessita delle librerie:
 ```bash
-	sudo apt install webp, ffmpeg    
+	sudo apt install webp ffmpeg    
 ```
 - Go-HttpBench: https://github.com/parkghost/gohttpbench
 
